@@ -7,7 +7,7 @@ ROOT="${ROOT:-/}"
 
 # Print help
 do_help () {
-	echo "Usage: $0 {list|status|start|stop|restart} [args]" 1>&2
+	echo "Usage: $0 {l|list|c|create|x|extract} provider [args]" 1>&2
 }
 
 verify_provider () {
