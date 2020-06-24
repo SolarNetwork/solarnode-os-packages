@@ -1,0 +1,3 @@
+solar ALL = (root) NOPASSWD: /var/lib/solarnode/bin/solarbackup, \
+	/usr/share/solarnode/bin/solarbackup.sh
+
