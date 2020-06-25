@@ -18,4 +18,4 @@ deb :
 	usr
 
 clean : 
-	rm $(NAME)_$(VERSION)*.deb
+	rm -f $(NAME)_$(VERSION)*.deb

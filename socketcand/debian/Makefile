@@ -32,5 +32,5 @@ prep :
 	find $(SOCKETCAND_INSTALL_DIR) -type f -name .DS_Store -delete
 
 clean : 
-	rm $(NAME)_$(VERSION)*.deb
+	rm -f $(NAME)_$(VERSION)*.debdate
 
