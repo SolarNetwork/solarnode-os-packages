@@ -7,12 +7,12 @@ Description: WiFi country?
 Template: sn-wifi/ssid
 Type: string
 Description: SSID name?
- Enter the name of the WiFi network to join.
+ Enter the name of the WiFi network to join. Leave blank to skip joining a network.
 
 Template: sn-wifi/pass
 Type: password
 Description: WiFi password?
- Enter the WiFi network password. It must be a minimum of 8 characters.
+ Enter the WiFi network password. It must be a minimum of 8 characters. Configure a placeholder value like 'changeit' if unsure or not joining a network now.
 
 Template: sn-wifi/msg_pass_too_short
 Type: error
