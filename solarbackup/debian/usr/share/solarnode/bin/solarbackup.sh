@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # 
-# Helper script to support SolarNode OS-level backups.
+# Helper script to support SolarNode OS-level backups. Depends on GNU tar.
 
 CONF_DIR="${CONF_DIR:-/usr/share/solarnode/backup.d}"
 ROOT="${ROOT:-/}"
@@ -40,7 +40,7 @@ do_archive () {
 		echo "Stubbornly refusing to archive to the terminal. Please redirect output." 1>&2
 		exit 1
 	fi
-	tar -cz -C "${ROOT}" -T "${flist}" 2>/dev/null
+	tar -cz -C "${ROOT}" -T "${flist}" --verbatim-files-from 2>/dev/null
 }
 
 do_extract () {
