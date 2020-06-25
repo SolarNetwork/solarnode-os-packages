@@ -16,7 +16,7 @@ deb : prep
 	-d 'wpasupplicant' \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
-	--after-install $(NAME)postinst \
+	--after-install $(NAME).postinst \
 	--after-remove $(NAME).postrm \
 	--deb-config $(NAME).config \
 	--deb-templates $(NAME).templates \
