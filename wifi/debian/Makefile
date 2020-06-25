@@ -1,10 +1,11 @@
 DIST = 
+NAME = sn-wifi
 VERSION = 1.1.0-0$(if $(DIST),+$(DIST),)
 PATHS = etc lib usr
 
 deb : prep
 	fpm -s dir -t deb \
-	-n sn-wifi \
+	-n $(NAME) \
 	-v $(VERSION) \
 	-a all \
 	-m 'packaging@solarnetwork.org.nz' \
@@ -15,10 +16,10 @@ deb : prep
 	-d 'wpasupplicant' \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
-	--after-install sn-wifi.postinst \
-	--after-remove sn-wifi.postrm \
-	--deb-config sn-wifi.config \
-	--deb-templates sn-wifi.templates \
+	--after-install $(NAME)postinst \
+	--after-remove $(NAME).postrm \
+	--deb-config $(NAME).config \
+	--deb-templates $(NAME).templates \
 	--deb-no-default-config-files \
 	$(PATHS)
 
@@ -29,4 +30,4 @@ prep :
 	find $(PATHS) -type f -name .DS_Store -delete
 
 clean : 
-	rm sn-wifi_$(VERSION)_all.deb
+	rm $(NAME)_$(VERSION)_all.deb
