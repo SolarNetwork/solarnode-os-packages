@@ -18,4 +18,4 @@ deb :
 	$(PATHS)
 
 clean : 
-	rm $(NAME)_$(VERSION)_all.deb
+	rm $(NAME)_$(VERSION)*.deb

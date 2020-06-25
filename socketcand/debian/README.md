@@ -2,22 +2,22 @@
 
 ## Building
 
-Make sure `autoconf`, `automake`, `libtool`, and `libconfig-dev` are installed, e.g.
+Make sure `autoconf`, `automake`, `libtool`, `libconfig-dev`, and `make` are installed, e.g.
 
 ```sh
-apt-get install autoconf automake libtool libconfig-dev
+apt-get install autoconf automake libtool libconfig-dev build-essential
 ```
 
 You also need the kernel headers installed. For example on a Raspberry Pi:
 
 ```
-apt-get intall raspbian-kernel-headers
+apt-get install raspbian-kernel-headers
 ```
 
 Clone the git repository, check out the release tag, and build like this:
 
 ```sh
-$ git clone git clone https://github.com/linux-can/socketcand.git
+$ git clone https://github.com/linux-can/socketcand.git
 $ cd socketcand
 $ ./autogen.sh
 $ ./configure --prefix=/usr
@@ -36,7 +36,7 @@ $ sudo gem install --no-ri --no-rdoc fpm
 
 ## Create package
 
-Use `fpm` to package the service via `make`. This package is architecture independent:
+Use `fpm` to package the service via `make`:
 
 ```sh
 $ make
