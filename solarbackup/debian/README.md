@@ -17,8 +17,8 @@ The `<action>` argument can be one of the following:
 
 | Action    | Description |
 |:----------|:------------|
-| `create`  | Create a new backup tar archive. |
-| `extract` | Extract a backup tar archive. |
+| `create`  | Create a new backup tar archive to STDOUT. |
+| `extract` | Extract a backup tar archive from STDIN. |
 
 The `<name>` argument is a unique backup configuration identifier that defines what files will be
 included in the backup when the `create` action is performed.
