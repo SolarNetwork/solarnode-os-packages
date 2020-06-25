@@ -26,7 +26,7 @@ do_list () {
 	local flist="${CONF_DIR}/${provider}.list"
 	verify_provider "${provider}"
 	while IFS= read -r f; do
-		if [ -e "$f" ]; then
+		if [ -e "${ROOT}/$f" ]; then
 			echo "$f"
 		fi
 	done < "${flist}"
