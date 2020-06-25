@@ -17,6 +17,7 @@ deb : prep
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
 	--after-install $(NAME).postinst \
+	--before-remove $(NAME).prerm \
 	--after-remove $(NAME).postrm \
 	--deb-config $(NAME).config \
 	--deb-templates $(NAME).templates \

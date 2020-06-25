@@ -16,7 +16,9 @@ deb :
 	-d 'motion (>= 4.0)' \
 	-d 'systemd (>= 230)' \
 	--deb-activate noawait \
-	--after-install motion.postinst \
+	--after-install $(NAME).postinst \
+	--before-remove $(NAME).prerm \
+	--after-remove $(NAME).postrm \
 	etc lib usr
 
 clean : 

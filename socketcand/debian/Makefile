@@ -15,6 +15,7 @@ deb : copy prep
 	--license 'Apache License 2.0' \
 	-C $(SOCKETCAND_INSTALL_DIR) \
 	--force \
+	--before-remove $(NAME).prerm \
 	--after-remove $(NAME).postrm \
 	$(PATHS)
 

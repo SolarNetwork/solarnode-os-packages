@@ -12,6 +12,4 @@ service_down () {
 if [ "$1" = "remove" ]; then
 	service_down sn-motion-cleaner.service
 	service_down sn-motion-cleaner.timer
-elif [ "$1" = "purge" ]; then
-	rm -f /etc/solarnode/services/net.solarnetwork.node.backup.ext-snmotion.cfg
 fi
