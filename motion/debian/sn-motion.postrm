@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "purge" ]; then
+	rm -f /etc/solarnode/services/net.solarnetwork.node.backup.ext-snmotion.cfg
+fi

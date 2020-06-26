@@ -70,7 +70,7 @@ EOF
 	if [ -s "$tmpfile" ]; then
 		debconf-set-selections $tmpfile
 		if [ -x "$CFG_SCRIPT" ]; then
-			echo "$PASS" | $CFG_SCRIPT -c "$country" -s "$ssid"
+			$CFG_SCRIPT -c "$country" -s "$ssid" -p "$password"
 		fi
 	else
 		configure_help

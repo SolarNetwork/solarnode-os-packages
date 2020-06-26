@@ -1,6 +1,6 @@
 NAME = sn-motion
 DIST = 
-VERSION = 1.0.0-2$(if $(DIST),+$(DIST),)
+VERSION = 1.1.0-0$(if $(DIST),+$(DIST),)
 
 deb : 
 	fpm -s dir -t deb \
@@ -16,8 +16,10 @@ deb :
 	-d 'motion (>= 4.0)' \
 	-d 'systemd (>= 230)' \
 	--deb-activate noawait \
-	--after-install motion.postinst \
-	etc lib
+	--after-install $(NAME).postinst \
+	--before-remove $(NAME).prerm \
+	--after-remove $(NAME).postrm \
+	etc lib usr
 
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
