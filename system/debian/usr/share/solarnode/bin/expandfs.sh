@@ -72,12 +72,38 @@ else
 fi
 
 # Resize the filesystem to use the entire partition
+FS_TYPE=$(findmnt -f -n -o FSTYPE ${SOLARNODE_DEV})
+FS_MOUNT=$(findmnt -f -n -o TARGET ${SOLARNODE_DEV})
 if [ $VERBOSE = 1 ]; then
-	echo -e "\nExpanding filesystem on partition ${SOLARNODE_PART}..."
+	echo -e "\nExpanding $FS_TYPE filesystem on partition ${SOLARNODE_PART}..."
 fi
 if [ $DRYRUN = 1 ]; then
-	echo "resize2fs ${SOLARNODE_PART}"
+	case $FS_TYPE in
+		btrfs)
+			echo "btrfs filesystem resize max ${FS_MOUNT}"
+			;;
+			
+		ext*)
+			echo "resize2fs ${SOLARNODE_PART}"
+			;;
+		
+		*)
+			echo "Unsupported filesystem type: $FS_TYPE"
+			;;
+	esac
 else
-	resize2fs "${SOLARNODE_PART}"
+	case $FS_TYPE in
+		btrfs)
+			btrfs filesystem resize max "${FS_MOUNT}" 
+			;;
+			
+		ext*)
+			resize2fs "${SOLARNODE_PART}"
+			;;
+		
+		*)
+			echo "Unsupported filesystem type: $FS_TYPE"
+			;;
+	esac
 fi
 
