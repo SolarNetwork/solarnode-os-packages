@@ -72,8 +72,8 @@ else
 fi
 
 # Resize the filesystem to use the entire partition
-FS_TYPE=$(findmnt -f -n -o FSTYPE ${SOLARNODE_DEV})
-FS_MOUNT=$(findmnt -f -n -o TARGET ${SOLARNODE_DEV})
+FS_TYPE=$(findmnt -f -n -o FSTYPE ${SOLARNODE_PART})
+FS_MOUNT=$(findmnt -f -n -o TARGET ${SOLARNODE_PART})
 if [ $VERBOSE = 1 ]; then
 	echo -e "\nExpanding $FS_TYPE filesystem on partition ${SOLARNODE_PART}..."
 fi
