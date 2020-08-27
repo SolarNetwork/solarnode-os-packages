@@ -7,7 +7,7 @@ package is to configure, start, and maintain a mobile network connection on the 
 # Services
 
 The `sn-sixfab-3g-pppd` service manages the `pppd` daemon, but is not installed. The
-`sn-sixfab-3c-reconnect` service is managed by a timer, that runs the
+`sn-sixfab-3g-reconnect` service is managed by a timer, that runs the
 `/usr/share/solarnode/bin/sixfab-3g-reconnect.sh` script to verify if the `1.1.1.1` DNS service can
 be reached via `ping`. If not, the `sn-sixfab-3g-pppd` service is restarted.
 
