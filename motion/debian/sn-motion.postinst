@@ -4,7 +4,7 @@ set -e
 # ensure solar user is in adm group, so it can read motion-generated media
 usermod -a -G adm solar
 
-systemctl daemon-reload
+systemctl daemon-reload || true
 
 service_up () {
 	name="$1"

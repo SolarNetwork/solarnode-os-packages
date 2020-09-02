@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-systemctl daemon-reload
+systemctl daemon-reload || true
 
 service_up () {
 	name="$1"
