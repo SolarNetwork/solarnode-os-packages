@@ -10,6 +10,7 @@ RemainAfterExit=yes
 ExecStartPre=/bin/chown root:root /boot/wpa_supplicant.conf ; \
 	/bin/chmod 600 /boot/wpa_supplicant.conf
 ExecStart=/bin/mv /boot/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+ExecStartPost=-/usr/sbin/rfkill unblock wifi
 ExecStartPost=-/usr/share/solarnode/bin/wifi-confsync.sh
 
 [Install]
