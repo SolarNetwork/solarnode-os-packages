@@ -3,7 +3,7 @@ set -e
 
 reload_udev () {
 	if [ -x /sbin/udevadm ]; then
-		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger
+		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger || true
 	fi
 }
 
@@ -36,4 +36,4 @@ fi
 
 systemctl daemon-reload || true
 reload_udev
-depmod -a
+depmod -a || true
