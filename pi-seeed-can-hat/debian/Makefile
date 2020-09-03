@@ -14,7 +14,7 @@ deb : prep
 	-a armhf \
 	--force \
 	-d 'systemd (>= 232)' \
-	-d 'raspberrypi-kernel (= 1.20190925+1-1) | raspberrypi-kernel (= 1.20200212-1) | raspberrypi-kernel (= 1.20200819-1)' \
+	-d 'raspberrypi-kernel (= 1.20200819-1)' \
 	--before-install $(NAME).preinst \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
