@@ -21,7 +21,7 @@ service_up () {
 
 reload_udev () {
 	if [ -x /sbin/udevadm ]; then
-		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger
+		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger || true
 	fi
 }
 
