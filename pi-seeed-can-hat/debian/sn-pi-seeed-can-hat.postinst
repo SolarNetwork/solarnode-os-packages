@@ -30,7 +30,8 @@ fi
 if [ $(dpkg --get-selections |grep '^raspberrypi-kernel\s' |awk '{print $2}') != "hold" ]; then
 	echo '*** NOTE'
 	echo '*** You might want to add a hold on the raspberrypi-kernel package, for example:'
-	echo '*** echo "raspberrypi-kernel hold" |dpkg --set-selections'
+	echo '***'
+	echo '*** sudo apt-mark hold raspberrypi-kernel'
 fi
 
 systemctl daemon-reload || true
