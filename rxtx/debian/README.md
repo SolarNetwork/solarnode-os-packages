@@ -1,4 +1,4 @@
-# SolarNode system support Debian package
+# SolarNode RXTX support Debian package
 
 ## Packaging requirements
 

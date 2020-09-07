@@ -3,13 +3,19 @@ set -e
 
 reload_udev () {
 	if [ -x /sbin/udevadm ]; then
-		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger
+		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger || true
 	fi
 }
 
 if [ -f /usr/share/solarnode/overlays/2xMCP2517FD.dtbo ]; then
   rm -f /boot/overlays/2xMCP2517FD.dtbo
   dpkg-divert --package snrpikernelhack --rename --remove /boot/overlays/2xMCP2517FD.dtbo
+  sync
+fi
+
+if [ -f /usr/share/solarnode/overlays/2xMCP2518FD-spi0.dtbo ]; then
+  rm -f /boot/overlays/2xMCP2518FD-spi0.dtbo
+  dpkg-divert --package snrpikernelhack --rename --remove /boot/overlays/2xMCP2518FD-spi0.dtbo
   sync
 fi
 
@@ -30,9 +36,10 @@ fi
 if [ $(dpkg --get-selections |grep '^raspberrypi-kernel\s' |awk '{print $2}') != "hold" ]; then
 	echo '*** NOTE'
 	echo '*** You might want to add a hold on the raspberrypi-kernel package, for example:'
-	echo '*** echo "raspberrypi-kernel hold" |dpkg --set-selections'
+	echo '***'
+	echo '*** sudo apt-mark hold raspberrypi-kernel'
 fi
 
-systemctl daemon-reload
+systemctl daemon-reload || true
 reload_udev
-depmod -a
+depmod -a || true

@@ -1,6 +1,6 @@
 DIST = 
 NAME = sn-wifi
-VERSION = 1.1.0-0$(if $(DIST),+$(DIST),)
+VERSION = 1.2.0-1$(if $(DIST),+$(DIST),)
 PATHS = etc lib usr
 
 deb : prep
@@ -13,9 +13,10 @@ deb : prep
 	--description 'WiFi management service' \
 	--license 'Apache License 2.0' \
 	-f \
-	-d 'wpasupplicant' \
+	-d 'rfkill' \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
+	-d 'wpasupplicant' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
 	--after-remove $(NAME).postrm \

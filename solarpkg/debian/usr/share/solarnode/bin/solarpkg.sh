@@ -17,6 +17,10 @@ Usage: solarpkg [-v] <action> [arguments]
       Remove any cached download packages or temporary files. Remove any packages no longer
       required by other packages (autoremove).
 
+  fix-broken
+  
+      Try to install and fix partially installed packages.
+      
   install <name> [<version>]
   
       Install package `name`. If `name` ends with '.deb' then install the package file `name`.
@@ -151,6 +155,12 @@ pkg_install () {
 	esac
 }
 
+# fix partially installed packages (i.e. with missing deps)
+pkg_fix_broken () {
+	pkg_wait_not_busy
+	sudo apt-get install -f $APT_FLAGS >$APT_OUTPUT </dev/null
+}
+
 pkg_remove () {	
 	local pkg="$1"
 	if [ -z "$pkg" ]; then
@@ -222,6 +232,8 @@ pkg_upgrade () {
 
 case $ACTION in
 	clean) pkg_clean "$@";;
+	
+	fix-broken) pkg_fix_broken "$@";;
 	
 	install) pkg_install "$@";;
 	

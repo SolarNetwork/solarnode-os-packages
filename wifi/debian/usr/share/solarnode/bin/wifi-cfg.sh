@@ -69,7 +69,11 @@ if [ -z "$PASS" ]; then
 fi
 
 if [ -n "$SSID" -a ${#PASS} -ge 8 -a -e "$WPA_PP" ]; then
-	PSK=$($WPA_PP "$SSID" "$PASS" |awk -F= '$1 ~ /psk/ && $1 !~ /#psk/ {print $2}')
+	# if pass looks like it is already a wpa_passphrase format, then use that directly
+	PSK="$PASS"
+	if ! [[ $PASS =~ [0-9a-fA-F]{64} ]]; then
+		PSK=$($WPA_PP "$SSID" "$PASS" |awk -F= '$1 ~ /psk/ && $1 !~ /#psk/ {print $2}')
+	fi
 	if [ ! -e "$WPA_CONF" -a -e "$WPA_CONF_EXAMPLE" ]; then
 		# copy example
 		cp "$WPA_CONF_EXAMPLE" "$WPA_CONF" || true

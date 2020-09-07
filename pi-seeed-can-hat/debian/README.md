@@ -4,8 +4,8 @@ This directory contains packaging scripts used to create the `sn-pi-seeed-can-ha
 which provides configuration and support for the Seeed Studio CAN HAT. The goal of this package is
 to configure the CAN HAT for use by SolarNode on a Raspberry Pi.
 
-The kernel modules included here are compiled from the Seeed Studio [pi-hats][pi-hats] project,
-which are released under the MIT licence.
+The kernel modules included here are compiled from the Seeed Studio [seeed-linux-dtoverlays][sld]
+project (formerly the [pi-hats][pi-hats] project), which are released under the MIT licence.
 
 # Services
 
@@ -44,9 +44,32 @@ This package requires a specific kernel version. To install that version, and th
 doesn't accidentally get upgraded:
 
 ```
-$ wget http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/raspberrypi-kernel_1.20190925+1-1_armhf.deb
-$ dpkg -i raspberrypi-kernel_1.20190925+1-1_armhf.deb
+$ wget http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/raspberrypi-kernel_1.20200819-1_armhf.deb
+$ dpkg -i raspberrypi-kernel_1.20200819-1_armhf.deb
 $ apt-mark hold raspberrypi-kernel
+```
+
+# Building kernel modules
+
+Clone the [seeed-linux-dtoverlays][sld] project, and build:
+
+```sh
+sudo apt-get install git dkms can-utils raspberrypi-kernel-headers
+
+git clone https://github.com/Seeed-Studio/seeed-linux-dtoverlays
+cd seeed-linux-dtoverlays/modules/CAN-HAT
+
+# NOTE: if BusyBox installed with symlinks, might need to do this, else dkms freaks:
+sudo rm /bin/rpm
+
+sudo ./install.sh
+tar cvzf can-modules.tgz -C / /lib/modules/*/kernel/drivers/net/can/spi/mcp25xxfd*.ko /boot/overlays/2xMCP251*.dtbo
+```
+
+Then copy can-modules.tgz to this directory and extract:
+
+```sh
+tar xvf can-modules.tgz
 ```
 
 # Packaging
@@ -78,3 +101,4 @@ $ make DIST=buster
 
 [fpm]: https://github.com/jordansissel/fpm
 [pi-hats]: https://github.com/Seeed-Studio/pi-hats
+[sld]: https://github.com/Seeed-Studio/seeed-linux-dtoverlays

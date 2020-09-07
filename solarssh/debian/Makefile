@@ -1,6 +1,6 @@
 NAME = sn-solarssh
 DIST = 
-VERSION = 1.0.0-2$(if $(DIST),+$(DIST),)
+VERSION = 1.0.0-3$(if $(DIST),+$(DIST),)
 
 deb : 
 	fpm -s dir -t deb \
