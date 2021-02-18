@@ -1,0 +1,1 @@
+/usr/share/solarkiosk/bin/web.sh 'http://localhost:8081/index.html?url='"${SOLARKIOSK_URL}" &

@@ -1,0 +1,2 @@
+# Define the URL-escaped URL to redirect to when the network comes up
+export SOLARKIOSK_URL="https%3A%2F%2Fsolarnetwork.github.io%2F"

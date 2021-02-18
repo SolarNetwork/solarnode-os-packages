@@ -1,0 +1,40 @@
+#!/bin/sh
+set -e
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+# make sure kiosk user exists
+if ! getent passwd kiosk >/dev/null; then
+	echo 'Adding kiosk user...'
+	useradd -c 'SolarKiosk' -m -U kiosk -G video -s /bin/bash
+	
+	if [ -e /etc/skel/.bash_logout ]; then
+		cp -r /usr/share/solarkiosk/kiosk/. /home/kiosk
+		#cp -a /etc/skel/.bash_logout /etc/skel/.bashrc /home/kiosk
+		chown -R kiosk:kiosk /home/kiosk
+		echo 'Creating default ~kiosk/.config/openbox/environment file.'
+		echo 'You probably want to modify this to define a real URL.'
+
+	fi
+fi
+
+# On a Pi 3 used to have to do this to fix hardware GL for webkit
+#ln -sf /opt/vc/lib/libbrcmEGL.so /usr/lib/arm-linux-gnueabihf/libEGL.so.1
+#ln -sf /opt/vc/lib/libbrcmGLESv2.so /usr/lib/arm-linux-gnueabihf/libGLESv2.so.2
+
+systemctl daemon-reload || true
+service_up solarkiosk-server.service
