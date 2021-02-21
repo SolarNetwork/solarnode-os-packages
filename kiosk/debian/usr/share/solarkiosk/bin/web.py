@@ -22,6 +22,9 @@ settings.set_allow_modal_dialogs(False)
 settings.set_enable_plugins(False)
 settings.set_enable_java(False)
 settings.set_enable_write_console_messages_to_stdout(True)
+settings.set_enable_webaudio(True)
+settings.set_enable_webgl(True)
+settings.set_enable_accelerated_2d_canvas(True)
 
 web.get_context().set_cache_model(WebKit2.CacheModel.DOCUMENT_BROWSER)
 

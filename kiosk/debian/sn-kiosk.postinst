@@ -32,9 +32,48 @@ if ! getent passwd kiosk >/dev/null; then
 	fi
 fi
 
-# On a Pi 3 used to have to do this to fix hardware GL for webkit
-#ln -sf /opt/vc/lib/libbrcmEGL.so /usr/lib/arm-linux-gnueabihf/libEGL.so.1
-#ln -sf /opt/vc/lib/libbrcmGLESv2.so /usr/lib/arm-linux-gnueabihf/libGLESv2.so.2
+# Enable 256MB GPU_MEM
+if grep -q '^gpu_mem=256' /boot/config.txt; then
+	true
+else
+	echo 'Setting gpu_mem=256 in /boot/config.txt; will be enabled on reboot.'
+	if grep -q 'gpu_mem=' /boot/config.txt; then
+		# update
+		sed -i -e '/gpu_mem=/c gpu_mem=256' /boot/config.txt || true
+	else
+		# add in
+		echo 'gpu_mem=256' >>/boot/config.txt
+	fi
+fi
+
+# # Enable DRM VC4 V3D driver on top of the dispmanx display stack
+if grep -q '^\[all\]$' /boot/config.txt; then
+	if sed -ne '/\[all\]/,$ p' /boot/config.txt |grep -q '^dtoverlay=vc4-fkms-v3d'; then
+		true
+	else
+		echo 'Setting dtoverlay=vc4-fkms-v3d in [all] section of /boot/config.txt; will be enabled on reboot.'
+		if sed -ne '/\[all\]/,$ p' /boot/config.txt |grep -q 'dtoverlay=vc4-fkms-v3d'; then
+			# update
+			sed -i -e '/^\[all\]/,/^\[/{s/.*dtoverlay=vc4-fkms-v3d.*/dtoverlay=vc4-fkms-v3d/}' /boot/config.txt || true
+		else
+			# add in; assume [all] at end
+			echo 'dtoverlay=vc4-fkms-v3d' >>/boot/config.txt
+		fi
+	fi
+else
+	if grep -q '^dtoverlay=vc4-fkms-v3d' /boot/config.txt; then
+		true
+	else
+		echo 'Setting dtoverlay=vc4-fkms-v3d in /boot/config.txt; will be enabled on reboot.'
+		if grep -q 'dtoverlay=vc4-fkms-v3d' /boot/config.txt; then
+			# update
+			sed -i -e '/dtoverlay=vc4-fkms-v3d/c dtoverlay=vc4-fkms-v3d' /boot/config.txt || true
+		else
+			# add in
+			echo 'dtoverlay=vc4-fkms-v3d' >>/boot/config.txt
+		fi
+	fi
+fi
 
 systemctl daemon-reload || true
 service_up solarkiosk-server.service
