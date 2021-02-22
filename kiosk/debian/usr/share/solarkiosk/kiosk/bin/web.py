@@ -26,7 +26,7 @@ settings.set_enable_webaudio(True)
 settings.set_enable_webgl(True)
 settings.set_enable_accelerated_2d_canvas(True)
 
-web.get_context().set_cache_model(WebKit2.CacheModel.DOCUMENT_BROWSER)
+web.get_context().set_cache_model(WebKit2.CacheModel.DOCUMENT_VIEWER)
 
 scroller = Gtk.ScrolledWindow()
 scroller.add(web)

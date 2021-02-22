@@ -22,12 +22,12 @@ if ! getent passwd kiosk >/dev/null; then
 	echo 'Adding kiosk user...'
 	useradd -c 'SolarKiosk' -m -U kiosk -G video -s /bin/bash
 	
-	if [ -e /etc/skel/.bash_logout ]; then
+	if [ -e /usr/share/solarkiosk/kiosk ]; then
 		cp -r /usr/share/solarkiosk/kiosk/. /home/kiosk
-		#cp -a /etc/skel/.bash_logout /etc/skel/.bashrc /home/kiosk
 		chown -R kiosk:kiosk /home/kiosk
-		echo 'Creating default ~kiosk/.config/openbox/environment file.'
-		echo 'You probably want to modify this to define a real URL.'
+		echo 'Creating default ~kiosk user files.'
+		echo 'You probably want to modify the setup, for example to define a'
+		echo 'real URL in ~kiosk/.config/openbox/environment.'
 
 	fi
 fi

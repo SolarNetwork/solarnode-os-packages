@@ -9,7 +9,7 @@ Once installed, the SolarNode will auto-login a `kiosk` user, which has Openbox 
 and launch a full-screen WebKit-based browser window. The `/home/kiosk/web/index.html` file is the
 HTML shown. That file will be served by a simple Python HTTP server at the URL
 `http://localhost:8081/index.html`. The default `index.html` looks for a `?url=` query parameter
-and, if present, will attempt to load the URL and display it. To configure that URL, edit the 
+and, if present, will attempt to load the URL and display it. To configure that URL, edit the
 `/home/kiosk/.config/openbox/environment` file, which looks like this:
 
 ```sh
@@ -18,11 +18,11 @@ export SOLARKIOSK_URL="https%3A%2F%2Fsolarnetwork.github.io%2F"
 
 **Note** that the `SOLARKIOSK_URL` value _must be URI escaped_.
 
-## Kiosk Cache
+# Kiosk browser
 
-The kiosk browser will cache files, including the `index.html` content, in a 
-`/home/kiosk/.cache/web.py` directory. If needed, delete that directory and `kill` the `web.py`
-process to refresh the browser.
+The kiosk browser is a Python script, located at `~kiosk/bin/web.py`. This script is created only
+the first time this package is installed (copied from `/usr/share/solarkiosk/bin/web.py`. The 
+settings in `~kiosk/bin/web.py` can thus be customised as needed.
 
 # Packaging
 
