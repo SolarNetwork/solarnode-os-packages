@@ -32,6 +32,9 @@ scroller = Gtk.ScrolledWindow()
 scroller.add(web)
 win.add(scroller)
 
+if len(sys.argv) > 2:
+	web.set_zoom_level(float(sys.argv[2]))
+
 web.load_uri(sys.argv[1])
 
 win.fullscreen()

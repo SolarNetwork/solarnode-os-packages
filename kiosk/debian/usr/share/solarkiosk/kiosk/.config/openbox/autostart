@@ -1,1 +1,1 @@
-~/bin/web.sh 'http://localhost:8081/index.html?url='"${SOLARKIOSK_URL}" &
+~/bin/web.sh 'http://localhost:8081/index.html?url='"${SOLARKIOSK_URL}" "${SOLARKIOSK_ZOOM_LEVEL}" &

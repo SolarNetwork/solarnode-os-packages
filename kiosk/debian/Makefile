@@ -1,5 +1,5 @@
 NAME = sn-kiosk
-VERSION = 1.0.2-1
+VERSION = 1.0.3-1
 PATHS = etc lib usr
 
 deb : prep
