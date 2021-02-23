@@ -19,6 +19,9 @@ deb : prep
 	-d 'python3-gi' \
 	-d 'python3-xdg' \
 	-d 'openbox' \
+	--conflicts 'sn-kiosk' \
+	--replaces 'sn-kiosk' \
+	--provides 'solarkiosk' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
 	$(PATHS)
