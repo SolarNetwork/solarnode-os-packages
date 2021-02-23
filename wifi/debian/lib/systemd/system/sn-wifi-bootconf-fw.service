@@ -1,0 +1,13 @@
+[Unit]
+Description=Move /boot/firmware/wpa_supplicant.conf to right place.
+ConditionPathExists=/boot/firmware/wpa_supplicant.conf
+Wants=wpa_supplicant@wlan0.service
+Before=wpa_supplicant@wlan0.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/share/solarnode/bin/wifi-confcopy.sh /boot/firmware/wpa_supplicant.conf
+
+[Install]
+WantedBy=multi-user.target

@@ -40,6 +40,11 @@ if ! systemctl is-enabled sn-wifi-bootconf.service >/dev/null; then
 	systemctl enable sn-wifi-bootconf.service || true
 fi
 
+if ! systemctl is-enabled sn-wifi-bootconf-fw.service >/dev/null; then
+	echo 'Enabling sn-wifi-bootconf-fw.service...'
+	systemctl enable sn-wifi-bootconf-fw.service || true
+fi
+
 if ! systemctl is-enabled systemd-networkd >/dev/null; then
 	echo 'Enabling systemd-networkd...'
 	systemctl enable systemd-networkd || true
