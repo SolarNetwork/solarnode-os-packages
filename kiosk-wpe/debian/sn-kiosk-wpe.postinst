@@ -1,0 +1,65 @@
+#!/bin/sh
+set -e
+
+# make sure kiosk user exists
+if ! getent passwd kiosk >/dev/null; then
+	echo 'Adding kiosk user...'
+	useradd -c 'SolarKiosk' -m -U kiosk -G video,render -s /bin/bash
+	
+	if [ -e /usr/share/solarkiosk/kiosk ]; then
+		cp -r /usr/share/solarkiosk/kiosk/. /home/kiosk
+		chown -R kiosk:kiosk /home/kiosk
+		echo 'Creating default ~kiosk user files.'
+		echo 'You probably want to modify the setup, for example to define a'
+		echo 'real URL in ~kiosk/.config/solarkiosk.conf.'
+
+	fi
+fi
+
+BOOT_CONFIG="/boot/config.txt"
+if [ -e "/boot/firmware/config.txt" ]; then
+	BOOT_CONFIG="/boot/firmware/config.txt"
+fi
+
+# Enable 256MB GPU_MEM
+if grep -q '^gpu_mem=256' "${BOOT_CONFIG}"; then
+	true
+else
+	echo 'Setting gpu_mem=256 in ${BOOT_CONFIG}; will be enabled on reboot.'
+	if grep -q 'gpu_mem=' "${BOOT_CONFIG}"; then
+		# update
+		sed -i -e '/gpu_mem=/c gpu_mem=256' "${BOOT_CONFIG}"|| true
+	else
+		# add in
+		echo 'gpu_mem=256' >>"${BOOT_CONFIG}"
+	fi
+fi
+
+# # Enable DRM VC4 V3D driver on top of the dispmanx display stack
+if grep -q '^\[all\]$' "${BOOT_CONFIG}"; then
+	if sed -ne '/\[all\]/,$ p' "${BOOT_CONFIG}" |grep -q '^dtoverlay=vc4-fkms-v3d'; then
+		true
+	else
+		echo 'Setting dtoverlay=vc4-fkms-v3d in [all] section of ${BOOT_CONFIG}; will be enabled on reboot.'
+		if sed -ne '/\[all\]/,$ p' "${BOOT_CONFIG}" |grep -q 'dtoverlay=vc4-fkms-v3d'; then
+			# update
+			sed -i -e '/^\[all\]/,/^\[/{s/.*dtoverlay=vc4-fkms-v3d.*/dtoverlay=vc4-fkms-v3d/}' "${BOOT_CONFIG}" || true
+		else
+			# add in; assume [all] at end
+			echo 'dtoverlay=vc4-fkms-v3d' >>"${BOOT_CONFIG}"
+		fi
+	fi
+else
+	if grep -q '^dtoverlay=vc4-fkms-v3d' "${BOOT_CONFIG}"; then
+		true
+	else
+		echo 'Setting dtoverlay=vc4-fkms-v3d in ${BOOT_CONFIG}; will be enabled on reboot.'
+		if grep -q 'dtoverlay=vc4-fkms-v3d' "${BOOT_CONFIG}"; then
+			# update
+			sed -i -e '/dtoverlay=vc4-fkms-v3d/c dtoverlay=vc4-fkms-v3d' "${BOOT_CONFIG}" || true
+		else
+			# add in
+			echo 'dtoverlay=vc4-fkms-v3d' >>"${BOOT_CONFIG}"
+		fi
+	fi
+fi
