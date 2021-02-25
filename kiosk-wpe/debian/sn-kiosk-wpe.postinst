@@ -25,7 +25,7 @@ fi
 if grep -q '^gpu_mem=256' "${BOOT_CONFIG}"; then
 	true
 else
-	echo 'Setting gpu_mem=256 in ${BOOT_CONFIG}; will be enabled on reboot.'
+	echo "Setting gpu_mem=256 in ${BOOT_CONFIG}; will be enabled on reboot."
 	if grep -q 'gpu_mem=' "${BOOT_CONFIG}"; then
 		# update
 		sed -i -e '/gpu_mem=/c gpu_mem=256' "${BOOT_CONFIG}"|| true
@@ -40,7 +40,7 @@ if grep -q '^\[all\]$' "${BOOT_CONFIG}"; then
 	if sed -ne '/\[all\]/,$ p' "${BOOT_CONFIG}" |grep -q '^dtoverlay=vc4-fkms-v3d'; then
 		true
 	else
-		echo 'Setting dtoverlay=vc4-fkms-v3d in [all] section of ${BOOT_CONFIG}; will be enabled on reboot.'
+		echo "Setting dtoverlay=vc4-fkms-v3d in [all] section of ${BOOT_CONFIG}; will be enabled on reboot."
 		if sed -ne '/\[all\]/,$ p' "${BOOT_CONFIG}" |grep -q 'dtoverlay=vc4-fkms-v3d'; then
 			# update
 			sed -i -e '/^\[all\]/,/^\[/{s/.*dtoverlay=vc4-fkms-v3d.*/dtoverlay=vc4-fkms-v3d/}' "${BOOT_CONFIG}" || true
@@ -53,7 +53,7 @@ else
 	if grep -q '^dtoverlay=vc4-fkms-v3d' "${BOOT_CONFIG}"; then
 		true
 	else
-		echo 'Setting dtoverlay=vc4-fkms-v3d in ${BOOT_CONFIG}; will be enabled on reboot.'
+		echo "Setting dtoverlay=vc4-fkms-v3d in ${BOOT_CONFIG}; will be enabled on reboot."
 		if grep -q 'dtoverlay=vc4-fkms-v3d' "${BOOT_CONFIG}"; then
 			# update
 			sed -i -e '/dtoverlay=vc4-fkms-v3d/c dtoverlay=vc4-fkms-v3d' "${BOOT_CONFIG}" || true

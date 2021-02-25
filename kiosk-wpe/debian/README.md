@@ -12,7 +12,11 @@ and, if present, will attempt to load the URL and display it. To configure that 
 `/home/kiosk/.config/solarkiosk.conf` file, which looks like this:
 
 ```sh
-export SOLARKIOSK_URL="https%3A%2F%2Fsolarnetwork.github.io%2F"
+# Define the URL-escaped URL to redirect to when the network comes up
+SOLARKIOSK_URL="https%3A%2F%2Fsolarnetwork.github.io%2F"
+
+# Set a zoom level for the web view; for example to scale 720p to 1080p set to 1.5
+SOLARKIOSK_ZOOM_LEVEL="1.0"
 ```
 
 **Note** that the `SOLARKIOSK_URL` value _must be URI escaped_.

@@ -1,5 +1,5 @@
 NAME = sn-kiosk-wpe
-VERSION = 1.0.1-1
+VERSION = 1.0.1-3
 PATHS = etc usr
 
 deb : prep
