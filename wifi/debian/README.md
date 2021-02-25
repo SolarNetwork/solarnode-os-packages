@@ -30,6 +30,19 @@ partition of its OS SD card can be easily mounted on most computers, where you c
 file. Then, when the Pi boots up the WiFi credentials will be applied and the Pi will be able to
 connect to the network.
 
+## WiFi configuration changes
+
+The `sn-wifi-conf@wlan0.path` and `sn-wifi-conf@wlan0.service` units monitor the 
+`/etc/wpa_supplicant/wpa_supplicant-wlan0.conf` path and handle two situations:
+
+ 1. The `sn-wifi-conf@wlan0.service` is enabled so when the system boots, if the WiFi config
+    file exists, the `wpa_supplicant@wlan0` service will be started.
+ 2. The `sn-wifi-conf@wlan0.path` is enabled so if the WiFi config file changes, it will restart
+    the `wpa_supplicant@wlan0` service.
+
+The `wpa_supplicant@wlan0.service` unit is _not enabled_ so that the `sn-wifi-conf@wlan` units
+can manage it instead.
+
 # Packaging
 
 This section describes how the `sn-wifi` package is created.

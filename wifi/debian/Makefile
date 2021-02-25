@@ -1,6 +1,6 @@
 DIST = 
 NAME = sn-wifi
-VERSION = 1.2.1-1$(if $(DIST),+$(DIST),)
+VERSION = 1.3.0-1$(if $(DIST),+$(DIST),)
 PATHS = etc lib usr
 
 deb : prep

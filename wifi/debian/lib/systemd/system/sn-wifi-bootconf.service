@@ -1,8 +1,8 @@
 [Unit]
 Description=Move /boot/wpa_supplicant.conf to right place.
 ConditionPathExists=/boot/wpa_supplicant.conf
-Wants=wpa_supplicant@wlan0.service
-Before=wpa_supplicant@wlan0.service
+Wants=sn-wifi-conf@wlan0.service
+Before=sn-wifi-conf@wlan0.service
 
 [Service]
 Type=oneshot
