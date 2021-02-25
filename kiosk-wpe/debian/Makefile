@@ -1,5 +1,5 @@
 NAME = sn-kiosk-wpe
-VERSION = 1.0.1-3
+VERSION = 1.0.1-4
 PATHS = etc usr
 
 deb : prep
@@ -20,7 +20,6 @@ deb : prep
 	--replaces 'sn-kiosk3' \
 	--provides 'solarkiosk' \
 	--after-install $(NAME).postinst \
-	--before-remove $(NAME).prerm \
 	$(PATHS)
 
 prep : 
