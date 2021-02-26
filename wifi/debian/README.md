@@ -40,7 +40,7 @@ The `sn-wifi-conf@wlan0.path` and `sn-wifi-conf@wlan0.service` units monitor the
  2. The `sn-wifi-conf@wlan0.path` is enabled so if the WiFi config file changes, it will restart
     the `wpa_supplicant@wlan0` service.
 
-The `wpa_supplicant@wlan0.service` unit is _not enabled_ so that the `sn-wifi-conf@wlan` units
+The `wpa_supplicant@wlan0.service` unit is _not enabled_ so that the `sn-wifi-conf@wlan0` units
 can manage it instead.
 
 # Packaging
