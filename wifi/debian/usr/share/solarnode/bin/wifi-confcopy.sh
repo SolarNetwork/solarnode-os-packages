@@ -9,6 +9,5 @@ if [ -e "$1" ]; then
 	/bin/mv -f "$1" "$WPA_CONF"
 	/bin/chown root:root "$WPA_CONF"
 	/bin/chmod 600 "$WPA_CONF"
-	/usr/sbin/rfkill unblock wifi
 	/usr/share/solarnode/bin/wifi-confsync.sh
 fi
