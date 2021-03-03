@@ -74,7 +74,7 @@ set_env_value () {
 		echo "${key}=${val}" >>"${OVERRIDE}"
 	fi
 	
-	systemctl daemon-reload
+	systemctl daemon-reload || true
 	if systemctl --quiet is-active "${INSTANCE}"; then
 		systemctl restart "${INSTANCE}"
 	fi

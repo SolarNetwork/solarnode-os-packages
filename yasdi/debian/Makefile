@@ -18,7 +18,7 @@ deb :
 	-d 'libyasdi (>= 1.8.1)' \
 	usr/bin
 
-deb-lib :	
+deb-lib :
 	fpm -s dir -t deb \
 	-n lib$(NAME) \
 	-v $(VERSION) \
@@ -32,7 +32,7 @@ deb-lib :
 	--deb-activate noawait \
 	usr/lib
 
-deb-dev : 
+deb-dev : prep-headers
 	fpm -s dir -t deb \
 	-n lib$(NAME)-dev \
 	-v $(VERSION) \
@@ -43,6 +43,11 @@ deb-dev :
 	--force \
 	-C yasdi/projects/generic-cmake/build/native/local \
 	usr/include
+	
+prep-headers :
+	mkdir -p yasdi/projects/generic-cmake/build/native/local/usr/include/yasdi
+	find . -path ./yasdi/projects -prune -false -o -type f -name '*.h' -exec cp '{}' \
+		yasdi/projects/generic-cmake/build/native/local/usr/include/yasdi \;
 
 clean : 
 	rm -f lib$(NAME)_$(VERSION)*.deb

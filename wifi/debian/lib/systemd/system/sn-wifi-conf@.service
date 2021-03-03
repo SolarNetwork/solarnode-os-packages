@@ -8,8 +8,8 @@ Wants=network.target
 
 [Service]
 Type=oneshot
+ExecStartPre=/usr/sbin/rfkill unblock wlan
 ExecStart=/bin/systemctl restart wpa_supplicant@%i.service
 
 [Install]
 Alias=multi-user.target.wants/sn-wifi-conf@%i.service
-

@@ -63,6 +63,7 @@ cd seeed-linux-dtoverlays/modules/CAN-HAT
 sudo rm /bin/rpm
 
 sudo ./install.sh
+
 tar cvzf can-modules.tgz -C / /lib/modules/*/kernel/drivers/net/can/spi/mcp25xxfd*.ko /boot/overlays/2xMCP251*.dtbo
 ```
 

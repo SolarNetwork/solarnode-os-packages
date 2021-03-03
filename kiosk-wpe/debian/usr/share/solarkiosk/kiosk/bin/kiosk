@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+if [ -e "$HOME/.config/solarkiosk.conf" ]; then
+	. "$HOME/.config/solarkiosk.conf"
+fi
+export COG_PLATFORM_FDO_VIEW_FULLSCREEN=1
+cog -P fdo --doc-viewer --scale=$SOLARKIOSK_ZOOM_LEVEL "$SOLARKIOSK_URL_START"

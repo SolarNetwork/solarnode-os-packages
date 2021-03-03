@@ -1,5 +1,5 @@
 DIST = buster
-VERSION = 1.0.0-5$(if $(DIST),+$(DIST),)
+VERSION = 1.0.0-6$(if $(DIST),+$(DIST),)
 NAME = sn-pi-seeed-can-hat
 PATHS = boot etc lib usr var
 

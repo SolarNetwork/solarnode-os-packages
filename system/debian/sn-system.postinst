@@ -11,7 +11,7 @@ if [ -e /etc/bash.bashrc ]; then
 	fi
 fi
 
-systemctl daemon-reload || true
+systemctl daemon-reload >/dev/null || true
 
 service_up () {
 	name="$1"
