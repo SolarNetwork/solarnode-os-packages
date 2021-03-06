@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+# link from solarnode bin if available
+if [ -d /var/lib/solarnode/bin ]; then
+	cd /var/lib/solarnode/bin
+	ln -s ../../../share/mbpoll/bin/mbpoll-dump.sh mbpoll-dump
+fi

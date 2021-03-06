@@ -1,9 +1,9 @@
 NAME = mbpoll
 DIST = 
-VERSION = 1.4.11-1$(if $(DIST),+$(DIST),)
+VERSION = 1.4.11-2$(if $(DIST),+$(DIST),)
 MBPOLL_INSTALL_DIR = mbpoll/build/native/local
 
-deb :
+deb : prep
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
@@ -15,7 +15,12 @@ deb :
 	-C $(MBPOLL_INSTALL_DIR) \
 	--force \
 	-d 'libmodbus (>= 3.1.0)' \
+	--after-install $(NAME).postinst \
+	--after-remove $(NAME).postrm \
 	usr
+	
+prep :
+	cp -av usr $(MBPOLL_INSTALL_DIR) 
 
 clean : 
 	rm -f $(NAME)_$(VERSION)*.deb
