@@ -5,7 +5,7 @@
 Make sure `cmake`, `make`, and `pkg-config` are installed, e.g.
 
 ```sh
-apt-get install cmake make build-essential git
+apt-get install cmake pkg-config make build-essential git
 ```
 
 Clone the git repository, check out the release tag, and build like this:
