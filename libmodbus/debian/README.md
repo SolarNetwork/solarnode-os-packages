@@ -5,7 +5,7 @@
 Make sure `autoconf`, `automake`, `libtool`, and `make` are installed, e.g.
 
 ```sh
-apt-get install autoconf automake libtool make
+apt-get install autoconf automake libtool make git
 ```
 
 Clone the git repository, check out the release tag, and build like this:
