@@ -1,4 +1,4 @@
 xset s off
 xset -dpms
-openbox-session
+exec openbox-session
 
