@@ -22,14 +22,14 @@ export SOLARKIOSK_URL="https%3A%2F%2Fsolarnetwork.github.io%2F"
 There is also a setting to change the zoom level of the browser, which can be useful for scaling
 the kiosk content for different sized screens:
 
-```
+```sh
 export SOLARKIOSK_ZOOM_LEVEL="1.0"
 ```
 
 Finally, there is another URL setting that can be changed to fully customize the URL loaded in the
 browser. Normally you'd leave this setting alone:
 
-```
+```sh
 export SOLARKIOSK_URL_START="http://127.0.0.1:8081/index.html?url=${SOLARKIOSK_URL}"
 ```
 
