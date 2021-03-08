@@ -88,6 +88,7 @@
 			console.log('Made it to ' +url);
 			window.location = url;
 		}, function(error) {
+			console.log('Failed to make it to ' +url +': ' +error);
 			setTimeout(function() {
 				tryLoadUrl(url);
 			}, 2000);
@@ -95,7 +96,8 @@
 	}
 	function onDocumentReady() {
 		var env = parseURLQueryTerms(window.location.search),
-			url = (env.url ? env.url : 'http://localhost:8081/missing.html');
+			url = (env.url ? env.url : 'missing.html');
+		console.log('Trying to load URL: ' +url);
 		tryLoadUrl(url);
 	}
 	if ( !window.isLoaded ) {
