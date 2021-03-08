@@ -3,3 +3,6 @@ export SOLARKIOSK_URL="https%3A%2F%2Fsolarnetwork.github.io%2F"
 
 # Set a zoom level for the web view; for example to scale 720p to 1080p set to 1.5
 export SOLARKIOSK_ZOOM_LEVEL="1.0"
+
+# The actual initial URL to use; typically this need not change.
+export SOLARKIOSK_URL_START="http://127.0.0.1:8081/index.html?url=${SOLARKIOSK_URL}"
