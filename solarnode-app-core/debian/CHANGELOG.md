@@ -16,6 +16,7 @@ The following plugins have changed from the previous release:
 | Name                                 | ID                             | Old Vers | New Vers |
 |:-------------------------------------|:-------------------------------|:---------|:---------|
 | Core SolarNode Framework             | `n.s.node`                     | 1.80.0   | 1.81.0   |
+| JSON Metadata Service                | `n.s.n.metadata.json`          | 1.4.0    | 1.4.1    |
 | SolarNet MQTT integration            | `n.s.n.upload.mqtt`            | 1.6.1    | 1.6.2    |
 
 The complete list of plugins included is:
@@ -37,7 +38,7 @@ The complete list of plugins included is:
 | Derby Database Extensions            | `n.s.n.dao.jdbc.derby.ext`     | 1.1.1  |
 | Derby Database Storage Support       | `n.s.n.dao.jdbc.derby`         | 1.8.1  |
 | Eclipse Gemini Web Support           | `n.s.common.web.gemini`        | 2.1.0  |
-| JSON Metadata Service                | `n.s.n.metadata.json`          | 1.4.0  |
+| JSON Metadata Service                | `n.s.n.metadata.json`          | 1.4.1  |
 | MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.1.0  |
 | Plugin Repository                    | `n.s.n.setup.obr`              | 1.5.2  |
 | Reactor Database Storage             | `n.s.n.reactor.dao.jdbc`       | 1.4.0  |
