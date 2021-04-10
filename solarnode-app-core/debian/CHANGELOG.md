@@ -15,6 +15,7 @@ The following plugins have changed from the previous release:
 
 | Name                                 | ID                             | Old Vers | New Vers |
 |:-------------------------------------|:-------------------------------|:---------|:---------|
+| Core Setup Web App                   | `n.s.n.setup.web`              | 1.45.0   | 1.46.0   |
 | Core SolarNode Framework             | `n.s.node`                     | 1.80.0   | 1.81.0   |
 | JSON Metadata Service                | `n.s.n.metadata.json`          | 1.4.0    | 1.4.1    |
 | SolarNet MQTT integration            | `n.s.n.upload.mqtt`            | 1.6.1    | 1.6.2    |
@@ -31,7 +32,7 @@ The complete list of plugins included is:
 | Core Reactor Service                 | `n.s.n.reactor.simple`         | 1.5.1  |
 | Core Settings Support                | `n.s.n.settings.ca`            | 1.12.0 |
 | Core Setup Support                   | `n.s.n.setup`                  | 1.22.0 |
-| Core Setup Web App                   | `n.s.n.setup.web`              | 1.45.0 |
+| Core Setup Web App                   | `n.s.n.setup.web`              | 1.46.0 |
 | Core SolarNetwork Support            | `n.s.common`                   | 1.68.0 |
 | Core SolarNode Framework             | `n.s.node`                     | 1.81.0 |
 | Debian Setup Support                 | `n.s.n.setup.deb`              | 1.0.0  |
