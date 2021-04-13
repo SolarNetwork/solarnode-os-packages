@@ -21,6 +21,7 @@ deb : prep assemble app-core table
 		-f \
 		--provides 'solarnode-framework' \
 		--chdir $(DEB_BUILD_ROOT) \
+		--before-install $(BASE_NAME).preinst \
 		--after-install $(BASE_NAME).postinst \
 		$(PATHS)
 

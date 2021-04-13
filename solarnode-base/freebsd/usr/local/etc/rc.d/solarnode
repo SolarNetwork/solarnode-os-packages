@@ -86,7 +86,7 @@ load_rc_config $name
 # NOTE: for debugging support, add these flags:
 #JVM_ARGS="$JVM_ARGS -Xdebug -Xnoagent -Xrunjdwp:server=y,transport=dt_socket,address=9142,suspend=n"
 
-START_CMD="JAVA_VERSION=1.8+ ${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
+START_CMD="${JAVA_HOME}/bin/java ${JVM_ARGS} ${APP_ARGS} -jar ${SOLARNODE_HOME}/app/${EQUINOX_JAR} -configuration ${EQUINOX_CONF} -console ${EQUINOX_CONSOLE} -clean"
 START_SLEEP=3
 STOP_TRIES=5
 
@@ -110,33 +110,20 @@ stop_proc () {
 	done
 }
 
-#function to copy the conf/config.ini into EQUINOX_CONF
-setup_ini () {
-	if [ ! -e "${EQUINOX_CONF}/config.ini" ]; then
-		if [ -z "${RUNAS}" ]; then
-			cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}
-		else
-			su - $RUNAS -c "cp ${SOLARNODE_HOME}/conf/config.ini ${EQUINOX_CONF}"
-		fi
-	fi
-}
-
 # function to start up process
 solarnode_start () {
-	echo -n "Starting SolarNode server... "
-	/bin/sh ${SOLARNODE_HOME}/bin/solarnode-utilities.sh start
-	
-	# Make sure var dir ownership/permissions OK
-	if [ -n "${RUNAS}" ]; then
-		chown $RUNAS $RAM_DIR
-		chmod u+rwx $RAM_DIR
-		chown -R $RUNAS $CONF_DIR
+	if [ -z "${RUNAS}" ]; then
+		${SOLARNODE_HOME}/bin/solarnode-utilities.sh start
+	else
+		su $RUNAS -c "${SOLARNODE_HOME}/bin/solarnode-utilities.sh start"
 	fi
+
+	echo -n "Starting SolarNode server... "
 	
 	if [ -z "${RUNAS}" ]; then
 		${START_CMD} 1>${LOG_DIR}/stdout.log 2>&1 &
 	else
-		su - $RUNAS -c "${START_CMD} 1>${LOG_DIR}/stdout.log 2>&1 &"
+		su $RUNAS -c "${START_CMD} 1>${LOG_DIR}/stdout.log 2>&1 &"
 	fi
 	echo -n "sleeping for ${START_SLEEP} seconds to check PID... "
 	sleep ${START_SLEEP}

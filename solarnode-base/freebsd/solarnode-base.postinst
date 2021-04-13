@@ -31,7 +31,22 @@ setup_write_dir () {
 	fi
 }
 
-# make sure config.ini refreshed
+backup_file_cleanup () {
+	local oldf="$1"
+	local newf="${1%%.pkgbak}"
+	if diff -q "$oldf" "$newf" >/dev/null 2>&1; then
+		echo "Cleaning backup file unchanged from package file: $oldf."
+		rm "$oldf"
+	elif [ -e "$oldf" ]; then
+		echo "Restoring backup file $oldf."
+		mv "$newf" "$newf.pkgnew"
+		mv "$oldf" "$newf"
+		echo "Please compare to $newf.pkgnew for potential updates. Here is a diff:"
+		echo '--------------------'
+		diff "$newf" "$newf.pkgnew" || echo '--------------------'
+	fi
+}
+
 if [ -e "$WORK_DIR/config.ini" ]; then
 	rm -f "$WORK_DIR/config.ini"
 fi
@@ -41,4 +56,11 @@ setup_write_dir "${CONF_DIR}"
 setup_write_dir "${CONF_DIR}/services"
 setup_write_dir "${CONF_DIR}/tls"
 setup_write_dir "${WORK_DIR}"
+setup_write_dir "${WORK_DIR}/log"
+setup_write_dir "${WORK_DIR}/tmp"
 setup_write_dir "${SOLARNODE_HOME}/app/main"
+
+# backup conf files included in package
+for f in $(ls "${CONF_DIR}"/*.pkgbak 2>/dev/null); do
+	backup_file_cleanup "$f"
+done
