@@ -121,9 +121,10 @@ solarnode_start () {
 	echo -n "Starting SolarNode server... "
 	
 	if [ -z "${RUNAS}" ]; then
+		cd "${SOLARNODE_HOME}"
 		${START_CMD} 1>${LOG_DIR}/stdout.log 2>&1 &
 	else
-		su $RUNAS -c "${START_CMD} 1>${LOG_DIR}/stdout.log 2>&1 &"
+		su $RUNAS -c "cd ${SOLARNODE_HOME}; ${START_CMD} 1>${LOG_DIR}/stdout.log 2>&1 &"
 	fi
 	echo -n "sleeping for ${START_SLEEP} seconds to check PID... "
 	sleep ${START_SLEEP}
