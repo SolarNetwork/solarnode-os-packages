@@ -61,7 +61,10 @@ setup_write_dir "${WORK_DIR}/tmp"
 setup_write_dir "${WORK_DIR}/work"
 setup_write_dir "${SOLARNODE_HOME}/app/main"
 
-# need link for work? need to fix this...
+# setup links for Tomcat to work... need to fix this...
+if [ ! -h "${SOLARNODE_HOME}/config" ]; then
+	ln -s "${WORK_DIR}/conf" "${SOLARNODE_HOME}/config"
+fi
 if [ ! -h "${SOLARNODE_HOME}/work" ]; then
 	ln -s "${WORK_DIR}/work" "${SOLARNODE_HOME}/work"
 fi
