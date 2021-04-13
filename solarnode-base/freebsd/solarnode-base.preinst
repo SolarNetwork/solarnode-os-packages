@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+CONF_DIR=/usr/local/solarnode/conf
+
+backup_file () {
+	local f="$1"
+	if [ -e "$f" ]; then
+		echo "Creating backup of $f as $f.pkgbak..."
+		cp -a "$f" "$f.pkgbak"
+	fi
+}
+
+# backup conf files included in package
+backup_file "${CONF_DIR}/log4j.properties"
+backup_file "${CONF_DIR}/tomcat-server.xml"
