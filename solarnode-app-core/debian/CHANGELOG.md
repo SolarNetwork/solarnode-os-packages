@@ -1,8 +1,11 @@
-# SolarNode Application Changelog
+# SolarNode Application - Core change log
 
-The **ID** values listed here refer to plugin symbolic names, defined in the
-`Bundle-SymbolicName` entry of each plugin's `META-INF/MANIFEST.MF` file. They
-are abbreviated to make them shorter, using the following conventions:
+This document details the history of changes of the `solarnode-app-core` package, from newest to
+oldest.
+
+The **plugin ID** values listed here refer to plugin OSGi symbolic names, defined in the
+`Bundle-SymbolicName` entry of each plugin's `META-INF/MANIFEST.MF` file. They are abbreviated to
+make them shorter, using the following conventions:
 
 | ID abbreviation | Full value                |
 |:----------------|:--------------------------|
@@ -10,6 +13,9 @@ are abbreviated to make them shorter, using the following conventions:
 | `n.s.n`         | `net.solarnetwork.node`   |
 
 ## 1.14.0 - 2021-04-09
+
+ * Updates plugins
+ * Requires [`solarnode-base`](../../solarnode-base/debian) **1.8** or higher
 
 The following plugins have changed from the previous release:
 
