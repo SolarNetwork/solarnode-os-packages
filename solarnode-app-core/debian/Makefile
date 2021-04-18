@@ -34,5 +34,4 @@ app-core :
 		clean deb-package-assemble
 
 table :
-	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" \
-		"$(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb"
+	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" "$(DEB_BUILD_ROOT)"

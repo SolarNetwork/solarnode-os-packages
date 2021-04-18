@@ -2,7 +2,7 @@ NAME = solarnode-app-core
 VERSION = 1.14.0_1
 PATHS = usr
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/generic/example/ivy-deb.xml
+SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/generic/example/ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
@@ -33,5 +33,4 @@ app-core :
 		clean deb-package-assemble
 
 table :
-	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" \
-		"$(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb"
+	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" "$(DEB_BUILD_ROOT)"

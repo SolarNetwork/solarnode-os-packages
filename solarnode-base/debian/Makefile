@@ -37,6 +37,7 @@ clean :
 	rm $(NAME)_$(VERSION)_all.deb
 
 app-core :
+	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
@@ -49,5 +50,4 @@ assemble :
 	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
 	
 table :
-	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" \
-		"$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb"
+	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" "$(DEB_BUILD_ROOT)"
