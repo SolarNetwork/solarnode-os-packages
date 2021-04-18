@@ -1,6 +1,6 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.8.0-2
+VERSION = 1.8.1-1
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -30,7 +30,6 @@ deb : prep assemble app-core table
 	$(PATHS)
 
 prep : 
-	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
 	rm -rf $(DEB_BUILD_ROOT)
 	mkdir -p $(DEB_BUILD_ROOT)
 
@@ -47,6 +46,7 @@ app-core :
 
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
+	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
 	
 table :
 	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" \
