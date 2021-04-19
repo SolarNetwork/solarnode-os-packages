@@ -4,7 +4,6 @@ ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy-protobuf.xml
-SN_APP_NAME = protobuf
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb
 SN_ANT_OPTS =
 
@@ -38,7 +37,7 @@ assemble :
 app-core :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build-deb-app.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
-		"-Dapp.dirname=$(SN_APP_NAME)" \
+		"-Dapp.dirname=core" \
 		$(SN_ANT_OPTS) \
 		deb-package-assemble
 
