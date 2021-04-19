@@ -1,6 +1,6 @@
-# SolarNode Base Framework (Debian Linux)
+# SolarNode Base Framework (FreeBSD)
 
-This directory contains support for building the `solarnode-base` package for the Debian Linux OS.
+This directory contains support for building the `solarnode-base` package for the FreeBSD OS.
 See [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Base directories
@@ -9,10 +9,10 @@ The OS packages install files in various ["base" directories][base-dirs].
 
 | Name              | Path |
 |:------------------|:------------|
-| `SOLARNODE_CONF`  | `/etc/solarnode` |
-| `SOLARNODE_HOME`  | `/var/lib/solarnode` |
-| `SOLARNODE_RUN`   | `/run/solarnode` |
-| `SOLARNODE_SHARE` | `/usr/share/solarnode` |
+| `SOLARNODE_CONF`  | `/usr/local/solarnode/conf` |
+| `SOLARNODE_HOME`  | `/usr/local/solarnode` |
+| `SOLARNODE_RUN`   | `/usr/local/solarnode/var` |
+| `SOLARNODE_SHARE` | `/usr/local/solarnode` |
 
 # Build requirements
 
