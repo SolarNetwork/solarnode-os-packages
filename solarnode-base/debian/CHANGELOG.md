@@ -1,4 +1,4 @@
-# SolarNode Platform (Equinox) Changelog
+# SolarNode Base Framework (Equinox) change log
 
 ## 1.8.1 - 2021-02-25
 
