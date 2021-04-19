@@ -1,9 +1,9 @@
 NAME = solarnode-app-protobuf
-VERSION = 1.0.0-1
+VERSION = 1.1.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/example/ivy-protobuf.xml
+SN_IVY_FILE = ${CURDIR}/../ivy-protobuf.xml
 SN_APP_NAME = protobuf
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb
 SN_ANT_OPTS =
