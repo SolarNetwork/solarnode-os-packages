@@ -14,8 +14,10 @@ deb : prep
 		-f \
 		-d 'solarnode-base (>= 1.2.0)' \
 		-d 'solarnode-app-core (>= 1.0.0)' \
-		-d 'protobuf-compiler (= 3.12.3)' \
-		-d 'libprotobuf-java (= 3.12.3)' \
+		-d 'protobuf-compiler (>= 3.12.3)' \
+		-d 'protobuf-compiler (<< 3.12.4)' \
+		-d 'libprotobuf-java (>= 3.12.3)' \
+		-d 'libprotobuf-java (<< 3.12.4)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		$(PATHS)
