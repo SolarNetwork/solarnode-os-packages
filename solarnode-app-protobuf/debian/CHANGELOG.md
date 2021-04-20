@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 1.1.0 - 2021-04-19
+## 3.12.3 - 2021-04-19
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **1.2** or higher
  * Requires [`solarnode-app-core`](../../solarnode-app-core/debian) **1.0** or higher
@@ -21,7 +21,7 @@ The complete list of plugins included is:
 
 | Name                    | ID                    | Vers   |
 |:------------------------|:----------------------|:-------|
-| Protocol Buffers [Core] | `com.google.protobuf` | 3.15.8 |
+| Protocol Buffers [Core] | `com.google.protobuf` | 3.12.3 |
 
 ## 1.0.0 - 2019-08-26
 

@@ -1,5 +1,5 @@
 NAME = solarnode-app-protobuf
-VERSION = 1.1.0-1
+VERSION = 3.12.4-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -19,8 +19,8 @@ deb : prep assemble app-core table
 		-f \
 		-d 'solarnode-base (>= 1.2.0)' \
 		-d 'solarnode-app-core (>= 1.0.0)' \
-		-d 'protobuf-compiler (>= 3.12.3)' \
-		-d 'protobuf-compiler (<< 3.12.4)' \
+		-d 'protobuf-compiler (>= 3.12)' \
+		-d 'protobuf-compiler (<< 3.13)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

@@ -20,6 +20,17 @@ ln -s /path/to/solarnetwork-build
 git clone https://github.com/SolarNetwork/solarnetwork-build.git
 ```
 
+# Backports
+
+Some versions might rely on Debian backports. To use the backports, add a source and
+import the necessary keys first. For example:
+
+```sh
+echo 'deb http://deb.debian.org/debian buster-backports main' >/etc/apt/sources.list.d/buster-backports.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC
+```
+
 # Building
 
 Run `make` to build the package, which will produce `solarnode-app-protobuf_VERSION_all.deb` in
