@@ -22,6 +22,8 @@ The following plugins have changed from the previous release:
 | Core Setup Web App                   | `n.s.n.setup.web`              | 1.46.0   | 1.47.0   |
 | Core SolarNetwork Support            | `n.s.common`                   | 1.68.0   | 1.69.0   |
 | Core SolarNode Framework             | `n.s.node`                     | 1.81.0   | 1.81.1   |
+| MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.1.0    | 1.2.0    |
+| SolarNetwork Common MQTT Support     | `n.s.common.mqtt`              | 2.1.0    | 2.2.0    |
 
 The complete list of plugins included is:
 
@@ -43,7 +45,7 @@ The complete list of plugins included is:
 | Derby Database Storage Support       | `n.s.n.dao.jdbc.derby`         | 1.8.1  |
 | Eclipse Gemini Web Support           | `n.s.common.web.gemini`        | 2.1.0  |
 | JSON Metadata Service                | `n.s.n.metadata.json`          | 1.4.1  |
-| MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.1.0  |
+| MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.2.0  |
 | Plugin Repository                    | `n.s.n.setup.obr`              | 1.5.2  |
 | Reactor Database Storage             | `n.s.n.reactor.dao.jdbc`       | 1.4.0  |
 | Reactor JSON Support                 | `n.s.n.reactor.io.json`        | 1.2.1  |
@@ -52,7 +54,7 @@ The complete list of plugins included is:
 | SolarNet Bulk JSON Web Uploader      | `n.s.n.upload.bulkjsonwebpost` | 1.11.0 |
 | SolarNet Location Service            | `n.s.n.location.ws`            | 2.4.0  |
 | SolarNet MQTT integration            | `n.s.n.upload.mqtt`            | 1.6.2  |
-| SolarNetwork Common MQTT Support     | `n.s.common.mqtt`              | 2.1.0  |
+| SolarNetwork Common MQTT Support     | `n.s.common.mqtt`              | 2.2.0  |
 | SolarNetwork Common Web              | `n.s.common.web`               | 1.17.0 |
 | SolarNode External Filesystem Backup | `n.s.n.backup.ext`             | 1.0.0  |
 | SolarNode Security                   | `n.s.n.setup.security`         | 1.0.0  |

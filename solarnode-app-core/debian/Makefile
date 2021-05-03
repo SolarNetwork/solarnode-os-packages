@@ -2,7 +2,7 @@ NAME = solarnode-app-core
 VERSION = 1.15.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/generic/example/ivy-deb.xml
+SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
