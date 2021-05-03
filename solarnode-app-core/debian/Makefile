@@ -17,7 +17,7 @@ pkg : app-core table
 		--description 'SolarNode application core' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-framework' \
+		-d 'solarnode-base (>= 1.9.0)' \
 		-d 'sn-solarssh (>= 1.0.0)' \
 		--after-install $(NAME).postinst \
 		--chdir $(DEB_BUILD_ROOT) \
