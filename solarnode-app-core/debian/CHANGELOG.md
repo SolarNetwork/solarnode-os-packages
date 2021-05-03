@@ -24,6 +24,7 @@ The following plugins have changed from the previous release:
 | Core SolarNode Framework             | `n.s.node`                     | 1.81.0   | 1.81.1   |
 | MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.1.0    | 1.2.0    |
 | SolarNetwork Common MQTT Support     | `n.s.common.mqtt`              | 2.1.0    | 2.2.0    |
+| SolarNet MQTT integration            | `n.s.n.upload.mqtt`            | 1.6.2    | 1.7.0    |
 
 The complete list of plugins included is:
 
@@ -53,7 +54,7 @@ The complete list of plugins included is:
 | S3 Setup                             | `n.s.n.setup.s3`               | 1.2.0  |
 | SolarNet Bulk JSON Web Uploader      | `n.s.n.upload.bulkjsonwebpost` | 1.11.0 |
 | SolarNet Location Service            | `n.s.n.location.ws`            | 2.4.0  |
-| SolarNet MQTT integration            | `n.s.n.upload.mqtt`            | 1.6.2  |
+| SolarNet MQTT integration            | `n.s.n.upload.mqtt`            | 1.7.0  |
 | SolarNetwork Common MQTT Support     | `n.s.common.mqtt`              | 2.2.0  |
 | SolarNetwork Common Web              | `n.s.common.web`               | 1.17.0 |
 | SolarNode External Filesystem Backup | `n.s.n.backup.ext`             | 1.0.0  |
