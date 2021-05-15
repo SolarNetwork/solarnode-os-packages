@@ -1,6 +1,6 @@
 NAME = sn-system
 DIST = 
-VERSION = 1.2.4-1$(if $(DIST),+$(DIST),)
+VERSION = 1.2.5-1$(if $(DIST),+$(DIST),)
 PATHS = etc lib usr var
 
 deb : prep
@@ -13,6 +13,7 @@ deb : prep
 	--description 'SolarNode system support' \
 	--license 'Apache License 2.0' \
 	-f \
+	-d 'rsync' \
 	-d 'sudo (>= 1.8.10)' \
 	-d 'systemd (>= 215)' \
 	--conflicts 'ifupdown' \
