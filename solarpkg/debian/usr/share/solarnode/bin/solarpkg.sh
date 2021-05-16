@@ -118,8 +118,9 @@ pkg_install_file () {
 	
 	# note: using apt-get here to provide support for installing dependencies
 	pkg_wait_not_busy
-	sudo apt-get install $APT_FLAGS -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" \
-		--no-install-recommends "$pkg" >$APT_OUTPUT </dev/null || exit $?
+	sudo apt-get install $APT_FLAGS \
+		-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" \
+		--allow-downgrades --no-install-recommends "$pkg" >$APT_OUTPUT </dev/null || exit $?
 	pkg_list_files "$pkg"
 }
 
@@ -134,8 +135,10 @@ pkg_install_repo () {
 	fi
 		
 	pkg_wait_not_busy
-	sudo apt-get install $APT_FLAGS -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" \
-		--no-install-recommends $redo "$pkg${ver:+=$ver}" >$APT_OUTPUT </dev/null || exit $?
+	sudo apt-get install $APT_FLAGS \
+		-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" \
+		--no-install-recommends --allow-downgrades \
+		$redo "$pkg${ver:+=$ver}" >$APT_OUTPUT </dev/null || exit $?
 	
 	local fname="${pkg}_(dpkg-query -W -f '${Version}_${Architecture}' "$pkg").deb"
 	if [ -e "/var/cache/apt/archives/$fname" ]; then
