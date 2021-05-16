@@ -140,7 +140,7 @@ pkg_install_repo () {
 		--no-install-recommends --allow-downgrades \
 		$redo "$pkg${ver:+=$ver}" >$APT_OUTPUT </dev/null || exit $?
 	
-	local fname="${pkg}_(dpkg-query -W -f '${Version}_${Architecture}' "$pkg").deb"
+	local fname="${pkg}_$(dpkg-query -W -f '${Version}_${Architecture}' "$pkg").deb"
 	if [ -e "/var/cache/apt/archives/$fname" ]; then
 		pkg_list_files "/var/cache/apt/archives/$fname"
 	fi	
