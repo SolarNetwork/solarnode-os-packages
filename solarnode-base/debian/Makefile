@@ -1,10 +1,10 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.8.0-2
+VERSION = 1.9.0-1
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/example/ivy-aws.xml
+SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb
 SN_ANT_OPTS = -Dlog.file=/run/solarnode/log/solarnode.log
 
@@ -47,6 +47,7 @@ app-core :
 
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
+	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
 	
 table :
 	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" "$(DEB_BUILD_ROOT)"

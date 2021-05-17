@@ -1,6 +1,14 @@
 #!/bin/sh
 set -e
 
+USER=solar
+
+if ! id -u "$USER" >/dev/null 2>/dev/null; then
+	# Create user now
+	echo "Creating user $USER for SolarNode service. You must configure a password manually."
+	useradd -m -U -G dialout,sudo -s /bin/bash "$USER"
+fi
+
 # Turn off bash persistent history collection
 if [ -e /etc/bash.bashrc ]; then
 	if grep -q 'unset HISTFILE' /etc/bash.bashrc; then

@@ -1,7 +1,18 @@
-# SolarNode Application - Core
+# SolarNode Base Framework (FreeBSD)
 
-This directory contains support for building the `solarnode-app-core` package. See 
-[CHANGELOG](./CHANGELOG.md) for release information.
+This directory contains support for building the `solarnode-base` package for the FreeBSD OS.
+See [CHANGELOG](./CHANGELOG.md) for release information.
+
+# Base directories
+
+The OS packages install files in various ["base" directories][base-dirs]. 
+
+| Name              | Path |
+|:------------------|:------------|
+| `SOLARNODE_CONF`  | `/usr/local/solarnode/conf` |
+| `SOLARNODE_HOME`  | `/usr/local/solarnode` |
+| `SOLARNODE_RUN`   | `/usr/local/solarnode/var` |
+| `SOLARNODE_SHARE` | `/usr/local/solarnode` |
 
 # Build requirements
 
@@ -25,5 +36,6 @@ Run `make` to build the package, which will produce `solarnode-app-core_VERSION_
 this directory.
 
 [ant]: https://ant.apache.org/
+[base-dirs]: ../README.md#base-directories
 [fpm]: https://github.com/jordansissel/fpm
 [sn-build]: https://github.com/SolarNetwork/solarnetwork-build/

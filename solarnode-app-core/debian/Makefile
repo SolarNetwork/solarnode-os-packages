@@ -1,8 +1,8 @@
 NAME = solarnode-app-core
-VERSION = 1.14.0-1
+VERSION = 1.17.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/generic/example/ivy-deb.xml
+SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
@@ -17,7 +17,7 @@ pkg : app-core table
 		--description 'SolarNode application core' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-framework' \
+		-d 'solarnode-base (>= 1.9.0)' \
 		-d 'sn-solarssh (>= 1.0.0)' \
 		--after-install $(NAME).postinst \
 		--chdir $(DEB_BUILD_ROOT) \
