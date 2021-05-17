@@ -22,6 +22,8 @@ The following plugins have changed from the previous release:
 | Core Setup Web App                   | `n.s.n.setup.web`              | 1.48.0 | 1.49.0 |
 | Core SolarNetwork Support            | `n.s.common`                   | 1.70.0 | 1.71.0 |
 | Core SolarNode Framework             | `n.s.node`                     | 1.82.0 | 1.83.0 |
+| Metadata Service (SolarNetwork)      | `n.s.n.metadata.json`          | 1.4.1  | 1.5.0  |
+| S3 Setup                             | `n.s.n.setup.s3`               | 1.2.0  | 1.2.1  |
 | SolarIn/MQTT integration             | `n.s.n.upload.mqtt`            | 1.8.0  | 1.8.1  |
 | Spring Expression Service            | `n.s.common.expr.spel`         | 1.0.1  | 1.1.0  |
 
@@ -44,7 +46,7 @@ The complete list of plugins included is:
 | Derby Database Extensions            | `n.s.n.dao.jdbc.derby.ext`     | 1.1.1  |
 | Derby Database Storage Support       | `n.s.n.dao.jdbc.derby`         | 1.8.1  |
 | Eclipse Gemini Web Support           | `n.s.common.web.gemini`        | 2.1.0  |
-| JSON Metadata Service                | `n.s.n.metadata.json`          | 1.4.1  |
+| Metadata Service (SolarNetwork)      | `n.s.n.metadata.json`          | 1.5.0  |
 | MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.2.1  |
 | Plugin Repository                    | `n.s.n.setup.obr`              | 1.5.2  |
 | Reactor Database Storage             | `n.s.n.reactor.dao.jdbc`       | 1.4.0  |
