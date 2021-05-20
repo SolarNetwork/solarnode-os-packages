@@ -26,6 +26,12 @@ boots, if they don't already exist in `/etc/ssh`. SolarNode OS images are distri
 keys, so each time the image is copied to a new disk the OS will generate a new set of keys for that
 device.
 
+## Fallback DNS resolver
+
+A fallback DNS resolver configuration of `1.1.1.1` is included in 
+`etc/systemd/resolved.conf.d/sn-system-fallback-dns.conf` in case no other resolver configuration
+is available. 
+
 # Packaging
 
 This section describes how the `sn-system` package is created.
