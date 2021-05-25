@@ -1,14 +1,14 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.8.0_1
+VERSION = 1.9.0_1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/example/ivy-aws.xml
+SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb
 SN_ANT_OPTS = -Dlog.file=/usr/local/solarnode/var/log/solarnode.log
 
-deb : prep assemble app-core table
+deb : prep assemble app table
 	fpm -s dir \
 		-t freebsd \
 		-n $(NAME) \
@@ -35,7 +35,7 @@ prep :
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
 	
-app-core :
+app :
 	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \

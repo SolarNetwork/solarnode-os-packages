@@ -1,12 +1,12 @@
 NAME = solarnode-app-core
-VERSION = 1.14.0_1
+VERSION = 1.17.0_1
 PATHS = usr
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = $(SN_BUILD_ROOT)/solarnode-deploy/generic/example/ivy.xml
+SN_IVY_FILE = ${CURDIR}/ivy-freebsd.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
-pkg : app-core table
+pkg : app table
 	fpm -s dir \
 		-t freebsd \
 		-n $(NAME) \
@@ -17,14 +17,14 @@ pkg : app-core table
 		--description 'SolarNode application core' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-framework' \
+		-d 'solarnode-base (>= 1.9.0)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
 clean : 
 	rm -f $(NAME)-$(VERSION).txz
 
-app-core :
+app :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddeb.nocopy=1" \
