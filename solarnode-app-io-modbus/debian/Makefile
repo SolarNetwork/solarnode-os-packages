@@ -1,34 +1,34 @@
-NAME = solarnode-app-core
-VERSION = 1.17.0_1
-PATHS = usr
+NAME = solarnode-app-io-modbus
+VERSION = 1.0.0-1
+PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = ${CURDIR}/ivy-freebsd.xml
+SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
 pkg : app table
 	fpm -s dir \
-		-t freebsd \
+		-t deb \
 		-n $(NAME) \
 		-v $(VERSION) \
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode application core' \
+		--description 'SolarNode Modbus I/O - API' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 1.9.0)' \
+		-d 'solarnode-app-core (>= 1.17)' \
+		-d 'solarnode-io-modbus' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
 clean : 
-	rm -f $(NAME)-$(VERSION).txz
+	rm $(NAME)_$(VERSION)_all.deb
 
 app :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddeb.nocopy=1" \
-		"-Ddir.deb.app.path=usr/local/solarnode" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble
 
