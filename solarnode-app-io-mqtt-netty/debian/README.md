@@ -1,7 +1,7 @@
-# SolarNode Application - Modbus I/O - Jamod - PureJavaComm
+# SolarNode Application - MQTT I/O - Netty
 
-This directory contains support for building the `solarnode-app-io-modbus-jamod-pjc` package, which 
-provides support for Modbus I/O in SolarNode using the Jamod and PureJavaComm frameworks. See 
+This directory contains support for building the `solarnode-app-io-mqtt-netty` package, which 
+provides support for MQTT I/O in SolarNode using the Netty framework. See 
 [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Build requirements

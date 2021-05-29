@@ -1,36 +1,37 @@
-NAME = solarnode-app-core
-VERSION = 1.18.0-1
-PATHS = var
+NAME = solarnode-app-io-mqtt-netty
+VERSION = 1.0.0-1
+PATHS = usr
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
+SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
-pkg : app-core table
+pkg : app table
 	fpm -s dir \
-		-t deb \
+		-t freebsd \
 		-n $(NAME) \
 		-v $(VERSION) \
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode application core' \
+		--description 'SolarNode MQTT I/O - Netty' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 1.9)' \
-		-d 'sn-solarssh (>= 1.0)' \
 		-d 'solarnode-app-io-mqtt (>= 1.0)' \
-		--after-install $(NAME).postinst \
+		--conflicts 'solarnode-io-mqtt' \
+		--replaces 'solarnode-io-mqtt' \
+		--provides 'solarnode-io-mqtt' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
 
-app-core :
+app :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddeb.nocopy=1" \
+		"-Ddir.deb.app.path=usr/local/solarnode" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble
 

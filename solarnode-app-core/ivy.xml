@@ -22,8 +22,6 @@
 		<!-- SolarNode basic support (this needed for most any deployment) -->
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.expr.spel" rev="latest.release"/>
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt" rev="latest.release"/>
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt.netty" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.s3" rev="latest.release"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="latest.release"/>
@@ -64,6 +62,9 @@
 		See https://github.com/SolarNetwork/solarnetwork/wiki/Node-Using-System-RXTX
 		-->
 		<exclude artifact="net.solarnetwork.external.org.rxtx"/>
+		
+		<!-- Excludes provided by solarnode-app-io-mqtt package -->
+		<exclude artifact="net.solarnetwork.common.mqtt"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude artifact="net.solarnetwork.external.net.sf.packtag"/>
