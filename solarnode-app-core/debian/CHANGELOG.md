@@ -38,6 +38,7 @@ The following plugins have changed from the previous release:
 | Core SolarNode Framework             | `n.s.node`                     | 1.83.0 | 1.84.0 |
 | MQTT client - Netty                  | `n.s.common.mqtt.netty`        | 1.2.2  |        |
 | Reactor Database Storage             | `n.s.n.reactor.dao.jdbc`       | 1.4.0  | 1.4.1  |
+| SolarIn/MQTT integration             | `n.s.n.upload.mqtt`            | 1.8.1  | 1.8.2  |
 | SolarNetwork Common MQTT Support     | `n.s.common.mqtt`              | 2.3.0  |        |
 
 The complete list of plugins included is:
