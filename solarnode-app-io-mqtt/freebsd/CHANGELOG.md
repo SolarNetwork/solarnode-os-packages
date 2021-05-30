@@ -1,4 +1,4 @@
-# SolarNode Application - MQTT IO - change log
+# SolarNode Application - MQTT I/O - change log
 
 This document details the history of changes of the `solarnode-app-io-mqtt` package, from
 newest to oldest.
@@ -12,7 +12,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 1.0.0 - 2021-05-21
+## 1.0.1 - 2021-05-30
+
+This release requires [`solarnode-app-core` 1.18][app-core-1180] or newer.
+
+The complete list of plugins included is:
+
+| Name                             | ID                | Vers  |
+|:---------------------------------|:------------------|:------|
+| SolarNetwork Common MQTT Support | `n.s.common.mqtt` | 2.4.0 |
+
+
+## 1.0.0 - 2021-05-28
 
 This release requires [`solarnode-app-core` 1.18][app-core-1180] or newer.
 
