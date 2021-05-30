@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 1.18.0_1
+VERSION = 1.18.1_1
 PATHS = usr
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/ivy-freebsd.xml
