@@ -1,6 +1,6 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.9.0_1
+VERSION = 1.10.0_1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
