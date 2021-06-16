@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-mqtt
-VERSION = 1.0.1-1
+VERSION = 1.1.0-1
 PATHS = usr
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -17,7 +17,7 @@ pkg : app table
 		--description 'SolarNode MQTT I/O - API' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-app-core (>= 1.18)' \
+		-d 'solarnode-app-core (>= 1.20)' \
 		-d 'solarnode-io-mqtt' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
