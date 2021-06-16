@@ -167,10 +167,7 @@
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="core"/>
 
 		<!-- JDBC connection pool -->
-		<dependency org="org.apache.tomcat" name="tomcat-jdbc" rev="8.5.11" conf="boot">
-			<!-- Ignore Tomcat version, which isn't OSGi; rely on one provided by Gemini Web -->
-			<exclude module="tomcat-juli"/>
-		</dependency>
+		<dependency org="com.zaxxer" name="HikariCP" rev="[3.3.1,4.0)" conf="boot"/>
 
 		<!-- javax.cache support -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" />

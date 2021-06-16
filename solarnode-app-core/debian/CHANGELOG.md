@@ -12,6 +12,63 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.20.0 - 2021-06-15
+
+This release changes how the internal database connection is configured. Previously you could
+configure the connection via the `${SOLARNODE_HOME}/conf/services/net.solarnetwork.node.dao.jdbc.cfg`
+file. Now the configuration is in the
+`${SOLARNODE_HOME}/conf/services/net.solarnetwork.jdbc.pool.hikari-solarnode.cfg` file, and the
+syntax has changed. If not configured, [default settings][jdbc-default-settings] will be used.
+
+Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher
+
+The following plugins have changed from the previous release:
+
+| Name                                     | ID                             | Old Vers | New Vers |
+|:-----------------------------------------|:-------------------------------|:---------|:---------|
+| Core Database Connection                 | `n.s.n.dao.jdbc.con`           |          | 1.0.0    |
+| Core Database Storage Support            | `n.s.n.dao.jdbc`               | 1.28.3   | 1.29.0   |
+| Core SolarNetwork Support                | `n.s.common`                   | 1.73.0   | 1.74.0   |
+| Core SolarNode Framework                 | `n.s.node`                     | 1.85.0   | 1.85.1   |
+| SolarNetwork Hikari JDBC Connection Pool | `n.s.common.jdbc.pool.hikari`  |          | 1.1.0    |
+
+The complete list of plugins included is:
+
+| Name                                     | ID                             | Vers   |
+|:-----------------------------------------|:-------------------------------|:-------|
+| Auto Setup                               | `n.s.n.setup.auto`             | 1.3.1  |
+| Bouncy Castle PKI                        | `n.s.common.pki.bc`            | 1.3.0  |
+| Command Line System Service              | `n.s.n.system.cmdline`         | 1.2.0  |
+| Common AWS S3 Support                    | `n.s.common.s3`                | 1.1.1  |
+| Core Database Connection                 | `n.s.n.dao.jdbc.con`           | 1.0.0  |
+| Core Database Storage Support            | `n.s.n.dao.jdbc`               | 1.29.0 |
+| Core Reactor Service                     | `n.s.n.reactor.simple`         | 1.5.1  |
+| Core Settings Support                    | `n.s.n.settings.ca`            | 1.13.0 |
+| Core Setup Support                       | `n.s.n.setup`                  | 1.22.1 |
+| Core Setup Web App                       | `n.s.n.setup.web`              | 1.49.1 |
+| Core SolarNetwork Support                | `n.s.common`                   | 1.74.0 |
+| Core SolarNode Framework                 | `n.s.node`                     | 1.85.1 |
+| Debian Setup Support                     | `n.s.n.setup.deb`              | 1.0.0  |
+| Derby Database Extensions                | `n.s.n.dao.jdbc.derby.ext`     | 1.1.1  |
+| Derby Database Storage Support           | `n.s.n.dao.jdbc.derby`         | 1.8.1  |
+| Eclipse Gemini Web Support               | `n.s.common.web.gemini`        | 2.1.0  |
+| Metadata Service (SolarNetwork)          | `n.s.n.metadata.json`          | 1.6.0  |
+| Plugin Repository                        | `n.s.n.setup.obr`              | 1.5.2  |
+| Reactor Database Storage                 | `n.s.n.reactor.dao.jdbc`       | 1.4.1  |
+| Reactor JSON Support                     | `n.s.n.reactor.io.json`        | 1.2.1  |
+| S3 Backup                                | `n.s.n.backup.s3`              | 1.1.1  |
+| S3 Setup                                 | `n.s.n.setup.s3`               | 1.2.1  |
+| SolarIn/HTTP Upload Service              | `n.s.n.upload.bulkjsonwebpost` | 1.12.0 |
+| SolarIn/MQTT integration                 | `n.s.n.upload.mqtt`            | 1.9.0  |
+| SolarNet Location Service                | `n.s.n.location.ws`            | 2.4.0  |
+| SolarNetwork Common Web                  | `n.s.common.web`               | 1.17.0 |
+| SolarNetwork Hikari JDBC Connection Pool | `n.s.common.jdbc.pool.hikari`  | 1.1.0  |
+| SolarNode External Filesystem Backup     | `n.s.n.backup.ext`             | 1.0.0  |
+| SolarNode Security                       | `n.s.n.setup.security`         | 1.0.0  |
+| Spring Expression Service                | `n.s.common.expr.spel`         | 1.1.0  |
+| System SSH Support                       | `n.s.n.system.ssh`             | 1.1.1  |
+
+
 ## 1.19.0 - 2021-06-09
 
 The following plugins have changed from the previous release:
@@ -782,3 +839,5 @@ Platform.
 Platform.
 
  * Support for platform version 20170306.
+
+[jdbc-default-settings]: https://github.com/SolarNetwork/solarnetwork-node/blob/develop/net.solarnetwork.node.dao.jdbc/src/net/solarnetwork/node/dao/jdbc/net.solarnetwork.jdbc.pool.default.properties

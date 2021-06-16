@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.0 - 2021-06-15
+
+This release requires [`solarnode-app-core` 1.20][app-core-1180] or newer.
+
+The complete list of plugins included is:
+
+| Name                             | ID                | Vers  |
+|:---------------------------------|:------------------|:------|
+| SolarNetwork Common MQTT Support | `n.s.common.mqtt` | 2.5.0 |
+
+
 ## 1.0.1 - 2021-05-30
 
 This release requires [`solarnode-app-core` 1.18][app-core-1180] or newer.
