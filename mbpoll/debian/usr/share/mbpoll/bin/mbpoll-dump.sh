@@ -25,8 +25,12 @@ while getopts ":01a:Bb:d:l:m:no:p:P:s:t:" opt; do
 			exit 1
 			;;
 		
-		*) 
-			idx=$((OPTIND - 2))
+		*)
+			if [ -n "$OPTARG" ]; then
+				idx=$((OPTIND - 2))
+			else
+				idx=$((OPTIND - 1))
+			fi
 			MBPOLL_ARGS="${MBPOLL_ARGS} ${!idx}"
 			if [ -n "$OPTARG" ]; then
 				MBPOLL_ARGS="${MBPOLL_ARGS} ${OPTARG}"
