@@ -17,7 +17,7 @@ pkg : app table
 		--description 'SolarNode Modbus I/O - Jamod - RXTX' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-app-io-modbus (>= 1.0)' \
+		-d 'solarnode-app-io-modbus (>= 1.1)' \
 		-d 'sn-rxtx (>= 1.0)' \
 		--conflicts 'solarnode-io-modbus' \
 		--replaces 'solarnode-io-modbus' \
