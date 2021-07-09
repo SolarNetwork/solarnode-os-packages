@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+service_down () {
+	name="$1"
+	if systemctl is-enabled "$name" >/dev/null; then
+		echo "Disabling $name..."
+		systemctl disable --now "$name" || true
+	fi
+}
+
+if [ "$1" = "remove" ]; then
+	service_down sn-pi-can-socketcan@can0
+fi

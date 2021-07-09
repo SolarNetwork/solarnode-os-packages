@@ -1,0 +1,33 @@
+#!/bin/sh
+set -e
+
+reload_udev () {
+	if [ -x /sbin/udevadm ]; then
+		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger || true
+	fi
+}
+
+enable_boot_config () {
+	local o="$1"
+	if grep -q '^'"$o"'$' /boot/config.txt; then
+		true
+	else
+		echo "Enabling $o in /boot/config.txt; will be enabled on reboot."
+		if grep -q "$o" /boot/config.txt; then
+			# update
+			sed -i -e '/'"$o"'/c '"$o" /boot/config.txt || true
+		else
+			# add in
+			echo "$o" >>/boot/config.txt
+		fi
+	fi
+}
+
+enable_dtoverlay () {
+	enable_boot_config "dtoverlay=$1"
+}
+
+enable_dtoverlay 'dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25'
+
+systemctl daemon-reload || true
+reload_udev
