@@ -26,4 +26,4 @@ prep :
 	find $(PATHS) -type f -name .DS_Store -delete
 
 clean : 
-	rm $(NAME)_$(VERSION)_all.deb
+	rm $(NAME)_$(VERSION)_armhf.deb
