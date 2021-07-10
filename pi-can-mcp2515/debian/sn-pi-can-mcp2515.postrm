@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+if [ "$1" = "remove" ]; then
+	if grep -q '^dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25$' /boot/config.txt; then
+		echo 'Disabling dtoverlay=mcp2515-can0 in /boot/config.txt; will be disabled on reboot.'
+		sed -i -e '/dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25/d' /boot/config.txt || true
+	fi
+fi
