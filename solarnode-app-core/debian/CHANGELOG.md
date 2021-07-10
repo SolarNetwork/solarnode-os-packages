@@ -12,6 +12,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.22.1 - 2021-07-10
+
+Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher
+
+The following plugins have changed from the previous release:
+
+| Name                                     | ID                             | Old Vers | New Vers |
+|:-----------------------------------------|:-------------------------------|:---------|:---------|
+| Core Settings Support                    | `n.s.n.settings.ca`            | 1.14.0 | 1.14.1 |
+
+The complete list of plugins included is:
+
 ## 1.22.0 - 2021-07-09
 
 Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher
