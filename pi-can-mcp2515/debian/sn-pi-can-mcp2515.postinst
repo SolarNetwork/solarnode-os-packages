@@ -27,7 +27,7 @@ enable_dtoverlay () {
 	enable_boot_config "dtoverlay=$1"
 }
 
-enable_dtoverlay 'dtoverlay=mcp2515-can0,oscillator=16000000,interrupt=25'
+enable_dtoverlay 'mcp2515-can0,oscillator=16000000,interrupt=25'
 
 systemctl daemon-reload || true
 reload_udev
