@@ -8,10 +8,8 @@
 # SOCKETCAN_BAUD - the baud; defaults to 500000.
 # SOCKETCAN_RESTART_MS - the restart milliseconds; defaults to 1000.
 # SOCKETCAN_LISTEN_ONLY - `on` or `off` to toggle read-only mode; defaults to on.
-# SOCKETCAN_OPTS - additional options; defaults to "berr-reporting on"
+# SOCKETCAN_OPTS - additional options; defaults to nothing
 #                - for FD: "dbitrate 8000000 fd on"
-#
-#
 
 [Unit]
 Description=socketcan link
