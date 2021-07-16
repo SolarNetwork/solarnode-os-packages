@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.0.0-3$(if $(DIST),+$(DIST),)
+VERSION = 1.0.0-4$(if $(DIST),+$(DIST),)
 NAME = sn-pi-can-mcp2515
 PATHS = etc lib usr var
 

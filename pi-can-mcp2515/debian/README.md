@@ -21,7 +21,7 @@ environment configurations.
 
 You can use systemd drop-in units to customise these settings. For example, to enable CAN FD on the
 `can0` interface with an 8MB dynamic bitrate, create a
-`/etc/systemd/system/sn-pi-seeed-socketcan@can0.service.d/override.conf` file with the following content:
+`/etc/systemd/system/sn-pi-can-socketcan@can0.service.d/override.conf` file with the following content:
 
 ```
 [Service]

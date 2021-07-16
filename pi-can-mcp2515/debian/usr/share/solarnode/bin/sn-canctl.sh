@@ -42,8 +42,8 @@ ACTION="$1"
 
 shift 1
 
-SERVICE="/lib/systemd/system/sn-pi-seeed-socketcan@.service"
-INSTANCE="sn-pi-seeed-socketcan@${DEVICE}"
+SERVICE="/lib/systemd/system/sn-pi-can-socketcan@.service"
+INSTANCE="sn-pi-can-socketcan@${DEVICE}"
 OVERRIDE_DIR="/etc/solarnode/socketcan"
 OVERRIDE="${OVERRIDE_DIR}/${DEVICE}.env"
 
