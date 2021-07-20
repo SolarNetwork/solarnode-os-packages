@@ -24,6 +24,7 @@ The following plugins have changed from the previous release:
 
 The complete list of plugins included is:
 
+| Name                                     | ID                             | Vers   |
 |:-----------------------------------------|:-------------------------------|:-------|
 | Auto Setup                               | `n.s.n.setup.auto`             | 1.3.1  |
 | Bouncy Castle PKI                        | `n.s.common.pki.bc`            | 1.3.0  |
@@ -73,6 +74,7 @@ The following plugins have changed from the previous release:
 
 The complete list of plugins included is:
 
+| Name                                     | ID                             | Vers   |
 |:-----------------------------------------|:-------------------------------|:-------|
 | Auto Setup                               | `n.s.n.setup.auto`             | 1.3.1  |
 | Bouncy Castle PKI                        | `n.s.common.pki.bc`            | 1.3.0  |
