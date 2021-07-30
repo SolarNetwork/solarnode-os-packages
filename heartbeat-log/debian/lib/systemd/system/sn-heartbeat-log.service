@@ -1,0 +1,7 @@
+[Unit]
+Description=Log heartbeat message
+
+[Service]
+Type=oneshot
+StandardOutput=append:/var/log/sn-heartbeat/sn-heartbeat.log
+ExecStart=/usr/bin/date

@@ -1,0 +1,10 @@
+[Unit]
+Description=Generate heartbeat messages
+
+[Timer]
+OnBootSec=10s
+OnUnitActiveSec=5min
+AccuracySec=2s
+
+[Install]
+WantedBy=timers.target
