@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+if [ ! -d /var/log/sn-heartbeat ]; then
+	mkdir -p /var/log/sn-heartbeat
+fi
+
+systemctl daemon-reload || true
+service_up sn-heartbeat-log.timer true
+

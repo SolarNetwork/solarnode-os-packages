@@ -1,0 +1,29 @@
+#!/bin/sh
+set -e
+
+reload_udev () {
+	if [ -x /sbin/udevadm ]; then
+		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger || true
+	fi
+}
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+systemctl daemon-reload || true
+service_up sn-hciuart true
+service_up bluetooth
+reload_udev

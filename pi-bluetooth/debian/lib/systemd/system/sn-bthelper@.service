@@ -1,0 +1,10 @@
+[Unit]
+Description=Raspberry Pi bluetooth helper
+Requires=sn-hciuart.service bluetooth.service
+After=sn-hciuart.service
+Before=bluetooth.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sn-bthelper %I
+RemainAfterExit=yes
