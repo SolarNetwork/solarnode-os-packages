@@ -1,7 +1,7 @@
 DIST = 
 VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
 NAME = solarnode-bluetooth-setup
-PATHS = lib
+PATHS = etc lib
 
 deb : prep
 	fpm -s dir -t deb \
@@ -16,6 +16,7 @@ deb : prep
 	-d 'systemd (>= 232)' \
 	-d 'socat' \
 	-d 'bluetooth' \
+	-d 'bluez-tools' \
 	--deb-no-default-config-files \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
