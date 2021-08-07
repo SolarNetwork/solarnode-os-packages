@@ -1,0 +1,7 @@
+[Unit]
+Description=Quectel mobile network auto reconnect
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/mobile-shield-quectel-reconnect.sh
+KillMode=none

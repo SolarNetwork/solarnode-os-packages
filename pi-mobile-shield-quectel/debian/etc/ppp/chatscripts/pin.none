@@ -1,0 +1,4 @@
+# No PIN required. Create a different pin.code file to set a PIN, e.g.
+# AT+CPIN=1234
+#
+AT
