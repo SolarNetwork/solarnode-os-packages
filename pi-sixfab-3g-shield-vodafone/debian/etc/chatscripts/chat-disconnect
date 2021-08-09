@@ -1,4 +1,3 @@
-# /etc/chatscripts/quectel-chat-disconnect
 ABORT "ERROR"
 ABORT "NO DIALTONE"
 SAY "\nSending break to the modem\n"
