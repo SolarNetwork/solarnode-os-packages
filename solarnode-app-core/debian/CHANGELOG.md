@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 1.23.5 - 2021-08-07
+## 1.24.0 - 2021-08-07
 
 Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher
 
@@ -22,6 +22,8 @@ The following plugins have changed from the previous release:
 |:-----------------------------------------|:-------------------------------|:---------|:---------|
 | Core Settings Support                    | `n.s.n.settings.ca`            | 1.14.1 | 1.14.3 |
 | Core Setup Web App                       | `n.s.n.setup.web`              | 1.50.0 | 1.50.1 |
+| Core SolarNetwork Support                | `n.s.common`                   | 1.75.1 | 1.76.0 |
+| Core SolarNode Framework                 | `n.s.node`                     | 1.87.3 | 1.88.0 |
 | Plugin Repository                        | `n.s.n.setup.obr`              | 1.5.2  | 1.5.3  |
 
 The complete list of plugins included is:
@@ -40,8 +42,8 @@ The complete list of plugins included is:
 | Core Settings Support                    | `n.s.n.settings.ca`            | 1.14.3 |
 | Core Setup Support                       | `n.s.n.setup`                  | 1.22.1 |
 | Core Setup Web App                       | `n.s.n.setup.web`              | 1.50.1 |
-| Core SolarNetwork Support                | `n.s.common`                   | 1.75.1 |
-| Core SolarNode Framework                 | `n.s.node`                     | 1.87.3 |
+| Core SolarNetwork Support                | `n.s.common`                   | 1.76.0 |
+| Core SolarNode Framework                 | `n.s.node`                     | 1.88.0 |
 | Debian Setup Support                     | `n.s.n.setup.deb`              | 1.0.0  |
 | Derby Database Extensions                | `n.s.n.dao.jdbc.derby.ext`     | 1.1.1  |
 | Derby Database Storage Support           | `n.s.n.dao.jdbc.derby`         | 1.8.1  |
