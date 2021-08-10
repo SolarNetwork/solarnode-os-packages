@@ -1,0 +1,29 @@
+# Hide password in debug messages
+hide-password
+# The phone is not required to authenticate
+noauth
+persist
+# Debug info from pppd
+debug
+# If you want to use the HSDPA link as your gateway
+defaultroute
+replacedefaultroute
+# pppd must not propose any IP address to the peer
+noipdefault
+# No ppp compression
+novj
+novjccomp
+noccp
+ipcp-accept-local
+ipcp-accept-remote
+local
+# For sanity, keep a lock on the serial line
+lock
+modem
+dump
+updetach
+# Hardware flow control
+nocrtscts
+remotename 3gppp
+ipparam 3gppp
+ipcp-max-failure 30

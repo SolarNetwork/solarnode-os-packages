@@ -1,4 +1,3 @@
-# /etc/chatscripts/chat-connect
 ABORT "BUSY"
 ABORT "NO CARRIER"
 ABORT "NO DIALTONE"
