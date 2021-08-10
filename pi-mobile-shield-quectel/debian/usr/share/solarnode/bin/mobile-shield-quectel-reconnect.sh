@@ -31,10 +31,13 @@ if [ -z "${iface_status}" ]; then
 	echo "Network interface ${NET_INTERFACE} not found, will start now."
 	systemctl restart sn-mobile-shield-quectel-pppd
 else
-	echo "Pinging ${PING_HOST} on ${NET_INTERFACE}..." 1>&2
+	echo -n "Pinging ${PING_HOST} on ${NET_INTERFACE}... " 1>&2
 
 	if ! ping -q -I ${NET_INTERFACE} -c 1 ${PING_HOST} -s 0 >/dev/null; then
+		echo "FAIL"
 		echo "Unable to ping ${PING_HOST} on ${NET_INTERFACE}, will reconnect now."
 		systemctl restart sn-mobile-shield-quectel-pppd
+	else
+		echo "OK"
 	fi
 fi

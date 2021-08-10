@@ -1,9 +1,1 @@
-# No specific mode required. Create a different mode.X file to set a mode, e.g.
-# 
-# 3G preferred
-# AT\^SYSCFG=2,2,3fffffff,0,1
-#
-# 3G only
-# AT\^SYSCFG=14,2,3fffffff,0,1
-#
-AT+CPIN?
+AT
