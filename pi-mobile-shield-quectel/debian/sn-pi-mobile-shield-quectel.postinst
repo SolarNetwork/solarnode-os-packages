@@ -41,6 +41,10 @@ fi
 # create default OPTS if one does not exist
 OPTS=/etc/ppp/options
 OPTS_DEFAULT=/usr/share/solarnode/example/mobile-shield-ppp-options
+if [ -e "$OPTS" -a ! -e "$OPTS.orig" -a -e "$OPTS_DEFAULT" ]; then
+	echo "Moving pppd $OPTS to $OPTS.orig to make way for this package's defaults."
+	mv "$OPTS" "$OPTS.orig"
+fi
 if [ ! -e "$OPTS" -a -e "$OPTS_DEFAULT" ]; then
 	echo "Creating default $OPTS as link to $OPTS_DEFAULT; you might need to customize this."
 	ln -s "$OPTS_DEFAULT" "$OPTS"
