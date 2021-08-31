@@ -12,6 +12,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.2.1 - 2021-08-31
+
+This release requires [`solarnode-app-io-modbus` 1.4][io-mdobus-140] or newer.
+
+The complete list of plugins included is:
+
+| Name                                 | ID                       | Vers  |
+|:-------------------------------------|:-------------------------|:------|
+| Java Modbus Library (PJC)            | `n.s.external.jamod.pjc` | 1.2.0 |
+| Modbus Communication Support (Jamod) | `n.s.n.io.modbus.jamod`  | 1.2.2 |
+
+
 ## 1.2.0 - 2021-07-03
 
 This release requires [`solarnode-app-io-modbus` 1.1][io-mdobus-110] or newer.
@@ -50,3 +62,4 @@ The complete list of plugins included is:
 
 [io-modbus-100]: ../../solarnode-app-io-modbus/debian/CHANGELOG.md#100---2021-05-21
 [io-modbus-110]: ../../solarnode-app-io-modbus/debian/CHANGELOG.md#110---2021-07-03
+[io-modbus-140]: ../../solarnode-app-io-modbus/debian/CHANGELOG.md#140---2021-08-31
