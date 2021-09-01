@@ -49,6 +49,7 @@ fi
 
 service_up sn-sshdgenkeys true
 service_up sn-expandfs true
+service_up sn-expandfs-fw true
 
 # Activate tmpfiles config
 if [ -x /bin/systemd-tmpfiles ]; then
