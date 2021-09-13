@@ -1,5 +1,11 @@
 # SolarNode Base Framework (Equinox) change log
 
+## 1.11.1 - 2021-09-02
+
+* Increase the default memory allocation to the SolarNode process.
+
+There are no plugin changes from the previous release.
+
 ## 1.11.0 - 2021-06-14
 
 * Update connection pool from Tomcat JDBC to HikariCP.
