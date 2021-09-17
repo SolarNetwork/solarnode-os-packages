@@ -12,6 +12,21 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.0.0 - TODO
+
+ * Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher
+ * Requires [`solarnode-app-core`](../../solarnode-app-core/debian) **2.0** or higher
+
+The complete list of plugins included is:
+
+| Name                        | ID                    | Vers  |
+|:----------------------------|:----------------------|:------|
+| Java Compiler Service (JDT) | `n.s.common.jdt`      | 2.0.0 |
+| Protobuf Support            | `n.s.common.protobuf` | 2.0.0 |
+| Protocol Buffers [Core]     | `com.google.protobuf` | 3.7.1 |
+| SolarNode Protobuf I/O      | `n.s.n.io.protobuf`   | 2.0.0 |
+
+
 ## 1.1.0 - TODO
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **1.2** or higher

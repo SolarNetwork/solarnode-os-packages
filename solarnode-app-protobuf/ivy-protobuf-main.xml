@@ -16,6 +16,7 @@
 
 		<!-- Global excludes provided by solarnode-app-core -->
 		<exclude artifact="net.solarnetwork.common"/>
+		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.node"/>
 
 		<!-- Global excludes provided by the base system -->
@@ -25,7 +26,9 @@
 		<exclude org="com.fasterxml.jackson.datatype"/>
 		<exclude org="com.google.protobuf"/>
 		<exclude org="joda-time"/>
+		<exclude org="net.sf.supercsv"/>
 		<exclude org="org.apache.commons"/>
+		<exclude org="org.eclipse.jdt"/>
 		<exclude org="org.eclipse.virgo.mirrored"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.quartz-scheduler"/>
