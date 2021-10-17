@@ -113,6 +113,18 @@ do_setup () {
 	# Copy config.ini into Equinox configuration dir
 	setup_ini
 	
+	# Check to create initial tomcat-server.xml if does not exist
+	if [ ! -e "${CONF_DIR}/tomcat-server.xml" -a -e "${CONF_DIR}/tomcat-server-example.xml" ]; then
+		echo "Creating default ${CONF_DIR}/tomcat-server.xml"
+		cp -a "${CONF_DIR}/tomcat-server-example.xml" "${CONF_DIR}/tomcat-server.xml"
+	fi
+	
+	# Check to create initial tomcat-server.xml if does not exist
+	if [ ! -e "${CONF_DIR}/log4j.properties" -a -e "${CONF_DIR}/log4j-example.properties" ]; then
+		echo "Creating default ${CONF_DIR}/log4j.properties"
+		cp -a "${CONF_DIR}/log4j-example.properties" "${CONF_DIR}/log4j.properties"
+	fi
+	
 	# Check to restore backup database
 	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
 		echo -n "restoring database... "

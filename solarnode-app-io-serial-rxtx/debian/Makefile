@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-serial-rxtx
-VERSION = 1.0.0-1
+VERSION = 2.0.0-2
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -17,7 +17,7 @@ pkg : app table
 		--description 'SolarNode Serial I/O - RXTX' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-app-io-serial (>= 1.0)' \
+		-d 'solarnode-app-io-serial (>= 2.0)' \
 		-d 'sn-rxtx (>= 1.0)' \
 		--conflicts 'solarnode-io-serial' \
 		--replaces 'solarnode-io-serial' \

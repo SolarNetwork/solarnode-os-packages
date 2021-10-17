@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-modbus-jamod-pjc
-VERSION = 1.2.1-1
+VERSION = 2.0.0-2
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -17,7 +17,7 @@ pkg : app table
 		--description 'SolarNode Modbus I/O - Jamod - PJC' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-app-io-modbus (>= 1.4)' \
+		-d 'solarnode-app-io-modbus (>= 2.0)' \
 		-d 'solarnode-app-io-pjc (>= 1.0.2)' \
 		--conflicts 'solarnode-io-modbus' \
 		--replaces 'solarnode-io-modbus' \

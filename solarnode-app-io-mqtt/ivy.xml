@@ -14,6 +14,7 @@
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
+		<exclude artifact="net.solarnetwork.common.osgi"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
