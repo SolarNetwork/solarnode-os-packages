@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.0.0 - TODO
+## 2.0.0 - 2021-10-12
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher
  * Requires [`solarnode-app-core`](../../solarnode-app-core/debian) **2.0** or higher

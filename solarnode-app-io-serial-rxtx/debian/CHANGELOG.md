@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.0.0 - TODO
+## 2.0.0 - 2021-10-18
 
 This release requires [`solarnode-app-io-serial` 2.0][io-serial-200] or newer.
 
@@ -35,4 +35,4 @@ The complete list of plugins included is:
 
 
 [io-serial-100]: ../../solarnode-app-io-serial/debian/CHANGELOG.md#100---2021-05-21
-[io-serial-200]: ../../solarnode-app-io-serial/debian/CHANGELOG.md#200---TODO
+[io-serial-200]: ../../solarnode-app-io-serial/debian/CHANGELOG.md#200---2021-10-18

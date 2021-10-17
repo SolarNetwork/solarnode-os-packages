@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.0.0 - TODO
+## 2.0.0 - 2021-10-18
 
 This release requires [`solarnode-app-core` 2.0][app-core-200] or newer.
 
