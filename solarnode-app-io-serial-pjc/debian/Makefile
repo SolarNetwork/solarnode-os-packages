@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-serial-pjc
-VERSION = 2.0.0-1
+VERSION = 2.0.0-2
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml

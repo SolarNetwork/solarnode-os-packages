@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-serial-rxtx
-VERSION = 2.0.0-2
+VERSION = 2.0.0-3
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
