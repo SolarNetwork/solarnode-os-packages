@@ -357,6 +357,7 @@
 		<dependency org="io.netty" name="netty-codec" rev="4.1.63.Final" conf="core"/>
 		<dependency org="io.netty" name="netty-codec-http" rev="4.1.63.Final" conf="core"/>
 		<dependency org="io.netty" name="netty-codec-mqtt" rev="4.1.63.Final" conf="core"/>
+		<dependency org="io.netty" name="netty-codec-stomp" rev="4.1.63.Final" conf="core"/>
 		<dependency org="io.netty" name="netty-common" rev="4.1.63.Final" conf="core"/>
 		<dependency org="io.netty" name="netty-handler" rev="4.1.63.Final" conf="core"/>
 		<dependency org="io.netty" name="netty-resolver" rev="4.1.63.Final" conf="core"/>

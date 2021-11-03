@@ -1,7 +1,7 @@
-# SolarNode Base Framework
+# SolarNode Base Platform
 
 This directory contains support for building the `solarnode-base` package. This package provides the
-minimal OSGi-based framework for SolarNode applications to be deployed on. The OSGi implementation
+minimal OSGi-based platform for SolarNode applications to be deployed on. The OSGi implementation
 is [Eclipse Equinox][equinox]. This document will outline what is provided by all OS-specific
 packages.
 
@@ -20,7 +20,7 @@ the sub-directories of this one to see what path the names actually refer to.
 
 # OSGi platform add-ons
 
-The base framework can be extended with additional OSGi bundles by creating special `*.bundles`
+The base platform can be extended with additional OSGi bundles by creating special `*.bundles`
 fragment files in the `${SOLARNODE_SHARE}/conf/config.ini.d` directory. Any files found there will
 be _appended_ to the Equinox `osgi.bundles` property in the Equinox `config.ini` startup file that
 the SolarNode runtime uses. The contents of the `*.bundles` file must start with a `,` character,

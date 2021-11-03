@@ -1,6 +1,6 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.11.1-1
+VERSION = 1.12.0-1
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -15,7 +15,7 @@ deb : prep assemble app-core table
 	-a all \
 	-m 'packaging@solarnetwork.org.nz' \
 	--vendor 'SolarNetwork Foundation' \
-	--description 'SolarNode application' \
+	--description 'SolarNode platform' \
 	--license 'GPL 2.0' \
 	-f \
 	-d 'systemd (>= 215)' \
