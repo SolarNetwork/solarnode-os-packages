@@ -2,7 +2,7 @@
 set -e
 
 # link from solarnode bin if available
-if [ -d /var/lib/solarnode/bin ]; then
+if [ -d /var/lib/solarnode/bin -a ! -e /var/lib/solarnode/bin/mbpoll-dump ]; then
 	cd /var/lib/solarnode/bin
 	ln -s ../../../../usr/share/mbpoll/bin/mbpoll-dump.sh mbpoll-dump
 fi

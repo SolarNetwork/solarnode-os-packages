@@ -8,7 +8,7 @@ SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb
 SN_ANT_OPTS = -Dlog.file=/usr/local/solarnode/var/log/solarnode.log
 
-deb : prep assemble app table
+deb : prep assemble app postapp table
 	fpm -s dir \
 		-t freebsd \
 		-n $(NAME) \
@@ -34,6 +34,12 @@ prep :
 
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
+	
+postapp : 
+	mv "$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/log4j.properties" \
+		"$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/log4j-example.properties"
+	mv "$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/tomcat-server.xml" \
+		"$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/tomcat-server-example.xml"
 	
 app :
 	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete

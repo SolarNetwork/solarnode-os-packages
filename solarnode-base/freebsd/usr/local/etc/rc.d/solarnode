@@ -67,7 +67,7 @@ EQUINOX_CONF=${RAM_DIR}
 EQUINOX_CONSOLE=4202
 PID_FILE=${RAM_DIR}/solarnode.pid
 APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE} -Djava.util.logging.config.file=${SOLARNODE_HOME}/conf/jre-logging.properties -Dosgi.clean=true"
-JVM_ARGS="-Xmx128m -Djava.io.tmpdir=${TMP_DIR}"
+JVM_ARGS="-Xmx192m -Djava.io.tmpdir=${TMP_DIR}"
 
 # FreeBSD support here
 . /etc/rc.subr

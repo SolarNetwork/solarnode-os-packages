@@ -15,6 +15,7 @@
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
+		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.node"/>
 		<exclude artifact="net.solarnetwork.node.io.serial"/>
 

@@ -1,6 +1,6 @@
 NAME = solarnode-cxf
 BASE_NAME = solarnode-base
-VERSION = 1.1.0-1
+VERSION = 1.1.0-2
 
 deb : 
 	fpm -s dir -t deb \
@@ -9,7 +9,7 @@ deb :
 	-a all \
 	-m 'packaging@solarnetwork.org.nz' \
 	--vendor 'SolarNetwork Foundation' \
-	--description 'SolarNode application' \
+	--description 'SolarNode platform (CXF)' \
 	--license 'GPL 2.0' \
 	-f \
 	-d 'systemd (>= 232)' \
