@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 2.0.0-18
+VERSION = 2.1.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
@@ -17,9 +17,9 @@ pkg : app-core table
 		--description 'SolarNode application core' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 1.11)' \
+		-d 'solarnode-base (>= 1.12)' \
 		-d 'sn-solarssh (>= 1.0)' \
-		-d 'solarnode-app-io-mqtt (>= 2.0)' \
+		-d 'solarnode-app-io-mqtt (>= 2.1)' \
 		--after-install $(NAME).postinst \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
