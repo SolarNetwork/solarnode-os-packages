@@ -1,7 +1,7 @@
 DIST = 
 VERSION = 2.0.0-1$(if $(DIST),+$(DIST),)
 NAME = solarnode-bluetooth-setup
-PATHS = etc lib
+PATHS = etc lib usr
 
 deb : prep
 	fpm -s dir -t deb \

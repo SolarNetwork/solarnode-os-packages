@@ -60,5 +60,8 @@ fi
 systemctl daemon-reload || true
 #service_up solarnode-rfcomm@0 true
 #service_up solarnode-bt-setup-agent true
+service_up solarnode-bt-setup-peripheral-agent true
+service_up solarnode-bt-setup-attach true
+service_up solarnode-bt-setup-peripheral-gatt-server true
 service_up solarnode-bt-piscan.service true
 service_up solarnode-bt-piscan.path true
