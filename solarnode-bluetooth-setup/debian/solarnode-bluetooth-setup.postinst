@@ -44,6 +44,18 @@ else
 		echo 'DiscoverableTimeout = 0' >>$BLUETOOTH_CONF
 	fi
 fi
+if grep -q '^AutoEnable[[:space:]]*=[[:space:]]*true' $BLUETOOTH_CONF; then
+	true
+else
+	echo "Setting AutoEnable = true in $BLUETOOTH_CONF."
+	if grep -q 'AutoEnable[[:space:]]*=' $BLUETOOTH_CONF; then
+		# update
+		sed -i -e '/AutoEnable[[:space:]]*=/c AutoEnable = true' $BLUETOOTH_CONF || true
+	else
+		# add in
+		echo 'AutoEnable = true' >>$BLUETOOTH_CONF
+	fi
+fi
 
 systemctl daemon-reload || true
 service_up solarnode-rfcomm@0 true
