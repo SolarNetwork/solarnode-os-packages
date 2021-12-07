@@ -7,4 +7,4 @@ After=bluetooth.service
 ExecStart=/usr/bin/bt-agent -d -p /etc/solarnode/bt-setup-pins
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=bluetooth.target

@@ -12,4 +12,4 @@ ExecStart=/usr/bin/rfcomm watch /dev/rfcomm%I 1 /usr/bin/socat tcp-l:788%I,bind=
 	/dev/rfcomm%I,rawer,nonblock,waitlock="/var/run/rfcomm%I.lock",b115200
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=bluetooth.target
