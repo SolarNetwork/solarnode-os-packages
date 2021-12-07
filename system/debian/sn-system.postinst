@@ -50,6 +50,8 @@ fi
 service_up sn-sshdgenkeys true
 service_up sn-expandfs true
 service_up sn-expandfs-fw true
+service_up sn-identity-configurer.service true
+service_up sn-identity-configurer.path true
 
 # Activate tmpfiles config
 if [ -x /bin/systemd-tmpfiles ]; then
@@ -57,7 +59,7 @@ if [ -x /bin/systemd-tmpfiles ]; then
 fi
 
 # Manually remove files excluded via /etc/dpkg/dpkg.cfg.d/02solarnode-nodocs
-find /usr/share/doc -depth -type f ! -name copyright|xargs rm || true
+find /usr/share/doc -depth -type f ! -name copyright|xargs rm -f || true
 find /usr/share/doc -empty|xargs rmdir || true
 rm -rf /usr/share/groff/* /usr/share/info/*
 rm -rf /usr/share/lintian/* /usr/share/linda/*
@@ -113,4 +115,3 @@ if ! grep -q '/usr/share/solarnode/bin/system-bash-utils.sh' /etc/bash.bashrc >/
 	fi
 	EOF
 fi
-

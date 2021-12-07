@@ -1,0 +1,9 @@
+[Unit]
+Description=SolarNode Identity Path Watcher
+
+[Path]
+Unit=sn-identity-configurer.service
+PathChanged=/etc/solarnode/identity.json
+
+[Install]
+Alias=multi-user.target.wants/sn-identity-configurer.path

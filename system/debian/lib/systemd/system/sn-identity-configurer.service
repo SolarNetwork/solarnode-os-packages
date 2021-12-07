@@ -1,0 +1,10 @@
+[Unit]
+Description=SolarNode Identity Configurer
+ConditionPathExists=/etc/solarnode/identity.json
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/identity-configure.sh /etc/solarnode/identity.json
+
+[Install]
+Alias=multi-user.target.wants/sn-identity-configurer.service
