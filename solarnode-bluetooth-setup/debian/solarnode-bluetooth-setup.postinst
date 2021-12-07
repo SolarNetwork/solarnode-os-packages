@@ -31,6 +31,20 @@ if [ -e "$PINS" ]; then
 	fi
 fi
 
+BLUETOOTH_CONF="/etc/bluetooth/main.conf"
+if grep -q '^DiscoverableTimeout = 0' $BLUETOOTH_CONF; then
+	true
+else
+	echo 'Setting DiscoverableTimeout = 0 in $BLUETOOTH_CONF.'
+	if grep -q 'DiscoverableTimeout[[:space:]]*=' $BLUETOOTH_CONF; then
+		# update
+		sed -i -e '/DiscoverableTimeout[[:space:]]*=/c DiscoverableTimeout = 0' $BLUETOOTH_CONF || true
+	else
+		# add in
+		echo 'DiscoverableTimeout = 0' >>$BLUETOOTH_CONF
+	fi
+fi
+
 systemctl daemon-reload || true
 service_up solarnode-rfcomm@0 true
 service_up solarnode-bt-setup-agent true
