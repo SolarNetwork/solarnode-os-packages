@@ -35,7 +35,7 @@ BLUETOOTH_CONF="/etc/bluetooth/main.conf"
 if grep -q '^DiscoverableTimeout = 0' $BLUETOOTH_CONF; then
 	true
 else
-	echo 'Setting DiscoverableTimeout = 0 in $BLUETOOTH_CONF.'
+	echo "Setting DiscoverableTimeout = 0 in $BLUETOOTH_CONF."
 	if grep -q 'DiscoverableTimeout[[:space:]]*=' $BLUETOOTH_CONF; then
 		# update
 		sed -i -e '/DiscoverableTimeout[[:space:]]*=/c DiscoverableTimeout = 0' $BLUETOOTH_CONF || true
