@@ -17,6 +17,9 @@ deb : prep
 	-d 'socat' \
 	-d 'bluetooth' \
 	-d 'bluez-tools' \
+	-d 'python3' \
+	-d 'python3-dbus' \
+	-d 'python3-gi' \
 	--deb-no-default-config-files \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \

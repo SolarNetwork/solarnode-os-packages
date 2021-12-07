@@ -1,0 +1,11 @@
+[Unit]
+Description=SolarNode Bluetooth discoverable path watcher
+After=bluetooth.service
+PartOf=bluetooth.service
+
+[Path]
+Unit=solarnode-bt-piscan.service
+PathChanged=/etc/solarnode/identity.json
+
+[Install]
+WantedBy=bluetooth.target
