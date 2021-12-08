@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-# support images like /boot/firmware
-BOOT_FILE="$(find /boot -name config.txt)"
+# support images like /boot/firmware (using that over /boot if both exist)
+BOOT_FILE="$(find /boot -depth -name config.txt -print -quit)"
 BOOT_DIR="${BOOT_FILE%/*}"
 
 # Enable hardware watchdog
