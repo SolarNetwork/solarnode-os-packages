@@ -2,20 +2,19 @@
 set -e
 
 # support images like /boot/firmware (using that over /boot if both exist)
-BOOT_FILE="$(find /boot -depth -name config.txt -print -quit)"
-BOOT_DIR="${BOOT_FILE%/*}"
+CONFIG_FILE="$(find /boot -depth -name config.txt -print -quit)"
 
 # Enable hardware watchdog
-if grep -q '^dtparam=watchdog=on' $BOOT_DIR/config.txt; then
+if grep -q '^dtparam=watchdog=on' $CONFIG_FILE; then
 	true
 else
-	echo "Turning on watchdog dtparam in $BOOT_DIR/config.txt; will be enabled on reboot."
-	if grep -q 'dtparam=watchdog' $BOOT_DIR/config.txt; then
+	echo "Turning on watchdog dtparam in $CONFIG_FILE; will be enabled on reboot."
+	if grep -q 'dtparam=watchdog' $CONFIG_FILE; then
 		# update
-		sed -i -e '/dtparam=watchdog/c dtparam=watchdog=on' $BOOT_DIR/config.txt || true
+		sed -i -e '/dtparam=watchdog/c dtparam=watchdog=on' $CONFIG_FILE || true
 	else
 		# add in
-		echo 'dtparam=watchdog=on' >>$BOOT_DIR/config.txt
+		echo 'dtparam=watchdog=on' >>$CONFIG_FILE
 	fi
 fi
 

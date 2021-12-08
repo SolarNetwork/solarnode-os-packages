@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.1.1-2$(if $(DIST),+$(DIST),)
+VERSION = 1.1.1-3$(if $(DIST),+$(DIST),)
 
 deb : 
 	fpm -s dir -t deb \
