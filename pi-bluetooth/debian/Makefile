@@ -15,7 +15,7 @@ deb : prep
 	--force \
 	-d 'systemd (>= 232)' \
 	-d 'bluetooth' \
-	-d 'bluez' \
+	-d 'bluez (>= 5.55)' \
 	-d 'bluez-firmware' \
 	--conflicts 'pi-bluetooth' \
 	--replaces 'pi-bluetooth' \
