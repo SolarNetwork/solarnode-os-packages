@@ -11,8 +11,6 @@ import dbus
 import dbus.mainloop.glib
 import dbus.service
 
-STATIC_PASSKEY = '0000'
-
 try:
     from gi.repository import GObject
 except ImportError:
@@ -30,6 +28,7 @@ SERVICE_NAME = "org.bluez"
 ADAPTER_INTERFACE = SERVICE_NAME + ".Adapter1"
 DEVICE_INTERFACE = SERVICE_NAME + ".Device1"
 
+STATIC_PASSKEY = '0000'
 
 def ask(prompt):
     try:
