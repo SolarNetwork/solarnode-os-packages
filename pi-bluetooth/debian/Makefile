@@ -1,7 +1,7 @@
 DIST = 
 VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-pi-bluetooth
-PATHS = etc lib usr
+PATHS = lib usr
 
 deb : prep
 	fpm -s dir -t deb \

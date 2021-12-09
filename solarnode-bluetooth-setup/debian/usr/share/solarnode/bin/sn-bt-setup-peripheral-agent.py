@@ -11,6 +11,8 @@ import dbus
 import dbus.mainloop.glib
 import dbus.service
 
+STATIC_PASSKEY = '0000'
+
 try:
     from gi.repository import GObject
 except ImportError:
@@ -79,15 +81,18 @@ class Agent(dbus.service.Object):
     def RequestPinCode(self, device):
         print("RequestPinCode (%s)" % (device))
         set_trusted(device)
-        return ask("Enter PIN Code: ")
+
+        # Return a static pin.
+        return STATIC_PASSKEY
 
     @dbus.service.method(AGENT_INTERFACE,
                          in_signature="o", out_signature="u")
     def RequestPasskey(self, device):
         print("RequestPasskey (%s)" % (device))
         set_trusted(device)
-        passkey = ask("Enter passkey: ")
-        return dbus.UInt32(passkey)
+
+        # Return a static pin.
+        return STATIC_PASSKEY
 
     @dbus.service.method(AGENT_INTERFACE,
                          in_signature="ouq", out_signature="")
@@ -103,8 +108,10 @@ class Agent(dbus.service.Object):
     @dbus.service.method(AGENT_INTERFACE,
                          in_signature="ou", out_signature="")
     def RequestConfirmation(self, device, passkey):
-        # Just accept any device looking to pair.
-        set_trusted(device)
+        if (passkey == STATIC_PASSKEY):
+            set_trusted(device)
+            return
+        raise Rejected("Passkey doesn't match")
 
 
 def pair_reply():
@@ -180,7 +187,7 @@ if __name__ == '__main__':
 
     bus = dbus.SystemBus()
 
-    capability = "DisplayOnly"
+    capability = "KeyboardOnly"
 
     parser = OptionParser()
     parser.add_option("-i", "--adapter", action="store",

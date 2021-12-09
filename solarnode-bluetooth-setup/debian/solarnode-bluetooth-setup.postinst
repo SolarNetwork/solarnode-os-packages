@@ -1,9 +1,6 @@
 #!/bin/sh
 set -e
 
-USER=solar
-PINS=/etc/solarnode/bt-setup-pins
-
 service_up () {
 	name="$1"
 	start="$2"
@@ -19,17 +16,6 @@ service_up () {
 		fi
 	fi
 }
-
-if [ -e "$PINS" ]; then
-	if [ $(stat -c "%G" "$PINS") != "$USER" ]; then
-		echo "Changing group to '$USER' for $PINS."
-		chgrp "$USER" "$PINS" || true
-	fi
-	if [ $(stat -c "%a" "$PINS") != "660" ]; then
-		echo "Setting permissions on $PINS for $USER access."
-		chmod 660 "$PINS" || true
-	fi
-fi
 
 BLUETOOTH_CONF="/etc/bluetooth/main.conf"
 if grep -q '^DiscoverableTimeout = 0' $BLUETOOTH_CONF; then
@@ -58,10 +44,7 @@ else
 fi
 
 systemctl daemon-reload || true
-#service_up solarnode-rfcomm@0 true
-#service_up solarnode-bt-setup-agent true
 service_up solarnode-bt-setup-peripheral-agent true
-service_up solarnode-bt-setup-attach true
 service_up solarnode-bt-setup-peripheral-gatt-server true
 service_up solarnode-bt-piscan.service true
 service_up solarnode-bt-piscan.path true
