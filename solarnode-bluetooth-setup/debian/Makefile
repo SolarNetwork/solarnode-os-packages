@@ -1,7 +1,7 @@
 DIST = 
 VERSION = 2.0.0-1$(if $(DIST),+$(DIST),)
 NAME = solarnode-bluetooth-setup
-PATHS = etc lib usr
+PATHS = lib usr
 
 deb : prep
 	fpm -s dir -t deb \
@@ -14,7 +14,6 @@ deb : prep
 	-a all \
 	--force \
 	-d 'systemd (>= 232)' \
-	-d 'socat' \
 	-d 'bluetooth' \
 	-d 'bluez-tools' \
 	-d 'python3' \

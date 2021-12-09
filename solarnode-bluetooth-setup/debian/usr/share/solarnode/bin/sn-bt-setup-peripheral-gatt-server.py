@@ -536,7 +536,7 @@ def main():
             lines = f.readlines()
             for line in lines:
                 if line.startswith('PRETTY_HOSTNAME='):
-                    local_name = line.split('=')[1].strip()
+                    local_name = line.split('=')[1].strip().replace('"', '')
     except:
         print("Cannot get PRETTY_HOSTNAME")
         return

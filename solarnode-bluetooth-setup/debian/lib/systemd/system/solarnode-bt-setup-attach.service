@@ -1,9 +1,0 @@
-[Unit]
-Description=SolarNode Bluetooth Setup serial device
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/btattach -B /dev/ttyAMA0 -P bcm -S 3000000
-
-[Install]
-WantedBy=multi-user.target
