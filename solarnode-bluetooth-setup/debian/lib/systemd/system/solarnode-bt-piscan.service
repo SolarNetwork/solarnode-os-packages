@@ -6,6 +6,7 @@ ConditionPathExists=/etc/solarnode/identity.json
 
 [Service]
 Type=oneshot
+ExecStartPre=/usr/bin/hciconfig hci0 sspmode 0
 ExecStartPre=/usr/bin/hciconfig hci0 up
 ExecStart=/usr/bin/hciconfig hci0 piscan
 

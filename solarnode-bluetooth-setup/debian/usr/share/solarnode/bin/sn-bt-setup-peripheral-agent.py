@@ -11,6 +11,8 @@ import dbus
 import dbus.mainloop.glib
 import dbus.service
 
+STATIC_PASSKEY = '0000'
+
 try:
     from gi.repository import GObject
 except ImportError:
@@ -28,7 +30,6 @@ SERVICE_NAME = "org.bluez"
 ADAPTER_INTERFACE = SERVICE_NAME + ".Adapter1"
 DEVICE_INTERFACE = SERVICE_NAME + ".Device1"
 
-STATIC_PASSKEY = '0000'
 
 def ask(prompt):
     try:
@@ -79,7 +80,7 @@ class Agent(dbus.service.Object):
                          in_signature="o", out_signature="s")
     def RequestPinCode(self, device):
         print("RequestPinCode (%s)" % (device))
-        # set_trusted(device)
+        set_trusted(device)
 
         # Return a static pin.
         return STATIC_PASSKEY
@@ -89,8 +90,9 @@ class Agent(dbus.service.Object):
     def RequestPasskey(self, device):
         print("RequestPasskey (%s)" % (device))
         set_trusted(device)
-        passkey = ask("Enter passkey: ")
-        return dbus.UInt32(passkey)
+
+        # Return a static pin.
+        return STATIC_PASSKEY
 
     @dbus.service.method(AGENT_INTERFACE,
                          in_signature="ouq", out_signature="")
