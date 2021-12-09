@@ -1,33 +1,39 @@
 #!/bin/sh
 set -e
 
-# support images like /boot/firmware
-BOOT_FILE="$(find /boot -name config.txt)"
-BOOT_DIR="${BOOT_FILE%/*}"
+# support images like /boot/firmware (using that over /boot if both exist)
+CONFIG_FILE="$(find /boot -depth -name config.txt -print -quit)"
+
+# e.g. $CONFIG_FILE 'dtparam=watchdog=on' 'dtparam=watchdog'
+config_set () {
+	local conf_file="$1"
+	local param="$2"
+	local gtest="$3"
+	local msg="$4"
+	if grep -q "^$param" $conf_file 2>/dev/null; then
+		true
+	else
+		echo "$msg"
+		if grep -q "$gtest" $conf_file 2>/dev/null; then
+			# update
+			sed -i -e "/$gtest/c $param" $conf_file || true
+		else
+			# add in
+			echo "$param" >>$conf_file
+		fi
+	fi
+}
+
 
 # Enable hardware watchdog
-if grep -q '^dtparam=watchdog=on' $BOOT_DIR/config.txt; then
-	true
-else
-	echo "Turning on watchdog dtparam in $BOOT_DIR/config.txt; will be enabled on reboot."
-	if grep -q 'dtparam=watchdog' $BOOT_DIR/config.txt; then
-		# update
-		sed -i -e '/dtparam=watchdog/c dtparam=watchdog=on' $BOOT_DIR/config.txt || true
-	else
-		# add in
-		echo 'dtparam=watchdog=on' >>$BOOT_DIR/config.txt
-	fi
+config_set $CONFIG_FILE 'dtparam=watchdog=on' 'dtparam=watchdog' \
+	"Turning on watchdog dtparam in $CONFIG_FILE; will be enabled on reboot."
+
+# Support Debian 11
+if [ -e /etc/default/raspi-firmware ]; then
+	config_set /etc/default/raspi-firmware-custom 'dtparam=watchdog=on' 'dtparam=watchdog' \
+		'Turning on watchdog dtparam in /etc/default/raspi-firmware-custom for initramfs scripts.'
 fi
 
-if grep -q '^RuntimeWatchdogSec=14' /etc/systemd/system.conf; then
-	true
-else
-	echo 'Setting RuntimeWatchdogSec to 14 in /etc/systemd/system.conf; will be enabled on reboot.'
-	if grep -q 'RuntimeWatchdogSec' /etc/systemd/system.conf; then
-		# update
-		sed -i -e '/RuntimeWatchdogSec/c RuntimeWatchdogSec=14' /etc/systemd/system.conf || true
-	else
-		# add in
-		echo 'RuntimeWatchdogSec=14' >>/etc/systemd/system.conf
-	fi
-fi
+config_set /etc/systemd/system.conf 'RuntimeWatchdogSec=14' 'RuntimeWatchdogSec' \
+	"Configuring RuntimeWatchdogSec=14 in /etc/systemd/system.conf."
