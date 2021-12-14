@@ -395,7 +395,7 @@ class TxCharacteristic(Characteristic):
 class RxCharacteristic(Characteristic):
     def __init__(self, bus, index, service, tx_set_value):
         Characteristic.__init__(self, bus, index, UART_RX_CHARACTERISTIC_UUID,
-                                ['write'], service)
+                                ['write-without-response'], service)
 
         self.tx_set_value = tx_set_value
 
