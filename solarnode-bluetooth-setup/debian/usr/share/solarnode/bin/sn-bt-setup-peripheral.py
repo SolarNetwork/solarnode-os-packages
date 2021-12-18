@@ -565,12 +565,16 @@ class TxCharacteristic(Characteristic):
         self.device_value = {}
 
     def ReadValue(self, options):
-        logger.debug(options['device'])
-        logger.debug(self.device_value[options['device']])
-        return self.device_value[options['device']]
+        if options['device'] in self.device_value:
+            return self.device_value[options['device']]
+        else:
+            return b'\x26'
 
     def set_value(self, value, device):
-        self.device_value[device] = value
+        if value is not None:
+            self.device_value[device] = value
+        else:
+            self.device_value[device] = b'\x07'
 
 
 class RxCharacteristic(Characteristic):
@@ -625,13 +629,15 @@ class RxCharacteristic(Characteristic):
 
         # If the server is currently not running or not accepting
         # connections, return None.
-        except errno.ECONNREFUSED:
+        except Exception as e:
+            logger.warning(e)
             return None
 
     def send_value(self, value, device):
         sock = self.__get_socket(device)
         if sock is None:
-            self.send_value(b'\x07', device)
+            self.tx_set_value(b'\x07', device)
+            return
 
         byteValue = (''.join([chr(dbusByte) for dbusByte in value])).encode()
         logger.debug(byteValue)
@@ -644,12 +650,15 @@ class RxCharacteristic(Characteristic):
             data = b'\x00'
 
         logger.debug(data)
-
         self.tx_set_value(data, device)
 
     def WriteValue(self, value, options):
-        logger.debug(options['device'])
-        self.send_value(value, options['device'])
+        try:
+            logger.debug(options['device'])
+            self.send_value(value, options['device'])
+        except Exception as e:
+            logger.warning('writevalue')
+            logger.warning(e)
 
 
 class UartService(Service):
