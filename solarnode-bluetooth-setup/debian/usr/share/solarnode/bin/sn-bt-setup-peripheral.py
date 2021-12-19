@@ -1,3 +1,10 @@
+#!/usr/bin/python
+
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# Utils and example classes have been sourced from BlueZ with
+# modification to class paths.
+# https://github.com/bluez/bluez
+
 import array
 import logging
 import os.path
@@ -657,7 +664,6 @@ class RxCharacteristic(Characteristic):
             logger.debug(options['device'])
             self.send_value(value, options['device'])
         except Exception as e:
-            logger.warning('writevalue')
             logger.warning(e)
 
 
@@ -764,6 +770,7 @@ def main():
     )
     agent_manager.RequestDefaultAgent(AGENT_PATH)
 
+    logger.info("Entered mainloop")
     try:
         mainloop.run()
     except KeyboardInterrupt:
