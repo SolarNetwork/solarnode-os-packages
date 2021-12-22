@@ -572,6 +572,7 @@ class TxCharacteristic(Characteristic):
         self.device_value = {}
 
     def ReadValue(self, options):
+        logger.debug('READ: ' + options['device'])
         if options['device'] in self.device_value:
             return self.device_value[options['device']]
         else:
@@ -647,7 +648,7 @@ class RxCharacteristic(Characteristic):
             return
 
         byteValue = (''.join([chr(dbusByte) for dbusByte in value])).encode()
-        logger.debug(byteValue)
+        logger.debug('sent: ' + byteValue.decode('utf-8'))
         sock.sendall(byteValue)
 
         try:
@@ -656,12 +657,12 @@ class RxCharacteristic(Characteristic):
         except socket.timeout:
             data = b'\x00'
 
-        logger.debug(data)
+        logger.debug('received: ' + data.decode('utf-8'))
         self.tx_set_value(data, device)
 
     def WriteValue(self, value, options):
+        logger.debug('WRITE: ' + options['device'])
         try:
-            logger.debug(options['device'])
             self.send_value(value, options['device'])
         except Exception as e:
             logger.warning(e)
