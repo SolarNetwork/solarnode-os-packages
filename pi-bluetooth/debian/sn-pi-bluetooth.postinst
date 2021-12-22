@@ -23,6 +23,27 @@ service_up () {
 	fi
 }
 
+# Download firmware to support hci
+fw_f_1='/lib/firmware/brcm/BCM4345C0.hcd'
+fw_url_1='https://raw.githubusercontent.com/RPi-Distro/bluez-firmware/master/broadcom/BCM4345C0.hcd'
+tmp_file="$(mktemp)"
+if [ ! -e "$fw_f_1" ]; then
+	if [ ! -d /lib/firmware/bcrm ]; then
+		mkdir -p /lib/firmware/bcrm
+	fi
+	echo "Downloading Bluetooth firmware $fw_f_1..."
+	if type curl >/dev/null 2>&1; then
+		curl -o $tmp_file "$fw_url_1" || rm -f $tmp_file
+	elif type wget >/dev/null 2>&1; then
+		wget -O $tmp_file "$fw_url_1" || rm -f $tmp_file
+	fi
+	if [ -e $tmp_file ]; then
+		chmod 644 $tmp_file || true
+		mv $tmp_file "$fw_f_1" || true
+		echo "$fw_f_1 downloaded; reboot required to take effect."
+	fi
+fi
+
 systemctl daemon-reload || true
 service_up sn-hciuart true
 service_up bluetooth

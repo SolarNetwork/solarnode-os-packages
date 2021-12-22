@@ -1,9 +1,6 @@
 #!/bin/sh
 set -e
 
-USER=solar
-PINS=/etc/solarnode/bt-setup-pins
-
 service_up () {
 	name="$1"
 	start="$2"
@@ -20,17 +17,34 @@ service_up () {
 	fi
 }
 
-if [ -e "$PINS" ]; then
-	if [ $(stat -c "%G" "$PINS") != "$USER" ]; then
-		echo "Changing group to '$USER' for $PINS."
-		chgrp "$USER" "$PINS" || true
+BLUETOOTH_CONF="/etc/bluetooth/main.conf"
+if grep -q '^DiscoverableTimeout = 0' $BLUETOOTH_CONF; then
+	true
+else
+	echo "Setting DiscoverableTimeout = 0 in $BLUETOOTH_CONF."
+	if grep -q 'DiscoverableTimeout[[:space:]]*=' $BLUETOOTH_CONF; then
+		# update
+		sed -i -e '/DiscoverableTimeout[[:space:]]*=/c DiscoverableTimeout = 0' $BLUETOOTH_CONF || true
+	else
+		# add in
+		echo 'DiscoverableTimeout = 0' >>$BLUETOOTH_CONF
 	fi
-	if [ $(stat -c "%a" "$PINS") != "660" ]; then
-		echo "Setting permissions on $PINS for $USER access."
-		chmod 660 "$PINS" || true
+fi
+if grep -q '^AutoEnable[[:space:]]*=[[:space:]]*true' $BLUETOOTH_CONF; then
+	true
+else
+	echo "Setting AutoEnable = true in $BLUETOOTH_CONF."
+	if grep -q 'AutoEnable[[:space:]]*=' $BLUETOOTH_CONF; then
+		# update
+		sed -i -e '/AutoEnable[[:space:]]*=/c AutoEnable = true' $BLUETOOTH_CONF || true
+	else
+		# add in
+		echo 'AutoEnable = true' >>$BLUETOOTH_CONF
 	fi
 fi
 
 systemctl daemon-reload || true
-service_up solarnode-rfcomm@0 true
-service_up solarnode-bt-setup-agent true
+service_up solarnode-bt-setup-peripheral-agent true
+service_up solarnode-bt-setup-peripheral-gatt-server true
+service_up solarnode-bt-piscan.service true
+service_up solarnode-bt-piscan.path true

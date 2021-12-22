@@ -1,0 +1,14 @@
+[Unit]
+Description=SolarNode Bluetooth Setup GATT server
+After=bluetooth.service
+PartOf=bluetooth.service
+StartLimitIntervalSec=5
+StartLimitBurst=20
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/share/solarnode/bin/sn-bt-setup-peripheral-gatt-server.py
+Restart=always
+
+[Install]
+WantedBy=bluetooth.target

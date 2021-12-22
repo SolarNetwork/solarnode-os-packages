@@ -1,7 +1,7 @@
 DIST = 
 VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-pi-bluetooth
-PATHS = etc lib usr
+PATHS = lib usr
 
 deb : prep
 	fpm -s dir -t deb \
@@ -15,7 +15,7 @@ deb : prep
 	--force \
 	-d 'systemd (>= 232)' \
 	-d 'bluetooth' \
-	-d 'bluez' \
+	-d 'bluez (>= 5.55)' \
 	-d 'bluez-firmware' \
 	--conflicts 'pi-bluetooth' \
 	--replaces 'pi-bluetooth' \

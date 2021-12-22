@@ -1,6 +1,6 @@
 NAME = sn-system
 DIST = 
-VERSION = 1.3.0-3$(if $(DIST),+$(DIST),)
+VERSION = 1.4.0-1$(if $(DIST),+$(DIST),)
 PATHS = etc lib usr var
 
 deb : prep
@@ -16,6 +16,7 @@ deb : prep
 	-d 'rsync' \
 	-d 'sudo (>= 1.8.10)' \
 	-d 'systemd (>= 215)' \
+	-d 'jq' \
 	--conflicts 'ifupdown' \
 	--replaces 'ifupdown' \
 	--after-install $(NAME).postinst \
