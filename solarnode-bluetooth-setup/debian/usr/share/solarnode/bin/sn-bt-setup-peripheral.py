@@ -652,7 +652,7 @@ class RxCharacteristic(Characteristic):
         sock.sendall(byteValue)
 
         try:
-            sock.settimeout(0.2)
+            sock.settimeout(0.5)
             data = sock.recv(4096)
         except socket.timeout:
             data = b'\x00'
