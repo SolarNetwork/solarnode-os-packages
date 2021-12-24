@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+# e.g. $CONFIG_FILE 'dtparam=watchdog=on' 'dtparam=watchdog'
+config_set () {
+	local conf_file="$1"
+	local param="$2"
+	local gtest="$3"
+	local msg="$4"
+	if grep -q "^$param" $conf_file 2>/dev/null; then
+		true
+	else
+		echo "$msg"
+		if grep -q "$gtest" $conf_file 2>/dev/null; then
+			# update
+			sed -i -e "/$gtest/c $param" $conf_file || true
+		else
+			# add in
+			echo "$param" >>$conf_file
+		fi
+	fi
+}
+
+config_set /etc/systemd/system.conf 'RuntimeWatchdogSec=14' 'RuntimeWatchdogSec' \
+	"Configuring RuntimeWatchdogSec=14 in /etc/systemd/system.conf."
