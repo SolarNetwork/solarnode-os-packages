@@ -19,6 +19,7 @@ The following plugins have changed from the previous release:
 | Name                                     | ID                             | Old Vers | New Vers |
 |:-----------------------------------------|:-------------------------------|:---------|:---------|
 | Core SolarNode Framework                 | `n.s.node`                     | 2.2.2 | 2.3.0 |
+| Core Setup Web App                       | `n.s.n.setup.web`              | 2.2.0 | 2.3.0 |
 
 The complete list of plugins included is:
 
@@ -36,7 +37,7 @@ The complete list of plugins included is:
 | Core Security                            | `n.s.n.setup.security`         | 2.0.2 |
 | Core Settings Support                    | `n.s.n.settings.ca`            | 2.1.0 |
 | Core Setup Support                       | `n.s.n.setup`                  | 2.2.1 |
-| Core Setup Web App                       | `n.s.n.setup.web`              | 2.2.0 |
+| Core Setup Web App                       | `n.s.n.setup.web`              | 2.3.0 |
 | Core SolarNetwork Support                | `n.s.common`                   | 2.2.0 |
 | Core SolarNode Framework                 | `n.s.node`                     | 2.3.0 |
 | Debian Setup Support                     | `n.s.n.setup.deb`              | 2.0.0 |
