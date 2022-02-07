@@ -1,11 +1,10 @@
 # SolarNode Bluetooth Setup Debian package
 
-This directory contains packaging scripts used to enable SolarNode Bluetooth setup support.
+This directory contains packaging scripts used to enable SolarNode Bluetooth Setup support.
 
 # Services
 
-This package installs a systemd `solarnode-rfcomm@.service` service template, and enables the
-`solarnode-rfcomm@0.service` service.
+This package enables a systemd `solarnode-bt-setup-peripheral.service` service.
 
 # Packaging
 

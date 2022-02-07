@@ -1,5 +1,5 @@
 [Unit]
-Description=SolarNode Bluetooth setup peripheral
+Description=SolarNode Bluetooth Setup peripheral
 After=bluetooth.service
 PartOf=bluetooth.service
 StartLimitIntervalSec=5
