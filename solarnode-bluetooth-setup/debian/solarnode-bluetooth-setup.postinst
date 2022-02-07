@@ -44,7 +44,4 @@ else
 fi
 
 systemctl daemon-reload || true
-service_up solarnode-bt-setup-peripheral-agent true
-service_up solarnode-bt-setup-peripheral-gatt-server true
-service_up solarnode-bt-piscan.service true
-service_up solarnode-bt-piscan.path true
+service_up solarnode-bt-setup-peripheral true
