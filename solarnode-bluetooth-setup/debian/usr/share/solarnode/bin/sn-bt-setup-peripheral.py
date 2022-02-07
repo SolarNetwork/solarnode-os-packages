@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # Utils and example classes have been sourced from BlueZ with
