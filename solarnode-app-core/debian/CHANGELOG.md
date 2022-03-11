@@ -12,14 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.4.0 - 2022-03-04
+## 2.4.0 - 2022-03-11
 
 The following plugins have changed from the previous release:
 
 | Name                                     | ID                             | Old Vers | New Vers |
 |:-----------------------------------------|:-------------------------------|:---------|:---------|
 | Core Reactor Service                     | `n.s.n.reactor.simple`         | 2.0.0 | 2.1.0 |
-| Core Settings Support                    | `n.s.n.settings.ca`            | 2.1.0 | 2.1.1 |
+| Core Settings Support                    | `n.s.n.settings.ca`            | 2.1.0 | 2.2.0 |
 | Core Setup Web App                       | `n.s.n.setup.web`              | 2.2.0 | 2.3.0 |
 | Core SolarNetwork Support                | `n.s.common`                   | 2.2.0 | 2.3.0 |
 | Core SolarNode Framework                 | `n.s.node`                     | 2.2.2 | 2.3.0 |
@@ -40,7 +40,7 @@ The complete list of plugins included is:
 | Core OSGi Support                        | `n.s.common.osgi`              | 1.0.0 |
 | Core Reactor Service                     | `n.s.n.reactor.simple`         | 2.1.0 |
 | Core Security                            | `n.s.n.setup.security`         | 2.0.2 |
-| Core Settings Support                    | `n.s.n.settings.ca`            | 2.1.1 |
+| Core Settings Support                    | `n.s.n.settings.ca`            | 2.2.0 |
 | Core Setup Support                       | `n.s.n.setup`                  | 2.2.1 |
 | Core Setup Web App                       | `n.s.n.setup.web`              | 2.3.0 |
 | Core SolarNetwork Support                | `n.s.common`                   | 2.3.0 |
