@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 2.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 2.0.0-2$(if $(DIST),+$(DIST),)
 NAME = solarnode-bluetooth-setup
 PATHS = etc lib usr
 
@@ -7,7 +7,7 @@ deb : prep
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
-	--description 'SolarNode Bluetooth setup' \
+	--description 'SolarNode Bluetooth Setup' \
 	--license 'Apache License 2.0' \
 	-m 'packaging@solarnetwork.org.nz' \
 	--vendor 'SolarNetwork Foundation' \

@@ -12,6 +12,57 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.4.0 - 2022-03-23
+
+The following plugins have changed from the previous release:
+
+| Name                                     | ID                             | Old Vers | New Vers |
+|:-----------------------------------------|:-------------------------------|:---------|:---------|
+| Core Reactor Service                     | `n.s.n.reactor.simple`         | 2.0.0 | 2.1.0 |
+| Core Settings Support                    | `n.s.n.settings.ca`            | 2.1.0 | 2.2.0 |
+| Core Setup Web App                       | `n.s.n.setup.web`              | 2.2.0 | 2.3.0 |
+| Core SolarNetwork Support                | `n.s.common`                   | 2.2.0 | 2.3.0 |
+| Core SolarNode Framework                 | `n.s.node`                     | 2.2.2 | 2.3.0 |
+| Metadata Service (SolarNetwork)          | `n.s.n.metadata.json`          | 2.0.0 | 2.1.0 |
+| SolarNetwork Common Web                  | `n.s.common.web`               | 2.0.0 | 2.1.0 |
+
+The complete list of plugins included is:
+
+| Name                                     | ID                             | Vers  |
+|:-----------------------------------------|:-------------------------------|:------|
+| Auto Setup                               | `n.s.n.setup.auto`             | 1.3.2 |
+| Backup External Filesystems              | `n.s.n.backup.ext`             | 2.0.0 |
+| Bouncy Castle PKI                        | `n.s.common.pki.bc`            | 2.0.0 |
+| Command Line System Service              | `n.s.n.system.cmdline`         | 2.0.0 |
+| Common AWS S3 Support                    | `n.s.common.s3`                | 2.0.0 |
+| Core Database Connection                 | `n.s.n.dao.jdbc.con`           | 1.0.0 |
+| Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.0.2 |
+| Core OSGi Support                        | `n.s.common.osgi`              | 1.0.0 |
+| Core Reactor Service                     | `n.s.n.reactor.simple`         | 2.1.0 |
+| Core Security                            | `n.s.n.setup.security`         | 2.0.2 |
+| Core Settings Support                    | `n.s.n.settings.ca`            | 2.2.0 |
+| Core Setup Support                       | `n.s.n.setup`                  | 2.2.1 |
+| Core Setup Web App                       | `n.s.n.setup.web`              | 2.3.0 |
+| Core SolarNetwork Support                | `n.s.common`                   | 2.3.0 |
+| Core SolarNode Framework                 | `n.s.node`                     | 2.3.0 |
+| Debian Setup Support                     | `n.s.n.setup.deb`              | 2.0.0 |
+| Derby Database Extensions                | `n.s.n.dao.jdbc.derby.ext`     | 1.1.2 |
+| Derby Database Storage Support           | `n.s.n.dao.jdbc.derby`         | 2.0.0 |
+| Eclipse Gemini Web Support               | `n.s.common.web.gemini`        | 2.2.0 |
+| Metadata Service (SolarNetwork)          | `n.s.n.metadata.json`          | 2.1.0 |
+| Plugin Repository                        | `n.s.n.setup.obr`              | 2.0.0 |
+| Reactor Database Storage                 | `n.s.n.reactor.dao.jdbc`       | 2.0.1 |
+| S3 Backup                                | `n.s.n.backup.s3`              | 2.0.0 |
+| S3 Setup                                 | `n.s.n.setup.s3`               | 2.0.0 |
+| SolarIn/HTTP Upload Service              | `n.s.n.upload.bulkjsonwebpost` | 2.0.0 |
+| SolarIn/MQTT integration                 | `n.s.n.upload.mqtt`            | 2.1.0 |
+| SolarNet Location Service                | `n.s.n.location.ws`            | 3.0.0 |
+| SolarNetwork Common Web                  | `n.s.common.web`               | 2.1.0 |
+| SolarNetwork Hikari JDBC Connection Pool | `n.s.common.jdbc.pool.hikari`  | 2.0.1 |
+| Spring Expression Service                | `n.s.common.expr.spel`         | 2.0.0 |
+| System SSH Support                       | `n.s.n.system.ssh`             | 2.0.0 |
+
+
 ## 2.3.5 - 2022-01-28
 
 The following plugins have changed from the previous release:

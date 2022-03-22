@@ -10,8 +10,5 @@ service_down () {
 }
 
 if [ "$1" = "remove" ]; then
-	service_down solarnode-bt-setup-peripheral-agent
-	service_down solarnode-bt-setup-peripheral-gatt-server
-	service_down solarnode-bt-piscan.service
-	service_down solarnode-bt-piscan.path
+	service_down solarnode-bt-setup-peripheral
 fi
