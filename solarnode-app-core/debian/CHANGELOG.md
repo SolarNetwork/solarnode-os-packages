@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.4.0 - 2022-03-11
+## 2.4.0 - 2022-03-23
 
 The following plugins have changed from the previous release:
 
@@ -24,7 +24,7 @@ The following plugins have changed from the previous release:
 | Core SolarNetwork Support                | `n.s.common`                   | 2.2.0 | 2.3.0 |
 | Core SolarNode Framework                 | `n.s.node`                     | 2.2.2 | 2.3.0 |
 | Metadata Service (SolarNetwork)          | `n.s.n.metadata.json`          | 2.0.0 | 2.1.0 |
-| SolarNetwork Common Web                  | `n.s.common.web`               | 2.0.0 | 2.0.1 |
+| SolarNetwork Common Web                  | `n.s.common.web`               | 2.0.0 | 2.1.0 |
 
 The complete list of plugins included is:
 
@@ -57,7 +57,7 @@ The complete list of plugins included is:
 | SolarIn/HTTP Upload Service              | `n.s.n.upload.bulkjsonwebpost` | 2.0.0 |
 | SolarIn/MQTT integration                 | `n.s.n.upload.mqtt`            | 2.1.0 |
 | SolarNet Location Service                | `n.s.n.location.ws`            | 3.0.0 |
-| SolarNetwork Common Web                  | `n.s.common.web`               | 2.0.1 |
+| SolarNetwork Common Web                  | `n.s.common.web`               | 2.1.0 |
 | SolarNetwork Hikari JDBC Connection Pool | `n.s.common.jdbc.pool.hikari`  | 2.0.1 |
 | Spring Expression Service                | `n.s.common.expr.spel`         | 2.0.0 |
 | System SSH Support                       | `n.s.n.system.ssh`             | 2.0.0 |
