@@ -93,6 +93,7 @@
 		<exclude org="org.apache.felix"/>
 		<exclude org="org.apache.servicemix.bundles"/>
 		<exclude org="org.apache.taglibs"/>
+		<exclude org="org.apache.tiles"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.bouncycastle"/>
 		<exclude org="org.codehaus.jackson"/>
