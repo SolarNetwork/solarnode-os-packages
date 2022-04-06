@@ -5,5 +5,5 @@ if [ "$1" = "remove" ]; then
 		echo 'Restoring /etc/nftables.conf rules from /usr/share/solarnode/conf/nftables-empty.conf.'
 		cp -a /usr/share/solarnode/conf/nftables-empty.conf /etc/nftables.conf
 	fi
-	/usr/sbin/nft flush ruleset
+	/usr/sbin/nft flush ruleset || true
 fi

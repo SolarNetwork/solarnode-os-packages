@@ -55,7 +55,7 @@ service_up sn-identity-configurer.path true
 
 # Activate tmpfiles config
 if [ -x /bin/systemd-tmpfiles ]; then
-	/bin/systemd-tmpfiles --create
+	/bin/systemd-tmpfiles --create || true
 fi
 
 # Manually remove files excluded via /etc/dpkg/dpkg.cfg.d/02solarnode-nodocs

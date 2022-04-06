@@ -1,6 +1,6 @@
 NAME = sn-system
 DIST = 
-VERSION = 1.4.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.4.0-2$(if $(DIST),+$(DIST),)
 PATHS = etc lib usr var
 
 deb : prep
