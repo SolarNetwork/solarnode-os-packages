@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for H2 database support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-DB-H2"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- H2 Support -->
+		<dependency org="com.h2database" name="h2" rev="2.1.210" />
+
+		<!-- Global excludes provided by the base system -->
+
+	</dependencies>
+</ivy-module>
