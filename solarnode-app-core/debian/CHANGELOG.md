@@ -12,13 +12,15 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.6.0 - 2022-04-08
+## 2.6.2 - 2022-04-09
 
 The following plugins have changed from the previous release:
 
 | Name                                     | ID                             | Old Vers | New Vers |
 |:-----------------------------------------|:-------------------------------|:---------|:---------|
-| Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.2.0 | 2.3.0 |
+| Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.2.0 | 2.3.1 |
+| Core SolarNetwork Support                | `n.s.common`                   | 2.3.0 | 2.3.1 |
+| SolarIn/HTTP Upload Service              | `n.s.n.upload.bulkjsonwebpost` | 2.0.1 | 2.0.2 |
 
 
 The complete list of plugins included is:
@@ -31,14 +33,14 @@ The complete list of plugins included is:
 | Command Line System Service              | `n.s.n.system.cmdline`         | 2.0.0 |
 | Common AWS S3 Support                    | `n.s.common.s3`                | 2.0.0 |
 | Core Database Connection                 | `n.s.n.dao.jdbc.con`           | 1.0.0 |
-| Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.2.0 |
+| Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.3.0 |
 | Core OSGi Support                        | `n.s.common.osgi`              | 1.0.0 |
 | Core Reactor Service                     | `n.s.n.reactor.simple`         | 2.1.0 |
 | Core Security                            | `n.s.n.setup.security`         | 2.0.2 |
 | Core Settings Support                    | `n.s.n.settings.ca`            | 2.2.0 |
 | Core Setup Support                       | `n.s.n.setup`                  | 2.2.1 |
 | Core Setup Web App                       | `n.s.n.setup.web`              | 2.4.1 |
-| Core SolarNetwork Support                | `n.s.common`                   | 2.3.0 |
+| Core SolarNetwork Support                | `n.s.common`                   | 2.3.1 |
 | Core SolarNode Framework                 | `n.s.node`                     | 2.4.2 |
 | Debian Setup Support                     | `n.s.n.setup.deb`              | 2.0.0 |
 | Derby Database Extensions                | `n.s.n.dao.jdbc.derby.ext`     | 1.1.2 |
@@ -49,7 +51,7 @@ The complete list of plugins included is:
 | Reactor Database Storage                 | `n.s.n.reactor.dao.jdbc`       | 2.0.1 |
 | S3 Backup                                | `n.s.n.backup.s3`              | 2.0.0 |
 | S3 Setup                                 | `n.s.n.setup.s3`               | 2.0.1 |
-| SolarIn/HTTP Upload Service              | `n.s.n.upload.bulkjsonwebpost` | 2.0.1 |
+| SolarIn/HTTP Upload Service              | `n.s.n.upload.bulkjsonwebpost` | 2.0.2 |
 | SolarIn/MQTT integration                 | `n.s.n.upload.mqtt`            | 2.1.0 |
 | SolarNet Location Service                | `n.s.n.location.ws`            | 3.0.0 |
 | SolarNetwork Common Web                  | `n.s.common.web`               | 2.1.0 |
