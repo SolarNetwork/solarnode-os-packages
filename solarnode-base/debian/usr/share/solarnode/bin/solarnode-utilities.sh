@@ -97,6 +97,34 @@ setup_ini () {
 	fi
 }
 
+restore_h2_backup () {
+	local src="$1"
+	local dest="$2"
+	local classpath="$(ls /var/lib/solarnode/app/core/h2-*.jar)"
+	if [ -n "$classpath" ]; then
+		echo -n "restoring database $src... "
+		java -cp "$classpath" org.h2.tools.Restore -quiet -file "${DB_BAK_DIR}/$src" -dir "$dest"
+		echo "restored."
+	fi
+}
+
+setup_restore_db () {
+	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
+		for f in $(ls "${DB_BAK_DIR}"); do
+			case "$f" in
+				*.zip) restore_h2_backup "$f" "${DB_DIR}" ;;
+				*)
+					if [ -d "${DB_BAK_DIR}/$f" ]; then
+						echo -n "restoring database $f... "
+						cp -a "${DB_BAK_DIR}/$f" "${DB_DIR}"
+						echo "restored."
+					fi
+					;;
+			esac
+		done
+	fi
+}
+
 do_setup () {
 	# Verify ram dir exists; create if necessary
 	setup_dir ${RAM_DIR}
@@ -114,11 +142,7 @@ do_setup () {
 	setup_ini
 	
 	# Check to restore backup database
-	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
-		echo -n "restoring database... "
-		cp -a ${DB_BAK_DIR} ${DB_DIR}
-		echo "restored."
-	fi
+	setup_restore_db
 }
 
 do_sync () {
