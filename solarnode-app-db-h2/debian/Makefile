@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-h2
-VERSION = 1.0.0-1
+VERSION = 1.0.0-2
 ASSEMBLE_PATHS = etc
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
