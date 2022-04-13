@@ -113,7 +113,7 @@ setup_restore_db () {
 		setup_dir ${DB_DIR}
 		for f in $(ls "${DB_BAK_DIR}"); do
 			case "$f" in
-				*.zip) restore_h2_backup "$f" "${DB_DIR}" ;;
+				solarnode.zip) restore_h2_backup "$f" "${DB_DIR}" ;;
 				*)
 					if [ -d "${DB_BAK_DIR}/$f" ]; then
 						echo -n "restoring database $f... "
@@ -171,7 +171,7 @@ do_sync () {
 			fi
 		done
 		if [ -n "$h2" ]; then
-			sync_h2 "${DB_DIR}" "solarnode.zip"
+			sync_h2 "${DB_DIR}" "solarnode"
 		fi
 		echo "done."
 	fi

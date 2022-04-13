@@ -1,8 +1,8 @@
-# SolarNode Application - DB - H2
+# SolarNode Platform - Spring
 
-This directory contains support for building the `solarnode-app-db-h2` package. This adds 
-[H2][h2] databasensupport to the SolarNode platform. See [CHANGELOG](./CHANGELOG.md) for release
-information.
+This directory contains support for building the `solarnode-base-jackson` package. This adds 
+[Jackson JSON][jackson] support to the SolarNode platform. See [CHANGELOG](./CHANGELOG.md) for
+release information.
 
 # Build requirements
 
@@ -22,10 +22,10 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-db-h2_VERSION_all.deb` in
+Run `make` to build the package, which will produce `solarnode-base-jackson_VERSION_all.deb` in
 this directory.
 
 [ant]: https://ant.apache.org/
 [fpm]: https://github.com/jordansissel/fpm
-[h2]: https://www.h2database.com/
+[jacksno]: https://github.com/FasterXML/jackson
 [sn-build]: https://github.com/SolarNetwork/solarnetwork-build/
