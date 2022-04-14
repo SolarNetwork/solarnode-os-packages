@@ -11,6 +11,7 @@ TMP_DIR="${RAM_DIR}/tmp"
 LOG_DIR="${RAM_DIR}/log"
 DB_DIR="${RAM_DIR}/db"
 VAR_DIR="${SOLARNODE_HOME}/var"
+WORK_DIR="${VAR_DIR}/work"
 DB_BAK_DIR="${VAR_DIR}/db-bak"
 EQUINOX_CONF="${RAM_DIR}"
 SED_ESCAPE='s#[]\#$*.^[]#\\&#g'
@@ -151,9 +152,16 @@ sync_h2 () {
 	local dest="$2"
 	local classpath="$(ls /var/lib/solarnode/app/core/h2-*.jar)"
 	if [ -n "$classpath" ]; then
+		setup_dir "${WORK_DIR}"
 		echo -n "syncing database to $dest.zip... "
-		java -cp "$classpath" org.h2.tools.Backup -quiet -dir "$src" -file "${DB_BAK_DIR}/$dest.zip"
-		echo "done."
+		if java -cp "$classpath" org.h2.tools.Backup -quiet -dir "$src" -file "${WORK_DIR}/$dest.zip"; then
+			if [ -s "${WORK_DIR}/$dest.zip" ]; then
+				mv -f "${WORK_DIR}/$dest.zip" "${DB_BAK_DIR}/$dest.zip"
+			fi
+			echo "done."
+		else
+			echo "ERROR!"
+		fi
 	fi
 }
 
