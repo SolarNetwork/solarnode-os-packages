@@ -151,19 +151,22 @@ sync_h2 () {
 	local dest="$2"
 	local classpath="$(ls /var/lib/solarnode/app/core/h2-*.jar)"
 	if [ -n "$classpath" ]; then
-		java -cp "$classpath" org.h2.tools.Backup -quiet -dir "$src" -file "${DB_BAK_DIR}/$dest.zip" 
+		echo -n "syncing database to $dest.zip... "
+		java -cp "$classpath" org.h2.tools.Backup -quiet -dir "$src" -file "${DB_BAK_DIR}/$dest.zip"
+		echo "done."
 	fi
 }
 
 do_sync () {
 	# Backup DB to persistent storage if daemon stopped
 	if [ -e ${DB_DIR} ]; then
-		echo -n "syncing database to backup dir... "
 		setup_dir ${DB_BAK_DIR}
 		local h2=""
 		for f in $(ls "${DB_DIR}"); do
 			if [ -d "${DB_DIR}/$f" ]; then
+				echo -n "syncing database to backup dir... "
 				rsync -am --delete "${DB_DIR}/$f" "${DB_BAK_DIR}" 1>/dev/null 2>&1
+				echo "done."
 			else
 				case "$f" in
 					*.db) h2="1" ;;
