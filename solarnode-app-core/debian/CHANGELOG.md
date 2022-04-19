@@ -21,6 +21,8 @@ The following plugins have changed from the previous release:
 | Core Database Connection                 | `n.s.n.dao.jdbc.con`           | 1.0.0 | 1.1.0 |
 | Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.3.1 | 2.4.0 |
 | Core SolarNode Framework                 | `n.s.node`                     | 2.4.2 | 2.5.0 |
+| Derby Database Extensions                | `n.s.n.dao.jdbc.derby.ext`     | 1.1.2 | [moved][app-db-derby]
+| Derby Database Storage Support           | `n.s.n.dao.jdbc.derby`         | 2.0.0 | [moved][app-db-derby]
 | Metadata Service (SolarNetwork)          | `n.s.n.metadata.json`          | 2.1.0 | 2.1.1 |
 | Reactor Database Storage                 | `n.s.n.reactor.dao.jdbc`       | 2.0.1 | 2.0.2 |
 
@@ -44,8 +46,6 @@ The complete list of plugins included is:
 | Core SolarNetwork Support                | `n.s.common`                   | 2.3.1 |
 | Core SolarNode Framework                 | `n.s.node`                     | 2.5.0 |
 | Debian Setup Support                     | `n.s.n.setup.deb`              | 2.0.0 |
-| Derby Database Extensions                | `n.s.n.dao.jdbc.derby.ext`     | 1.1.2 |
-| Derby Database Storage Support           | `n.s.n.dao.jdbc.derby`         | 2.0.0 |
 | Eclipse Gemini Web Support               | `n.s.common.web.gemini`        | 2.2.0 |
 | Metadata Service (SolarNetwork)          | `n.s.n.metadata.json`          | 2.1.1 |
 | Plugin Repository                        | `n.s.n.setup.obr`              | 2.0.0 |
@@ -2228,4 +2228,5 @@ Platform.
 
  * Support for platform version 20170306.
 
+[app-db-derby]: ../../solarnode-app-db-derby/debian/
 [jdbc-default-settings]: https://github.com/SolarNetwork/solarnetwork-node/blob/develop/net.solarnetwork.node.dao.jdbc/src/net/solarnetwork/node/dao/jdbc/net.solarnetwork.jdbc.pool.default.properties
