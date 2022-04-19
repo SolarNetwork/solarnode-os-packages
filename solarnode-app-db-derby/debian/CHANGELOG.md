@@ -1,6 +1,6 @@
-# SolarNode Application - DB - H2 change log
+# SolarNode Application - DB - Derby change log
 
-This document details the history of changes of the `solarnode-app-db-h2` package, from newest to
+This document details the history of changes of the `solarnode-app-db-derby` package, from newest to
 oldest.
 
 The **plugin ID** values listed here refer to plugin OSGi symbolic names, defined in the
@@ -16,6 +16,7 @@ make them shorter, using the following conventions:
 
 The complete list of plugins included is:
 
-| Name                        | ID                  | Vers  |
-|:----------------------------|:--------------------|:------|
-| H2 Database Storage Support | `n.s.n.dao.jdbc.h2` | 1.0.0 |
+| Name                           | ID                         | Vers  |
+|:-------------------------------|:---------------------------|:------|
+| Derby Database Extensions      | `n.s.n.dao.jdbc.derby.ext` | 1.1.2 |
+| Derby Database Storage Support | `n.s.n.dao.jdbc.derby`     | 2.0.0 |

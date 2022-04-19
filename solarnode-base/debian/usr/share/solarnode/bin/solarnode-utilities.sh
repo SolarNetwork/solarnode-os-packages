@@ -11,6 +11,7 @@ TMP_DIR="${RAM_DIR}/tmp"
 LOG_DIR="${RAM_DIR}/log"
 DB_DIR="${RAM_DIR}/db"
 VAR_DIR="${SOLARNODE_HOME}/var"
+WORK_DIR="${VAR_DIR}/work"
 DB_BAK_DIR="${VAR_DIR}/db-bak"
 EQUINOX_CONF="${RAM_DIR}"
 SED_ESCAPE='s#[]\#$*.^[]#\\&#g'
@@ -97,6 +98,35 @@ setup_ini () {
 	fi
 }
 
+restore_h2_backup () {
+	local src="$1"
+	local dest="$2"
+	local classpath="$(ls /var/lib/solarnode/app/core/h2-*.jar)"
+	if [ -n "$classpath" ]; then
+		echo -n "restoring database $src... "
+		java -cp "$classpath" org.h2.tools.Restore -quiet -file "${DB_BAK_DIR}/$src" -dir "$dest"
+		echo "restored."
+	fi
+}
+
+setup_restore_db () {
+	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
+		setup_dir ${DB_DIR}
+		for f in $(ls "${DB_BAK_DIR}"); do
+			case "$f" in
+				solarnode.zip) restore_h2_backup "$f" "${DB_DIR}" ;;
+				*)
+					if [ -d "${DB_BAK_DIR}/$f" ]; then
+						echo -n "restoring database $f... "
+						cp -a "${DB_BAK_DIR}/$f" "${DB_DIR}"
+						echo "restored."
+					fi
+					;;
+			esac
+		done
+	fi
+}
+
 do_setup () {
 	# Verify ram dir exists; create if necessary
 	setup_dir ${RAM_DIR}
@@ -114,19 +144,46 @@ do_setup () {
 	setup_ini
 	
 	# Check to restore backup database
-	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
-		echo -n "restoring database... "
-		cp -a ${DB_BAK_DIR} ${DB_DIR}
-		echo "restored."
+	setup_restore_db
+}
+
+sync_h2 () {
+	local src="$1"
+	local dest="$2"
+	local classpath="$(ls /var/lib/solarnode/app/core/h2-*.jar)"
+	if [ -n "$classpath" ]; then
+		setup_dir "${WORK_DIR}"
+		echo -n "syncing database to $dest.zip... "
+		if java -cp "$classpath" org.h2.tools.Backup -quiet -dir "$src" -file "${WORK_DIR}/$dest.zip"; then
+			if [ -s "${WORK_DIR}/$dest.zip" ]; then
+				mv -f "${WORK_DIR}/$dest.zip" "${DB_BAK_DIR}/$dest.zip"
+			fi
+			echo "done."
+		else
+			echo "ERROR!"
+		fi
 	fi
 }
 
 do_sync () {
 	# Backup DB to persistent storage if daemon stopped
 	if [ -e ${DB_DIR} ]; then
-		echo -n "syncing database to backup dir... "
 		setup_dir ${DB_BAK_DIR}
-		rsync -am --delete ${DB_DIR}/* ${DB_BAK_DIR} 1>/dev/null 2>&1
+		local h2=""
+		for f in $(ls "${DB_DIR}"); do
+			if [ -d "${DB_DIR}/$f" ]; then
+				echo -n "syncing database to backup dir... "
+				rsync -am --delete "${DB_DIR}/$f" "${DB_BAK_DIR}" 1>/dev/null 2>&1
+				echo "done."
+			else
+				case "$f" in
+					*.db) h2="1" ;;
+				esac
+			fi
+		done
+		if [ -n "$h2" ]; then
+			sync_h2 "${DB_DIR}" "solarnode"
+		fi
 		echo "done."
 	fi
 }

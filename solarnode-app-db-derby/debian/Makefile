@@ -1,5 +1,5 @@
-NAME = solarnode-app-db-h2
-VERSION = 1.0.0-4
+NAME = solarnode-app-db-derby
+VERSION = 1.0.0-1
 ASSEMBLE_PATHS = etc
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -15,13 +15,12 @@ pkg : prep app assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode DB - H2' \
+		--description 'SolarNode DB - Derby' \
 		--license 'GPL 2.0' \
 		-f \
 		--provides 'solarnode-app-db' \
 		--conflicts 'solarnode-app-db' \
 		--replaces 'solarnode-app-db' \
-		-d 'solarnode-base-h2 (>= 1.0)' \
 		-d 'solarnode-app-core (>= 2.7)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)

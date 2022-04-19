@@ -1,6 +1,6 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.12.0-1
+VERSION = 1.13.0-2
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -20,7 +20,11 @@ deb : prep assemble app-core table
 	-f \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
+	-d 'solarnode-base-jackson' \
+	-d 'solarnode-base-spring' \
+	-d 'solarnode-base-spring-security' \
 	-d 'java8-runtime-headless' \
+	--deb-field 'Breaks: solarnode-app-core (<< 2.0)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
 	--before-remove $(BASE_NAME).prerm \
