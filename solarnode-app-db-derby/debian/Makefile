@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-derby
-VERSION = 1.0.0-1
+VERSION = 1.0.0-2
 ASSEMBLE_PATHS = etc
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -22,6 +22,8 @@ pkg : prep app assemble table
 		--conflicts 'solarnode-app-db' \
 		--replaces 'solarnode-app-db' \
 		-d 'solarnode-app-core (>= 2.7)' \
+		--deb-field 'Breaks: solarnode-app-core (<< 2.7)' \
+		--replaces 'solarnode-app-core (<< 2.7)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 

@@ -11,6 +11,7 @@ TMP_DIR="${RAM_DIR}/tmp"
 LOG_DIR="${RAM_DIR}/log"
 DB_DIR="${RAM_DIR}/db"
 VAR_DIR="${SOLARNODE_HOME}/var"
+WEBAPPS_DIR="${VAR_DIR}/webapps"
 WORK_DIR="${VAR_DIR}/work"
 DB_BAK_DIR="${VAR_DIR}/db-bak"
 EQUINOX_CONF="${RAM_DIR}"
@@ -139,6 +140,9 @@ do_setup () {
 	
 	# Verify var dir exists; create if necessary
 	setup_dir ${VAR_DIR}
+	
+	# Verify webapps dir exists; create if necessary
+	setup_dir ${WEBAPPS_DIR}
 	
 	# Copy config.ini into Equinox configuration dir
 	setup_ini
