@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 2.7.0-2
+VERSION = 2.7.0-3
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
@@ -21,7 +21,7 @@ pkg : app-core table
 		-d 'sn-solarssh (>= 1.0)' \
 		-d 'solarnode-base-netty' \
 		-d 'solarnode-app-io-mqtt (>= 2.1)' \
-		-d 'solarnode-app-db' \
+		-d 'solarnode-app-db-derby | solarnode-app-db' \
 		--after-install $(NAME).postinst \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
