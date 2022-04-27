@@ -6,8 +6,9 @@ Description=The SolarNode server.
 [Service]
 Type=simple
 Environment=LD_LIBRARY_PATH=/usr/lib/jni:/var/lib/solarnode/lib:/usr/lib
-Environment=SOLAR_HOME=/var/lib/solarnode
-Environment=RAM_DIR=/run/solarnode
+Environment=SOLARNODE_HOME=/var/lib/solarnode
+Environment=SOLARNODE_RAM_DIR=/run/solarnode
+Environment=SOLARNODE_DB_DIR=/run/solarnode/db
 Environment="OSGI_OPTS=-console 4202 -clean"
 Environment="JAVA_OPTS=-Xmx288m \
 	-XX:+ExitOnOutOfMemoryError \
@@ -24,14 +25,14 @@ WorkingDirectory=/var/lib/solarnode
 # StateDirectory=solarnode/var solarnode/app/main
 
 ExecStart=/usr/bin/java $JAVA_OPTS \
-	-Djava.io.tmpdir=${RAM_DIR}/tmp \
-	-Djava.util.logging.config.file=${SOLAR_HOME}/conf/jre-logging.properties \
-	-Djava.library.path=/usr/lib/jni:${SOLAR_HOME}/lib:/usr/lib \
-	-Dsn.home=${SOLAR_HOME} \
-	-Dderby.system.home=${RAM_DIR}/db \
-	-cp ${SOLAR_HOME}/app/equinox.jar:/usr/share/solarnode/app/ext/* \
+	-Djava.io.tmpdir=${SOLARNODE_RAM_DIR}/tmp \
+	-Djava.util.logging.config.file=${SOLARNODE_HOME}/conf/jre-logging.properties \
+	-Djava.library.path=/usr/lib/jni:${SOLARNODE_HOME}/lib:/usr/lib \
+	-Dsn.home=${SOLARNODE_HOME} \
+	-Dderby.system.home=${SOLARNODE_DB_DIR} \
+	-cp ${SOLARNODE_HOME}/app/equinox.jar:/usr/share/solarnode/app/ext/* \
 	org.eclipse.core.runtime.adaptor.EclipseStarter \
-	-configuration ${RAM_DIR} \
+	-configuration ${SOLARNODE_RAM_DIR} \
 	$OSGI_OPTS
 ExecStartPre=/bin/sh /usr/share/solarnode/bin/solarnode-utilities.sh start
 ExecStopPost=/bin/sh /usr/share/solarnode/bin/solarnode-utilities.sh stop

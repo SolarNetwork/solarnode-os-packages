@@ -2,19 +2,21 @@
 
 # Utilities for managing the SolarNode server
 
-SOLARNODE_HOME="/var/lib/solarnode"
-SOLARNODE_SHARE="/usr/share/solarnode"
-RAM_DIR="/run/solarnode"
-CONF_DIR="/etc/solarnode"
+SOLARNODE_HOME="${SOLARNODE_HOME:-/var/lib/solarnode}"
+SOLARNODE_SHARE="${SOLARNODE_SHARE:-/usr/share/solarnode}"
+SOLARNODE_RAM_DIR="${SOLARNODE_RAM_DIR:-/run/solarnode}"
+SOLARNODE_CONF_DIR="${SOLARNODE_CONF_DIR:-/etc/solarnode}"
 
-TMP_DIR="${RAM_DIR}/tmp"
-LOG_DIR="${RAM_DIR}/log"
-DB_DIR="${RAM_DIR}/db"
-VAR_DIR="${SOLARNODE_HOME}/var"
-WEBAPPS_DIR="${VAR_DIR}/webapps"
-WORK_DIR="${VAR_DIR}/work"
-DB_BAK_DIR="${VAR_DIR}/db-bak"
-EQUINOX_CONF="${RAM_DIR}"
+SOLARNODE_VAR_DIR="${SOLARNODE_VAR_DIR:-${SOLARNODE_HOME}/var}"
+
+SOLARNODE_TMP_DIR="${SOLARNODE_TMP_DIR:-${SOLARNODE_RAM_DIR}/tmp}"
+SOLARNODE_LOG_DIR="${SOLARNODE_LOG_DIR:-${SOLARNODE_RAM_DIR}/log}"
+SOLARNODE_DB_DIR="${SOLARNODE_DB_DIR:-${SOLARNODE_RAM_DIR}/db}"
+
+WEBAPPS_DIR="${SOLARNODE_VAR_DIR}/webapps"
+WORK_DIR="${SOLARNODE_VAR_DIR}/work"
+DB_BAK_DIR="${SOLARNODE_VAR_DIR}/db-bak"
+EQUINOX_CONF="${SOLARNODE_RAM_DIR}"
 SED_ESCAPE='s#[]\#$*.^[]#\\&#g'
 
 ##############################################################################
@@ -111,15 +113,15 @@ restore_h2_backup () {
 }
 
 setup_restore_db () {
-	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
-		setup_dir ${DB_DIR}
+	if [ ! -e ${SOLARNODE_DB_DIR} -a -e ${DB_BAK_DIR} ]; then
+		setup_dir ${SOLARNODE_DB_DIR}
 		for f in $(ls "${DB_BAK_DIR}"); do
 			case "$f" in
-				solarnode.zip) restore_h2_backup "$f" "${DB_DIR}" ;;
+				solarnode.zip) restore_h2_backup "$f" "${SOLARNODE_DB_DIR}" ;;
 				*)
 					if [ -d "${DB_BAK_DIR}/$f" ]; then
 						echo -n "restoring database $f... "
-						cp -a "${DB_BAK_DIR}/$f" "${DB_DIR}"
+						cp -a "${DB_BAK_DIR}/$f" "${SOLARNODE_DB_DIR}"
 						echo "restored."
 					fi
 					;;
@@ -130,16 +132,16 @@ setup_restore_db () {
 
 do_setup () {
 	# Verify ram dir exists; create if necessary
-	setup_dir ${RAM_DIR}
+	setup_dir ${SOLARNODE_RAM_DIR}
 	
 	# Verify tmp dir exists; create if necessary
-	setup_dir ${TMP_DIR}
+	setup_dir ${SOLARNODE_TMP_DIR}
 	
 	# Verify log dir exists; create if necessary
-	setup_dir ${LOG_DIR}
+	setup_dir ${SOLARNODE_LOG_DIR}
 	
 	# Verify var dir exists; create if necessary
-	setup_dir ${VAR_DIR}
+	setup_dir ${SOLARNODE_VAR_DIR}
 	
 	# Verify webapps dir exists; create if necessary
 	setup_dir ${WEBAPPS_DIR}
@@ -171,13 +173,13 @@ sync_h2 () {
 
 do_sync () {
 	# Backup DB to persistent storage if daemon stopped
-	if [ -e ${DB_DIR} ]; then
+	if [ -e ${SOLARNODE_DB_DIR} ]; then
 		setup_dir ${DB_BAK_DIR}
 		local h2=""
-		for f in $(ls "${DB_DIR}"); do
-			if [ -d "${DB_DIR}/$f" ]; then
+		for f in $(ls "${SOLARNODE_DB_DIR}"); do
+			if [ -d "${SOLARNODE_DB_DIR}/$f" ]; then
 				echo -n "syncing database to backup dir... "
-				rsync -am --delete "${DB_DIR}/$f" "${DB_BAK_DIR}" 1>/dev/null 2>&1
+				rsync -am --delete "${SOLARNODE_DB_DIR}/$f" "${DB_BAK_DIR}" 1>/dev/null 2>&1
 				echo "done."
 			else
 				case "$f" in
@@ -186,7 +188,7 @@ do_sync () {
 			fi
 		done
 		if [ -n "$h2" ]; then
-			sync_h2 "${DB_DIR}" "solarnode"
+			sync_h2 "${SOLARNODE_DB_DIR}" "solarnode"
 		fi
 		echo "done."
 	fi
@@ -195,7 +197,7 @@ do_sync () {
 # add/update the auto-settings.csv database from another CSV file
 auto_settings_add () {
 	local csv="$1"
-	local auto="${CONF_DIR}/auto-settings.csv"
+	local auto="${SOLARNODE_CONF_DIR}/auto-settings.csv"
 	if [ -e "$csv" ];then
 		if [ ! -e "$auto" ]; then
 			# file doesn't exist, so just copy this settings file directly
@@ -225,7 +227,7 @@ auto_settings_add () {
 # remove settings from the auto-settings.csv database found in another CSV file
 auto_settings_remove () {
 	local csv="$1"
-	local auto="${CONF_DIR}/auto-settings.csv"
+	local auto="${SOLARNODE_CONF_DIR}/auto-settings.csv"
 	if [ -e "$csv" -a -e "$auto" ];then
 		while IFS= read -r line; do
 			local key="${line%,*,*,*}"
