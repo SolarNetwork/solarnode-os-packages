@@ -1,7 +1,7 @@
 # SolarNode systemd service unit 
 
 [Unit]
-Description=The SolarNode server.
+Description=SolarNode server
 
 [Service]
 Type=simple
