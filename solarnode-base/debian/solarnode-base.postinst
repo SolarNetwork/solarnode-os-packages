@@ -65,6 +65,17 @@ setup_user_bin () {
 	fi
 }
 
+setup_logging () {
+	local log_file="${CONF_DIR}/log4j2.xml"
+	local log_file_example="/usr/share/solarnode/conf/log4j2-example.xml"
+	if [ ! -e "$log_file" -a -e "$log_file_example" ]; then
+		echo "Creating default logging configuration $log_file..."
+		cp "$log_file_example" "$log_file"
+		chown "$USER" "$log_file"
+		chgrp "$USER" "$log_file"
+	fi
+}
+
 # make sure config.ini refreshed
 if [ -e "$WORK_DIR/config.ini" ]; then
 	rm -f "$WORK_DIR/config.ini"
@@ -79,6 +90,8 @@ setup_write_dir "${SOLARNODE_HOME}/app/main"
 
 # add link ~/bin so utilities added to PATH on login
 setup_user_bin
+
+setup_logging
 
 systemctl daemon-reload || true
 
