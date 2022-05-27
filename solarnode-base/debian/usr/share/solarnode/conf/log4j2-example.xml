@@ -5,7 +5,7 @@
         immediateFlush="true"
         fileName="${env:SOLARNODE_LOGDIR:-/run/solarnode/log}/solarnode.log"
         filePattern="${env:SOLARNODE_LOGDIR:-/run/solarnode/log}/solarnode-%i.log">
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %40.40c; %msg%n"/>
+      <PatternLayout pattern="%d{DEFAULT} %-5p %40.40c; %msg%n"/>
       <Policies>
         <SizeBasedTriggeringPolicy size="1 MB"/>
       </Policies>
