@@ -1,21 +1,8 @@
-# SolarNode Application - DB - H2 (non-volatile storage) change log
+# SolarNode Application - DB - H2 (non-volatile storage)
 
-This document details the history of changes of the `solarnode-app-db-h2-nonvolatile` package, from
-newest to oldest.
+This package provides a H2 database for SolarNode that lives directly on non-volatile storage,
+instead of the default method of storing the database in RAM. This can be useful on devices with
+smaller amounts of RAM, at the expense of more wear to the persistent storage medium.
 
-The **plugin ID** values listed here refer to plugin OSGi symbolic names, defined in the
-`Bundle-SymbolicName` entry of each plugin's `META-INF/MANIFEST.MF` file. They are abbreviated to
-make them shorter, using the following conventions:
-
-| ID abbreviation | Full value                |
-|:----------------|:--------------------------|
-| `n.s.common`    | `net.solarnetwork.common` |
-| `n.s.n`         | `net.solarnetwork.node`   |
-
-## 1.0.0 - 2022-04-27
-
-The complete list of plugins included is:
-
-| Name                        | ID                  | Vers  |
-|:----------------------------|:--------------------|:------|
-| H2 Database Storage Support | `n.s.n.dao.jdbc.h2` | 1.0.0 |
+:warning: **NOTE** that a custom `/etc/solarnode/env.conf` is required for this integration. This
+package will modify that file if it exists, or create it if not.
