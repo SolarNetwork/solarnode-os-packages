@@ -24,7 +24,7 @@ The following plugins have changed from the previous release:
 | Core Setup Web App              | `n.s.n.setup.web`              | 2.4.1 | 2.5.0 |
 | Core SolarNetwork Support       | `n.s.common`                   | 2.3.1 | 2.4.2 |
 | Core SolarNetwork Web Support   | `n.s.common.web`               | 2.1.0 | 2.1.2 |
-| Core SolarNode Framework        | `n.s.node`                     | 2.5.0 | 2.6.0 |
+| Core SolarNode Framework        | `n.s.node`                     | 2.5.0 | 2.6.1 |
 | Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.1 | 2.0.2 |
 | Plugin Repository               | `n.s.n.setup.obr`              | 2.0.0 | 2.0.1 |
 | S3 Backup                       | `n.s.n.backup.s3`              | 2.0.0 | 2.1.0 |
