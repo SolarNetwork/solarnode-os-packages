@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <RollingFile name="File"
+        immediateFlush="true"
+        fileName="${env:SOLARNODE_LOGDIR:-/run/solarnode/log}/solarnode.log"
+        filePattern="${env:SOLARNODE_LOGDIR:-/run/solarnode/log}/solarnode-%i.log">
+      <PatternLayout pattern="%d{DEFAULT} %-5p %40.40c; %msg%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="1 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="3"/>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Logger name="org.eclipse.gemini.blueprint.blueprint.container.support" level="warn"/>
+    <Logger name="org.eclipse.gemini.blueprint.context.support" level="warn"/>
+    <Logger name="org.eclipse.gemini.blueprint.service.importer.support" level="warn"/>
+    <Logger name="org.springframework.beans.factory" level="warn"/>
+    <Root level="info">
+      <AppenderRef ref="File"/>
+    </Root>
+  </Loggers>
+</Configuration>

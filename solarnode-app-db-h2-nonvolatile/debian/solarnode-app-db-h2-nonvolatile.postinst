@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+if ! grep -q 'SOLARNODE_DB_DIR=/var/lib/solarnode/var/db' /etc/solarnode/env.conf >/dev/null 2>&1; then
+	echo 'Adding SOLARNODE_DB_DIR to /etc/solarnode/env.conf.'
+	cat <<- EOF >> /etc/solarnode/env.conf
+	SOLARNODE_DB_DIR=/var/lib/solarnode/var/db
+	EOF
+fi

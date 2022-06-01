@@ -1,6 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.13.0-3
+DIST = 
+VERSION = 1.15.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -52,6 +53,9 @@ app-core :
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
 	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
+	if [ -n "$(DIST)" -a -d "root+$(DIST)" ]; then \
+		cp -af "root+$(DIST)"/* $(DEB_BUILD_ROOT)/; \
+	fi
 	
 table :
 	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" "$(DEB_BUILD_ROOT)"
