@@ -1,0 +1,62 @@
+# Local filesystem mounting			-*- shell-script -*-
+
+#
+# This script overrides local_mount_root() in /scripts/local
+# and mounts root as a read-only filesystem with a temporary (rw)
+# overlay filesystem.
+#
+
+. /scripts/local
+
+local_mount_root()
+{
+	local_top
+	local_device_setup "${ROOT}" "root file system"
+	ROOT="${DEV}"
+
+	# Get the root filesystem type if not set
+	if [ -z "${ROOTFSTYPE}" ]; then
+		FSTYPE=$(get_fstype "${ROOT}")
+	else
+		FSTYPE=${ROOTFSTYPE}
+	fi
+	
+	local_device_setup "LABEL=SOLARDATA" "SOLARDATA file system"
+	SOLARDATA_ROOT="${DEV}"
+	SOLARDATA_FSTYPE=$(get_fstype "${SOLARDATA_ROOT}")
+	
+	local_premount
+
+	# N.B. this code still lacks error checking
+
+	modprobe ${FSTYPE}
+	checkfs ${ROOT} root "${FSTYPE}"
+
+	modprobe "${SOLARDATA_FSTYPE}"
+	checkfs ${SOLARDATA_ROOT} solardata "${SOLARDATA_FSTYPE}"
+
+	# Create directories for root and the overlay
+	mkdir /lower /upper
+
+	# Mount read-only root to /lower
+	if [ "${FSTYPE}" != "unknown" ]; then
+		mount -r -t ${FSTYPE} ${ROOTFLAGS} ${ROOT} /lower
+	else
+		mount -r ${ROOTFLAGS} ${ROOT} /lower
+	fi
+
+	modprobe overlay || insmod "/lower/lib/modules/$(uname -r)/kernel/fs/overlayfs/overlay.ko"
+
+	mount -t ${SOLARDATA_FSTYPE} ${SOLARDATA_ROOT} /upper
+	if [ ! -d /upper/data ]; then
+		mkdir /upper/data
+	fi
+	if [ ! -d /upper/work ]; then
+		mkdir /upper/work
+	fi
+
+	# Mount the final overlay-root in $rootmnt
+	mount -t overlay \
+	    -olowerdir=/lower,upperdir=/upper/data,workdir=/upper/work \
+	    overlay ${rootmnt}
+}
