@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This is a SolarNode deployment configuration for plugins that use the jSerialComm framework.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-IO-jSerialComm"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="com.fazecast" name="jSerialComm" rev="2.9.2" />
+
+	</dependencies>
+</ivy-module>
