@@ -14,7 +14,7 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode Modbus I/O - PureJavaComm' \
+		--description 'SolarNode I/O - PureJavaComm' \
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-app-core (>= 1.17)' \
