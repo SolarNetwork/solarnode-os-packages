@@ -119,7 +119,9 @@ pkg_install_file () {
 	# note: using apt-get here to provide support for installing dependencies
 	pkg_wait_not_busy
 	sudo apt-get install $APT_FLAGS \
-		-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" \
+		-o Dpkg::Options::="--force-confdef" \
+		-o Dpkg::Options::="--force-confnew" \
+		-o Dpkg::Options::="--force-overwrite" \
 		--allow-downgrades --no-install-recommends "$pkg" >$APT_OUTPUT </dev/null || exit $?
 	pkg_list_files "$pkg"
 }
@@ -136,7 +138,9 @@ pkg_install_repo () {
 		
 	pkg_wait_not_busy
 	sudo apt-get install $APT_FLAGS \
-		-o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" \
+		-o Dpkg::Options::="--force-confdef" \
+		-o Dpkg::Options::="--force-confnew" \
+		-o Dpkg::Options::="--force-overwrite" \
 		--no-install-recommends --allow-downgrades \
 		$redo "$pkg${ver:+=$ver}" >$APT_OUTPUT </dev/null || exit $?
 	
@@ -229,7 +233,10 @@ pkg_upgrade () {
 	fi
 	
 	pkg_wait_not_busy
-	sudo apt-get $action -qy -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
+	sudo apt-get $action $APT_FLAGS \
+		-o Dpkg::Options::="--force-confdef" \
+		-o Dpkg::Options::="--force-confnew" \
+		-o Dpkg::Options::="--force-overwrite" \
 		>$APT_OUTPUT </dev/null
 }
 
