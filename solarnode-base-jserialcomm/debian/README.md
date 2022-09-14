@@ -1,7 +1,7 @@
-# SolarNode Application - PureJavaComm I/O
+# SolarNode Application - jSerialComm I/O
 
-This directory contains support for building the `solarnode-app-io-pjc` package, which 
-provides support for the PureJavaComm serial framework in SolarNode. See 
+This directory contains support for building the `solarnode-base-jserialcomm` package, which 
+provides support for the jSerialComm serial framework in SolarNode. See 
 [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Build requirements
@@ -22,7 +22,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-io-pjc_VERSION_all.deb`
+Run `make` to build the package, which will produce `solarnode-base-jserialcomm_VERSION_all.deb`
 in this directory.
 
 [ant]: https://ant.apache.org/
