@@ -2,6 +2,33 @@
 
 . /usr/share/debconf/confmodule
 
+if [ ! -e /etc/systemd/network/20-wlan.network ]; then
+	if [ -e /etc/systemd/network/wlan.network ]; then
+		echo 'Renaming /etc/systemd/network/wlan.network as 20-wlan.network'
+		mv /etc/systemd/network/wlan.network /etc/systemd/network/20-wlan.network
+	elif [ -e /usr/share/solarnode/example/20-wlan.network ]; then
+		echo 'Creating default /etc/systemd/network/20-wlan.network'
+		cp /usr/share/solarnode/example/20-wlan.network /etc/systemd/network/20-wlan.network
+	fi
+fi
+
+if [ ! -e /etc/systemd/network/21-wlan-ap.network ]; then
+	if [ -e /etc/systemd/network/wlan-ap.network ]; then
+		echo 'Renaming /etc/systemd/network/wlan-ap.network as 21-wlan-ap.network'
+		mv /etc/systemd/network/wlan-ap.network /etc/systemd/network/21-wlan-ap.network
+	elif [ -e /usr/share/solarnode/example/21-wlan-ap.network ]; then
+		echo 'Creating default /etc/systemd/network/21-wlan-ap.network'
+		cp /usr/share/solarnode/example/21-wlan-ap.network /etc/systemd/network/21-wlan-ap.network
+	fi
+fi
+
+if [ ! -e /etc/sn-wifi-autoap.conf ]; then
+	if [ -e /usr/share/solarnode/example/sn-wifi-autoap.conf  ]; then
+		echo 'Creating default /etc/sn-wifi-autoap.conf'
+		cp /usr/share/solarnode/example/sn-wifi-autoap.conf  /etc/sn-wifi-autoap.conf
+	fi
+fi
+
 # for testing, set WPA_CONF=/path/to/test.conf 
 CFG_SCRIPT="${CFG_SCRIPT:-/usr/share/solarnode/bin/wifi-cfg.sh}"
 UDEV_PERSIST="${UDEV_PERSIST:-/etc/udev/rules.d/70-persistent-net.rules}"
@@ -34,6 +61,11 @@ if systemctl is-enabled wpa_supplicant >/dev/null; then
 fi
 
 systemctl daemon-reload >/dev/null || true
+
+if ! systemctl is-enabled sn-wifi-autoap-restore.service >/dev/null; then
+	echo 'Enabling sn-wifi-autoap-restore.service...'
+	systemctl enable sn-wifi-autoap-restore.service || true
+fi
 
 if ! systemctl is-enabled sn-wifi-bootconf.service >/dev/null; then
 	echo 'Enabling sn-wifi-bootconf.service...'

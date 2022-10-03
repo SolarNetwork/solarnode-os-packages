@@ -1,0 +1,14 @@
+[Unit]
+Description=Automatic WiFi Access Point When No WiFi Connection
+ConditionPathExists=/etc/wpa_supplicant/wpa_supplicant-%i.conf
+Before=wpa_supplicant@%i.service
+BindsTo=wpa_supplicant@%i.service
+
+[Service]
+Type=simple
+ExecStart=/usr/share/solarnode/bin/wifi-autoap.sh start %I
+Restart=on-failure
+TimeoutSec=1
+
+[Install]
+Alias=multi-user.target.wants/sn-wifi-autoap@%i.service

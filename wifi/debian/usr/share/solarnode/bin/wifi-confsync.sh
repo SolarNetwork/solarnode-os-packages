@@ -18,8 +18,8 @@ if [ ! -e "$WPA_CONF" ]; then
 fi
 
 conf_value () {
-	# extract variable value with leading/trailing " characters removed
-	awk -F= '$1 ~ /^[ \t]*'"$1"'$/ {gsub(/(^"|"$)/,"",$2); print $2}' "$WPA_CONF"
+	# extract variable value with leading/trailing " characters removed (first value only)
+	awk -F= '$1 ~ /^[ \t]*'"$1"'$/ {gsub(/(^"|"$)/,"",$2); print $2}' "$WPA_CONF" |head -1
 }
 
 COUNTRY=$(conf_value "country")
