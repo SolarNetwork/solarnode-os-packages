@@ -69,7 +69,7 @@ network={
 ```
 
 You can configure your own `ssid` and `psk` and any other settings for the access point in the 
-second `network{}` block shown.
+second `network={}` block shown.
 
 
 ## Startup WiFi bootstrap
