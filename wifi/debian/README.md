@@ -71,6 +71,20 @@ network={
 You can configure your own `ssid` and `psk` and any other settings for the access point in the 
 second `network={}` block shown.
 
+The gateway IP used by the network is configured in the `/etc/systemd/network/21-wlan-ap.network`
+file. The default configuration looks like this (the defaults can also be viewed in the
+`/usr/share/solarnode/example/21-wlan-ap.network` file):
+
+```
+[Match]
+Name=wlan0
+
+[Network]
+DHCPServer=yes
+Address=192.168.16.1/24
+```
+
+You could change the `Address` to any other valid local network, for example.
 
 ## Startup WiFi bootstrap
 
