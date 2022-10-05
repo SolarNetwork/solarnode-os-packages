@@ -1,5 +1,5 @@
 [Unit]
-Description=Automatic WiFi Access Point When No WiFi Connection
+Description=Automatic WiFi Access Point
 ConditionPathExists=/etc/wpa_supplicant/wpa_supplicant-%i.conf
 Before=wpa_supplicant@%i.service
 BindsTo=wpa_supplicant@%i.service
