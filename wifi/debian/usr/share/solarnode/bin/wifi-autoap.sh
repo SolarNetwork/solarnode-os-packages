@@ -30,13 +30,14 @@ logflags () {
 }
 
 is_client () {
-	[ -e $networkUnit ] && return 0 || return 1
+	local mode="$([ -e $modeFile ] && cat $modeFile)"
+	[ -e $networkUnit -a \( "$mode" = "client" -o ! -e $modeFile \) ] && return 0 || return 1
 }
 
 configure_ap () {
-	if [ -e $networkUnit ]; then
+	if is_client; then
 		logmsg "Configuring $device as an Access Point"
-		mv $networkUnit $networkUnit~
+		[ -e $networkUnit ] && mv $networkUnit $networkUnit~
 		systemctl restart systemd-networkd
 		echo 'ap' >$modeFile
 		[ -x $hookFile ] && $hookFile AccessPoint
@@ -44,9 +45,9 @@ configure_ap () {
 }
 
 configure_client () {
-	if [ -e $networkUnit~ ]; then
+	if ! is_client; then
 		logmsg "Configuring $device as a Wireless Client"
-		mv $networkUnit~ $networkUnit
+		[ -e $networkUnit~ ] && mv $networkUnit~ $networkUnit
 		systemctl restart systemd-networkd
 		echo 'client' >$modeFile
 		[ -x $hookFile ] && $hookFile Client
@@ -54,7 +55,7 @@ configure_client () {
 }
 
 reconfigure_wpa_supplicant () {
-# $1 has number of seconds to wait
+	# $1 has number of seconds to wait
 	if [ -f $lockFile ]; then
 		logmsg "Reconfigure already locked. Unlocking..."
 		touch $unlockFile
