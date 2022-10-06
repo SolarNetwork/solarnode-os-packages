@@ -1,5 +1,11 @@
 # SolarNode Base Platform change log
 
+## 1.15.1 - 2022-10-07
+
+This is a minor bugfix release in the supporting scripts, the plugin versions are identical to the
+previous release.
+
+
 ## 1.15.0 - 2022-05-27
 
 This release changes the core logging framework from Apache log4j to log4j2. The way logging is
