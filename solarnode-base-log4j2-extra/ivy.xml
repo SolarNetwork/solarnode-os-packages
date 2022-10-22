@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for H2 database support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-log4j2-Extra"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.log4j2" rev="1.0.0"/>
+
+		<exclude org="org.osgi"/>
+
+	</dependencies>
+</ivy-module>
