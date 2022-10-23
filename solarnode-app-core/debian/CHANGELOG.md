@@ -19,7 +19,7 @@ The following plugins have changed from the previous release:
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
 | Core Database Storage Support   | `n.s.n.dao.jdbc`               | 2.4.0  | 2.4.1 |
-| Core Setup Web App              | `n.s.n.setup.web`              | 2.5.0  | 2.5.1 |
+| Core Setup Web App              | `n.s.n.setup.web`              | 2.5.0  | 2.5.2 |
 | SolarIn/HTTP Upload Service     | `n.s.n.upload.bulkjsonwebpost` | 2.0.2  | 2.0.3 |
 | SolarIn/MQTT integration        | `n.s.n.upload.mqtt`            | 2.1.0  | 2.1.1 |
 
@@ -40,7 +40,7 @@ The complete list of plugins included is:
 | Core Security                   | `n.s.n.setup.security`         | 2.0.2  |
 | Core Settings Support           | `n.s.n.settings.ca`            | 2.3.0  |
 | Core Setup Support              | `n.s.n.setup`                  | 2.3.0  |
-| Core Setup Web App              | `n.s.n.setup.web`              | 2.5.1  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 2.5.2  |
 | Core SolarNetwork Support       | `n.s.common`                   | 2.11.0 |
 | Core SolarNetwork Web Support   | `n.s.common.web`               | 2.4.0  |
 | Core SolarNode Framework        | `n.s.node`                     | 2.9.0  |
