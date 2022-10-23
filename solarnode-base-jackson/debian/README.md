@@ -27,5 +27,5 @@ this directory.
 
 [ant]: https://ant.apache.org/
 [fpm]: https://github.com/jordansissel/fpm
-[jacksno]: https://github.com/FasterXML/jackson
+[jackson]: https://github.com/FasterXML/jackson
 [sn-build]: https://github.com/SolarNetwork/solarnetwork-build/

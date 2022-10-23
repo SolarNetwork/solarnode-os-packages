@@ -24,6 +24,9 @@
 # Allow ping
 -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 
+# Allow DHCP (for WiFi AP)
+-A INPUT -p udp --dport 67 -j ACCEPT
+
 # log iptables denied calls (access via 'dmesg' command)
 -A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
 

@@ -12,6 +12,7 @@ SOLARNODE_VAR_DIR="${SOLARNODE_VAR_DIR:-${SOLARNODE_HOME}/var}"
 SOLARNODE_TMP_DIR="${SOLARNODE_TMP_DIR:-${SOLARNODE_RAM_DIR}/tmp}"
 SOLARNODE_LOG_DIR="${SOLARNODE_LOG_DIR:-${SOLARNODE_RAM_DIR}/log}"
 SOLARNODE_DB_DIR="${SOLARNODE_DB_DIR:-${SOLARNODE_RAM_DIR}/db}"
+SOLARNODE_LOCK_DIR="${SOLARNODE_LOCK_DIR:-/var/lock}"
 
 WEBAPPS_DIR="${SOLARNODE_VAR_DIR}/webapps"
 WORK_DIR="${SOLARNODE_VAR_DIR}/work"
@@ -130,21 +131,28 @@ setup_restore_db () {
 	fi
 }
 
+clean_dir () {
+	find "$1" -type f -writable -delete
+}
+
 do_setup () {
 	# Verify ram dir exists; create if necessary
-	setup_dir ${SOLARNODE_RAM_DIR}
+	setup_dir "${SOLARNODE_RAM_DIR}"
 	
 	# Verify tmp dir exists; create if necessary
-	setup_dir ${SOLARNODE_TMP_DIR}
+	setup_dir "${SOLARNODE_TMP_DIR}"
 	
 	# Verify log dir exists; create if necessary
-	setup_dir ${SOLARNODE_LOG_DIR}
+	setup_dir "${SOLARNODE_LOG_DIR}"
 	
 	# Verify var dir exists; create if necessary
-	setup_dir ${SOLARNODE_VAR_DIR}
+	setup_dir "${SOLARNODE_VAR_DIR}"
 	
 	# Verify webapps dir exists; create if necessary
-	setup_dir ${WEBAPPS_DIR}
+	setup_dir "${WEBAPPS_DIR}"
+	
+	# Clean out lock dir
+	clean_dir "${SOLARNODE_LOCK_DIR}"
 	
 	# Copy config.ini into Equinox configuration dir
 	setup_ini

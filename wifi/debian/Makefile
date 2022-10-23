@@ -1,6 +1,6 @@
 DIST = 
 NAME = sn-wifi
-VERSION = 1.3.0-2$(if $(DIST),+$(DIST),)
+VERSION = 1.4.0-2$(if $(DIST),+$(DIST),)
 PATHS = etc lib usr
 
 deb : prep
@@ -15,7 +15,7 @@ deb : prep
 	-f \
 	-d 'rfkill' \
 	-d 'systemd (>= 215)' \
-	-d 'sn-system (>= 1.2.0)' \
+	-d 'sn-system (>= 1.5.0)' \
 	-d 'wpasupplicant' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \

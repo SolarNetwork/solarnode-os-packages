@@ -82,11 +82,21 @@ if [ -n "$SSID" -a ${#PASS} -ge 8 -a -e "$WPA_PP" ]; then
 	if [ -e "$WPA_CONF" ]; then
 		cat /dev/null >"$WPA_CONF.tmp" || true
 		chmod 640 "$WPA_CONF.tmp" || true
-		sed -e "s/country=.*/country=$COUNTRY/" \
-			-e 's/ssid=.*/ssid="'"$SSID"'"/' \
-			-e '/#psk=.*/d' \
-			-e "s/psk=.*/psk=$PSK/" "$WPA_CONF" \
-			>"$WPA_CONF.tmp" || true
+		# look for sn-wifi-cfg-start/sn-wifi-cfg-end block to restrict changes to,
+		# in case multiple networks are defined
+		if grep -q sn-wifi-cfg-start "$WPA_CONF"; then
+			sed -e "s/country=.*/country=$COUNTRY/" \
+				-e '/sn-wifi-cfg-start/,/sn-wifi-cfg-end/{s/ssid=.*/ssid="'"$SSID"'"/}' \
+				-e '/sn-wifi-cfg-start/,/sn-wifi-cfg-end/{/#psk=.*/d}' \
+				-e "/sn-wifi-cfg-start/,/sn-wifi-cfg-end/{s/psk=.*/psk=$PSK/}" "$WPA_CONF" \
+				>"$WPA_CONF.tmp" || true
+		else
+			sed -e "s/country=.*/country=$COUNTRY/" \
+				-e 's/ssid=.*/ssid="'"$SSID"'"/' \
+				-e '/#psk=.*/d' \
+				-e "s/psk=.*/psk=$PSK/" "$WPA_CONF" \
+				>"$WPA_CONF.tmp" || true
+		fi
 		if diff -q "$WPA_CONF" "$WPA_CONF.tmp" >/dev/null; then
 			# unchanged
 			rm "$WPA_CONF.tmp" || true

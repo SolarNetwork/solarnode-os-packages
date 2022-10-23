@@ -13,13 +13,78 @@ This package will ask for the following WiFi settings when configured:
  
 You can run 
 
-```
-$ dpkg-reconfigure sn-wifi
+```sh
+sudo dpkg-reconfigure sn-wifi
 ```
 
 to manage these settings. The configuration for the connection is located in
 `/etc/wpa_supplicant/wpa_supplicant-wlan0.conf`. A `sn-wifi-conf@wlan0.service` uses that
 configuration to connect to the WiFi network using the first-available WiFi device, `wlan0`.
+
+## Auto Access Point
+
+For initial setup of a the WiFi settings on a SolarNode it can be helpful for SolarNode to create
+its own WiFi network, as an access point. The `sn-wifi-autoap@wlan0` service can be used for this.
+When enabled, it will monitor the WiFi network status, and when the WiFi connection fails for
+any reason it will enable a `SolarNode` WiFi network using a gateway IP address of `192.168.16.1`.
+Thus when the SolarNode access point is enabled, you can connect to that network from your own
+device and reach the node GUI at `http://192.168.16.1/` or the shell via `ssh solar@192.168.16.1`.
+
+This service is not enabled by default. To enable it, run the following:
+
+```sh
+sudo systemctl enable --now sn-wifi-autoap@wlan0
+```
+
+Once enabled, if SolarNode cannot connect to the configured WiFi network, it will create its own
+`SolarNode` network. By default the password for this network is `solarnode`.
+
+### Configuring the Access Point settings
+
+The `/etc/wpa_supplicant/wpa_supplicant-wlan0.conf` file contains the `SolarNode` WiFi network
+settings. By default the configuration looks like this (the defaults can be also be viewed in the
+`/usr/share/solarnode/example/wpa_supplicant-wlan0.conf` file):
+
+```
+country=NZ
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+ap_scan=1
+
+### sn-wifi-cfg-start
+network={
+	priority=10
+	ssid="ssid"
+	psk="passphrase"
+}
+### sn-wifi-cfg-end
+
+### access-point mode
+network={
+    ssid="SolarNode"
+    mode=2
+    key_mgmt=WPA-PSK
+    psk="solarnode"
+    frequency=2462
+}
+```
+
+You can configure your own `ssid` and `psk` and any other settings for the access point in the 
+second `network={}` block shown.
+
+The gateway IP used by the network is configured in the `/etc/systemd/network/21-wlan-ap.network`
+file. The default configuration looks like this (the defaults can also be viewed in the
+`/usr/share/solarnode/example/21-wlan-ap.network` file):
+
+```
+[Match]
+Name=wlan0
+
+[Network]
+DHCPServer=yes
+Address=192.168.16.1/24
+```
+
+You could change the `Address` to any other valid local network, for example.
 
 ## Startup WiFi bootstrap
 
@@ -52,8 +117,8 @@ This section describes how the `sn-wifi` package is created.
 Packaging done via [fpm][fpm]. To install `fpm`:
 
 ```sh
-$ sudo apt-get install ruby ruby-dev build-essential
-$ sudo gem install --no-ri --no-rdoc fpm
+sudo apt-get install ruby ruby-dev build-essential
+sudo gem install --no-ri --no-rdoc fpm
 ```
 
 ## Create package
@@ -61,13 +126,13 @@ $ sudo gem install --no-ri --no-rdoc fpm
 Use `fpm` to package the service via `make`. This package is architecture independent:
 
 ```sh
-$ make
+make
 ```
 
 To specify a specific distribution target, add the `DIST` parameter, like
 
 ```sh
-$ make DIST=buster
+make DIST=buster
 ```
 
 [fpm]: https://github.com/jordansissel/fpm

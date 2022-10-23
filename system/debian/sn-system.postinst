@@ -3,6 +3,16 @@ set -e
 
 USER=solar
 
+if [ ! -e /etc/systemd/network/10-eth.network ]; then
+	if [ -e /etc/systemd/network/eth.network ]; then
+		echo 'Renaming /etc/systemd/network/eth.network as 10-eth.network'
+		mv /etc/systemd/network/eth.network /etc/systemd/network/10-eth.network
+	elif [ -e /usr/share/solarnode/example/10-eth.network ]; then
+		echo 'Creating default /etc/systemd/network/10-eth.network'
+		cp /usr/share/solarnode/example/10-eth.network /etc/systemd/network/10-eth.network
+	fi
+fi
+
 if ! id -u "$USER" >/dev/null 2>/dev/null; then
 	# Create user now
 	echo "Creating user $USER for SolarNode service. You must configure a password manually."

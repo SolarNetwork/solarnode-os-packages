@@ -12,5 +12,7 @@ if [ "$1" = "remove" ]; then
 	service_down sn-wifi-bootconf.service
 	service_down sn-wifi-conf@wlan0.service
 	service_down sn-wifi-conf@wlan0.path
+	service_down sn-wifi-autoap-restore.service
+	service_down sn-wifi-autoap@wlan0.service
 	systemctl daemon-reload >/dev/null || true
 fi
