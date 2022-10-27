@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-modbus-jamod-rxtx
-VERSION = 2.0.0-2
+VERSION = 2.0.1-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml

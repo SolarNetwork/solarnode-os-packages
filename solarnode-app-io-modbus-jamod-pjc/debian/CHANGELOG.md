@@ -12,7 +12,19 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.0.0 - TODO
+## 2.0.1 - 2022-10-28
+
+This release requires [`solarnode-app-io-modbus` 2.0][io-mdobus-200] or newer.
+
+The complete list of plugins included is:
+
+| Name                                 | ID                       | Vers  |
+|:-------------------------------------|:-------------------------|:------|
+| Java Modbus Library (PJC)            | `n.s.external.jamod.pjc` | 1.2.0 |
+| Modbus Communication Support (Jamod) | `n.s.n.io.modbus.jamod`  | 2.0.1 |
+
+
+## 2.0.0 - 2021-09-21
 
 This release requires [`solarnode-app-io-modbus` 2.0][io-mdobus-200] or newer.
 
