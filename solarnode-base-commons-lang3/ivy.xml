@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for H2 database support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Commons-Lang3"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.apache.commons" name="commons-lang3" rev="3.12.0" />
+
+		<!-- Global excludes provided by the base system -->
+		<exclude module="aopalliance"/>
+		<exclude module="commons-logging"/>
+
+	</dependencies>
+</ivy-module>
