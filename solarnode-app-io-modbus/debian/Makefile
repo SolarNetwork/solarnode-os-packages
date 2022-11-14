@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-modbus
-VERSION = 2.0.0-4
+VERSION = 2.2.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
