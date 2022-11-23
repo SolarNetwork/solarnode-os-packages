@@ -14,7 +14,6 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.serial.jsc" rev="latest.release"/>
 
 		<!-- solarnode-app-core excludes -->
-		<exclude org="com.fazecast"/>
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
@@ -27,6 +26,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="com.fazecast"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
