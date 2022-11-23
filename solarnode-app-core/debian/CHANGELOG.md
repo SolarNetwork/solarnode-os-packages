@@ -629,7 +629,7 @@ The following plugins have changed from the previous release:
 | Name                                     | ID                             | Old Vers | New Vers |
 |:-----------------------------------------|:-------------------------------|:---------|:---------|
 | Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.0.0 | 2.0.1 |
-| Core SolarNode Framework                 | `n.s.node`                     | 2.2.1 | 2.2.2 | 
+| Core SolarNode Framework                 | `n.s.node`                     | 2.2.1 | 2.2.2 |
 | Reactor Database Storage                 | `n.s.n.reactor.dao.jdbc`       | 2.0.0 | 2.0.1 |
 
 The complete list of plugins included is:
@@ -960,7 +960,7 @@ The complete list of plugins included is:
 
 ## 2.0.0 - 2021-10-12
 
-Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher. This is a major 
+Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher. This is a major
 internal update. Most plugins have been updated, however the user-visible UI remains unchanged.
 
 The complete list of plugins included is:
