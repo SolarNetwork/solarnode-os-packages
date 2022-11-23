@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.2.0 - 2022-11-14
+## 2.2.0 - 2022-11-23
 
 This release requires [`solarnode-app-core` 2.0][app-core-200] or newer.
 
@@ -20,7 +20,7 @@ The complete list of plugins included is:
 
 | Name                             | ID                | Vers  |
 |:---------------------------------|:------------------|:------|
-| Modbus Communication Support API | `n.s.n.io.modbus` | 4.2.0 |
+| Modbus Communication Support API | `n.s.n.io.modbus` | 4.3.0 |
 
 
 ## 2.1.0 - 2022-06-09
