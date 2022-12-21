@@ -19,6 +19,7 @@ pkg : app table
 		-f \
 		-d 'solarnode-app-io-modbus (>= 2.2)' \
 		-d 'solarnode-base-jserialcomm (>= 2.9.2)' \
+		-d 'solarnode-base-commons-lang3 (>= 3.4)' \
 		--conflicts 'solarnode-io-modbus' \
 		--replaces 'solarnode-io-modbus' \
 		--provides 'solarnode-io-modbus' \
