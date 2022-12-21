@@ -1,4 +1,4 @@
-# SolarNode Application - I/O - jSerialComm change log
+# SolarNode Platform - jSerialComm change log
 
 This document details the history of changes of the `solarnode-base-jserialcomm` package,
 from newest to oldest.

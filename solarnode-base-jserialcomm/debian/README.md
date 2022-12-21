@@ -1,7 +1,7 @@
-# SolarNode Application - jSerialComm I/O
+# SolarNode Platform - jSerialComm I/O
 
-This directory contains support for building the `solarnode-base-jserialcomm` package, which 
-provides support for the jSerialComm serial framework in SolarNode. See 
+This directory contains support for building the `solarnode-base-jserialcomm` package, which
+provides support for the jSerialComm serial framework in SolarNode. See
 [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Build requirements
