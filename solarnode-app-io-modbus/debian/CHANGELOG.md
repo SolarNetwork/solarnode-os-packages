@@ -20,7 +20,7 @@ The complete list of plugins included is:
 
 | Name                             | ID                | Vers  |
 |:---------------------------------|:------------------|:------|
-| Modbus Communication Support API | `n.s.n.io.modbus` | 4.3.0 |
+| Modbus Communication Support API | `n.s.n.io.modbus` | 4.3.1 |
 
 
 ## 2.1.0 - 2022-06-09
