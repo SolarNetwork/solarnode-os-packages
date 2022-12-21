@@ -1,4 +1,4 @@
-# SolarNode Platform - Spring change log
+# SolarNode Platform - Commons Lang3 change log
 
 This document details the history of changes of the `solarnode-base-spring` package, from newest to
 oldest.
