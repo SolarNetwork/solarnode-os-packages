@@ -18,9 +18,11 @@ The following plugins have changed from the previous release:
 
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 2.4.1  | 2.5.0  |
 | Core Settings Support           | `n.s.n.settings.ca`            | 2.3.0  | 2.3.1  |
 | Core Setup Web App              | `n.s.n.setup.web`              | 2.5.2  | 2.6.0  |
-| Core SolarNetwork Support       | `n.s.common`                   | 2.11.0 | 2.12.1 |
+| Core SolarNetwork Support       | `n.s.common`                   | 2.11.0 | 2.13.0 |
+| Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.2  | 2.0.3  |
 
 The complete list of plugins included is:
 
@@ -32,19 +34,19 @@ The complete list of plugins included is:
 | Command Line System Service     | `n.s.n.system.cmdline`         | 2.1.0  |
 | Common AWS S3 Support           | `n.s.common.s3`                | 2.0.0  |
 | Core Database Connection        | `n.s.n.dao.jdbc.con`           | 1.1.0  |
-| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 2.4.1  |
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 2.5.0  |
 | Core OSGi Support               | `n.s.common.osgi`              | 1.0.0  |
 | Core Reactor Service            | `n.s.n.reactor.simple`         | 2.1.0  |
 | Core Security                   | `n.s.n.setup.security`         | 2.0.2  |
 | Core Settings Support           | `n.s.n.settings.ca`            | 2.3.1  |
 | Core Setup Support              | `n.s.n.setup`                  | 2.3.0  |
 | Core Setup Web App              | `n.s.n.setup.web`              | 2.6.0  |
-| Core SolarNetwork Support       | `n.s.common`                   | 2.12.1 |
+| Core SolarNetwork Support       | `n.s.common`                   | 2.13.0 |
 | Core SolarNetwork Web Support   | `n.s.common.web`               | 2.4.0  |
 | Core SolarNode Framework        | `n.s.node`                     | 2.9.0  |
 | Debian Setup Support            | `n.s.n.setup.deb`              | 2.0.0  |
 | Eclipse Gemini Web Support      | `n.s.common.web.gemini`        | 2.2.0  |
-| Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.2  |
+| Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.3  |
 | Metadata Service (SolarNetwork) | `n.s.n.metadata.json`          | 2.1.1  |
 | Plugin Repository               | `n.s.n.setup.obr`              | 2.0.1  |
 | Reactor Database Storage        | `n.s.n.reactor.dao.jdbc`       | 2.0.2  |

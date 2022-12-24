@@ -5,7 +5,7 @@ See [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Base directories
 
-The OS packages install files in various ["base" directories][base-dirs]. 
+The OS packages install files in various ["base" directories][base-dirs].
 
 | Name              | Path |
 |:------------------|:------------|
@@ -32,8 +32,16 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-core_VERSION_all.deb` in
+Run `make` to build the package, which will produce `solarnode-base_VERSION_all.deb` in
 this directory.
+
+**Note** that you may need to run the build using **Java 8**. This can be accomplished by setting
+the `JAVA_HOME` environment variable, e.g.
+
+```sh
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_311.jdk/Contents/Home
+make
+```
 
 [ant]: https://ant.apache.org/
 [base-dirs]: ../README.md#base-directories

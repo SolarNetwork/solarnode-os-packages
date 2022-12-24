@@ -17,7 +17,7 @@ pkg : app-core table
 		--description 'SolarNode application core' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 1.13)' \
+		-d 'solarnode-base (>= 1.16)' \
 		-d 'sn-solarssh (>= 1.0)' \
 		-d 'solarnode-base-netty' \
 		-d 'solarnode-app-io-mqtt (>= 2.1)' \
