@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.11.0 - 2022-11-16
+## 2.11.0 - 2023-01-09
 
 The following plugins have changed from the previous release:
 
@@ -21,8 +21,10 @@ The following plugins have changed from the previous release:
 | Core Database Storage Support   | `n.s.n.dao.jdbc`               | 2.4.1  | 2.5.0  |
 | Core Settings Support           | `n.s.n.settings.ca`            | 2.3.0  | 2.3.1  |
 | Core Setup Web App              | `n.s.n.setup.web`              | 2.5.2  | 2.6.0  |
-| Core SolarNetwork Support       | `n.s.common`                   | 2.11.0 | 2.13.0 |
+| Core SolarNetwork Support       | `n.s.common`                   | 2.11.0 | 2.13.1 |
+| Core SolarNode Framework        | `n.s.node`                     | 2.9.0  | 2.9.1  |
 | Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.2  | 2.0.3  |
+| Plugin Repository               | `n.s.n.setup.obr`              | 2.0.1  | 2.0.2  |
 
 The complete list of plugins included is:
 
@@ -41,14 +43,14 @@ The complete list of plugins included is:
 | Core Settings Support           | `n.s.n.settings.ca`            | 2.3.1  |
 | Core Setup Support              | `n.s.n.setup`                  | 2.3.0  |
 | Core Setup Web App              | `n.s.n.setup.web`              | 2.6.0  |
-| Core SolarNetwork Support       | `n.s.common`                   | 2.13.0 |
+| Core SolarNetwork Support       | `n.s.common`                   | 2.13.1 |
 | Core SolarNetwork Web Support   | `n.s.common.web`               | 2.4.0  |
-| Core SolarNode Framework        | `n.s.node`                     | 2.9.0  |
+| Core SolarNode Framework        | `n.s.node`                     | 2.9.1  |
 | Debian Setup Support            | `n.s.n.setup.deb`              | 2.0.0  |
 | Eclipse Gemini Web Support      | `n.s.common.web.gemini`        | 2.2.0  |
 | Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.3  |
 | Metadata Service (SolarNetwork) | `n.s.n.metadata.json`          | 2.1.1  |
-| Plugin Repository               | `n.s.n.setup.obr`              | 2.0.1  |
+| Plugin Repository               | `n.s.n.setup.obr`              | 2.0.2  |
 | Reactor Database Storage        | `n.s.n.reactor.dao.jdbc`       | 2.0.2  |
 | S3 Backup                       | `n.s.n.backup.s3`              | 2.1.0  |
 | S3 Setup                        | `n.s.n.setup.s3`               | 2.0.1  |
