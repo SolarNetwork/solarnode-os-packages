@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for Modbus based plugins that use the j2mod
+	This is a SolarNode deployment configuration for Modbus based plugins that use the Nifty Modbus
 	jSerialComm framework.
 -->
 <ivy-module version="2.0">
