@@ -153,6 +153,8 @@ The complete list of plugins included is:
 | Tyrus Websocket Client (JDK)                  | `n.s.external.tyrus-standalone-client-jdk`                  | 1.13.0   |
 | Virgo Web Spring DM Support                   | `org.eclipse.virgo.web.dm`                                  | 3.7.2    |
 | Websocket API                                 | `javax.websocket`                                           | 1.1.0    |
+
+
 ## 1.15.0 - 2022-05-27
 
 This release changes the core logging framework from Apache log4j to log4j2. The way logging is
