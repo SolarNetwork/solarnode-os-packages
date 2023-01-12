@@ -62,7 +62,7 @@
 		See https://github.com/SolarNetwork/solarnetwork/wiki/Node-Using-System-RXTX
 		-->
 		<exclude artifact="net.solarnetwork.external.org.rxtx"/>
-		
+
 		<!-- Excludes provided by solarnode-app-io-mqtt package -->
 		<exclude artifact="net.solarnetwork.common.mqtt"/>
 
@@ -77,6 +77,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="com.h2database"/>
 		<exclude org="com.opensymphony.quartz"/>
 		<exclude org="org.glassfish.tyrus.bundles"/>
 		<exclude org="io.netty"/>

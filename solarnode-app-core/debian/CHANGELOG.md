@@ -12,6 +12,55 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.11.0 - 2023-01-09
+
+The following plugins have changed from the previous release:
+
+| Name                            | ID                             | Old Vers | New Vers |
+|:--------------------------------|:-------------------------------|:---------|:---------|
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 2.4.1  | 2.5.0  |
+| Core Settings Support           | `n.s.n.settings.ca`            | 2.3.0  | 2.3.1  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 2.5.2  | 2.6.0  |
+| Core SolarNetwork Support       | `n.s.common`                   | 2.11.0 | 2.13.1 |
+| Core SolarNode Framework        | `n.s.node`                     | 2.9.0  | 2.9.1  |
+| Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.2  | 2.0.3  |
+| Plugin Repository               | `n.s.n.setup.obr`              | 2.0.1  | 2.0.2  |
+
+The complete list of plugins included is:
+
+| Name                            | ID                             | Vers   |
+|:--------------------------------|:-------------------------------|:-------|
+| Auto Setup                      | `n.s.n.setup.auto`             | 1.3.2  |
+| Backup External Filesystems     | `n.s.n.backup.ext`             | 2.0.0  |
+| Bouncy Castle PKI               | `n.s.common.pki.bc`            | 2.0.0  |
+| Command Line System Service     | `n.s.n.system.cmdline`         | 2.1.0  |
+| Common AWS S3 Support           | `n.s.common.s3`                | 2.0.0  |
+| Core Database Connection        | `n.s.n.dao.jdbc.con`           | 1.1.0  |
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 2.5.0  |
+| Core OSGi Support               | `n.s.common.osgi`              | 1.0.0  |
+| Core Reactor Service            | `n.s.n.reactor.simple`         | 2.1.0  |
+| Core Security                   | `n.s.n.setup.security`         | 2.0.2  |
+| Core Settings Support           | `n.s.n.settings.ca`            | 2.3.1  |
+| Core Setup Support              | `n.s.n.setup`                  | 2.3.0  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 2.6.0  |
+| Core SolarNetwork Support       | `n.s.common`                   | 2.13.1 |
+| Core SolarNetwork Web Support   | `n.s.common.web`               | 2.4.0  |
+| Core SolarNode Framework        | `n.s.node`                     | 2.9.1  |
+| Debian Setup Support            | `n.s.n.setup.deb`              | 2.0.0  |
+| Eclipse Gemini Web Support      | `n.s.common.web.gemini`        | 2.2.0  |
+| Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.3  |
+| Metadata Service (SolarNetwork) | `n.s.n.metadata.json`          | 2.1.1  |
+| Plugin Repository               | `n.s.n.setup.obr`              | 2.0.2  |
+| Reactor Database Storage        | `n.s.n.reactor.dao.jdbc`       | 2.0.2  |
+| S3 Backup                       | `n.s.n.backup.s3`              | 2.1.0  |
+| S3 Setup                        | `n.s.n.setup.s3`               | 2.0.1  |
+| SolarIn/HTTP Upload Service     | `n.s.n.upload.bulkjsonwebpost` | 2.0.3  |
+| SolarIn/MQTT integration        | `n.s.n.upload.mqtt`            | 2.1.1  |
+| SolarNet Location Service       | `n.s.n.location.ws`            | 3.1.0  |
+| Spring Expression Service       | `n.s.common.expr.spel`         | 2.0.0  |
+| System SSH Support              | `n.s.n.system.ssh`             | 2.0.0  |
+
+
 ## 2.10.1 - 2022-10-22
 
 The following plugins have changed from the previous release:
@@ -22,7 +71,6 @@ The following plugins have changed from the previous release:
 | Core Setup Web App              | `n.s.n.setup.web`              | 2.5.0  | 2.5.2 |
 | SolarIn/HTTP Upload Service     | `n.s.n.upload.bulkjsonwebpost` | 2.0.2  | 2.0.3 |
 | SolarIn/MQTT integration        | `n.s.n.upload.mqtt`            | 2.1.0  | 2.1.1 |
-
 
 The complete list of plugins included is:
 
@@ -585,7 +633,7 @@ The following plugins have changed from the previous release:
 | Name                                     | ID                             | Old Vers | New Vers |
 |:-----------------------------------------|:-------------------------------|:---------|:---------|
 | Core Database Storage Support            | `n.s.n.dao.jdbc`               | 2.0.0 | 2.0.1 |
-| Core SolarNode Framework                 | `n.s.node`                     | 2.2.1 | 2.2.2 | 
+| Core SolarNode Framework                 | `n.s.node`                     | 2.2.1 | 2.2.2 |
 | Reactor Database Storage                 | `n.s.n.reactor.dao.jdbc`       | 2.0.0 | 2.0.1 |
 
 The complete list of plugins included is:
@@ -916,7 +964,7 @@ The complete list of plugins included is:
 
 ## 2.0.0 - 2021-10-12
 
-Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher. This is a major 
+Requires [`solarnode-base`](../../solarnode-base/debian) **1.11** or higher. This is a major
 internal update. Most plugins have been updated, however the user-visible UI remains unchanged.
 
 The complete list of plugins included is:
