@@ -1,9 +1,13 @@
 # SolarNode Base Platform change log
 
-## 1.15.1 - 2022-10-07
+## 1.16.1 - 2023-01-18
 
 This is a minor bugfix release in the supporting scripts, the plugin versions are identical to the
 previous release.
+
+ * The `sn-pid` bash function has been added, to print out the PID of the running SolarNode service.
+ * The `sn-log-path` now uses the `SOLARNODE_LOGDIR` environment value defined in either
+   `/etc/solarnode/env.conf` or `/usr/lib/systemd/system/solarnode.service`.
 
 
 ## 1.16.0 - 2022-12-24
@@ -153,6 +157,12 @@ The complete list of plugins included is:
 | Tyrus Websocket Client (JDK)                  | `n.s.external.tyrus-standalone-client-jdk`                  | 1.13.0   |
 | Virgo Web Spring DM Support                   | `org.eclipse.virgo.web.dm`                                  | 3.7.2    |
 | Websocket API                                 | `javax.websocket`                                           | 1.1.0    |
+
+
+## 1.15.1 - 2022-10-07
+
+This is a minor bugfix release in the supporting scripts, the plugin versions are identical to the
+previous release.
 
 
 ## 1.15.0 - 2022-05-27
