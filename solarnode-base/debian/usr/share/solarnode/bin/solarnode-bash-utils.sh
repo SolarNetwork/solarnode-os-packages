@@ -11,8 +11,22 @@ sn-home () {
 	echo '/var/lib/solarnode'
 }
 
+sn-pid () {
+	systemctl show --property MainPID --value solarnode
+}
+
 sn-log-path () {
-	echo '/run/solarnode/log/solarnode.log'
+	local p=""
+	if [ -e /etc/solarnode/env.conf ]; then
+		p="$(grep SOLARNODE_LOGDIR /etc/solarnode/env.conf |cut -d= -f 3)"
+	fi
+	if [ -z "$p" -a -e /usr/lib/systemd/system/solarnode.service ]; then
+		p="$(grep SOLARNODE_LOGDIR /usr/lib/systemd/system/solarnode.service |cut -d= -f 3)"
+	fi
+	if [ -z "$p" ]; then
+		p=/run/solarnode/log
+	fi
+	echo $p/solarnode.log
 }
 
 sn-log-tail () {
