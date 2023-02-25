@@ -29,6 +29,7 @@ WorkingDirectory=/var/lib/solarnode
 ExecStart=/usr/bin/java $JAVA_OPTS \
 	-Djava.io.tmpdir=${SOLARNODE_RAM_DIR}/tmp \
 	-Djava.util.logging.config.file=${SOLARNODE_HOME}/conf/jre-logging.properties \
+	-Dlog4j2.contextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector \
 	-Djava.library.path=/usr/lib/jni:${SOLARNODE_HOME}/lib:/usr/lib \
 	-Dsn.home=${SOLARNODE_HOME} \
 	-Dderby.system.home=${SOLARNODE_DB_DIR} \
