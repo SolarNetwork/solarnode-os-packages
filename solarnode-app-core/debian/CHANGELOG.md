@@ -12,6 +12,20 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.12.0 - 2023-02-26
+
+The following plugins have changed from the previous release:
+
+| Name                            | ID                             | Old Vers | New Vers |
+|:--------------------------------|:-------------------------------|:---------|:---------|
+| Core Setup Web App              | `n.s.n.setup.web`              | 2.6.1  | 2.7.0  |
+| Core SolarNode Framework        | `n.s.node`                     | 2.9.1  | 2.10.0 |
+| Log4j2 Support                  | `n.s.n.setup.log4j2`           | -      | 1.0.0  |
+
+
+The complete list of plugins included is:
+
+
 ## 2.11.1 - 2023-01-31
 
 The following plugins have changed from the previous release:
