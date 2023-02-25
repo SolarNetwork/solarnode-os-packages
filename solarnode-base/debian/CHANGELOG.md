@@ -1,5 +1,15 @@
 # SolarNode Base Platform change log
 
+## 1.16.2 - 2023-02-26
+
+This is a minor bugfix release in the supporting scripts, the plugin versions are identical to the
+previous release.
+
+ * The `solarnode.service` program command now includes
+   `-Dlog4j2.contextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector` to
+   support dynamic logging configuration.
+
+
 ## 1.16.1 - 2023-01-18
 
 This is a minor bugfix release in the supporting scripts, the plugin versions are identical to the
