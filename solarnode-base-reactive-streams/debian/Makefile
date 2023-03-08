@@ -1,5 +1,5 @@
-NAME = solarnode-base-spring
-VERSION = 2.0.0-1
+NAME = solarnode-base-reactive-streams
+VERSION = 1.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,7 +14,7 @@ deb : prep app-core assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode platform Spring Framework support' \
+		--description 'SolarNode platform Reactive Streams support' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
@@ -41,7 +41,7 @@ app-core :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build-deb-app.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
-		"-Dapp.dirname=boot" \
+		"-Dapp.dirname=core" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble
 

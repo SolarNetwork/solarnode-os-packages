@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	SolarNode app deployment configuration for H2 database support.
+	SolarNode base platform support for Spring Framework.
 -->
 <ivy-module version="2.0">
 	<info organisation="SolarNetwork" module="SolarNode-Spring"/>
@@ -10,41 +10,43 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Spring -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="4.3.30.RELEASE_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="4.3.30.RELEASE_1">
-			<exclude name="spring-aop"/>
-			<exclude name="spring-aspects"/>
-			<exclude name="spring-beans"/>
-			<exclude name="spring-context"/>
-			<exclude name="spring-context-support"/>
-			<exclude name="spring-core"/>
-			<exclude name="spring-expression"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-aop" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-beans" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-context-support" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-core" rev="5.3.24_1">
+			<exclude module="spring-jcl"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="4.3.30.RELEASE_1">
-			<exclude name="spring-aop"/>
-			<exclude name="spring-aspects"/>
-			<exclude name="spring-beans"/>
-			<exclude name="spring-context"/>
-			<exclude name="spring-context-support"/>
-			<exclude name="spring-core"/>
-			<exclude name="spring-expression"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-expression" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-jdbc" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-messaging" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-tx" rev="5.3.24_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-web" rev="5.3.24_1">
+			<exclude module="spring-aop"/>
+			<exclude module="spring-aspects"/>
+			<exclude module="spring-beans"/>
+			<exclude module="spring-context"/>
+			<exclude module="spring-context-support"/>
+			<exclude module="spring-core"/>
+			<exclude module="spring-expression"/>
 		</dependency>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="4.3.30.RELEASE_1">
-			<exclude name="spring-aop"/>
-			<exclude name="spring-aspects"/>
-			<exclude name="spring-beans"/>
-			<exclude name="spring-context"/>
-			<exclude name="spring-context-support"/>
-			<exclude name="spring-core"/>
-			<exclude name="spring-expression"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-webmvc" rev="5.3.24_1">
+			<exclude module="spring-aop"/>
+			<exclude module="spring-aspects"/>
+			<exclude module="spring-beans"/>
+			<exclude module="spring-context"/>
+			<exclude module="spring-context-support"/>
+			<exclude module="spring-core"/>
+			<exclude module="spring-expression"/>
+		</dependency>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-websocket" rev="5.3.24_1">
+			<exclude module="spring-aop"/>
+			<exclude module="spring-aspects"/>
+			<exclude module="spring-beans"/>
+			<exclude module="spring-context"/>
+			<exclude module="spring-context-support"/>
+			<exclude module="spring-core"/>
+			<exclude module="spring-expression"/>
 		</dependency>
 
 		<!-- Global excludes provided by the base system -->
