@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-h2-nonvolatile
-VERSION = 1.0.0-1
+VERSION = 2.0.0-1
 ASSEMBLE_PATHS = etc
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -17,6 +17,7 @@ pkg : prep app assemble table
 		--vendor 'SolarNetwork Foundation' \
 		--description 'SolarNode DB - H2 (non-volatile)' \
 		--license 'GPL 2.0' \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		--provides 'solarnode-app-db' \
 		--conflicts 'solarnode-app-db' \

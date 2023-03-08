@@ -12,7 +12,9 @@ The following plugins have changed from the previous release:
 | gemini-blueprint-core                         | `org.eclipse.gemini.blueprint.core`                         | 2.1.0    | 3.0.0    |
 | gemini-blueprint-extender                     | `org.eclipse.gemini.blueprint.extender`                     | 2.1.0    | 3.0.0    |
 | gemini-blueprint-io                           | `org.eclipse.gemini.blueprint.io`                           | 2.1.0    | 3.0.0    |
+| Medic API                                     | `org.eclipse.virgo.medic`                                   | 3.7.2    | -        |
 | SolarNetwork Gemini Blueprint Extender Config | `n.s.external.org.eclipse.gemini.blueprint.extender.config` | 2.0.1    | 3.0.0    |
+| Virgo Web Spring DM Support                   | `org.eclipse.virgo.web.dm`                                  | 3.7.2    | -        |
 
 
 The complete list of plugins included is:
@@ -103,7 +105,6 @@ The complete list of plugins included is:
 | jna                                           | `com.sun.jna`                                               | 5.6.0    |
 | Joda-Time                                     | `joda-time`                                                 | 2.12.2   |
 | Mathematical Utility Code                     | `org.eclipse.virgo.util.math`                               | 3.7.2    |
-| Medic API                                     | `org.eclipse.virgo.medic`                                   | 3.7.2    |
 | OSGi LogService implemented over SLF4J        | `org.slf4j.osgi-over-slf4j`                                 | 1.7.36   |
 | OSGi Manifest Utility Code                    | `org.eclipse.virgo.util.osgi.manifest`                      | 3.7.2    |
 | OSGi OBR Service API                          | `org.osgi.service.obr`                                      | 1        |
@@ -127,7 +128,6 @@ The complete list of plugins included is:
 | Tiles Request - JSP support                   | `org.apache.tiles-request-jsp`                              | 1.0.7    |
 | Tiles request - Servlet support               | `org.apache.tiles-request-servlet`                          | 1.0.7    |
 | Tyrus Websocket Client (JDK)                  | `n.s.external.tyrus-standalone-client-jdk`                  | 1.13.0   |
-| Virgo Web Spring DM Support                   | `org.eclipse.virgo.web.dm`                                  | 3.7.2    |
 | Websocket API                                 | `javax.websocket`                                           | 1.1.0    |
 
 ## 1.16.2 - 2023-02-26

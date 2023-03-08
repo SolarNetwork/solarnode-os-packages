@@ -18,6 +18,7 @@ deb : prep assemble app-core table
 	--vendor 'SolarNetwork Foundation' \
 	--description 'SolarNode platform' \
 	--license 'GPL 2.0' \
+	--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 	-f \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \

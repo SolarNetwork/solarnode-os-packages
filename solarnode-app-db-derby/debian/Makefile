@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-derby
-VERSION = 1.0.0-2
+VERSION = 2.0.0-1
 ASSEMBLE_PATHS = etc
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -17,11 +17,12 @@ pkg : prep app assemble table
 		--vendor 'SolarNetwork Foundation' \
 		--description 'SolarNode DB - Derby' \
 		--license 'GPL 2.0' \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		--provides 'solarnode-app-db' \
 		--conflicts 'solarnode-app-db' \
 		--replaces 'solarnode-app-db' \
-		-d 'solarnode-app-core (>= 2.7)' \
+		-d 'solarnode-app-core (>= 3.0)' \
 		--deb-field 'Breaks: solarnode-app-core (<< 2.7)' \
 		--replaces 'solarnode-app-core (<< 2.7)' \
 		--chdir $(DEB_BUILD_ROOT) \

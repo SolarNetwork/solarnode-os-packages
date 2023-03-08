@@ -58,21 +58,10 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.developer" rev="latest.release"/>
 		-->
 
-		<!--
-		Use OS-provided RXTX. Remove this to include the SolarNetwork RXTX bundle.
-		See https://github.com/SolarNetwork/solarnetwork/wiki/Node-Using-System-RXTX
-		-->
-		<exclude artifact="net.solarnetwork.external.org.rxtx"/>
-
 		<!-- Excludes provided by solarnode-app-io-mqtt package -->
 		<exclude artifact="net.solarnetwork.common.mqtt"/>
 
 		<!-- Global excludes provided by the base system -->
-		<exclude artifact="net.solarnetwork.external.net.sf.packtag"/>
-		<exclude artifact="net.solarnetwork.external.net.sf.packtag.cachefix"/>
-		<exclude artifact="net.solarnetwork.external.org.apache.tomcat.jdbc"/>
-		<exclude artifact="net.solarnetwork.external.org.mortbay.jetty"/>
-		<exclude artifact="net.solarnetwork.external.spring-security-messaging"/>
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
 		<exclude org="com.amazonaws"/>
 		<exclude org="com.fasterxml.jackson.core"/>
@@ -88,6 +77,7 @@
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.sf.supercsv"/>
+		<exclude org="net.solarnetwork.external"/>
 		<exclude org="org.apache.commons"/>
 		<exclude org="org.apache.derby"/>
 		<exclude org="org.apache.felix"/>
