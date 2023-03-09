@@ -130,6 +130,7 @@ The complete list of plugins included is:
 | Tyrus Websocket Client (JDK)                  | `n.s.external.tyrus-standalone-client-jdk`                  | 1.13.0   |
 | Websocket API                                 | `javax.websocket`                                           | 1.1.0    |
 
+
 ## 1.16.2 - 2023-02-26
 
 This is a minor bugfix release in the supporting scripts, the plugin versions are identical to the

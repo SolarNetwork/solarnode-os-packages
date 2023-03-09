@@ -24,6 +24,7 @@ The complete list of plugins included is:
 | Apache ServiceMix :: Bundles :: spring-webmvc          | `org.apache.servicemix.bundles.spring-webmvc`          | 5.3.24 |
 | Apache ServiceMix :: Bundles :: spring-websocket       | `org.apache.servicemix.bundles.spring-websocket`       | 5.3.24 |
 
+
 ## 1.0.0 - 2022-04-13
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **1.13** or higher

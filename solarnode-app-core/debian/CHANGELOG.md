@@ -52,6 +52,7 @@ The complete list of plugins included is:
 | Spring Expression Service       | `n.s.common.expr.spel`         | 3.0.0 |
 | System SSH Support              | `n.s.n.system.ssh`             | 3.0.0 |
 
+
 ## 2.13.0 - 2023-03-07
 
 The following plugins have changed from the previous release:
