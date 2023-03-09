@@ -18,5 +18,9 @@ echo 'Removing SolarNode identity...'
 rm -f /etc/solarnode/identity.json
 rm -f /etc/solarnode/tls/node.jks
 
+# remove credentials
+echo 'Removing SolarNode credentials...'
+rm -f /etc/solarnode/users.json
+
 # start SolarNode again
 systemctl start solarnode

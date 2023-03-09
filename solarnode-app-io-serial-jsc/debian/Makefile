@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-serial-jsc
-VERSION = 1.0.0-1
+VERSION = 2.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -16,6 +16,7 @@ pkg : app table
 		--vendor 'SolarNetwork Foundation' \
 		--description 'SolarNode Serial I/O - jSerialComm' \
 		--license 'GPL 2.0' \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-io-serial (>= 2.0)' \
 		-d 'solarnode-base-jserialcomm (>= 2.9.2)' \

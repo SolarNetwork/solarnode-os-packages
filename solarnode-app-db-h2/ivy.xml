@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for modbus API plugins that require a corresponding
-	implementation plugin to work.
+	This is a SolarNode deployment configuration for H2 database support.
 -->
 <ivy-module version="2.0">
 	<info organisation="SolarNetwork" module="SolarNode-DB-H2"/>

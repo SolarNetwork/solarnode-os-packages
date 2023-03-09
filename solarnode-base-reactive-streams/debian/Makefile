@@ -1,49 +1,47 @@
-NAME = solarnode-app-db-derby
-VERSION = 2.0.0-1
-ASSEMBLE_PATHS = etc
-PATHS = $(ASSEMBLE_PATHS) var
+NAME = solarnode-base-reactive-streams
+VERSION = 1.0.0-1
+ASSEMBLE_PATHS = usr
+PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
-DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
+DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb
 SN_ANT_OPTS =
 
-pkg : prep app assemble table
-	fpm -s dir \
-		-t deb \
+deb : prep app-core assemble table
+	fpm -s dir -t deb \
 		-n $(NAME) \
 		-v $(VERSION) \
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode DB - Derby' \
+		--description 'SolarNode platform Reactive Streams support' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		--provides 'solarnode-app-db' \
-		--conflicts 'solarnode-app-db' \
-		--replaces 'solarnode-app-db' \
-		-d 'solarnode-app-core (>= 3.0)' \
-		--deb-field 'Breaks: solarnode-app-core (<< 2.7)' \
-		--replaces 'solarnode-app-core (<< 2.7)' \
+		-d 'solarnode-base (>= 2.0)' \
+		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
+		--replaces 'solarnode-base (<< 1.13)' \
+		--after-install $(NAME).postinst \
+		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
+	
+clean : 
+	rm $(NAME)_$(VERSION)_all.deb
 
 prep : 
 	rm -rf $(DEB_BUILD_ROOT)
 	mkdir -p $(DEB_BUILD_ROOT)
-	find $(ASSEMBLE_PATHS) -type f -name .DS_Store -delete
+	find $(PATHS) -type f -name .DS_Store -delete
 
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
 
-clean : 
-	rm $(NAME)_$(VERSION)_all.deb
-
-app :
-	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
+app-core :
+	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build-deb-app.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
-		"-Ddeb.nocopy=1" \
+		"-Dapp.dirname=core" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble
 

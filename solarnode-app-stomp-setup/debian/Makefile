@@ -1,5 +1,5 @@
 NAME = solarnode-app-stomp-setup
-VERSION = 2.0.1-1
+VERSION = 3.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -16,8 +16,9 @@ pkg : app table
 		--vendor 'SolarNetwork Foundation' \
 		--description 'SolarNode STOMP Setup' \
 		--license 'GPL 2.0' \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-core (>= 2.2)' \
+		-d 'solarnode-app-core (>= 3.0)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
