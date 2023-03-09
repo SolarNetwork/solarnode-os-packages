@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.0.0 - 2023-03-08
+
+This release requires [`solarnode-app-core` 3.0][app-core-log] or newer.
+
+The complete list of plugins included is:
+
+| Name                             | ID                | Vers  |
+|:---------------------------------|:------------------|:------|
+| SolarNetwork Common MQTT Support | `n.s.common.mqtt` | 4.0.0 |
+
+
 ## 2.1.0 - 2021-11-19
 
 This release requires [`solarnode-app-core` 2.0][app-core-200] or newer.
@@ -68,3 +79,4 @@ The complete list of plugins included is:
 
 [app-core-1180]: ../../solarnode-app-core/debian/CHANGELOG.md#1180---2021-05-28
 [app-core-200]: ../../solarnode-app-core/debian/CHANGELOG.md#200---2010-10-12
+[app-core-log]: ../../solarnode-app-core/debian/CHANGELOG.md

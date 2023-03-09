@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 1.16.2-1$(if $(DIST),+$(DIST),)
+VERSION = 2.0.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -18,14 +18,15 @@ deb : prep assemble app-core table
 	--vendor 'SolarNetwork Foundation' \
 	--description 'SolarNode platform' \
 	--license 'GPL 2.0' \
+	--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 	-f \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
 	-d 'solarnode-base-jackson' \
-	-d 'solarnode-base-spring' \
-	-d 'solarnode-base-spring-security' \
+	-d 'solarnode-base-spring (>= 2.0)' \
+	-d 'solarnode-base-spring-security (>= 2.0)' \
 	-d 'java8-runtime-headless' \
-	--deb-field 'Breaks: solarnode-app-core (<< 2.11)' \
+	--deb-field 'Breaks: solarnode-app-core (<< 3.0)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
 	--before-remove $(BASE_NAME).prerm \

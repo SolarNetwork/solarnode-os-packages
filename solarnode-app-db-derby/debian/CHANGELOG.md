@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.0.0 - 2023-03-08
+
+| Name                           | ID                         | Vers  |
+|:-------------------------------|:---------------------------|:------|
+| Derby Database Extensions      | `n.s.n.dao.jdbc.derby.ext` | 1.1.2 |
+| Derby Database Storage Support | `n.s.n.dao.jdbc.derby`     | 3.0.0 |
+
 ## 1.0.0 - 2022-04-13
 
 The complete list of plugins included is:

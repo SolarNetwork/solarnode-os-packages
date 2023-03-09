@@ -12,9 +12,20 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.0.0 - TODO
+## 3.0.0 - 2023-03-08
 
-This release requires [`solarnode-app-io-serial` 1.0][io-serial-100] or newer.
+This release requires [`solarnode-app-io-serial` 3.0][io-serial-log] or newer.
+
+The complete list of plugins included is:
+
+| Name                               | ID                    | Vers  |
+|:-----------------------------------|:----------------------|:------|
+| Serial Communication Support (PJC) | `n.s.n.io.serial.pjc` | 3.0.0 |
+
+
+## 2.0.0 - 2021-09-17
+
+This release requires [`solarnode-app-io-serial` 2.0][io-serial-log] or newer.
 
 The complete list of plugins included is:
 
@@ -35,4 +46,4 @@ The complete list of plugins included is:
 
 
 [io-serial-100]: ../../solarnode-app-io-serial/debian/CHANGELOG.md#100---2021-05-21
-[io-serial-200]: ../../solarnode-app-io-serial/debian/CHANGELOG.md#200---TODO
+[io-serial-log]: ../../solarnode-app-io-serial/debian/CHANGELOG.md

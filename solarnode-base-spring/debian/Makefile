@@ -1,5 +1,5 @@
 NAME = solarnode-base-spring
-VERSION = 1.0.0-2
+VERSION = 2.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,10 +14,11 @@ deb : prep app-core assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode platform Spring support' \
+		--description 'SolarNode platform Spring Framework support' \
 		--license 'GPL 2.0' \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-base (>= 1.13)' \
+		-d 'solarnode-base (>= 2.0)' \
 		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
 		--replaces 'solarnode-base (<< 1.13)' \
 		--after-install $(NAME).postinst \

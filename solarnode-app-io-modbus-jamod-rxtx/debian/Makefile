@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-modbus-jamod-rxtx
-VERSION = 2.0.2-1
+VERSION = 3.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -16,8 +16,9 @@ pkg : app table
 		--vendor 'SolarNetwork Foundation' \
 		--description 'SolarNode Modbus I/O - Jamod - RXTX' \
 		--license 'GPL 2.0' \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-io-modbus (>= 2.0)' \
+		-d 'solarnode-app-io-modbus (>= 3.0)' \
 		-d 'sn-rxtx (>= 1.0)' \
 		--conflicts 'solarnode-io-modbus' \
 		--replaces 'solarnode-io-modbus' \
