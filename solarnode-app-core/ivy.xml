@@ -69,6 +69,7 @@
 		<exclude org="com.fasterxml.jackson.datatype"/>
 		<exclude org="com.h2database"/>
 		<exclude org="com.opensymphony.quartz"/>
+		<exclude org="com.zaxxer"/>
 		<exclude org="org.glassfish.tyrus.bundles"/>
 		<exclude org="io.netty"/>
 		<exclude org="javax.annotation"/>
