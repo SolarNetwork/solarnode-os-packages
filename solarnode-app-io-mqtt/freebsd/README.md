@@ -1,6 +1,6 @@
 # SolarNode Application - MQTT I/O
 
-This directory contains support for building the `solarnode-app-io-mqtt` package, which 
+This directory contains support for building the `solarnode-app-io-mqtt` package, which
 provides support for MQTT I/O APIs in SolarNode. See the [CHANGELOG](./CHANGELOG.md) for release
 information.
 
@@ -25,7 +25,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-io-mqtt_VERSION_all.deb`
+Run `make` to build the package, which will produce `solarnode-app-io-mqtt_VERSION.txz`
 in this directory.
 
 [ant]: https://ant.apache.org/

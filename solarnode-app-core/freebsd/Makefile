@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 2.0.0_1
+VERSION = 3.2.0_1
 PATHS = usr
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/ivy-freebsd.xml
@@ -17,8 +17,11 @@ pkg : app table
 		--description 'SolarNode application core' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 1.11)' \
-		-d 'solarnode-app-io-mqtt (>= 1.0)' \
+		-d 'solarnode-base (>= 2.0)' \
+		-d 'sn-solarssh (>= 1.0)' \
+		-d 'solarnode-base-netty' \
+		-d 'solarnode-app-io-mqtt (>= 3.0)' \
+		-d 'solarnode-app-db-derby (>= 2.0) | solarnode-app-db' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 

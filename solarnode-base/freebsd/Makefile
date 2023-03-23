@@ -1,6 +1,6 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
-VERSION = 1.11.0_1
+VERSION = 2.0.0_1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -19,6 +19,9 @@ deb : prep assemble app postapp table
 		--description 'SolarNode application' \
 		--license 'GPL 2.0' \
 		-f \
+		-d 'solarnode-base-jackson' \
+		-d 'solarnode-base-spring (>= 2.0)' \
+		-d 'solarnode-base-spring-security (>= 2.0)' \
 		--provides 'solarnode-framework' \
 		--chdir $(DEB_BUILD_ROOT) \
 		--before-install $(BASE_NAME).preinst \
@@ -36,8 +39,6 @@ assemble :
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
 	
 postapp : 
-	mv "$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/log4j.properties" \
-		"$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/log4j-example.properties"
 	mv "$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/tomcat-server.xml" \
 		"$(DEB_BUILD_ROOT)/usr/local/solarnode/conf/tomcat-server-example.xml"
 	

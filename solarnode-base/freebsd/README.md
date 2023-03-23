@@ -5,7 +5,7 @@ See [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Base directories
 
-The OS packages install files in various ["base" directories][base-dirs]. 
+The OS packages install files in various ["base" directories][base-dirs].
 
 | Name              | Path |
 |:------------------|:------------|
@@ -32,7 +32,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-core_VERSION_all.deb` in
+Run `make` to build the package, which will produce `solarnode-app-core_VERSION.txz` in
 this directory.
 
 [ant]: https://ant.apache.org/

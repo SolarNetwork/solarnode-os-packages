@@ -11,5 +11,4 @@ backup_file () {
 }
 
 # backup conf files included in package
-backup_file "${CONF_DIR}/log4j.properties"
 backup_file "${CONF_DIR}/tomcat-server.xml"

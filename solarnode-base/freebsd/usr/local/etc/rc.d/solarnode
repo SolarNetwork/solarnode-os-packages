@@ -57,6 +57,9 @@ RAM_DIR=/usr/local/solarnode/var
 CONF_DIR=/usr/local/solarnode/conf
 RUNAS=solarnode
 
+SOLARNODE_LOGDIR="${SOLARNODE_HOME}/var/log/solarnode.log"
+LOG4J_CONFIGURATION_FILE="${CONF_DIR}/log4j2.xml"
+
 TMP_DIR=${RAM_DIR}/tmp
 LOG_DIR=${RAM_DIR}/log
 DB_DIR=${RAM_DIR}/db
@@ -66,7 +69,7 @@ EQUINOX_JAR=equinox.jar
 EQUINOX_CONF=${RAM_DIR}
 EQUINOX_CONSOLE=4202
 PID_FILE=${RAM_DIR}/solarnode.pid
-APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE} -Djava.util.logging.config.file=${SOLARNODE_HOME}/conf/jre-logging.properties -Dlog4j2.contextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector -Dosgi.clean=true"
+APP_ARGS="-Dsn.home=${SOLARNODE_HOME} -Dderby.system.home=${DB_DIR} -Dsolarnetwork.pidfile=${PID_FILE} -Djava.util.logging.config.file=${SOLARNODE_HOME}/conf/jre-logging.properties -Dlog4j2.contextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector -Dlog4j2.configurationFile=${LOG4J_CONFIGURATION_FILE} -Dosgi.clean=true"
 JVM_ARGS="-Xmx192m -Djava.io.tmpdir=${TMP_DIR}"
 
 # FreeBSD support here
