@@ -3,7 +3,7 @@
 This document details the history of changes of the `solarnode-base-spring` package, from newest to
 oldest.
 
-## 1.0.0 - 2022-11-12
+## 3.12.0 - 2022-11-12
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **1.13** or higher
 
