@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-mqtt-netty
-VERSION = 2.0.0-1
+VERSION = 3.0.0_1
 PATHS = usr
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -16,8 +16,9 @@ pkg : app table
 		--vendor 'SolarNetwork Foundation' \
 		--description 'SolarNode MQTT I/O - Netty' \
 		--license 'GPL 2.0' \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/freebsd" \
 		-f \
-		-d 'solarnode-app-io-mqtt (>= 1.0.1)' \
+		-d 'solarnode-app-io-mqtt (>= 3.0)' \
 		--conflicts 'solarnode-io-mqtt' \
 		--replaces 'solarnode-io-mqtt' \
 		--provides 'solarnode-io-mqtt' \

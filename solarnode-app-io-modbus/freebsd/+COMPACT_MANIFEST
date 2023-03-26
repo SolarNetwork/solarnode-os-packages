@@ -1,0 +1,1 @@
+{"arch":"Darwin:22:x86:64","name":"solarnode-app-io-modbus","version":"3.0.0_1","comment":"SolarNode Modbus I/O - API","desc":"SolarNode Modbus I/O - API","origin":"fpm/solarnode-app-io-modbus","maintainer":"packaging@solarnetwork.org.nz","www":"https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/solarnode-app-io-modbus/freebsd","prefix":"/"}

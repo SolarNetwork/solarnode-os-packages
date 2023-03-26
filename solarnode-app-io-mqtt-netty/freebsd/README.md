@@ -1,7 +1,7 @@
 # SolarNode Application - MQTT I/O - Netty
 
-This directory contains support for building the `solarnode-app-io-mqtt-netty` package, which 
-provides support for MQTT I/O in SolarNode using the Netty framework. See 
+This directory contains support for building the `solarnode-app-io-mqtt-netty` package, which
+provides support for MQTT I/O in SolarNode using the Netty framework. See
 [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Build requirements
@@ -22,7 +22,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-io-serial-rxtx_VERSION_all.deb`
+Run `make` to build the package, which will produce `solarnode-app-io-serial-rxtx_VERSION.txz`
 in this directory.
 
 [ant]: https://ant.apache.org/

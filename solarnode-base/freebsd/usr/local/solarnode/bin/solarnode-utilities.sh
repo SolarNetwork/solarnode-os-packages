@@ -17,7 +17,7 @@ SED_ESCAPE='s#[]\#$*.^[]#\\&#g'
 
 ##############################################################################
 # equinox_reset_config
-# 
+#
 # Clear the Equinox runtime config.ini
 #
 equinox_reset_config () {
@@ -42,7 +42,7 @@ equinox_config_add_bundles () {
 		if ! grep -qF "$ini_add" "$conf_ini" >/dev/null 2>&1; then
 			sed_esc=$(echo "$ini_add" |sed -e "$SED_ESCAPE")
 			echo "Adding $ini_add to osgi.bundles in $conf_ini"
-			sed -i -e '/osgi.bundles=/ s#$#'"$sed_esc"'#' "$conf_ini"
+			sed -i "" -e '/osgi.bundles=/ s#$#'"$sed_esc"'#' "$conf_ini"
 		fi
 	fi
 }
@@ -62,7 +62,7 @@ equinox_config_remove_bundles () {
 	if grep -qF "$ini_rm" "$conf_ini" >/dev/null 2>&1; then
 		sed_esc=$(echo "$ini_rm" |sed -e "$SED_ESCAPE")
 		echo "Removing $ini_rm from osgi.bundles in $conf_ini"
-		sed -i -e "s#$sed_esc##g" "$conf_ini"
+		sed -i "" -e "s#$sed_esc##g" "$conf_ini"
 	fi
 }
 
@@ -100,31 +100,31 @@ setup_ini () {
 do_setup () {
 	# Verify ram dir exists; create if necessary
 	setup_dir ${RAM_DIR}
-	
+
 	# Verify tmp dir exists; create if necessary
 	setup_dir ${TMP_DIR}
-	
+
 	# Verify log dir exists; create if necessary
 	setup_dir ${LOG_DIR}
-	
+
 	# Verify var dir exists; create if necessary
 	setup_dir ${VAR_DIR}
-	
+
 	# Copy config.ini into Equinox configuration dir
 	setup_ini
-	
+
 	# Check to create initial tomcat-server.xml if does not exist
 	if [ ! -e "${CONF_DIR}/tomcat-server.xml" -a -e "${CONF_DIR}/tomcat-server-example.xml" ]; then
 		echo "Creating default ${CONF_DIR}/tomcat-server.xml"
 		cp -a "${CONF_DIR}/tomcat-server-example.xml" "${CONF_DIR}/tomcat-server.xml"
 	fi
-	
+
 	# Check to create initial tomcat-server.xml if does not exist
 	if [ ! -e "${CONF_DIR}/log4j.properties" -a -e "${CONF_DIR}/log4j-example.properties" ]; then
 		echo "Creating default ${CONF_DIR}/log4j.properties"
 		cp -a "${CONF_DIR}/log4j-example.properties" "${CONF_DIR}/log4j.properties"
 	fi
-	
+
 	# Check to restore backup database
 	if [ ! -e ${DB_DIR} -a -e ${DB_BAK_DIR} ]; then
 		echo -n "restoring database... "
@@ -161,7 +161,7 @@ auto_settings_add () {
 						local currline="$(grep "^$key," "$auto")"
 						if [ "$currline" != "$line" ]; then
 							echo "Updating auto setting $key in $auto"
-							sed -i -e "/^$key,/c $line" "$auto"
+							sed -i "" -e "/^$key,/c $line" "$auto"
 						fi
 					else
 						echo "Adding auto setting $key to $auto"
@@ -183,7 +183,7 @@ auto_settings_remove () {
 			if [ "$key" != 'key,type' ]; then
 				if grep -q "^$key," "$auto"; then
 					echo "Removing auto setting $key from $auto"
-					sed -i -e "/^$key,/d" "$auto"
+					sed -i "" -e "/^$key,/d" "$auto"
 				fi
 			fi
 		done < "$csv"
@@ -195,11 +195,11 @@ case $1 in
 	auto-settings-add)
 		auto_settings_add "$2"
 		;;
-		
+
 	auto-settings-remove)
 		auto_settings_remove "$2"
 		;;
-		
+
 	equinox-bundles-add)
 		if [ -z "$2" ]; then
 			echo "Must provide bundle start configuration to add." 1>&2
@@ -207,7 +207,7 @@ case $1 in
 			equinox_config_add_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
 		fi
 		;;
-		
+
 	equinox-bundles-remove)
 		if [ -z "$2" ]; then
 			echo "Must provide bundle start configuration to remove." 1>&2
@@ -215,15 +215,15 @@ case $1 in
 			equinox_config_remove_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
 		fi
 		;;
-	
+
 	reset)
 		equinox_reset_config
 		;;
-		
+
 	setup)
 		do_setup
 		;;
-		
+
 	start)
 		do_setup
 		;;
