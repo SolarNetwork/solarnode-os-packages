@@ -18,7 +18,7 @@ The following plugins have changed from the previous release:
 
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
-| Core Reactor Service            | `n.s.n.reactor.simple`         | 0.0.0 | 3.1.0 |
+| Core Reactor Service            | `n.s.n.reactor.simple`         | 3.0.0 | 3.1.0 |
 | Core SolarNode Framework        | `n.s.node`                     | 3.1.0 | 3.2.0 |
 | Reactor Database Storage        | `n.s.n.reactor.dao.jdbc`       | 3.0.0 | 3.1.0 |
 | SolarIn/MQTT integration        | `n.s.n.upload.mqtt`            | 3.0.0 | 3.1.0 |
