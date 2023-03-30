@@ -14,7 +14,7 @@ deb : prep
 	--license 'General Public License 3.0' \
 	-C $(MBPOLL_INSTALL_DIR) \
 	--force \
-	-d 'libmodbus (>= 3.1.4)' \
+	-d 'libmodbus5 (>= 3.1.4)' \
 	--conflicts 'mbpoll' \
 	--replaces 'mbpoll' \
 	--after-install $(NAME).postinst \
