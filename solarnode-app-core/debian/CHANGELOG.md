@@ -12,13 +12,16 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-# 3.3.0 - 2023-03-29
+# 3.3.0 - 2023-04-06
 
 The following plugins have changed from the previous release:
 
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
+| Core OSGi Support               | `n.s.common.osgi`              | 2.0.0 | 2.1.0 |
 | Core Reactor Service            | `n.s.n.reactor.simple`         | 3.0.0 | 3.1.0 |
+| Core SolarNetwork Support       | `n.s.common`                   | 3.0.1 | 3.1.0 |
+| Core SolarNetwork Web Support   | `n.s.common.web`               | 3.0.0 | 3.2.1 |
 | Core SolarNode Framework        | `n.s.node`                     | 3.1.0 | 3.2.0 |
 | Reactor Database Storage        | `n.s.n.reactor.dao.jdbc`       | 3.0.0 | 3.1.0 |
 | SolarIn/MQTT integration        | `n.s.n.upload.mqtt`            | 3.0.0 | 3.1.0 |
@@ -34,14 +37,14 @@ The complete list of plugins included is:
 | Common AWS S3 Support           | `n.s.common.s3`                | 3.0.0 |
 | Core Database Connection        | `n.s.n.dao.jdbc.con`           | 1.1.0 |
 | Core Database Storage Support   | `n.s.n.dao.jdbc`               | 3.0.0 |
-| Core OSGi Support               | `n.s.common.osgi`              | 2.0.0 |
+| Core OSGi Support               | `n.s.common.osgi`              | 2.1.0 |
 | Core Reactor Service            | `n.s.n.reactor.simple`         | 3.1.0 |
 | Core Security                   | `n.s.n.setup.security`         | 3.0.0 |
 | Core Settings Support           | `n.s.n.settings.ca`            | 3.0.0 |
 | Core Setup Support              | `n.s.n.setup`                  | 3.0.0 |
 | Core Setup Web App              | `n.s.n.setup.web`              | 3.2.0 |
-| Core SolarNetwork Support       | `n.s.common`                   | 3.0.1 |
-| Core SolarNetwork Web Support   | `n.s.common.web`               | 3.0.0 |
+| Core SolarNetwork Support       | `n.s.common`                   | 3.1.0 |
+| Core SolarNetwork Web Support   | `n.s.common.web`               | 3.2.1 |
 | Core SolarNode Framework        | `n.s.node`                     | 3.2.0 |
 | Debian Setup Support            | `n.s.n.setup.deb`              | 3.0.0 |
 | Eclipse Gemini Web Support      | `n.s.common.web.gemini`        | 3.0.0 |
