@@ -51,10 +51,10 @@ iptDropRule='-j DROP'
 iptWhiteRule='-j RETURN'
 
 # the path to iptables
-ipt='/sbin/iptables'
+ipt='/usr/sbin/iptables-legacy'
 
 # You can put default leasefile entries in the following space.
-# Syntax is simply "leasetime _space_ IP_or_network".  A leasetime of -1 is a 
+# Syntax is simply "leasetime _space_ IP_or_network".  A leasetime of -1 is a
 # whitelist entry, and a leastime of 0 is a permanent blacklist entry.
 [ -f $leaseFile ] || cat <<__EOF__>>$leaseFile
 __EOF__

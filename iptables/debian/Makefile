@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.0.1-1$(if $(DIST),+$(DIST),)
+VERSION = 1.0.2-1$(if $(DIST),+$(DIST),)
 NAME = sn-iptables
 PATHS = etc lib usr
 
@@ -14,7 +14,7 @@ deb : prep
 	-a all \
 	--force \
 	-d 'cron (>= 3.0)' \
-	-d 'iptables (>= 1.4.21)' \
+	-d 'iptables (>= 1.8.7)' \
 	-d 'systemd (>= 215)' \
 	--provides 'solarnode-firewall' \
 	--after-install $(NAME).postinst \

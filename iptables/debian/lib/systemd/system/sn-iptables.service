@@ -6,9 +6,9 @@ Before=sysinit.target
 
 [Service]
 Type=oneshot
-ExecStart=/sbin/iptables-restore /etc/iptables/iptables.rules
-ExecReload=/sbin/iptables-restore /etc/iptables/iptables.rules
-ExecStop=/usr/share/solarnode/bin/iptables-flush.sh
+ExecStart=/usr/sbin/iptables-legacy-restore /etc/iptables/iptables.rules
+ExecReload=/usr/sbin/iptables-legacy-restore /etc/iptables/iptables.rules
+ExecStop=/usr/usr/share/solarnode/bin/iptables-flush.sh
 RemainAfterExit=yes
 
 [Install]
