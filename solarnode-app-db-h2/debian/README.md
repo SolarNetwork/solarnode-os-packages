@@ -5,7 +5,7 @@ the core SQL database platform for SolarNode, using the [H2][h2] database.  See 
 [Change Log](./CHANGELOG.md) for release information.
 
 > **Note** this package is a drop-in replacement for the
-> [solarnode-app-db-h2](../../solarnode-app-db-derby/debian) package.
+> [solarnode-app-db-derby](../../solarnode-app-db-derby/debian) package.
 
 # Build requirements
 
