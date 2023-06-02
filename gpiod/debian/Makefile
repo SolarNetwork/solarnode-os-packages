@@ -13,7 +13,8 @@ deb : prep
 	-a $(ARCH) \
 	--description 'SolarNode gpiod support' \
 	--license 'Apache License 2.0' \
-	-d gpiod \
+	--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/gpiod/debian" \
+	--deb-suggests gpiod \
 	-f \
 	--after-install $(NAME).postinst \
 	$(PATHS)
