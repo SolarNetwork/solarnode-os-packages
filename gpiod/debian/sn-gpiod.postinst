@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+	configure)
+		# Add the gpio group unless it's already there
+		if ! getent group gpio >/dev/null; then
+			addgroup --quiet --system gpio || true
+		fi
+
+		# Trigger a udev reload
+		if which udevadm >/dev/null 2>&1 ; then
+			udevadm control --reload-rules || true
+			udevadm trigger --subsystem-match=gpio --action=change || true
+		fi
+
+		# add solar user to gpio group if exists
+		if id solar 1>/dev/null 2>&1; then
+			if ! id -Gn solar |egrep '\bgpio\b' >/dev/null 2>&1; then
+				echo 'Adding solar user to gpio group.'
+				usermod -a -G gpio solar || true
+			fi
+		fi
+	;;
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+	;;
+
+	*)
+		echo "postinst called with unknown argument \`$1'" >&2
+		exit 1
+	;;
+esac
+
+exit 0
