@@ -4,8 +4,8 @@
 #
 # If "6" is passed as an argument, then IPv6 rules are managed.
 
-iptables="/sbin/ip$1tables"
-tables_restore="/sbin/ip$1tables-restore"
+iptables="/usr/sbin/ip$1tables-legacy"
+tables_restore="/usr/sbin/ip$1tables-legacy-restore"
 if ! type -p "$iptables"; then
 	echo "Error: invalid argument [$1]"
 	exit 1
