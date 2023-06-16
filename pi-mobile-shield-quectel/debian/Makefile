@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.0.1-1$(if $(DIST),+$(DIST),)
+VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-pi-mobile-shield-quectel
 PATHS = etc lib usr
 
@@ -13,9 +13,9 @@ deb : prep
 	--vendor 'SolarNetwork Foundation' \
 	-a all \
 	--force \
-	-d 'systemd (>= 232)' \
-	-d 'ppp (>= 2.4.7)' \
-	-d 'gpsd (>= 3.16)' \
+	-d 'systemd (>= 247)' \
+	-d 'ppp (>= 2.4.9)' \
+	-d 'gpsd (>= 3.22)' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \

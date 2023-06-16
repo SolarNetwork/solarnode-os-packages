@@ -19,7 +19,7 @@ service_up () {
 
 reload_udev () {
 	if [ -x /sbin/udevadm ]; then
-		/sbin/udevadm control --reload-rules && /sbin/udevadm trigger || true
+		/usr/bin/udevadm control --reload-rules && //usr/bin/udevadm trigger || true
 	fi
 }
 
@@ -51,7 +51,9 @@ if [ ! -e "$OPTS" -a -e "$OPTS_DEFAULT" ]; then
 fi
 
 # create default APN if one does not exist
-APN=/etc/ppp/chatscripts/apn
+CHATSCRIPTS_DIR=/etc/ppp/chatscripts
+
+APN=$CHATSCRIPTS_DIR/apn
 APN_DEFAULT=/usr/share/solarnode/example/mobile-shield-chat-apn
 if [ ! -e "$APN" -a -e "$APN_DEFAULT" ]; then
 	echo "Creating default $APN as link to $APN_DEFAULT; you might need to customize this."
@@ -59,17 +61,17 @@ if [ ! -e "$APN" -a -e "$APN_DEFAULT" ]; then
 fi
 
 # create default MODE if one does not exist
-MODE=/etc/ppp/chatscripts/mode
-MODE_DEFAULT=/etc/ppp/chatscripts/mode.none
-if [ ! -e "$MODE" -a -e "$MODE_DEFAULT" ]; then
+MODE=$CHATSCRIPTS_DIR/mode
+MODE_DEFAULT=mode.none
+if [ ! -e "$MODE" -a -e "$CHATSCRIPTS_DIR/$MODE_DEFAULT" ]; then
 	echo "Creating default $MODE as link to $MODE_DEFAULT; you might need to customize this."
 	ln -s "$MODE_DEFAULT" "$MODE"
 fi
 
 # create default PIN if one does not exist
-PIN=/etc/ppp/chatscripts/pin
-PIN_DEFAULT=/etc/ppp/chatscripts/pin.none
-if [ ! -e "$PIN" -a -e "$PIN_DEFAULT" ]; then
+PIN=$CHATSCRIPTS_DIR/pin
+PIN_DEFAULT=pin.none
+if [ ! -e "$PIN" -a -e "$CHATSCRIPTS_DIR/$PIN_DEFAULT" ]; then
 	echo "Creating default $PIN as link to $PIN_DEFAULT; you might need to customize this."
 	ln -s "$PIN_DEFAULT" "$PIN"
 fi

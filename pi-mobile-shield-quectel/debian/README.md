@@ -49,13 +49,13 @@ The default setup looks like this:
 │   └── 10-sn-mobile-shield-network-restart
 ├── options -> /usr/share/solarnode/example/mobile-shield-ppp-options
 └── peers
-    └── provider
+    └── sn-provider
 ```
 
 ## APN configuration
 
 The APN of the mobile network must be configured in the `/etc/ppp/chatscripts/apn` file, which is
-a symlink to the APN configuration you want to use. This defaults to 
+a symlink to the APN configuration you want to use. This defaults to
 `/usr/share/solarnode/example/mobile-shield-chat-apn`, which uses the APN value `vodafone`.
 
 To customize, create a `/etc/ppp/chatscripts/apn.mycarrier` file with the necessary settings, e.g.
