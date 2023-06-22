@@ -1,8 +1,13 @@
-# SolarNode Mobile Shield (Quectel) Debian package
+# SolarNode Mobile Shield (USB) Debian package
 
-This directory contains packaging scripts used to create the `sn-pi-mobile-shield-quectel`
-Debian package, which provides configuration and support for Quectel-based 3/4G shields. The goal of
+This directory contains packaging scripts used to create the `sn-pi-mobile-shield-usb`
+Debian package, which provides configuration and support for USB-based 3/4G shields. The goal of
 this package is to configure, start, and maintain a mobile network connection on the shield's modem.
+
+This package is know to support the following mobile packages:
+
+ * Quectel UC20, EC25
+ * SimTech A7600G-H
 
 # Services
 
@@ -56,7 +61,7 @@ The default setup looks like this:
 
 The APN of the mobile network must be configured in the `/etc/ppp/chatscripts/apn` file, which is
 a symlink to the APN configuration you want to use. This defaults to
-`/usr/share/solarnode/example/mobile-shield-chat-apn`, which uses the APN value `vodafone`.
+`/usr/share/solarnode/example/mobile-shield-chat-apn`, which uses the APN value `internet`.
 
 To customize, create a `/etc/ppp/chatscripts/apn.mycarrier` file with the necessary settings, e.g.
 
@@ -104,7 +109,7 @@ ln -sf mode.3G-only mode
 
 # Packaging
 
-This section describes how the `sn-pi-mobile-shield-quectel` package is created.
+This section describes how the `sn-pi-mobile-shield-usb` package is created.
 
 ## Packaging requirements
 

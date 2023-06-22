@@ -1,0 +1,7 @@
+[Unit]
+Description=USB mobile network auto reconnect
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/mobile-shield-usb-reconnect.sh
+KillMode=none

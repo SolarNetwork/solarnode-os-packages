@@ -1,13 +1,13 @@
 DIST = 
-VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
-NAME = sn-pi-mobile-shield-quectel
+VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
+NAME = sn-pi-mobile-shield-usb
 PATHS = etc lib usr
 
 deb : prep
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
-	--description 'Raspberry Pi Mobile Shield (Quectel) modem/GPS support' \
+	--description 'Raspberry Pi Mobile Shield (USB) modem/GPS support' \
 	--license 'Apache License 2.0' \
 	-m 'packaging@solarnetwork.org.nz' \
 	--vendor 'SolarNetwork Foundation' \
@@ -17,6 +17,8 @@ deb : prep
 	-d 'ppp (>= 2.4.9)' \
 	-d 'gpsd (>= 3.22)' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
+	--conflicts 'sn-pi-mobile-shield-quectel' \
+	--replaces 'sn-pi-mobile-shield-quectel' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
 	--after-remove $(NAME).postrm \

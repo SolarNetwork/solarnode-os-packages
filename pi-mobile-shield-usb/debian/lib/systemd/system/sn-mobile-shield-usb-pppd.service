@@ -1,5 +1,5 @@
 [Unit]
-Description=Quectel mobile network PPPd managed connection
+Description=USB mobile network PPPd managed connection
 
 [Service]
 ExecStartPre=-/bin/rm -f /var/lock/LCK..modem
