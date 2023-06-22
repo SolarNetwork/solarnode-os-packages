@@ -1,0 +1,6 @@
+/dev/modem 115200
+file /etc/ppp/options
+# The chat script, customize your APN in this file
+connect 'chat -s -v -f /etc/ppp/chatscripts/chat-connect'
+# The close script
+disconnect 'chat -s -v -f /etc/ppp/chatscripts/chat-disconnect'
