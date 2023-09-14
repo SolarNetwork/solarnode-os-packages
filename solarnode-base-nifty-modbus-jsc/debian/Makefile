@@ -1,5 +1,5 @@
 NAME = solarnode-base-nifty-modbus-jsc
-VERSION = 0.2.0-1
+VERSION = 0.4.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
