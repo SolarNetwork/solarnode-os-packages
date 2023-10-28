@@ -72,6 +72,7 @@
 		<exclude org="com.zaxxer"/>
 		<exclude org="org.glassfish.tyrus.bundles"/>
 		<exclude org="io.netty"/>
+		<exclude org="jakarta.validation"/>
 		<exclude org="javax.annotation"/>
 		<exclude org="javax.el"/>
 		<exclude org="javax.servlet"/>

@@ -1,6 +1,6 @@
 NAME = opendnp3
 DIST = 
-UPSTREAM_VERSION = 2.3.2
+UPSTREAM_VERSION = 3.2.1
 PKG_VERSION = 1
 VERSION = $(UPSTREAM_VERSION)-$(PKG_VERSION)$(if $(DIST),+$(DIST),)
 DNP3_INSTALL_DIR = dnp3/build/native/local
@@ -32,6 +32,7 @@ deb : jni
 jni : $(DNP3_INSTALL_DIR)/usr/lib/jni
 	# seems more Debian like to move, rather than link to, the JNI lib
 	[ -f "$(DNP3_INSTALL_DIR)/usr/lib/libopendnp3java.so" ] && \
+		mkdir -p $(DNP3_INSTALL_DIR)/usr/lib/jni && \
 		mv $(DNP3_INSTALL_DIR)/usr/lib/libopendnp3java* $(DNP3_INSTALL_DIR)/usr/lib/jni/ \
 		|| true
 

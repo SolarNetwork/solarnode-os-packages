@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 2.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 2.1.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
