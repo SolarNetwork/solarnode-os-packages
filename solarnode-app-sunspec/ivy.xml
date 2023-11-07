@@ -10,6 +10,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.sunspec" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sunspec.environmental" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sunspec.inverter" rev="latest.release"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sunspec.meter" rev="latest.release"/>
 

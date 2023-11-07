@@ -14,9 +14,9 @@ make them shorter, using the following conventions:
 
 ## 1.0.0 - 2023-11-01
 
-| Name                            | ID                             | Vers  |
-|:--------------------------------|:-------------------------------|:------|
-| SunSpec Inverter Data Source    | `n.s.n.datum.sunspec.inverter` | 4.2.0 |
-| SunSpec Power Meter Data Source | `n.s.n.datum.sunspec.meter`    | 4.1.0 |
-| SunSpec Support                 | `n.s.n.hw.sunspec`             | 4.2.0 |
-
+| Name                              | ID                                  | Vers  |
+|:----------------------------------|:------------------------------------|:------|
+| SunSpec Environmental Data Source | `n.s.n.datum.sunspec.environmental` | 1.0.0 |
+| SunSpec Inverter Data Source      | `n.s.n.datum.sunspec.inverter`      | 4.2.0 |
+| SunSpec Power Meter Data Source   | `n.s.n.datum.sunspec.meter`         | 4.1.0 |
+| SunSpec Support                   | `n.s.n.hw.sunspec`                  | 4.2.0 |
