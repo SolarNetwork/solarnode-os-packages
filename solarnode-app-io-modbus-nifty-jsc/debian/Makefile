@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-modbus-nifty-jsc
-VERSION = 2.1.0-1
+VERSION = 2.1.1-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -20,7 +20,7 @@ pkg : app table
 		-f \
 		-d 'solarnode-app-core (>= 3.2)' \
 		-d 'solarnode-app-io-modbus (>= 3.0)' \
-		-d 'solarnode-base-nifty-modbus-jsc (>= 0.2)' \
+		-d 'solarnode-base-nifty-modbus-jsc (>= 0.5)' \
 		--conflicts 'solarnode-io-modbus' \
 		--replaces 'solarnode-io-modbus' \
 		--provides 'solarnode-io-modbus' \
