@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 2.1.0-1$(if $(DIST),+$(DIST),)
+VERSION = 3.0.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -26,7 +26,7 @@ deb : prep assemble app-core table
 	-d 'solarnode-base-spring (>= 2.0)' \
 	-d 'solarnode-base-spring-security (>= 2.0)' \
 	-d 'java8-runtime-headless' \
-	--deb-field 'Breaks: solarnode-app-core (<< 3.0)' \
+	--deb-field 'Breaks: solarnode-app-core (<< 3.9)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
 	--before-remove $(BASE_NAME).prerm \
@@ -48,6 +48,7 @@ app-core :
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
 		"-Ddeb.nocopy=1" \
+		"-Dnovirgo=1" \
 		$(SN_ANT_OPTS) \
 		deb-package-assemble
 
