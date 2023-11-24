@@ -7,6 +7,10 @@ Tomcat 9.0. Most SolarNode plugins should be unaffected by this change, but ones
 platform servlet infrastructure might need updating as this has changed from Servlet 3.1 to 4.0.
 Many of the web related dependencies have been updated as a result.
 
+> :warning: The minimum Java runtime has changed from 8 to **11**. For Debian 9 nodes, OpenJDK 11
+> is available in the backports repository; create an `/etc/apt/sources.list.d/backports.list` file
+> with `deb http://archive.debian.org/debian stretch-backports main` to include this.
+
 The following plugins have changed from the previous release:
 
 | Name                                            | ID                                                          | Old Vers | New Vers |

@@ -25,7 +25,7 @@ deb : prep assemble app-core table
 	-d 'solarnode-base-jackson' \
 	-d 'solarnode-base-spring (>= 2.0)' \
 	-d 'solarnode-base-spring-security (>= 2.0)' \
-	-d 'java8-runtime-headless' \
+	-d 'java11-runtime-headless' \
 	--deb-field 'Breaks: solarnode-app-core (<< 3.9)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
