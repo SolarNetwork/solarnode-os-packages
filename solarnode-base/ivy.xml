@@ -3,7 +3,7 @@
 	<info organisation="SolarNetwork" module="Equinox Base"/>
 	<configurations>
 		<conf name="boot" visibility="public" description="Bootstrap Environment"/>
-		<conf name="gemini" visibility="public" description="Gemini Web Runtime"/>
+		<conf name="gemini" visibility="public" description="Web Runtime"/>
 		<conf name="core" visibility="public" description="Core Runtime"/>
 		<conf name="ext" visibility="public" description="System extensions"/>
 	</configurations>
@@ -73,47 +73,48 @@
 			<exclude org="org.apache.servicemix.bundles"/>
 		</dependency>
 
-		<!-- Gemini Web -->
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.core" rev="3.0.6.RELEASE" conf="gemini">
-			<exclude org="org.eclipse.virgo.util"/>
-			<exclude module="javax.annotation"/>
-			<exclude module="org.eclipse.equinox.event"/>
-			<exclude module="org.eclipse.osgi"/>
-			<exclude module="org.eclipse.osgi.services"/>
-			<exclude module="org.slf4j.api"/>
+		<!-- Pax Web -->
+		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.extender" rev="3.0.6.RELEASE" conf="gemini">
-			<exclude org="org.eclipse.virgo.util"/>
-			<exclude module="javax.annotation"/>
-			<exclude module="org.eclipse.equinox.event"/>
-			<exclude module="org.eclipse.osgi"/>
-			<exclude module="org.eclipse.osgi.services"/>
-			<exclude module="org.slf4j.api"/>
+		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.tomcat" rev="3.0.6.RELEASE" conf="gemini">
-			<exclude org="org.eclipse.virgo.util"/>
-			<exclude module="javax.annotation"/>
-			<exclude module="org.eclipse.equinox.event"/>
-			<exclude module="org.eclipse.osgi"/>
-			<exclude module="org.eclipse.osgi.services"/>
-			<exclude module="org.slf4j.api"/>
+		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.eclipse.gemini" name="org.eclipse.gemini.web.jaspic.fragment" rev="3.0.6.RELEASE" conf="gemini">
-			<exclude org="org.eclipse.virgo.util"/>
-			<exclude module="javax.annotation"/>
-			<exclude module="org.eclipse.equinox.event"/>
-			<exclude module="org.eclipse.osgi"/>
-			<exclude module="org.eclipse.osgi.services"/>
-			<exclude module="org.slf4j.api"/>
+		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
+		</dependency>
+		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
+		</dependency>
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
+		</dependency>
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
+		</dependency>
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.13" conf="gemini">
+			<exclude org="org.ops4j.base"/>
+			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
 
-		<!-- The following ship with the Gemini Web distribution  -->
-		<dependency org="org.eclipse.virgo.mirrored" name="com.springsource.javax.activation" rev="1.1.1" conf="gemini"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="javax.mail" rev="1.4.0.v201005080615" conf="gemini"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="javax.transaction" rev="1.1.0.v201205091237" conf="gemini"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="javax.websocket" rev="1.1.0.20170128" conf="gemini"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="javax.xml.soap" rev="1.3.0.v201105210645" conf="gemini"/>
-		<dependency org="org.eclipse.virgo.mirrored" name="javax.security.auth.message" rev="1.1.0.20170128" conf="gemini"/>
+		<!-- Pax Web dependencies  -->
+		<dependency org="org.eclipse.jdt" name="ecj" rev="3.32.0" conf="gemini"/>
+		<dependency org="jakarta.el" name="jakarta.el-api" rev="3.0.3" conf="gemini"/>
+		<dependency org="jakarta.mail" name="jakarta.mail-api" rev="1.6.7" conf="gemini"/>
+		<dependency org="jakarta.security.auth.message" name="jakarta.security.auth.message-api" rev="1.1.3" conf="gemini"/>
+		<dependency org="jakarta.servlet" name="jakarta.servlet-api" rev="4.0.4" conf="gemini"/>
+		<dependency org="jakarta.servlet.jsp" name="jakarta.servlet.jsp-api" rev="2.3.6" conf="gemini"/>
+		<dependency org="jakarta.websocket" name="jakarta.websocket-api" rev="1.1.2" conf="gemini"/>
 
 		<!-- AspectJ -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.aspectj" rev="1.8.10_1" conf="boot"/>
@@ -153,6 +154,7 @@
 		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.36" conf="boot"/>
 		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.36" conf="boot"/>
 		<dependency org="org.slf4j" name="osgi-over-slf4j" rev="1.7.36" conf="boot"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tomcat-juli-slf4j" rev="9.0.54" conf="boot"/>
 
 		<!-- AOP Alliance -->
 		<dependency org="org.aopalliance" name="com.springsource.org.aopalliance" rev="1.0.0" conf="boot"/>
@@ -160,9 +162,6 @@
 		<!-- Extra Servlet -->
 		<dependency org="org.apache.taglibs" name="taglibs-standard-spec" rev="1.2.1" conf="boot"/>
 		<dependency org="org.apache.taglibs" name="taglibs-standard-impl" rev="1.2.1" conf="boot"/>
-		<dependency org="org.apache.xalan" name="com.springsource.org.apache.xalan" rev="2.7.1" conf="boot">
-			<exclude org="org.apache.bcel"/><!-- This was required on 2.7.0, but not 2.7.1; perhaps mistake in EBR -->
-		</dependency>
 		<dependency org="org.mitre.dsmiley.httpproxy" name="smiley-http-proxy-servlet" rev="1.11" conf="core">
 			<exclude org="org.apache.httpcomponents"/>
 		</dependency>
@@ -246,6 +245,9 @@
 		<dependency org="jakarta.annotation" name="jakarta.annotation-api" rev="1.3.5" conf="boot"/>
 		<dependency org="jakarta.validation" name="jakarta.validation-api" rev="2.0.1" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-inject" rev="1_3" conf="boot"/>
+		<dependency org="org.apache.xalan" name="com.springsource.org.apache.xalan" rev="2.7.1" conf="boot">
+			<exclude org="org.apache.bcel"/><!-- This was required on 2.7.0, but not 2.7.1; perhaps mistake in EBR -->
+		</dependency>
 
 		<!-- JNA -->
 		<dependency org="net.java.dev.jna" name="jna" rev="5.6.0" conf="core"/>
@@ -259,6 +261,8 @@
 		<exclude org="com.fasterxml.jackson.datatype"/>
 		<exclude org="io.netty"/>
 		<exclude org="javax.xml.stream"/>
+		<exclude org="javax.servlet"/>
+		<exclude org="javax.servlet.jsp"/>
 		<exclude org="log4j"/>
 		<exclude org="org.easymock"/>
 		<exclude org="wsdl4j"/>
