@@ -1,5 +1,10 @@
 # SolarNode Base Platform change log
 
+## 3.0.1 - 2023-12-02
+
+This is a minor patch release to enhance the "not found" error page. The plugins are unchanged from
+the 3.0.0 release.
+
 ## 3.0.0 - 2023-11-25
 
 This is a major update that updates the web runtime from Gemini Web with Tomcat 8.5 to Pax Web with
@@ -123,10 +128,8 @@ The complete list of plugins included is:
 | Jakarta Servlet                                 | `jakarta.servlet-api`                                       | 4.0.0    |
 | Jakarta WebSocket - Server API                  | `javax.websocket-api`                                       | 1.1.2    |
 | jakarta.xml.bind-api                            | `jakarta.xml.bind-api`                                      | 2.3.2    |
-| Java Servlet API                                | `javax.servlet-api`                                         | 3.1.0    |
 | JavaBeans Activation Framework                  | `com.sun.activation.jakarta.activation`                     | 1.2.1    |
 | JavaBeans Activation Framework API jar          | `jakarta.activation-api`                                    | 1.2.1    |
-| JavaServer Pages(TM) API                        | `javax.servlet.jsp-api`                                     | 2.3.0    |
 | jcl-over-slf4j                                  | `jcl.over.slf4j`                                            | 1.7.36   |
 | jna                                             | `com.sun.jna`                                               | 5.6.0    |
 | Joda-Time                                       | `joda-time`                                                 | 2.12.2   |

@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 3.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 3.0.1-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -9,7 +9,7 @@ SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/equinox/build/deb
 SN_ANT_OPTS = -Dlog.file=/run/solarnode/log/solarnode.log
 
-deb : prep assemble app-core table
+deb : prep assemble app-core extras table
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
@@ -58,6 +58,10 @@ assemble :
 	if [ -n "$(DIST)" -a -d "root+$(DIST)" ]; then \
 		cp -af "root+$(DIST)"/* $(DEB_BUILD_ROOT)/; \
 	fi
+	
+extras:
+	mkdir -p $(DEB_BUILD_ROOT)/var/lib/solarnode/var/weberrors
+	cp -r ${CURDIR}/../weberrors/* $(DEB_BUILD_ROOT)/var/lib/solarnode/var/weberrors
 	
 table :
 	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" "$(DEB_BUILD_ROOT)"
