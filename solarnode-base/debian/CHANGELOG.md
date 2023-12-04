@@ -1,5 +1,10 @@
 # SolarNode Base Platform change log
 
+## 3.0.2 - 2023-12-04
+
+This is a minor patch release to adjust the servlet JSP "scratch" directory. The plugins are
+unchanged from the 3.0.0 release.
+
 ## 3.0.1 - 2023-12-02
 
 This is a minor patch release to enhance the "not found" error page. The plugins are unchanged from

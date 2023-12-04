@@ -11,6 +11,7 @@ Environment=SOLARNODE_RAM_DIR=/run/solarnode
 Environment=SOLARNODE_DB_DIR=/run/solarnode/db
 Environment=SOLARNODE_LOGDIR=/run/solarnode/log
 Environment=LOG4J_CONFIGURATION_FILE=/etc/solarnode/log4j2.xml
+Environment=JSP_SCRATCH_DIR=/var/lib/solarnode/var/work
 Environment=WEBSERVER_CONFIGURATION_FILE=/etc/solarnode/tomcat-server.xml
 Environment="OSGI_OPTS=-console 4202 -clean"
 Environment="JAVA_OPTS=-Xmx288m \
@@ -33,6 +34,7 @@ ExecStart=/usr/bin/java $JAVA_OPTS \
 	-Dsn.home=${SOLARNODE_HOME} \
 	-Dderby.system.home=${SOLARNODE_DB_DIR} \
 	-Dorg.ops4j.pax.web.config.file=${WEBSERVER_CONFIGURATION_FILE} \
+	-Dorg.ops4j.pax.web.jsp.scratch.dir=${JSP_SCRATCH_DIR} \
 	-cp ${SOLARNODE_HOME}/app/equinox.jar:/usr/share/solarnode/app/ext/* \
 	org.eclipse.core.runtime.adaptor.EclipseStarter \
 	-configuration ${SOLARNODE_RAM_DIR} \
