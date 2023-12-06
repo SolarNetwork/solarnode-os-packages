@@ -19,17 +19,23 @@
 # +-----+ +-----+
 # |  2  | |  4  |
 # +-----+ +-----+
+#
+# See https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/raspberry-pi/revision-codes.adoc
 
-CPU="$(cat /proc/device-tree/system/linux,revision |xxd -p |sed -e 's/^0*//;s/^[ \t]*//;s/[ \t]*$//')"
+
 DEVPATH="$1"
 
 if [ -z "$DEVPATH" ]; then
-	echo "Must pass the udev `devpath` attribute as program argument."
+	echo 'Must pass the udev `devpath` attribute as program argument.'
 	exit 1
 fi
-            
+
+cpu="0x$(cat /proc/device-tree/system/linux,revision |xxd -p |sed -e 's/^0*//;s/^[ \t]*//;s/[ \t]*$//')"
+cpu_type="$(( (cpu >> 4) & 0xFF ))"
+cpu_type_hex="$(printf %x $cpu_type)"
+
 unknown_dev () {
-        echo "ttyUSB_$DEVPATH"  
+        echo "ttyUSB_$DEVPATH"
 }
 
 pi3b () {
@@ -39,19 +45,19 @@ pi3b () {
                 1.4) echo ttyUSB_3 ;;
                 1.5) echo ttyUSB_4 ;;
                 *)   unknown_dev ;;
-        esac                         
+        esac
 }
 
 pi3b_plus () {
-        case "$DEVPATH" in           
+        case "$DEVPATH" in
                 1.1.2) echo ttyUSB_1 ;;
                 1.1.3) echo ttyUSB_2 ;;
                 1.3)   echo ttyUSB_3 ;;
                 1.2)   echo ttyUSB_4 ;;
                 *)     unknown_dev ;;
-        esac                         
+        esac
 }
-    
+
 pi4 () {
         case "$DEVPATH" in
                 1.2) echo ttyUSB_1 ;;
@@ -59,12 +65,12 @@ pi4 () {
                 1.4) echo ttyUSB_3 ;;
                 1.3) echo ttyUSB_4 ;;
                 *)   unknown_dev ;;
-        esac                         
+        esac
 }
-    
-case "$CPU" in
-        a02082|a22082|a32082)                                    pi3b ;;
-        a020d3)                                                  pi3b_plus ;;
-        a03111|b03111|b03112|b03114|c03111|c03112|c03114|d03114) pi4 ;; 
-        *)                    unknown_dev ;;
-esac                     
+
+case "$cpu_type_hex" in
+        8)     pi3b ;;
+        d)     pi3b_plus ;;
+        11)    pi4 ;;
+        *)     unknown_dev ;;
+esac
