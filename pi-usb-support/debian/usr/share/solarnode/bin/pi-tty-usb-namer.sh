@@ -19,14 +19,20 @@
 # +-----+ +-----+
 # |  2  | |  4  |
 # +-----+ +-----+
+#
+# See https://github.com/raspberrypi/documentation/blob/develop/documentation/asciidoc/computers/raspberry-pi/revision-codes.adoc
 
-CPU="$(cat /proc/device-tree/system/linux,revision |xxd -p |sed -e 's/^0*//;s/^[ \t]*//;s/[ \t]*$//')"
+
 DEVPATH="$1"
 
 if [ -z "$DEVPATH" ]; then
-	echo "Must pass the udev `devpath` attribute as program argument."
+	echo 'Must pass the udev `devpath` attribute as program argument.'
 	exit 1
 fi
+
+cpu="0x$(cat /proc/device-tree/system/linux,revision |xxd -p |sed -e 's/^0*//;s/^[ \t]*//;s/[ \t]*$//')"
+cpu_type="$(( (cpu >> 4) & 0xFF ))"
+cpu_type_hex="$(printf %x $cpu_type)"
 
 unknown_dev () {
         echo "ttyUSB_$DEVPATH"
@@ -62,9 +68,9 @@ pi4 () {
         esac
 }
 
-case "$CPU" in
-        a02082|a22082|a22083|a32082|a52082) pi3b ;;
-        a020d3|a020d4) pi3b_plus ;;
-        a03111|b03111|b03112|b03114|b03115|c03111|c03112|c03114|c03115|d03114|d03115) pi4 ;;
-        *)                    unknown_dev ;;
+case "$cpu_type_hex" in
+        8)     pi3b ;;
+        d)     pi3b_plus ;;
+        11)    pi4 ;;
+        *)     unknown_dev ;;
 esac

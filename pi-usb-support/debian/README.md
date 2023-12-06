@@ -11,7 +11,7 @@ depend on serial devices being plugged into specific ports for deployment reason
 Links are named `/dev/ttyUSB_X` where `X` is a number staring a `1`. See the following sections for
 the specific hardware layouts and how they are mapped.
 
-## Pi 3B and 3B+
+## Pi 3B, 3B+, 4B
 
 Looking at the side of the Pi with the ethernet port (labeled `Eth`) to the left of the 4 USB ports
 labeled as `ttyUSB_1` through `ttyUSB_4`:
