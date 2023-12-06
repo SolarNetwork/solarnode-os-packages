@@ -27,9 +27,9 @@ if [ -z "$DEVPATH" ]; then
 	echo "Must pass the udev `devpath` attribute as program argument."
 	exit 1
 fi
-            
+
 unknown_dev () {
-        echo "ttyUSB_$DEVPATH"  
+        echo "ttyUSB_$DEVPATH"
 }
 
 pi3b () {
@@ -39,19 +39,19 @@ pi3b () {
                 1.4) echo ttyUSB_3 ;;
                 1.5) echo ttyUSB_4 ;;
                 *)   unknown_dev ;;
-        esac                         
+        esac
 }
 
 pi3b_plus () {
-        case "$DEVPATH" in           
+        case "$DEVPATH" in
                 1.1.2) echo ttyUSB_1 ;;
                 1.1.3) echo ttyUSB_2 ;;
                 1.3)   echo ttyUSB_3 ;;
                 1.2)   echo ttyUSB_4 ;;
                 *)     unknown_dev ;;
-        esac                         
+        esac
 }
-    
+
 pi4 () {
         case "$DEVPATH" in
                 1.2) echo ttyUSB_1 ;;
@@ -59,12 +59,12 @@ pi4 () {
                 1.4) echo ttyUSB_3 ;;
                 1.3) echo ttyUSB_4 ;;
                 *)   unknown_dev ;;
-        esac                         
+        esac
 }
-    
+
 case "$CPU" in
-        a02082|a22082|a32082)                                    pi3b ;;
-        a020d3)                                                  pi3b_plus ;;
-        a03111|b03111|b03112|b03114|c03111|c03112|c03114|d03114) pi4 ;; 
+        a02082|a22082|a22083|a32082|a52082) pi3b ;;
+        a020d3|a020d4) pi3b_plus ;;
+        a03111|b03111|b03112|b03114|b03115|c03111|c03112|c03114|c03115|d03114|d03115) pi4 ;;
         *)                    unknown_dev ;;
-esac                     
+esac
