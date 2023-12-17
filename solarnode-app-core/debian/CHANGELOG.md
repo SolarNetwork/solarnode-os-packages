@@ -18,7 +18,7 @@ The following plugins have changed from the previous release:
 
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
-| Core Setup Web App              | `n.s.n.setup.web`              | 3.5.4 | 4.0.0 |
+| Core Setup Web App              | `n.s.n.setup.web`              | 3.5.4 | 4.0.1 |
 
 The complete list of plugins included is:
 
