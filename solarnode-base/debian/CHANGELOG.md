@@ -1,5 +1,9 @@
 # SolarNode Base Platform change log
 
+## 3.0.3 - 2023-12-16
+
+This is a minor patch release to pick up a bugfix in a supporting library.
+
 ## 3.0.2 - 2023-12-04
 
 This is a minor patch release to adjust the servlet JSP "scratch" directory. The plugins are
