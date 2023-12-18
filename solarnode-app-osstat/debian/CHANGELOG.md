@@ -16,4 +16,4 @@ make them shorter, using the following conventions:
 
 | Name                      | ID                    | Vers  |
 |:--------------------------|:----------------------|:------|
-| OS Statistics Data Source | `n.s.n.datum.os.stat` | 3.0.0 |
+| OS Statistics Data Source | `n.s.n.datum.os.stat` | 3.0.1 |
