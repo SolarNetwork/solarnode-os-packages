@@ -9,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="com.fazecast" name="jSerialComm" rev="2.9.2" />
+		<dependency org="com.fazecast" name="jSerialComm" rev="2.10.4" />
 
 	</dependencies>
 </ivy-module>
