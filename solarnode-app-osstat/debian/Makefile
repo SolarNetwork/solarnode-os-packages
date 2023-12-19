@@ -1,13 +1,12 @@
-NAME = solarnode-app-db-h2
-VERSION = 2.0.1-1
-ASSEMBLE_PATHS = etc
-PATHS = $(ASSEMBLE_PATHS) var
+NAME = solarnode-app-osstat
+VERSION = 1.0.0-1
+PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
-pkg : prep app assemble table
+pkg : app table
 	fpm -s dir \
 		-t deb \
 		-n $(NAME) \
@@ -15,25 +14,14 @@ pkg : prep app assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode DB - H2' \
+		--description 'SolarNode - OS statistics' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		--provides 'solarnode-app-db' \
-		--conflicts 'solarnode-app-db' \
-		--replaces 'solarnode-app-db' \
-		-d 'solarnode-base-h2 (>= 1.0)' \
 		-d 'solarnode-app-core (>= 3.0)' \
+		-d 'sn-osstat (>= 1.1)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
-
-prep : 
-	rm -rf $(DEB_BUILD_ROOT)
-	mkdir -p $(DEB_BUILD_ROOT)
-	find $(ASSEMBLE_PATHS) -type f -name .DS_Store -delete
-
-assemble : 
-	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
 
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
@@ -41,7 +29,6 @@ clean :
 app :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
-		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
 		"-Ddeb.nocopy=1" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble

@@ -43,7 +43,11 @@ in the package. For example:
 # On Debian 10
 sudo apt install git gcc g++ libc-dev cmake make patch libssl1.1 libssl-dev openjdk-11-jdk maven \
     ruby ruby-dev build-essential
+
 sudo gem install --no-ri --no-rdoc fpm
+
+# For Ruby 2.6+
+# sudo gem install --no-document fpm
 
 git clone https://github.com/SolarNetwork/solarnode-os-packages.git
 cd solarnode-os-packages/opendnp3/debian/

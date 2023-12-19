@@ -3,6 +3,38 @@
 This directory contains packaging scripts used to create the `sn-system` Debian package, which
 provides core functionality required for a SolarNode device.
 
+## Configuration
+
+Before installing this package several settings can be configured to tailor what services are
+configured by the package. Create an `/etc/default/sn-system` file; here is the default
+configuration:
+
+```
+# The display name to use for SolarNode
+CFG_SOLARNODE_LABEL="SolarNode"
+
+# Disable configuration of network related services
+# CFG_WITHOUT_NETWORK=1
+
+# Disable configuration of bash history
+# CFG_WITHOUT_BASHHIST=1
+
+# Disable the clean up (removal) of man pages
+# CFG_WITHOUT_DOC_CLEAN=1
+
+# Disable crash reboot configuration
+# CFG_WITHOUT_CRASH_REBOOT=1
+
+# Disable core dump configuration
+# CFG_WITHOUT_DUMP_CORE=1
+
+# Disable journal max use configuration
+# CFG_WITHOUT_JOURNAL_MAX_USE=1
+
+# Disable bash utility integration
+# CFG_WITHOUT_BASH_UTILS=1
+```
+
 ## Startup filesystem expansion
 
 This package provides a `sn-expandfs.service` that will look for a `/boot/sn-expandfs` file when the
@@ -28,9 +60,9 @@ device.
 
 ## Fallback DNS resolver
 
-A fallback DNS resolver configuration of `1.1.1.1` is included in 
+A fallback DNS resolver configuration of `1.1.1.1` is included in
 `etc/systemd/resolved.conf.d/sn-system-fallback-dns.conf` in case no other resolver configuration
-is available. 
+is available.
 
 # Packaging
 

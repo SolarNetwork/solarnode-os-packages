@@ -2,8 +2,17 @@
 set -e
 
 USER=solar
+CONF="/usr/share/solarnode/default/sn-system"
+VENDOR_CONF="/etc/default/sn-system"
 
-if [ ! -e /etc/systemd/network/10-eth.network ]; then
+if [ -e "$CONF" ]; then
+	. "$CONF"
+fi
+if [ -e "$VENDOR_CONF" ]; then
+	. "$VENDOR_CONF"
+fi
+
+if [ -z "$CFG_WITHOUT_NETWORK" -a ! -e /etc/systemd/network/10-eth.network ]; then
 	if [ -e /etc/systemd/network/eth.network ]; then
 		echo 'Renaming /etc/systemd/network/eth.network as 10-eth.network'
 		mv /etc/systemd/network/eth.network /etc/systemd/network/10-eth.network
@@ -20,7 +29,7 @@ if ! id -u "$USER" >/dev/null 2>/dev/null; then
 fi
 
 # Turn off bash persistent history collection
-if [ -e /etc/bash.bashrc ]; then
+if [ -z "$CFG_WITHOUT_BASHHIST" -a -e /etc/bash.bashrc ]; then
 	if grep -q 'unset HISTFILE' /etc/bash.bashrc; then
 		true
 	else
@@ -47,14 +56,16 @@ service_up () {
 	fi
 }
 
-service_up systemd-networkd true
+if [ -z "$CFG_WITHOUT_NETWORK" ]; then
+	service_up systemd-networkd true
 
-service_up systemd-resolved true
-if [ ! -L /etc/resolv.conf ]; then
-	if [ -e /etc/resolv.conf ]; then
-		rm -f /etc/resolv.conf || true
+	service_up systemd-resolved true
+	if [ ! -L /etc/resolv.conf ]; then
+		if [ -e /etc/resolv.conf ]; then
+			rm -f /etc/resolv.conf || true
+		fi
+		ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 	fi
-	ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 fi
 
 service_up sn-sshdgenkeys true
@@ -68,60 +79,70 @@ if [ -x /bin/systemd-tmpfiles ]; then
 	/bin/systemd-tmpfiles --create || true
 fi
 
-# Manually remove files excluded via /etc/dpkg/dpkg.cfg.d/02solarnode-nodocs
-find /usr/share/doc -depth -type f ! -name copyright|xargs rm -f || true
-find /usr/share/doc -empty|xargs rmdir || true
-rm -rf /usr/share/groff/* /usr/share/info/*
-rm -rf /usr/share/lintian/* /usr/share/linda/*
-rm -rf /usr/share/locale/*
-rm -rf /var/cache/man/*
-find /usr/share/man -type f -delete
+if [ -z "$CFG_WITHOUT_DOC_CLEAN" ]; then
+	# Manually remove files excluded via /etc/dpkg/dpkg.cfg.d/02solarnode-nodocs
+	find /usr/share/doc -depth -type f ! -name copyright|xargs rm -f || true
+	find /usr/share/doc -empty|xargs rmdir || true
+	rm -rf /usr/share/groff/* /usr/share/info/*
+	rm -rf /usr/share/lintian/* /usr/share/linda/*
+	rm -rf /usr/share/locale/*
+	rm -rf /var/cache/man/*
+	find /usr/share/man -type f -delete
+fi
 
-if grep -q '^CrashReboot=yes' /etc/systemd/system.conf >/dev/null; then
-	true
-else
-	echo 'Turning on CrashReboot in /etc/systemd/system.conf; will be enabled on reboot.'
-	if grep -q 'CrashReboot' /etc/systemd/system.conf; then
-		# update
-		sed -i -e '/CrashReboot/c CrashReboot=yes' /etc/systemd/system.conf || true
+if [ -z "$CFG_WITHOUT_CRASH_REBOOT" ]; then
+	if grep -q '^CrashReboot=yes' /etc/systemd/system.conf >/dev/null; then
+		true
 	else
-		# add in
-		echo 'CrashReboot=yes' >>/etc/systemd/system.conf
+		echo 'Turning on CrashReboot in /etc/systemd/system.conf; will be enabled on reboot.'
+		if grep -q 'CrashReboot' /etc/systemd/system.conf; then
+			# update
+			sed -i -e '/CrashReboot/c CrashReboot=yes' /etc/systemd/system.conf || true
+		else
+			# add in
+			echo 'CrashReboot=yes' >>/etc/systemd/system.conf
+		fi
 	fi
 fi
 
-if grep -q '^DumpCore=no' /etc/systemd/system.conf >/dev/null; then
-	true
-else
-	echo 'Turning off DumpCore in /etc/systemd/system.conf; will be disabled on reboot.'
-	if grep -q 'DumpCore' /etc/systemd/system.conf; then
-		# update
-		sed -i -e '/DumpCore/c DumpCore=no' /etc/systemd/system.conf || true
+if [ -z "$CFG_WITHOUT_DUMP_CORE" ]; then
+	if grep -q '^DumpCore=no' /etc/systemd/system.conf >/dev/null; then
+		true
 	else
-		# add in
-		echo 'DumpCore=no' >>/etc/systemd/system.conf
+		echo 'Turning off DumpCore in /etc/systemd/system.conf; will be disabled on reboot.'
+		if grep -q 'DumpCore' /etc/systemd/system.conf; then
+			# update
+			sed -i -e '/DumpCore/c DumpCore=no' /etc/systemd/system.conf || true
+		else
+			# add in
+			echo 'DumpCore=no' >>/etc/systemd/system.conf
+		fi
 	fi
 fi
 
-if grep -q '^RuntimeMaxUse=10M' /etc/systemd/journald.conf >/dev/null; then
-	true
-else
-	echo 'Configuring RuntimeMaxUse in /etc/systemd/journald.conf; will be active on reboot.'
-	if grep -q 'RuntimeMaxUse' /etc/systemd/journald.conf; then
-		# update
-		sed -i -e '/RuntimeMaxUse/c RuntimeMaxUse=10M' /etc/systemd/journald.conf || true
+if [ -z "$CFG_WITHOUT_JOURNAL_MAX_USE" ]; then
+	if grep -q '^RuntimeMaxUse=10M' /etc/systemd/journald.conf >/dev/null; then
+		true
 	else
-		# add in
-		echo 'RuntimeMaxUse=10M' >>/etc/systemd/journald.conf
+		echo 'Configuring RuntimeMaxUse in /etc/systemd/journald.conf; will be active on reboot.'
+		if grep -q 'RuntimeMaxUse' /etc/systemd/journald.conf; then
+			# update
+			sed -i -e '/RuntimeMaxUse/c RuntimeMaxUse=10M' /etc/systemd/journald.conf || true
+		else
+			# add in
+			echo 'RuntimeMaxUse=10M' >>/etc/systemd/journald.conf
+		fi
 	fi
 fi
 
-# install system-bash-utils support
-if ! grep -q '/usr/share/solarnode/bin/system-bash-utils.sh' /etc/bash.bashrc >/dev/null; then
-	echo 'Integrating bash utilities into system bash.bashrc...'
-	cat <<- EOF >> /etc/bash.bashrc
-	if [ -e /usr/share/solarnode/bin/system-bash-utils.sh ]; then
-	    . /usr/share/solarnode/bin/system-bash-utils.sh
+if [ -z "$CFG_WITHOUT_BASH_UTILS" ]; then
+	# install system-bash-utils support
+	if ! grep -q '/usr/share/solarnode/bin/system-bash-utils.sh' /etc/bash.bashrc >/dev/null; then
+		echo 'Integrating bash utilities into system bash.bashrc...'
+		cat <<- EOF >> /etc/bash.bashrc
+		if [ -e /usr/share/solarnode/bin/system-bash-utils.sh ]; then
+			. /usr/share/solarnode/bin/system-bash-utils.sh
+		fi
+		EOF
 	fi
-	EOF
 fi
