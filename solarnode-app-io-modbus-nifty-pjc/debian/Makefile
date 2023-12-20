@@ -1,5 +1,5 @@
-NAME = solarnode-app-io-serial-pjc
-VERSION = 3.1.0-1
+NAME = solarnode-app-io-modbus-nifty-pjc
+VERSION = 1.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -14,15 +14,16 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode Serial I/O - PureJavaComm' \
+		--description 'SolarNode Modbus I/O - Nifty Modbus - PureJavaComm' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-io-serial (>= 3.0)' \
-		-d 'solarnode-base-purejavacomm' \
-		--conflicts 'solarnode-io-serial' \
-		--replaces 'solarnode-io-serial' \
-		--provides 'solarnode-io-serial' \
+		-d 'solarnode-app-core (>= 3.2)' \
+		-d 'solarnode-app-io-modbus (>= 3.0)' \
+		-d 'solarnode-base-nifty-modbus-pjc (>= 0.6)' \
+		--conflicts 'solarnode-io-modbus' \
+		--replaces 'solarnode-io-modbus' \
+		--provides 'solarnode-io-modbus' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
