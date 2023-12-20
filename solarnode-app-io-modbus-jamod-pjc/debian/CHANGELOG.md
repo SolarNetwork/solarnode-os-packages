@@ -12,6 +12,12 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.1.0 - 2023-12-21
+
+The plugins have not changed in this release, but the package now depends on the
+`solarnode-base-purejavacom` package instead of `solarnode-app-io-pjc`.
+
+
 ## 3.0.0 - 2023-03-08
 
 This release requires [`solarnode-app-io-modbus` 3.0][io-mdobus-log] or newer.
