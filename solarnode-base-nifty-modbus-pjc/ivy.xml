@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This is a SolarNode deployment configuration for plugins that use the Nifty Modbus framework.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Nifty-Modbus"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu-pjc" rev="0.6.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-tcp" rev="0.6.0"/>
+
+		<exclude org="io.netty"/>
+		<exclude org="net.java.dev.jna"/>
+		<exclude org="net.solarnetwork.external"/>
+		<exclude org="org.slf4j"/>
+
+	</dependencies>
+</ivy-module>

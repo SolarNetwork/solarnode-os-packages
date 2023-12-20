@@ -12,6 +12,11 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.0 - 2023-12-20
+
+This is a transitional package that depends on the new `solarnode-base-purejavacomm` package to
+provide the PureJavaComm plugin.
+
 ## 1.0.2 - 2021-05-21
 
 This release requires [`solarnode-app-core` 1.17][app-core-1170] or newer.

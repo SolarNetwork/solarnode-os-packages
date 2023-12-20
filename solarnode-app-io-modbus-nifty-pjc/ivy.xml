@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for Modbus based plugins that use the Jamod PJC
-	framework.
+	This is a SolarNode deployment configuration for Modbus based plugins that use the Nifty Modbus
+	jSerialComm framework.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-PJC"/>
+	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus-Nifty-jSeriaComm"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.pjc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="latest.release"/>
 
 		<!-- solarnode-app-core excludes -->
+		<exclude org="net.solarnetwork.external"/>
 		<exclude artifact="net.solarnetwork.common"/>
+		<exclude artifact="net.solarnetwork.common.osgi"/>
+		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
+		<exclude artifact="net.solarnetwork.node.io.modbus"/>
+		<exclude module="nifty-modbus.*" matcher="regexp"/>
 
 		<!-- Global excludes provided by the base system -->
-		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io|logging)" matcher="regexp"/>
 		<exclude org="com.amazonaws"/>
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="com.fazecast"/>
+		<exclude org="io.netty"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
