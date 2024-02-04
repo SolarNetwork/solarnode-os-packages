@@ -19,7 +19,6 @@ pkg : app table
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-core (>= 3.0)' \
-		-d 'solarnode-app-io-mbus (>= 1.0)' \
 		-d 'solarnode-io-mbus' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
