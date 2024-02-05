@@ -22,6 +22,9 @@ deb : prep app-core assemble table
 		-d 'sn-rxtx' \
 		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
 		--replaces 'solarnode-base (<< 1.13)' \
+		--conflicts 'solarnode-base-jmbus' \
+		--replaces 'solarnode-base-jmbus' \
+		--provides 'solarnode-base-jmbus' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \
