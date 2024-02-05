@@ -1,5 +1,5 @@
 NAME = solarnode-app-datumfilters
-VERSION = 1.0.1-1
+VERSION = 1.0.1-2
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -14,7 +14,7 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode - SunSpec Modbus' \
+		--description 'SolarNode - Standard Datum Filters' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
