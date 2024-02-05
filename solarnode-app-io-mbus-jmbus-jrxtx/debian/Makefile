@@ -1,4 +1,4 @@
-NAME = solarnode-app-io-mbus-jmbus-rxtx
+NAME = solarnode-app-io-mbus-jmbus-jrxtx
 VERSION = 1.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
