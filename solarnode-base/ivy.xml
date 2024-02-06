@@ -142,8 +142,11 @@
 		<dependency org="com.zaxxer" name="HikariCP" rev="[4.0,5.0)" conf="boot"/>
 
 		<!-- javax.cache support -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" />
-		<dependency org="org.ehcache" name="ehcache" rev="3.5.2">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" conf="core"/>
+		<dependency org="org.ehcache" name="ehcache" rev="3.5.2" conf="core">
+			<exclude module="slf4j-api"/>
+		</dependency>
+		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.8" conf="core">
 			<exclude module="slf4j-api"/>
 		</dependency>
 
