@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration.
+	SolarNode base platform support for Spring Framework.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Base-PureJavaComm"/>
+	<info organisation="SolarNetwork" module="SolarNode-jMBus-jRxtx"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.pjc" rev="1.0.2.SN20200831A"/>
-
-		<exclude org="net.java.dev.jna"/>
+		<!-- Spring -->
+		<dependency org="org.openmuc" name="jmbus" rev="3.2.1"/>
+		<dependency org="org.openmuc" name="jrxtx" rev="1.0.1"/>
 
 	</dependencies>
 </ivy-module>

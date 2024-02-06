@@ -22,7 +22,7 @@
 		</dependency>
 
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.derby" rev="10.12.1.1_1" conf="boot"/>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.felix.utils" rev="1.8.4.SN01" conf="boot"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.felix.utils" rev="1.8.4.SN02" conf="boot"/>
 		<dependency org="net.solarnetwork.external" name="org.apache.felix.fileinstall" rev="3.5.4.SN01" conf="core">
 			<exclude org="org.osgi"/>
 		</dependency>
@@ -74,35 +74,35 @@
 		</dependency>
 
 		<!-- Pax Web -->
-		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.13" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.14" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
@@ -142,8 +142,11 @@
 		<dependency org="com.zaxxer" name="HikariCP" rev="[4.0,5.0)" conf="boot"/>
 
 		<!-- javax.cache support -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" />
-		<dependency org="org.ehcache" name="ehcache" rev="3.5.2">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" conf="core"/>
+		<dependency org="org.ehcache" name="ehcache" rev="3.5.2" conf="core">
+			<exclude module="slf4j-api"/>
+		</dependency>
+		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.8" conf="core">
 			<exclude module="slf4j-api"/>
 		</dependency>
 

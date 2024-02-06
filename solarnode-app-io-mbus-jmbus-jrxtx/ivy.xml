@@ -3,20 +3,23 @@
 	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-App-EnaSolar"/>
+	<info organisation="SolarNetwork" module="SolarNode-IO-jMBus-jRxtx"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.enasolar.ws" rev="latest.release"/>
+		<!-- Modbus support -->
+        <dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.mbus.jmbus" rev="latest.release"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
-		<exclude artifact="net.solarnetwork.node.io.modbus"/>
+		<exclude artifact="net.solarnetwork.node.io.mbus"/>
+
+		<exclude org="org.openmuc"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>

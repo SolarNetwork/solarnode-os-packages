@@ -1,5 +1,5 @@
-NAME = solarnode-app-datumfilters
-VERSION = 1.0.1-2
+NAME = solarnode-app-io-modbus-jamod
+VERSION = 1.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -14,11 +14,19 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode - Standard Datum Filters' \
+		--description 'SolarNode Modbus I/O - Jamod' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-core (>= 3.0)' \
+		-d 'solarnode-app-io-modbus (>= 3.0)' \
+		-d 'solarnode-base-jamod' \
+		--deb-field 'Breaks: solarnode-app-io-modbus-jamod-pjc' \
+		--replaces 'solarnode-app-io-modbus-jamod-pjc' \
+		--deb-field 'Breaks: solarnode-app-io-modbus-jamod-rxtx' \
+		--replaces 'solarnode-app-io-modbus-jamod-rxtx' \
+		--conflicts 'solarnode-io-modbus' \
+		--replaces 'solarnode-io-modbus' \
+		--provides 'solarnode-io-modbus' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 

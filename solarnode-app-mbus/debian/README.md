@@ -1,11 +1,8 @@
-# SolarNode Application - Modbus I/O - Jamod - PureJavaComm
+# SolarNode Application - M-Bus
 
-This directory contains support for building the `solarnode-app-io-modbus-jamod-pjc` package, which
-provides support for Modbus I/O in SolarNode using the Jamod and PureJavaComm frameworks. See
+This directory contains support for building the `solarnode-app-mbus` package, which
+provides support for integrating with generic M-Bus devices in SolarNode. See the
 [CHANGELOG](./CHANGELOG.md) for release information.
-
-> :warning: This package has been replaced by the [solarnode-app-io-modbus-jamod](../../solarnode-app-io-modbus-jamod)
-> package.
 
 # Build requirements
 
@@ -25,7 +22,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-io-serial-rxtx_VERSION_all.deb`
+Run `make` to build the package, which will produce `solarnode-app-mbus_VERSION_all.deb`
 in this directory.
 
 [ant]: https://ant.apache.org/

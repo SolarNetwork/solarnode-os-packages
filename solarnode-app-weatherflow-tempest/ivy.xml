@@ -3,13 +3,13 @@
 	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-App-EnaSolar"/>
+	<info organisation="SolarNetwork" module="SolarNode-App-Weatherflow-Tempest"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.enasolar.ws" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.weather.weatherflow.tempest" rev="latest.release"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
@@ -24,6 +24,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="io.netty"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>

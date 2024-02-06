@@ -1,5 +1,5 @@
-NAME = solarnode-app-datumfilters
-VERSION = 1.0.1-2
+NAME = solarnode-app-weatherflow-tempest
+VERSION = 1.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -14,10 +14,11 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode - Standard Datum Filters' \
+		--description 'SolarNode - Weatherflow Tempest' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
+		-d 'solarnode-base-netty' \
 		-d 'solarnode-app-core (>= 3.0)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)

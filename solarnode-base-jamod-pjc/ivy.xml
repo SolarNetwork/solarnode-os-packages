@@ -3,15 +3,17 @@
 	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Base-PureJavaComm"/>
+	<info organisation="SolarNetwork" module="SolarNode-Base-Jamod-PJC"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.pjc" rev="1.0.2.SN20200831A"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.jamod.pjc" rev="1.2.0.rc1-SN20220708A"/>
 
+		<exclude artifact="net.solarnetwork.external.pjc"/>
 		<exclude org="net.java.dev.jna"/>
+		<exclude org="org.slf4j"/>
 
 	</dependencies>
 </ivy-module>

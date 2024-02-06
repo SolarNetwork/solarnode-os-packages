@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration.
+	This is a SolarNode deployment configuration for MBus plugins.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-App-EnaSolar"/>
+	<info organisation="SolarNetwork" module="SolarNode-App-MBus"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.enasolar.ws" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.mbus" rev="latest.release"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
-		<exclude artifact="net.solarnetwork.node.io.modbus"/>
+		<exclude artifact="net.solarnetwork.node.io.mbus"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>

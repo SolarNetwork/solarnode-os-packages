@@ -1,11 +1,8 @@
-# SolarNode Application - Modbus I/O - Jamod - PureJavaComm
+# SolarNode Application - Modbus I/O - Jamod - RXTX
 
-This directory contains support for building the `solarnode-app-io-modbus-jamod-pjc` package, which
-provides support for Modbus I/O in SolarNode using the Jamod and PureJavaComm frameworks. See
+This directory contains support for building the `solarnode-app-io-modbus-jamod-rxtx` package, which 
+provides support for Modbus I/O in SolarNode using the Jamod and RXTX frameworks. See 
 [CHANGELOG](./CHANGELOG.md) for release information.
-
-> :warning: This package has been replaced by the [solarnode-app-io-modbus-jamod](../../solarnode-app-io-modbus-jamod)
-> package.
 
 # Build requirements
 
