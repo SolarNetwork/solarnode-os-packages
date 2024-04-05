@@ -1,5 +1,10 @@
 # SolarNode Base Platform change log
 
+## 3.1.1 - 2024-04-06
+
+This version provides an updated Tyrus Websocket Client plugin to fix class loading conflicts with
+the Jakarta WebSocket - Server API plugin.
+
 ## 3.1.0 - 2024-02-06
 
 This version updates the web runtime to Pax Web 9.0.14 (Tomcat 9.0.85).
