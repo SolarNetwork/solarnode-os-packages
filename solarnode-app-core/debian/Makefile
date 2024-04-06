@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 3.14.0-1
+VERSION = 3.15.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
