@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Derby database support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-DB-Derby"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- H2 Support -->
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.derby" rev="10.12.1.1_1" />
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.derby" rev="latest.release">
+			<exclude module="derby"/>
+			<exclude org="org.osgi"/>
+			<exclude org="org.apache.servicemix.bundles"/>
+		</dependency>
+
+		<!-- Global excludes provided by the base system -->
+
+	</dependencies>
+</ivy-module>
