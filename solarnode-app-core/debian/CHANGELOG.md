@@ -12,6 +12,11 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+# 3.16.0 - 2025-04-10
+
+This switches the _default_ database dependency from Derby to H2. Derby is still supported by
+installing the `solarnode-app-db-derby` package explicitly.
+
 # 3.15.1 - 2024-04-10
 
 The following plugins have changed from the previous release:

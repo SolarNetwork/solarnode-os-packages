@@ -21,7 +21,6 @@
 			<exclude module="gemini-blueprint-extender"/>
 		</dependency>
 
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.derby" rev="10.12.1.1_1" conf="boot"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.felix.utils" rev="1.8.4.SN02" conf="boot"/>
 		<dependency org="net.solarnetwork.external" name="org.apache.felix.fileinstall" rev="3.5.4.SN01" conf="core">
 			<exclude org="org.osgi"/>
@@ -66,11 +65,6 @@
 			<exclude org="net.sf.ehcache"/>
 			<exclude org="javax.servlet"/>
 			<exclude org="javax.servlet.jsp"/>
-		</dependency>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.derby" rev="latest.release" conf="boot">
-			<exclude module="derby"/>
-			<exclude org="org.osgi"/>
-			<exclude org="org.apache.servicemix.bundles"/>
 		</dependency>
 
 		<!-- Pax Web -->

@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.0.0 - 2024-04-10
+
+| Name                           | ID                         | Vers  |
+|:-------------------------------|:---------------------------|:------|
+| Derby Database Extensions      | `n.s.n.dao.jdbc.derby.ext` | 1.1.2 |
+| Derby Database Storage Support | `n.s.n.dao.jdbc.derby`     | 3.0.0 |
+
 ## 2.0.0 - 2023-03-08
 
 | Name                           | ID                         | Vers  |
