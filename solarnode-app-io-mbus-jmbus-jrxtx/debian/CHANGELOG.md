@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.0 - 2024-04-10
+
+This release requires [`solarnode-app-io-mbus` 1.0][io-mbus-log] or newer.
+
+The complete list of plugins included is:
+
+| Name                                | ID                    | Vers  |
+|:------------------------------------|:----------------------|:------|
+| M-Bus Communication Support (jMBus) | `n.s.n.io.mbus.jmbus` | 2.3.0 |
+
+
 ## 1.0.0 - 2024-02-05
 
 This release requires [`solarnode-app-io-mbus` 1.0][io-mbus-log] or newer.
