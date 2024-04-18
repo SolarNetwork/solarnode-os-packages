@@ -9,7 +9,8 @@ this package is to configure, start, and maintain a mobile network connection on
 The `sn-pi-mobile-shield-quectel-pppd` service manages the `pppd` daemon, but is not activated. The
 `sn-pi-mobile-shield-quectel-reconnect` service is managed by a timer, that runs the
 `/usr/share/solarnode/bin/mobile-shield-quectel-reconnect.sh` script to verify if the `1.1.1.1` DNS
-service can be reached via `ping`. If not, the `sn-pi-mobile-pppd` service is restarted.
+service can be reached via `ping`. If not, the `sn-pi-mobile-shield-quectel-pppd` service is
+restarted.
 
 # Configuration
 
