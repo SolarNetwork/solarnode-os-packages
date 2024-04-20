@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 0.10.0 - 2024-04-20
+
+The complete list of plugins included is:
+
+| Name                                  | ID                             | Vers   |
+|:--------------------------------------|:-------------------------------|:-------|
+| SolarNetwork Modbus Core              | `n.s.common.io.modbus.core`    | 0.10.0 |
+| SolarNetwork Modbus RTU (Core)        | `n.s.common.io.modbus.rtu`     | 0.10.0 |
+| SolarNetwork Modbus RTU (jSerialComm) | `n.s.common.io.modbus.rtu.jsc` | 0.10.0 |
+| SolarNetwork Modbus TCP               | `n.s.common.io.modbus.tcp`     | 0.10.0 |
+
 ## 0.8.0 - 2024-03-22
 
 This release requires [`solarnode-base` 1.13][base-changelog] or newer.
