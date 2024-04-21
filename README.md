@@ -10,8 +10,21 @@ The exact build requirements vary for each package. Most packages use [`make`][m
 [`fpm`][fpm]. On Debian systems, these can typically be installed like this:
 
 ```sh
-$ sudo apt-get install ruby ruby-dev build-essential
-$ sudo gem install --no-ri --no-rdoc fpm
+sudo apt install git ruby ruby-dev build-essential
+
+# For Ruby < 2.6
+sudo gem install --no-ri --no-rdoc fpm
+
+# For Ruby 2.6+
+sudo gem install --no-document fpm
+```
+
+Then you can clone this repository and build the packages as needed:
+
+```sh
+git clone https://github.com/SolarNetwork/solarnode-os-packages.git
+cd solarnode-os-packages
+git checkout develop
 ```
 
 [fpm]: https://github.com/jordansissel/fpm
