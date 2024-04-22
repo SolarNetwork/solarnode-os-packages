@@ -1,6 +1,6 @@
 NAME = websocat
 DIST = 
-VERSION = 1.10.1-1$(if $(DIST),+$(DIST),)
+VERSION = 1.13.0-1$(if $(DIST),+$(DIST),)
 
 deb : assemble
 	fpm -s dir -t deb \
@@ -11,6 +11,7 @@ deb : assemble
 	--description 'Command-line client for WebSockets.' \
 	--url 'https://github.com/vi/websocat' \
 	--license 'MIT license' \
+	-d 'libssl3' \
 	--force \
 	-C websocat/target/release/assemble \
 	--deb-activate noawait \
