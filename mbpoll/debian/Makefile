@@ -1,6 +1,6 @@
 NAME = sn-mbpoll
 DIST = 
-VERSION = 1.4.26-1$(if $(DIST),+$(DIST),)
+VERSION = 1.5.2-1$(if $(DIST),+$(DIST),)
 MBPOLL_INSTALL_DIR = mbpoll/build/native/local
 
 deb : prep
@@ -16,6 +16,7 @@ deb : prep
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/mbpoll/debian" \
 		-C $(MBPOLL_INSTALL_DIR) \
 		--force \
+		-d 'libc6 (>= 2.31)' \
 		-d 'libmodbus5 (>= 3.1.4)' \
 		--conflicts 'mbpoll' \
 		--replaces 'mbpoll' \

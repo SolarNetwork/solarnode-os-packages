@@ -22,6 +22,10 @@ cd ..
 make
 ```
 
+## Building on Debian 12
+
+Same as for Debian 11, but checkout `v1.13.0`.
+
 ## Packaging requirements
 
 Packaging done via [fpm][fpm]. To install `fpm`:
