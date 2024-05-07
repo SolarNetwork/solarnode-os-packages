@@ -12,6 +12,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.2.2 - 2024-05-07
+
+This release requires [`solarnode-app-io-modbus` 3.0][io-mdobus-log] or newer.
+
+The complete list of plugins included is:
+
+| Name                                                     | ID                          | Vers  |
+|:---------------------------------------------------------|:----------------------------|:------|
+| Modbus Communication Support (Nifty Modbus)              | `n.s.n.io.modbus.nifty`     | 2.2.1 |
+| Modbus Communication Support - Serial (Nifty Modbus JSC) | `n.s.n.io.modbus.nifty.jsc` | 2.1.3 |
+
+
 ## 2.2.1 - 2024-03-26
 
 This release requires [`solarnode-app-io-modbus` 3.0][io-mdobus-log] or newer.
