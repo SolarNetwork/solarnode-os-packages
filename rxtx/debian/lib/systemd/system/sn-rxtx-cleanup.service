@@ -1,0 +1,11 @@
+[Unit]
+Description=RXTX lock file cleanup
+PartOf=solarnode.service
+Before=solarnode.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rm -fv /var/lock/LCK*tty*
+
+[Install]
+WantedBy=solarnode.service

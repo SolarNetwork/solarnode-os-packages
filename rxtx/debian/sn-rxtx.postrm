@@ -1,13 +1,19 @@
 #!/bin/sh
 set -e
 
-if [ "$1" = "remove" -a -d /usr/lib/jvm ]; then
-	for d in /usr/lib/jvm/*; do
-		if [ -e "$d/jre/lib/ext/RXTXcomm.jar" ]; then
-			echo "Unlinking RXTXcomm.jar from $d."
-			rm -f "$d/jre/lib/ext/RXTXcomm.jar"
-		fi
-	done
+if [ "$1" = "remove" ]; then
+	if systemctl is-enabled sn-rxtx-cleanup.service >/dev/null; then
+		systemctl disable sn-rxtx-cleanup.service || true
+	fi
+	systemctl daemon-reload >/dev/null || true
+	if [ -d /usr/lib/jvm ]; then
+		for d in /usr/lib/jvm/*; do
+			if [ -e "$d/jre/lib/ext/RXTXcomm.jar" ]; then
+				echo "Unlinking RXTXcomm.jar from $d."
+				rm -f "$d/jre/lib/ext/RXTXcomm.jar"
+			fi
+		done
+	fi
 	if [ -e "/usr/share/solarnode/app/ext/RXTXcomm.jar" ]; then
 		echo "Unlinking RXTXcomm.jar from /usr/share/solarnode/app/ext."
 		rm -f "/usr/share/solarnode/app/ext/RXTXcomm.jar"

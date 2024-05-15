@@ -1,8 +1,9 @@
 NAME = sn-rxtx
 DIST = 
-VERSION = 1.0.1-3$(if $(DIST),+$(DIST),)
+VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
+PATHS = lib usr
 
-deb :
+deb : prep
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
@@ -15,7 +16,10 @@ deb :
 	-d 'librxtx-java (>= 2.2pre2)' \
 	--after-install $(NAME).postinst \
 	--after-remove $(NAME).postrm \
-	usr
+	$(PATHS)
+
+prep : 
+	find $(PATHS) -type f -name .DS_Store -delete
 
 clean : 
 	rm sn-rxtx_$(VERSION)_all.deb
