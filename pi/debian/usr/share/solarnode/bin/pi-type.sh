@@ -23,14 +23,14 @@ memory () {
 
 cpu () {
 	case "$cpu_type_hex" in
-		8)  echo "3b" memory ;;
-		d)  echo "3b+" memory ;;
-		11) echo "4b" memory ;;
-		12) echo "Zero 2 W" memory ;;
-		13) echo "400" memory ;;
-		14) echo "CM4" memory ;;
-		15) echo "CM4S" memory ;;
-		17) echo "5" memory ;;
+		8)  echo "3b" ;;
+		d)  echo "3b+" ;;
+		11) echo "4b" ;;
+		12) echo "Zero 2 W" ;;
+		13) echo "400" ;;
+		14) echo "CM4" ;;
+		15) echo "CM4S" ;;
+		17) echo "5" ;;
 		*)  echo "Unknown: CPU type 0x$cpu_type_hex" ;;
 	esac
 }
