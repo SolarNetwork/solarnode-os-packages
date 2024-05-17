@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 4.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 4.1.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -58,10 +58,11 @@ assemble :
 	if [ -n "$(DIST)" -a -d "root+$(DIST)" ]; then \
 		cp -af "root+$(DIST)"/* $(DEB_BUILD_ROOT)/; \
 	fi
+	mkdir -p $(DEB_BUILD_ROOT)/var/lib/solarnode/var
 	
 extras:
-	mkdir -p $(DEB_BUILD_ROOT)/var/lib/solarnode/var/weberrors
-	cp -r ${CURDIR}/../weberrors/* $(DEB_BUILD_ROOT)/var/lib/solarnode/var/weberrors
+	mkdir -p $(DEB_BUILD_ROOT)/var/lib/solarnode/weberrors
+	cp -r ${CURDIR}/../weberrors/* $(DEB_BUILD_ROOT)/var/lib/solarnode/weberrors
 	
 table :
 	java -jar "$(SN_BUILD_ROOT)/solarnetwork-osgi-lib/lib/bh.jar" "$(DEB_BUILD_ROOT)"

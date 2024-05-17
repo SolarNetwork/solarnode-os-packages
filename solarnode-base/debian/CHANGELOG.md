@@ -1,5 +1,12 @@
 # SolarNode Base Platform change log
 
+## 4.1.0 - 2024-05-17
+
+This version moves the Tomcat error documents from `/var/lib/solarnode/var/weberrors` to
+`/var/lib/solarnode/weberrors` so it is not removed when `sn-reset` is invoked. The plugins have
+not changed from the previous release.
+
+
 ## 4.0.0 - 2024-04-10
 
 This version splits the Derby database out into the `solarnode-base-derby` package.
