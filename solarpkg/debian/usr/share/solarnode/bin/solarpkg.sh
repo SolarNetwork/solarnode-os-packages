@@ -14,51 +14,51 @@ Usage: solarpkg [-v] <action> [arguments]
 
   clean
 
-      Remove any cached download packages or temporary files. Remove any packages no longer
-      required by other packages (autoremove).
+	  Remove any cached download packages or temporary files. Remove any packages no longer
+	  required by other packages (autoremove).
 
   fix-broken
 
-      Try to install and fix partially installed packages.
+	  Try to install and fix partially installed packages.
 
   install <name> [<version>]
 
-      Install package `name`. If `name` ends with '.deb' then install the package file `name`.
-      Otherwise, download and install `name` from the configured apt repositories; if `version`
-      specified then install the specific version.
+	  Install package `name`. If `name` ends with '.deb' then install the package file `name`.
+	  Otherwise, download and install `name` from the configured apt repositories; if `version`
+	  specified then install the specific version.
 
   is-installed <name>
 
-      Test if a particular package is installed. Returns 'true' or 'false'.
+	  Test if a particular package is installed. Returns 'true' or 'false'.
 
   list [<name>]
 
-      List packages. If `name` is provided, only packages matching this name (including wildcards)
-      will be listed. The output is a CSV table of columns: name, version, installed (true|false).
+	  List packages. If `name` is provided, only packages matching this name (including wildcards)
+	  will be listed. The output is a CSV table of columns: name, version, installed (true|false).
 
   list-available [<name>]
 
-      List packages available to be installed (but are not yet installed). If `name` is provided,
-      only packages matching this name (including  wildcards) will be listed. The output is a CSV
-      table of columns: name, version, installed (true|false).
+	  List packages available to be installed (but are not yet installed). If `name` is provided,
+	  only packages matching this name (including  wildcards) will be listed. The output is a CSV
+	  table of columns: name, version, installed (true|false).
 
   list-installed [<name>]
 
-      List installed packages. If `name` is provided, only packages matching this name (including
-      wildcards) will be listed. The output is a CSV table of columns: name, version, installed
-      (true|false).
+	  List installed packages. If `name` is provided, only packages matching this name (including
+	  wildcards) will be listed. The output is a CSV table of columns: name, version, installed
+	  (true|false).
 
   refresh
 
-      Refresh the available packages from remote repositories.
+	  Refresh the available packages from remote repositories.
 
   remove <name>
 
-      Remove the package named `name`.
+	  Remove the package named `name`.
 
   upgrade [major]
 
-      Upgrade all packages. If `major` defined, then perform a "major" upgrade using dist-upgrade.
+	  Upgrade all packages. If `major` defined, then perform a "major" upgrade using dist-upgrade.
 
 EOF
 }
@@ -100,8 +100,8 @@ pkg_list_files () {
 
 	# assume dpkg -c output lines look like:
 	#
-	# drwxr-xr-x 0/0               0 2019-05-20 18:33 ./usr/share/solarnode/bin/
-	# -rwxr-xr-x 0/0            2167 2019-05-20 18:29 ./usr/share/solarnode/bin/solarstat.sh
+	# drwxr-xr-x 0/0			   0 2019-05-20 18:33 ./usr/share/solarnode/bin/
+	# -rwxr-xr-x 0/0			2167 2019-05-20 18:29 ./usr/share/solarnode/bin/solarstat.sh
 	#
 	# We thus extract the 6th field, omitting paths that end in '/' and stripping the leading '.'
 	pkg_wait_not_busy
@@ -112,7 +112,7 @@ pkg_install_file () {
 	local pkg="$1"
 
 	if [ -z "$pkg" ]; then
-		echo "Must provide path to package to install."  1>&2
+		echo "Must provide path to package to install."	 1>&2
 		exit 1
 	fi
 
@@ -132,17 +132,23 @@ pkg_install_repo () {
 	local redo=""
 
 	pkg_wait_not_busy
-	if dpkg -s "$pkg" >/dev/null 2>&1; then
-		redo="--reinstall"
-	fi
 
-	pkg_wait_not_busy
-	sudo apt-get install $APT_FLAGS \
-		-o Dpkg::Options::="--force-confdef" \
-		-o Dpkg::Options::="--force-confnew" \
-		-o Dpkg::Options::="--force-overwrite" \
-		--no-install-recommends --allow-downgrades \
-		$redo "$pkg${ver:+=$ver}" >$APT_OUTPUT </dev/null || exit $?
+	# if a specific version is requested, and that version already installed, skip install
+	local curr_ver="$(dpkg-query -W -f '${Version}\n' $pkg)"
+
+	if [ -z "$ver" -o -z "$curr_ver" -o "$ver" != "$curr_ver" ]; then
+		if dpkg -s "$pkg" >/dev/null 2>&1; then
+			redo="--reinstall"
+		fi
+
+		pkg_wait_not_busy
+		sudo apt-get install $APT_FLAGS \
+			-o Dpkg::Options::="--force-confdef" \
+			-o Dpkg::Options::="--force-confnew" \
+			-o Dpkg::Options::="--force-overwrite" \
+			--no-install-recommends --allow-downgrades \
+			$redo "$pkg${ver:+=$ver}" >$APT_OUTPUT </dev/null || exit $?
+	fi
 
 	local fname="${pkg}_$(dpkg-query -W -f '${Version}_${Architecture}' "$pkg").deb"
 	if [ -e "/var/cache/apt/archives/$fname" ]; then
@@ -171,7 +177,7 @@ pkg_fix_broken () {
 pkg_remove () {
 	local pkg="$1"
 	if [ -z "$pkg" ]; then
-		echo "Must provide name of package to remove."  1>&2
+		echo "Must provide name of package to remove."	1>&2
 		exit 1
 	fi
 	pkg_wait_not_busy
@@ -228,7 +234,7 @@ pkg_is_installed () {
 
 pkg_refresh () {
 	pkg_wait_not_busy
-	sudo apt-get update $APT_FLAGS >$APT_OUTPUT  2>&1 </dev/null
+	sudo apt-get update $APT_FLAGS >$APT_OUTPUT	 2>&1 </dev/null
 }
 
 pkg_upgrade () {
