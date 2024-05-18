@@ -3,16 +3,17 @@
 	This is a SolarNode deployment configuration for plugins that use the Nifty Modbus framework.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Nifty-Modbus"/>
+	<info organisation="SolarNetwork" module="SolarNode-Nifty-Modbus-JSC"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-core" rev="0.11.0"/>
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu" rev="0.11.0"/>
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu-jsc" rev="0.11.0"/>
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-tcp" rev="0.11.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-api" rev="0.13.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-core" rev="0.13.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu" rev="0.13.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu-jsc" rev="0.13.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-tcp" rev="0.13.0"/>
 
 		<exclude org="com.fazecast"/>
 		<exclude org="io.netty"/>
