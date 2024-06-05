@@ -5,7 +5,7 @@ Before=solarnode.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/rm -fv /var/lock/LCK*tty*
+ExecStart=/bin/sh /usr/share/solarnode/bin/sn-rxtx-cleanup.sh
 
 [Install]
 WantedBy=solarnode.service
