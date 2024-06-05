@@ -1,6 +1,6 @@
 NAME = sn-rxtx
 DIST = 
-VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.1.1-1$(if $(DIST),+$(DIST),)
 PATHS = lib usr
 
 deb : prep
