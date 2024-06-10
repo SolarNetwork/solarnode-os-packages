@@ -7,6 +7,13 @@ This version moves the Tomcat error documents from `/var/lib/solarnode/var/weber
 not changed from the previous release.
 
 
+## 4.0.1 - 2024-06-10
+
+This version introduces a new default logging configuration that includes a settings audit
+log persisted by default in the `/var/lib/solarnode/var/log` directory. See the
+`/usr/share/solarnode/conf/log4j2-example.xml` to see how to update existing nodes.
+
+
 ## 4.0.0 - 2024-04-10
 
 This version splits the Derby database out into the `solarnode-base-derby` package.

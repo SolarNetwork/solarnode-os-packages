@@ -11,12 +11,27 @@
       </Policies>
       <DefaultRolloverStrategy max="3"/>
     </RollingFile>
+    <RollingFile name="SettingsAudit"
+        immediateFlush="true"
+        fileName="${env:SOLARNODE_PERSIST_LOGDIR:-/var/lib/solarnode/var/log}/solarnode-settings-audit.log"
+        filePattern="${env:SOLARNODE_PERSIST_LOGDIR:-/var/lib/solarnode/var/log}/solarnode-settings-audit-%i.log.gz">
+      <PatternLayout pattern="%d{DEFAULT} %-5p %msg%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="9"/>
+    </RollingFile>
   </Appenders>
   <Loggers>
     <Logger name="org.eclipse.gemini.blueprint.blueprint.container.support" level="warn"/>
     <Logger name="org.eclipse.gemini.blueprint.context.support" level="warn"/>
     <Logger name="org.eclipse.gemini.blueprint.service.importer.support" level="warn"/>
     <Logger name="org.springframework.beans.factory" level="warn"/>
+
+    <Logger name="net.solarnetwork.node.settings.AUDIT" level="info" additivity="false">
+      <AppenderRef ref="SettingsAudit"/>
+    </Logger>
+
     <Root level="info">
       <AppenderRef ref="File"/>
     </Root>
