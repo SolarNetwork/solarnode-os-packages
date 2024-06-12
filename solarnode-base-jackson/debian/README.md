@@ -1,6 +1,6 @@
-# SolarNode Platform - Spring
+# SolarNode Platform - Jackson JSON
 
-This directory contains support for building the `solarnode-base-jackson` package. This adds 
+This directory contains support for building the `solarnode-base-jackson` package. This adds
 [Jackson JSON][jackson] support to the SolarNode platform. See [CHANGELOG](./CHANGELOG.md) for
 release information.
 
