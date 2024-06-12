@@ -1,17 +1,27 @@
 # SolarNode Base Platform change log
 
+## 4.1.2 - 2024-06-13
+
+This version removes an unused dependency.
+
+The following plugins have changed from the previous release:
+
+| Name                                            | ID                                                          | Old Vers | New Vers |
+|:------------------------------------------------|:------------------------------------------------------------|:---------|:---------|
+| ehcache                                         | `net.sf.ehcache`                                            | 2.7.8    | removed |
+
+## 4.1.1 - 2024-06-10
+
+This version introduces a new default logging configuration that includes a settings audit
+log persisted by default in the `/var/lib/solarnode/var/log` directory. See the
+`/usr/share/solarnode/conf/log4j2-example.xml` to see how to update existing nodes.
+
+
 ## 4.1.0 - 2024-05-17
 
 This version moves the Tomcat error documents from `/var/lib/solarnode/var/weberrors` to
 `/var/lib/solarnode/weberrors` so it is not removed when `sn-reset` is invoked. The plugins have
 not changed from the previous release.
-
-
-## 4.0.1 - 2024-06-10
-
-This version introduces a new default logging configuration that includes a settings audit
-log persisted by default in the `/var/lib/solarnode/var/log` directory. See the
-`/usr/share/solarnode/conf/log4j2-example.xml` to see how to update existing nodes.
 
 
 ## 4.0.0 - 2024-04-10

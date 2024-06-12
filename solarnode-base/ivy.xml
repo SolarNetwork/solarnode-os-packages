@@ -140,9 +140,6 @@
 		<dependency org="org.ehcache" name="ehcache" rev="3.5.2" conf="core">
 			<exclude module="slf4j-api"/>
 		</dependency>
-		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.8" conf="core">
-			<exclude module="slf4j-api"/>
-		</dependency>
 
 		<!-- Logging -->
 		<dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.19.0" conf="boot"/>
@@ -261,6 +258,7 @@
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="log4j"/>
+		<exclude org="net.sf.ehcache"/>
 		<exclude org="org.easymock"/>
 		<exclude org="wsdl4j"/>
 		<exclude org="xml-resolver"/>
