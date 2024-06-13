@@ -14,7 +14,7 @@ Environment=SOLARNODE_PERSIST_LOGDIR=/var/lib/solarnode/var/log
 Environment=LOG4J_CONFIGURATION_FILE=/etc/solarnode/log4j2.xml
 Environment=JSP_SCRATCH_DIR=/var/lib/solarnode/var/work
 Environment=WEBSERVER_CONFIGURATION_FILE=/etc/solarnode/tomcat-server.xml
-Environment="OSGI_OPTS=-console 4202 -clean"
+Environment="OSGI_OPTS=-clean"
 Environment="JAVA_OPTS=-Xmx288m \
 	-XX:+ExitOnOutOfMemoryError \
 	-XX:MaxMetaspaceSize=192m \
@@ -41,6 +41,7 @@ ExecStart=/usr/bin/java $JAVA_OPTS \
 	-cp ${SOLARNODE_HOME}/app/equinox.jar:/usr/share/solarnode/app/ext/* \
 	org.eclipse.core.runtime.adaptor.EclipseStarter \
 	-configuration ${SOLARNODE_RAM_DIR} \
+	$OSGI_CONSOLE_OPTS \
 	$OSGI_OPTS
 ExecStartPre=/bin/sh /usr/share/solarnode/bin/solarnode-utilities.sh start
 ExecStopPost=/bin/sh /usr/share/solarnode/bin/solarnode-utilities.sh stop

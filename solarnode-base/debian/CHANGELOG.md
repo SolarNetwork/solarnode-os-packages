@@ -7,7 +7,6 @@ The following plugins have changed from the previous release:
 | Name                                            | ID                                                          | Old Vers | New Vers |
 |:------------------------------------------------|:------------------------------------------------------------|:---------|:---------|
 | %bundleName                                     | `org.eclipse.equinox.console`                               | 1.3.300  | [moved](../../solarnode-base-console/debian) |
-| %systemBundle                                   | `org.eclipse.osgi`                                          | 3.14.0   | 3.20.0 |
 | Apache Felix Gogo Command                       | `org.apache.felix.gogo.command`                             | 1.1.0    | [moved](../../solarnode-base-console/debian) |
 | Apache Felix Gogo Runtime                       | `org.apache.felix.gogo.runtime`                             | 1.1.6    | [moved](../../solarnode-base-console/debian) |
 | Apache Felix Gogo Shell                         | `org.apache.felix.gogo.shell`                               | 1.1.4    | [moved](../../solarnode-base-console/debian) |
@@ -40,74 +39,63 @@ The following plugins have changed from the previous release:
 
 The complete list of plugins included is:
 
-| Name                                            | ID                                                          | Vers     |
-|:------------------------------------------------|:------------------------------------------------------------|:---------|
-| %bundleName                                     | `org.eclipse.equinox.cm`                                    | 1.3.100  |
-| %systemBundle                                   | `org.eclipse.osgi`                                          | 3.20.0   |
-| AOP Alliance API                                | `com.springsource.org.aopalliance`                          | 1.0.0    |
-| Apache Apache HttpClient OSGi bundle            | `org.apache.httpcomponents.httpclient`                      | 4.5.14   |
-| Apache Apache HttpCore OSGi bundle              | `org.apache.httpcomponents.httpcore`                        | 4.4.16   |
-| Apache Commons BeanUtils                        | `org.apache.commons.commons-beanutils`                      | 1.9.4    |
-| Apache Commons Codec                            | `org.apache.commons.commons-codec`                          | 1.17.0   |
-| Apache Commons Collections                      | `org.apache.commons.collections`                            | 3.2.2    |
-| Apache Commons FileUpload                       | `org.apache.commons.commons-fileupload`                     | 1.5.0    |
-| Apache Commons IO                               | `org.apache.commons.commons-io`                             | 2.16.1   |
-| Apache Felix Bundle Repository                  | `org.apache.felix.bundlerepository`                         | 1.6.6    |
-| Apache Felix EventAdmin                         | `org.apache.felix.eventadmin`                               | 1.5.0    |
-| Apache Felix File Install                       | `org.apache.felix.fileinstall`                              | 3.5.4    |
-| Apache Felix Utils                              | `n.s.external.org.apache.felix.utils`                       | 1.8.4    |
-| Apache Log4j API                                | `org.apache.logging.log4j.api`                              | 2.19.0   |
-| Apache Log4j Core                               | `org.apache.logging.log4j.core`                             | 2.19.0   |
-| Apache Log4j SLF4J Binding                      | `org.apache.logging.log4j.slf4j-impl`                       | 2.19.0   |
-| Apache ServiceMix :: Bundles :: aspectj         | `org.apache.servicemix.bundles.aspectj`                     | 1.8.10   |
-| Apache ServiceMix :: Bundles :: cache-api       | `org.apache.servicemix.bundles.javax-cache-api`             | 1.0.0    |
-| Apache ServiceMix :: Bundles :: javax.inject    | `org.apache.servicemix.bundles.javax-inject`                | 1.0.0    |
-| Apache Standard Taglib Implementation           | `org.apache.taglibs.standard-impl`                          | 1.2.5    |
-| Apache Standard Taglib Specification API        | `org.apache.taglibs.taglibs-standard-spec`                  | 1.2.5    |
-| AWS SDK (Mini)                                  | `n.s.external.aws-sdk-mini`                                 | 1.11.688 |
-| bcpkix                                          | `bcpkix`                                                    | 1.47     |
-| bcprov                                          | `bcprov`                                                    | 1.47     |
-| Bean Validation API                             | `jakarta.validation.jakarta.validation-api`                 | 2.0.1    |
-| Commons Digester                                | `org.apache.commons.digester`                               | 2.1      |
-| Eclipse Compiler for Java(TM)                   | `org.eclipse.jdt.core.compiler.batch`                       | 3.32.0   |
-| ehcache 3                                       | `org.ehcache.ehcache`                                       | 3.5.2    |
-| gemini-blueprint-core                           | `org.eclipse.gemini.blueprint.core`                         | 3.0.0    |
-| gemini-blueprint-extender                       | `org.eclipse.gemini.blueprint.extender`                     | 3.0.0    |
-| gemini-blueprint-io                             | `org.eclipse.gemini.blueprint.io`                           | 3.0.0    |
-| HikariCP                                        | `com.zaxxer.HikariCP`                                       | 5.1.0    |
-| Jakarta Annotations API                         | `jakarta.annotation-api`                                    | 1.3.5    |
-| Jakarta Authentication                          | `javax.security.auth.message-api`                           | 1.1.3    |
-| Jakarta Expression Language 3.0 API             | `javax.el-api`                                              | 3.0.3    |
-| Jakarta Mail API jar                            | `jakarta.mail-api`                                          | 1.6.7    |
-| Jakarta Server Pages API                        | `javax.servlet.jsp-api`                                     | 2.3.6    |
-| Jakarta Servlet                                 | `jakarta.servlet-api`                                       | 4.0.0    |
-| Jakarta WebSocket - Server API                  | `javax.websocket-api`                                       | 1.1.2    |
-| JavaBeans Activation Framework                  | `com.sun.activation.jakarta.activation`                     | 1.2.1    |
-| JavaBeans Activation Framework API jar          | `jakarta.activation-api`                                    | 1.2.1    |
-| jcl-over-slf4j                                  | `jcl.over.slf4j`                                            | 1.7.36   |
-| jna                                             | `com.sun.jna`                                               | 5.6.0    |
-| Joda-Time                                       | `joda-time`                                                 | 2.12.2   |
-| OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                             | 9.0.16   |
-| OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`                    | 9.0.16   |
-| OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                             | 9.0.16   |
-| OPS4J Pax Web - Runtime                         | `org.ops4j.pax.web.pax-web-runtime`                         | 9.0.16   |
-| OPS4J Pax Web - Service SPI (internal)          | `org.ops4j.pax.web.pax-web-spi`                             | 9.0.16   |
-| OPS4J Pax Web - Tomcat                          | `org.ops4j.pax.web.pax-web-tomcat`                          | 9.0.16   |
-| OPS4J Pax Web - Tomcat Common                   | `org.ops4j.pax.web.pax-web-tomcat-common`                   | 9.0.16   |
-| OPS4J Pax Web - Tomcat WebSocket implementation | `org.ops4j.pax.web.pax-web-tomcat-websocket`                | 9.0.16   |
-| OSGi LogService implemented over SLF4J          | `org.slf4j.osgi-over-slf4j`                                 | 1.7.36   |
-| OSGi OBR Service API                            | `org.osgi.service.obr`                                      | 1        |
-| osgi.cmpn                                       | `osgi.cmpn`                                                 | 5.0.0    |
-| osgi.enterprise                                 | `osgi.enterprise`                                           | 5.0.0    |
-| pack:tag                                        | `n.s.external.net.sf.packtag`                               | 3.13.1   |
-| slf4j-api                                       | `slf4j.api`                                                 | 1.7.36   |
-| smiley-http-proxy-servlet                       | `org.mitre.dsmiley.http-proxy-servlet`                      | 1.11     |
-| software.amazon.ion:ion-java                    | `software.amazon.ion.java`                                  | 1.0.2    |
-| SolarNetwork Gemini Blueprint Extender Config   | `n.s.external.org.eclipse.gemini.blueprint.extender.config` | 3.0.0    |
-| SolarNetwork Pidfile                            | `n.s.common.pidfile`                                        | 1.1.0    |
-| Super CSV Core                                  | `net.sf.supercsv.super-csv`                                 | 2.4.0    |
-| Tomcat Juli Logging to SLF4J                    | `n.s.external.tomcat-juli-slf4j`                            | 9.0.54   |
-| Tyrus Websocket Client (JDK)                    | `n.s.external.tyrus-standalone-client-jdk`                  | 1.13.0   |
+| Name                                            | ID                                              | Vers     |
+|:------------------------------------------------|:------------------------------------------------|:---------|
+| %bundleName                                     | `org.eclipse.equinox.cm`                        | 1.3.100  |
+| %systemBundle                                   | `org.eclipse.osgi`                              | 3.14.0   |
+| AOP Alliance API                                | `com.springsource.org.aopalliance`              | 1.0.0    |
+| Apache Apache HttpClient OSGi bundle            | `org.apache.httpcomponents.httpclient`          | 4.5.14   |
+| Apache Apache HttpCore OSGi bundle              | `org.apache.httpcomponents.httpcore`            | 4.4.16   |
+| Apache Commons BeanUtils                        | `org.apache.commons.commons-beanutils`          | 1.9.4    |
+| Apache Commons Codec                            | `org.apache.commons.commons-codec`              | 1.17.0   |
+| Apache Commons Collections                      | `org.apache.commons.collections`                | 3.2.2    |
+| Apache Commons FileUpload                       | `org.apache.commons.commons-fileupload`         | 1.5.0    |
+| Apache Commons IO                               | `org.apache.commons.commons-io`                 | 2.16.1   |
+| Apache Felix Bundle Repository                  | `org.apache.felix.bundlerepository`             | 1.6.6    |
+| Apache Felix EventAdmin                         | `org.apache.felix.eventadmin`                   | 1.5.0    |
+| Apache Felix File Install                       | `org.apache.felix.fileinstall`                  | 3.5.4    |
+| Apache Felix Utils                              | `n.s.external.org.apache.felix.utils`           | 1.8.4    |
+| Apache ServiceMix :: Bundles :: aspectj         | `org.apache.servicemix.bundles.aspectj`         | 1.8.10   |
+| Apache ServiceMix :: Bundles :: cache-api       | `org.apache.servicemix.bundles.javax-cache-api` | 1.0.0    |
+| Apache ServiceMix :: Bundles :: javax.inject    | `org.apache.servicemix.bundles.javax-inject`    | 1.0.0    |
+| Apache Standard Taglib Implementation           | `org.apache.taglibs.standard-impl`              | 1.2.5    |
+| Apache Standard Taglib Specification API        | `org.apache.taglibs.taglibs-standard-spec`      | 1.2.5    |
+| AWS SDK (Mini)                                  | `n.s.external.aws-sdk-mini`                     | 1.11.688 |
+| bcpkix                                          | `bcpkix`                                        | 1.47     |
+| bcprov                                          | `bcprov`                                        | 1.47     |
+| Bean Validation API                             | `jakarta.validation.jakarta.validation-api`     | 2.0.1    |
+| Commons Digester                                | `org.apache.commons.digester`                   | 2.1      |
+| Eclipse Compiler for Java(TM)                   | `org.eclipse.jdt.core.compiler.batch`           | 3.32.0   |
+| ehcache 3                                       | `org.ehcache.ehcache`                           | 3.5.2    |
+| HikariCP                                        | `com.zaxxer.HikariCP`                           | 5.1.0    |
+| Jakarta Annotations API                         | `jakarta.annotation-api`                        | 1.3.5    |
+| Jakarta Authentication                          | `javax.security.auth.message-api`               | 1.1.3    |
+| Jakarta Expression Language 3.0 API             | `javax.el-api`                                  | 3.0.3    |
+| Jakarta Mail API jar                            | `jakarta.mail-api`                              | 1.6.7    |
+| Jakarta Server Pages API                        | `javax.servlet.jsp-api`                         | 2.3.6    |
+| Jakarta Servlet                                 | `jakarta.servlet-api`                           | 4.0.0    |
+| Jakarta WebSocket - Server API                  | `javax.websocket-api`                           | 1.1.2    |
+| JavaBeans Activation Framework                  | `com.sun.activation.jakarta.activation`         | 1.2.1    |
+| JavaBeans Activation Framework API jar          | `jakarta.activation-api`                        | 1.2.1    |
+| jna                                             | `com.sun.jna`                                   | 5.6.0    |
+| Joda-Time                                       | `joda-time`                                     | 2.12.2   |
+| OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                 | 9.0.16   |
+| OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`        | 9.0.16   |
+| OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                 | 9.0.16   |
+| OPS4J Pax Web - Runtime                         | `org.ops4j.pax.web.pax-web-runtime`             | 9.0.16   |
+| OPS4J Pax Web - Service SPI (internal)          | `org.ops4j.pax.web.pax-web-spi`                 | 9.0.16   |
+| OPS4J Pax Web - Tomcat                          | `org.ops4j.pax.web.pax-web-tomcat`              | 9.0.16   |
+| OPS4J Pax Web - Tomcat Common                   | `org.ops4j.pax.web.pax-web-tomcat-common`       | 9.0.16   |
+| OPS4J Pax Web - Tomcat WebSocket implementation | `org.ops4j.pax.web.pax-web-tomcat-websocket`    | 9.0.16   |
+| OSGi OBR Service API                            | `org.osgi.service.obr`                          | 1        |
+| osgi.cmpn                                       | `osgi.cmpn`                                     | 5.0.0    |
+| osgi.enterprise                                 | `osgi.enterprise`                               | 5.0.0    |
+| pack:tag                                        | `n.s.external.net.sf.packtag`                   | 3.13.1   |
+| smiley-http-proxy-servlet                       | `org.mitre.dsmiley.http-proxy-servlet`          | 1.11     |
+| software.amazon.ion:ion-java                    | `software.amazon.ion.java`                      | 1.0.2    |
+| SolarNetwork Pidfile                            | `n.s.common.pidfile`                            | 1.1.0    |
+| Super CSV Core                                  | `net.sf.supercsv.super-csv`                     | 2.4.0    |
+| Tyrus Websocket Client (JDK)                    | `n.s.external.tyrus-standalone-client-jdk`      | 1.13.0   |
 
 
 ## 4.2.1 - 2024-06-13
