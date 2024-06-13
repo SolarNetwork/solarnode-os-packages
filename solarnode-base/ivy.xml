@@ -133,7 +133,7 @@
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="core"/>
 
 		<!-- JDBC connection pool -->
-		<dependency org="com.zaxxer" name="HikariCP" rev="[4.0,5.0)" conf="boot"/>
+		<dependency org="com.zaxxer" name="HikariCP" rev="5.1.0" conf="boot"/>
 
 		<!-- javax.cache support -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" conf="core"/>

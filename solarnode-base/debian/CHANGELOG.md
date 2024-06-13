@@ -11,6 +11,7 @@ The following plugins have changed from the previous release:
 | Apache Commons IO                               | `org.apache.commons.commons-io`                             | 2.11.0   | 2.16.1 |
 | Apache Standard Taglib Implementation           | `org.apache.taglibs.standard-impl`                          | 1.2.1    | 1.2.5  |
 | Apache Standard Taglib Specification API        | `org.apache.taglibs.taglibs-standard-spec`                  | 1.2.1    | 1 2.5  |
+| HikariCP                                        | `com.zaxxer.HikariCP`                                       | 4.0.3    | 5.1.0  |
 | OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                             | 9.0.14   | 9.0.16 |
 | OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`                    | 9.0.14   | 9.0.16 |
 | OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                             | 9.0.14   | 9.0.16 |
@@ -63,7 +64,7 @@ The complete list of plugins included is:
 | gemini-blueprint-core                           | `org.eclipse.gemini.blueprint.core`                         | 3.0.0    |
 | gemini-blueprint-extender                       | `org.eclipse.gemini.blueprint.extender`                     | 3.0.0    |
 | gemini-blueprint-io                             | `org.eclipse.gemini.blueprint.io`                           | 3.0.0    |
-| HikariCP                                        | `com.zaxxer.HikariCP`                                       | 4.0.3    |
+| HikariCP                                        | `com.zaxxer.HikariCP`                                       | 5.1.0    |
 | Jakarta Annotations API                         | `jakarta.annotation-api`                                    | 1.3.5    |
 | Jakarta Authentication                          | `javax.security.auth.message-api`                           | 1.1.3    |
 | Jakarta Expression Language 3.0 API             | `javax.el-api`                                              | 3.0.3    |

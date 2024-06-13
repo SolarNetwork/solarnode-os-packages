@@ -26,7 +26,7 @@ deb : prep assemble app-core extras table
 	-d 'solarnode-base-spring (>= 2.0)' \
 	-d 'solarnode-base-spring-security (>= 2.0)' \
 	-d 'java11-runtime-headless' \
-	--deb-field 'Breaks: solarnode-app-core (<< 3.23)' \
+	--deb-field 'Breaks: solarnode-app-core (<< 3.23.1)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
 	--before-remove $(BASE_NAME).prerm \
