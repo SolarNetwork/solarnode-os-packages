@@ -11,6 +11,14 @@ The following plugins have changed from the previous release:
 | Apache Commons IO                               | `org.apache.commons.commons-io`                             | 2.11.0   | 2.16.1 |
 | Apache Standard Taglib Implementation           | `org.apache.taglibs.standard-impl`                          | 1.2.1    | 1.2.5  |
 | Apache Standard Taglib Specification API        | `org.apache.taglibs.taglibs-standard-spec`                  | 1.2.1    | 1 2.5  |
+| OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                             | 9.0.14   | 9.0.16 |
+| OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`                    | 9.0.14   | 9.0.16 |
+| OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                             | 9.0.14   | 9.0.16 |
+| OPS4J Pax Web - Runtime                         | `org.ops4j.pax.web.pax-web-runtime`                         | 9.0.14   | 9.0.16 |
+| OPS4J Pax Web - Service SPI (internal)          | `org.ops4j.pax.web.pax-web-spi`                             | 9.0.14   | 9.0.16 |
+| OPS4J Pax Web - Tomcat                          | `org.ops4j.pax.web.pax-web-tomcat`                          | 9.0.14   | 9.0.16 |
+| OPS4J Pax Web - Tomcat Common                   | `org.ops4j.pax.web.pax-web-tomcat-common`                   | 9.0.14   | 9.0.16 |
+| OPS4J Pax Web - Tomcat WebSocket implementation | `org.ops4j.pax.web.pax-web-tomcat-websocket`                | 9.0.14   | 9.0.16 |
 
 The complete list of plugins included is:
 
@@ -70,14 +78,14 @@ The complete list of plugins included is:
 | jcl-over-slf4j                                  | `jcl.over.slf4j`                                            | 1.7.36   |
 | jna                                             | `com.sun.jna`                                               | 5.6.0    |
 | Joda-Time                                       | `joda-time`                                                 | 2.12.2   |
-| OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                             | 9.0.14   |
-| OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`                    | 9.0.14   |
-| OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                             | 9.0.14   |
-| OPS4J Pax Web - Runtime                         | `org.ops4j.pax.web.pax-web-runtime`                         | 9.0.14   |
-| OPS4J Pax Web - Service SPI (internal)          | `org.ops4j.pax.web.pax-web-spi`                             | 9.0.14   |
-| OPS4J Pax Web - Tomcat                          | `org.ops4j.pax.web.pax-web-tomcat`                          | 9.0.14   |
-| OPS4J Pax Web - Tomcat Common                   | `org.ops4j.pax.web.pax-web-tomcat-common`                   | 9.0.14   |
-| OPS4J Pax Web - Tomcat WebSocket implementation | `org.ops4j.pax.web.pax-web-tomcat-websocket`                | 9.0.14   |
+| OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                             | 9.0.16   |
+| OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`                    | 9.0.16   |
+| OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                             | 9.0.16   |
+| OPS4J Pax Web - Runtime                         | `org.ops4j.pax.web.pax-web-runtime`                         | 9.0.16   |
+| OPS4J Pax Web - Service SPI (internal)          | `org.ops4j.pax.web.pax-web-spi`                             | 9.0.16   |
+| OPS4J Pax Web - Tomcat                          | `org.ops4j.pax.web.pax-web-tomcat`                          | 9.0.16   |
+| OPS4J Pax Web - Tomcat Common                   | `org.ops4j.pax.web.pax-web-tomcat-common`                   | 9.0.16   |
+| OPS4J Pax Web - Tomcat WebSocket implementation | `org.ops4j.pax.web.pax-web-tomcat-websocket`                | 9.0.16   |
 | OSGi LogService implemented over SLF4J          | `org.slf4j.osgi-over-slf4j`                                 | 1.7.36   |
 | OSGi OBR Service API                            | `org.osgi.service.obr`                                      | 1        |
 | osgi.cmpn                                       | `osgi.cmpn`                                                 | 5.0.0    |

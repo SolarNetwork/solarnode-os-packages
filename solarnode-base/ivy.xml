@@ -68,35 +68,35 @@
 		</dependency>
 
 		<!-- Pax Web -->
-		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
