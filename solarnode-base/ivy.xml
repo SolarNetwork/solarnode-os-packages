@@ -11,11 +11,11 @@
 		defaultconf="core->default(runtime)">
 
 		<!-- Bootstrap -->
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="latest.release" conf="boot">
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pidfile" rev="1.1.0" conf="boot">
 			<exclude org="org.osgi"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="latest.release" conf="boot">
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="3.0.0" conf="boot">
 			<exclude org="org.osgi"/>
 			<exclude module="gemini-blueprint-core"/>
 			<exclude module="gemini-blueprint-extender"/>
@@ -61,42 +61,42 @@
 		</dependency>
 
 		<!-- SolarNetwork Core -->
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="latest.release" conf="boot">
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="3.13.1.SN03A" conf="boot">
 			<exclude org="net.sf.ehcache"/>
 			<exclude org="javax.servlet"/>
 			<exclude org="javax.servlet.jsp"/>
 		</dependency>
 
 		<!-- Pax Web -->
-		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.14" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.16" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
@@ -116,31 +116,28 @@
 		<!-- Apache Commons -->
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.4" conf="boot"/>
 		<dependency org="commons-collections" name="commons-collections" rev="3.2.2" conf="boot"/>
-		<dependency org="commons-codec" name="commons-codec" rev="1.15" conf="boot"/>
+		<dependency org="commons-codec" name="commons-codec" rev="1.17.0" conf="boot"/>
 		<dependency org="commons-digester" name="commons-digester" rev="2.1" conf="boot">
 			<exclude org="commons-io"/>
 			<exclude org="commons-beanutils"/>
 		</dependency>
-		<dependency org="commons-io" name="commons-io" rev="2.11.0" conf="boot"/>
-		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.4" conf="boot">
+		<dependency org="commons-io" name="commons-io" rev="2.16.1" conf="boot"/>
+		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.5" conf="boot">
 			<exclude org="commons-io"/>
 		</dependency>
 
 		<!-- Tyrus Websocket support -->
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tyrus-standalone-client-jdk" rev="latest.release" conf="boot"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tyrus-standalone-client-jdk" rev="1.13.0.SN03" conf="boot"/>
 
 		<!-- CSV -->
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="core"/>
 
 		<!-- JDBC connection pool -->
-		<dependency org="com.zaxxer" name="HikariCP" rev="[4.0,5.0)" conf="boot"/>
+		<dependency org="com.zaxxer" name="HikariCP" rev="5.1.0" conf="boot"/>
 
 		<!-- javax.cache support -->
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" conf="core"/>
 		<dependency org="org.ehcache" name="ehcache" rev="3.5.2" conf="core">
-			<exclude module="slf4j-api"/>
-		</dependency>
-		<dependency org="net.sf.ehcache" name="ehcache" rev="2.7.8" conf="core">
 			<exclude module="slf4j-api"/>
 		</dependency>
 
@@ -157,8 +154,8 @@
 		<dependency org="org.aopalliance" name="com.springsource.org.aopalliance" rev="1.0.0" conf="boot"/>
 
 		<!-- Extra Servlet -->
-		<dependency org="org.apache.taglibs" name="taglibs-standard-spec" rev="1.2.1" conf="boot"/>
-		<dependency org="org.apache.taglibs" name="taglibs-standard-impl" rev="1.2.1" conf="boot"/>
+		<dependency org="org.apache.taglibs" name="taglibs-standard-spec" rev="1.2.5" conf="boot"/>
+		<dependency org="org.apache.taglibs" name="taglibs-standard-impl" rev="1.2.5" conf="boot"/>
 		<dependency org="org.mitre.dsmiley.httpproxy" name="smiley-http-proxy-servlet" rev="1.11" conf="core">
 			<exclude org="org.apache.httpcomponents"/>
 		</dependency>
@@ -242,9 +239,6 @@
 		<dependency org="jakarta.annotation" name="jakarta.annotation-api" rev="1.3.5" conf="boot"/>
 		<dependency org="jakarta.validation" name="jakarta.validation-api" rev="2.0.1" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-inject" rev="1_3" conf="boot"/>
-		<dependency org="org.apache.xalan" name="com.springsource.org.apache.xalan" rev="2.7.1" conf="boot">
-			<exclude org="org.apache.bcel"/><!-- This was required on 2.7.0, but not 2.7.1; perhaps mistake in EBR -->
-		</dependency>
 
 		<!-- JNA -->
 		<dependency org="net.java.dev.jna" name="jna" rev="5.6.0" conf="core"/>
@@ -261,6 +255,7 @@
 		<exclude org="javax.servlet"/>
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="log4j"/>
+		<exclude org="net.sf.ehcache"/>
 		<exclude org="org.easymock"/>
 		<exclude org="wsdl4j"/>
 		<exclude org="xml-resolver"/>

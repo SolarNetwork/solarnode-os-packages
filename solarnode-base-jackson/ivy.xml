@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	SolarNode app deployment configuration for H2 database support.
+	SolarNode app deployment configuration for Jackson JSON support.
 -->
 <ivy-module version="2.0">
 	<info organisation="SolarNetwork" module="SolarNode-Jackson"/>
@@ -10,11 +10,11 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Jackson JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.12.3"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.12.3"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.12.3"/>
-		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.12.3"/>
-		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-jsr310" rev="2.12.3"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.17.1"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.17.1"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.17.1"/>
+		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.17.1"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-jsr310" rev="2.17.1"/>
 
 	</dependencies>
 </ivy-module>

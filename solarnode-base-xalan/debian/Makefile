@@ -1,5 +1,5 @@
-NAME = solarnode-base-jackson
-VERSION = 1.1.0-1
+NAME = solarnode-base-xalan
+VERSION = 1.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,12 +14,10 @@ deb : prep app-core assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode platform Jackson JSON support' \
+		--description 'SolarNode platform Xalan XSLT/Xerces XML support' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 1.13)' \
-		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
-		--replaces 'solarnode-base (<< 1.13)' \
+		-d 'solarnode-base (>= 4.2)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

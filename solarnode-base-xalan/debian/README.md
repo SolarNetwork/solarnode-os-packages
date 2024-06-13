@@ -1,7 +1,7 @@
-# SolarNode Platform - Jackson JSON
+# SolarNode Platform - Xalan XSLT/Xerces XML
 
-This directory contains support for building the `solarnode-base-jackson` package. This adds
-[Jackson JSON][jackson] support to the SolarNode platform. See [CHANGELOG](./CHANGELOG.md) for
+This directory contains support for building the `solarnode-base-xalan` package. This adds
+Apache Xalan and Xerces support to the SolarNode platform. See [CHANGELOG](./CHANGELOG.md) for
 release information.
 
 # Build requirements
@@ -22,10 +22,9 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-base-jackson_VERSION_all.deb` in
+Run `make` to build the package, which will produce `solarnode-base-xalan_VERSION_all.deb` in
 this directory.
 
 [ant]: https://ant.apache.org/
 [fpm]: https://github.com/jordansissel/fpm
-[jackson]: https://github.com/FasterXML/jackson
 [sn-build]: https://github.com/SolarNetwork/solarnetwork-build/
