@@ -22,6 +22,7 @@ pkg : app-core table
 		-d 'sn-solarpkg (>= 1.2)' \
 		-d 'sn-solarssh (>= 1.0)' \
 		-d 'sn-system (>= 1.6)' \
+		-d 'solarnode-base-blueprint-gemini' \
 		-d 'solarnode-base-jaxb' \
 		-d 'solarnode-base-netty' \
 		-d 'solarnode-base-tiles' \

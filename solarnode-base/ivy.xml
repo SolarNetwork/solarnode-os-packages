@@ -15,11 +15,6 @@
 			<exclude org="org.osgi"/>
 			<exclude org="org.springframework"/>
 		</dependency>
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="3.0.0" conf="boot">
-			<exclude org="org.osgi"/>
-			<exclude module="gemini-blueprint-core"/>
-			<exclude module="gemini-blueprint-extender"/>
-		</dependency>
 
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.apache.felix.utils" rev="1.8.4.SN02" conf="boot"/>
 		<dependency org="net.solarnetwork.external" name="org.apache.felix.fileinstall" rev="3.5.4.SN01" conf="core">
@@ -32,23 +27,6 @@
 		<dependency org="org.eclipse.platform" name="org.eclipse.osgi" rev="3.20.0" conf="boot"/>
 		<dependency org="org.osgi" name="org.osgi.compendium" rev="5.0.0" conf="boot"/>
 		<dependency org="org.osgi" name="org.osgi.enterprise" rev="5.0.0" conf="boot"/>
-		<dependency org="net.solarnetwork.external" name="gemini-blueprint-core" rev="3.0.0.SN01" conf="boot">
-			<exclude org="org.springframework"/>
-			<exclude module="com.springsource.org.apache.commons.logging"/>
-			<exclude org="org.eclipse.osgi"/>
-		</dependency>
-		<dependency org="net.solarnetwork.external" name="gemini-blueprint-extender" rev="3.0.0.SN01" conf="boot">
-			<exclude org="org.springframework"/>
-			<exclude module="com.springsource.org.apache.commons.logging"/>
-			<exclude org="org.eclipse.osgi"/>
-			<exclude module="gemini-blueprint-core"/>
-		</dependency>
-		<dependency org="net.solarnetwork.external" name="gemini-blueprint-io" rev="3.0.0.SN01" conf="boot">
-			<exclude org="org.springframework"/>
-			<exclude module="com.springsource.org.apache.commons.logging"/>
-			<exclude org="org.eclipse.osgi"/>
-			<exclude module="gemini-blueprint-core"/>
-		</dependency>
 
 		<!-- SolarNetwork Core -->
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.net.sf.packtag" rev="3.13.1.SN03A" conf="boot">

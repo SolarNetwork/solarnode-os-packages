@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Gemini Blueprint support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Gemini-Blueprint"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="net.solarnetwork.external" name="gemini-blueprint-core" rev="3.0.0.SN01">
+			<exclude org="org.springframework"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+			<exclude org="org.eclipse.osgi"/>
+		</dependency>
+		<dependency org="net.solarnetwork.external" name="gemini-blueprint-extender" rev="3.0.0.SN01">
+			<exclude org="org.springframework"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+			<exclude org="org.eclipse.osgi"/>
+			<exclude module="gemini-blueprint-core"/>
+		</dependency>
+		<dependency org="net.solarnetwork.external" name="gemini-blueprint-io" rev="3.0.0.SN01">
+			<exclude org="org.springframework"/>
+			<exclude module="com.springsource.org.apache.commons.logging"/>
+			<exclude org="org.eclipse.osgi"/>
+			<exclude module="gemini-blueprint-core"/>
+		</dependency>
+
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="3.0.0">
+			<exclude org="org.osgi"/>
+			<exclude module="gemini-blueprint-core"/>
+			<exclude module="gemini-blueprint-extender"/>
+		</dependency>
+
+		<exclude org="org.apache.servicemix.bundles"/>
+
+	</dependencies>
+</ivy-module>

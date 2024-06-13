@@ -18,11 +18,15 @@ The following plugins have changed from the previous release:
 | Autotag - Core runtime                          | `org.apache.tiles-autotag-core-runtime`                     | 1.2.0    | [moved](../../solarnode-base-tiles/debian) |
 | Extended StAX API                               | `org.jvnet.staxex.stax-ex`                                  | 1.8.2    | [moved](../../solarnode-base-jaxb/debian) |
 | fastinfoset                                     | `com.sun.xml.fastinfoset.FastInfoset`                       | 1.2.17   | [moved](../../solarnode-base-jaxb/debian) |
+| gemini-blueprint-core                           | `org.eclipse.gemini.blueprint.core`                         | 3.0.0    | [moved](../../solarnode-base-blueprint-gemini/debian) |
+| gemini-blueprint-extender                       | `org.eclipse.gemini.blueprint.extender`                     | 3.0.0    | [moved](../../solarnode-base-blueprint-gemini/debian) |
+| gemini-blueprint-io                             | `org.eclipse.gemini.blueprint.io`                           | 3.0.0    | [moved](../../solarnode-base-blueprint-gemini/debian) |
 | Jakarta JAXB API Default Runtime                | `n.s.external.jakarta-xml-bind-api-default-runtime`         | 2.3.2    | [moved](../../solarnode-base-jaxb/debian) |
 | jakarta.xml.bind-api                            | `jakarta.xml.bind-api`                                      | 2.3.2    | [moved](../../solarnode-base-jaxb/debian) |
 | jcl-over-slf4j                                  | `jcl.over.slf4j`                                            | 1.7.36   | [moved](../../solarnode-base-slf4j/debian) |
 | OSGi LogService implemented over SLF4J          | `org.slf4j.osgi-over-slf4j`                                 | 1.7.36   | [moved](../../solarnode-base-slf4j/debian) |
 | slf4j-api                                       | `slf4j.api`                                                 | 1.7.36   | [moved](../../solarnode-base-slf4j/debian) |
+| SolarNetwork Gemini Blueprint Extender Config   | `n.s.external.org.eclipse.gemini.blueprint.extender.config` | 3.0.0    | [moved](../../solarnode-base-blueprint-gemini/debian) |
 | Tiles - API                                     | `org.apache.tiles.api`                                      | 3.0.8    | [moved](../../solarnode-base-tiles/debian) |
 | Tiles - Core Library                            | `org.apache.tiles.core`                                     | 3.0.8    | [moved](../../solarnode-base-tiles/debian) |
 | Tiles - EL support                              | `org.apache.tiles.el`                                       | 3.0.8    | [moved](../../solarnode-base-tiles/debian) |
