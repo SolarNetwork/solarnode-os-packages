@@ -1,5 +1,5 @@
 NAME = solarnode-base-blueprint-gemini
-VERSION = 3.0.0-1
+VERSION = 3.0.0-2
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -18,6 +18,8 @@ deb : prep app-core assemble table
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 4.2.2)' \
+		--deb-field 'Breaks: solarnode-base (<< 4.2.2)' \
+		--replaces 'solarnode-base (<< 4.2.2)' \
 		--conflicts 'osgi-blueprint' \
 		--replaces 'osgi-blueprint' \
 		--provides 'osgi-blueprint' \
