@@ -18,6 +18,7 @@ The following plugins have changed from the previous release:
 
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 3.1.1  | 3.1.2  |
 | Core SolarNode Framework        | `n.s.node`                     | 3.12.0 | 3.12.1 |
 | Metadata Service (SolarNetwork) | `n.s.n.metadata.json`          | 3.2.1  | 3.2.2  |
 
