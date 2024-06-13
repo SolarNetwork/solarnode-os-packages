@@ -32,8 +32,8 @@ The following plugins have changed from the previous release:
 
 | Name                                            | ID                                                          | Old Vers | New Vers |
 |:------------------------------------------------|:------------------------------------------------------------|:---------|:---------|
-| Apache Derby DataSourceFactory                  | `n.s.external.org.apache.derby`                             | 1.3.0    | [moved](../../solarnode-base-debian/debian) |
-| Apache ServiceMix :: Bundles :: derby           | `org.apache.servicemix.bundles.derby`                       | 10.12.1  | [moved](../../solarnode-base-debian/debian) |
+| Apache Derby DataSourceFactory                  | `n.s.external.org.apache.derby`                             | 1.3.0    | [moved](../../solarnode-base-derby/debian) |
+| Apache ServiceMix :: Bundles :: derby           | `org.apache.servicemix.bundles.derby`                       | 10.12.1  | [moved](../../solarnode-base-derby/debian) |
 
 The complete list of plugins included is:
 
