@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Apache Tiles support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Tiles"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- Apache Tiles -->
+		<dependency org="org.apache.tiles" name="tiles-core" rev="3.0.8">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-el" rev="3.0.8">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-jsp" rev="3.0.8">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-servlet" rev="3.0.8">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-template" rev="3.0.8">
+			<exclude module="commons-beanutils"/>
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-request-jsp" rev="1.0.7">
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency org="org.apache.tiles" name="tiles-request-servlet" rev="1.0.7">
+			<exclude org="org.slf4j"/>
+		</dependency>
+
+		<exclude org="commons-digester"/>
+
+	</dependencies>
+</ivy-module>

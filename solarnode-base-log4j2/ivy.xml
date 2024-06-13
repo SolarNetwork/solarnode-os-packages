@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Log4j2 support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Log4j2"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- Logging -->
+		<dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.19.0"/>
+		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.19.0"/>
+		<dependency org="org.apache.logging.log4j" name="log4j-slf4j-impl" rev="2.19.0"/>
+
+		<exclude org="org.slf4j"/>
+
+	</dependencies>
+</ivy-module>

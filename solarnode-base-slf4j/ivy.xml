@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Slf4j logging support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Slf4j"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.36"/>
+		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.36"/>
+		<dependency org="org.slf4j" name="osgi-over-slf4j" rev="1.7.36"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tomcat-juli-slf4j" rev="9.0.54"/>
+
+	</dependencies>
+</ivy-module>
