@@ -2,6 +2,8 @@
 
 UTIL=/usr/share/solarnode/bin/solarnode-utilities.sh
 
+systemctl daemon-reload >/dev/null || true
+
 if [ ! -x "$UTIL" ]; then
 	exit 0
 fi

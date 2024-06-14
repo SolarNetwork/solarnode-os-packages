@@ -38,6 +38,7 @@ ExecStart=/usr/bin/java $JAVA_OPTS \
 	-Dderby.system.home=${SOLARNODE_DB_DIR} \
 	-Dorg.ops4j.pax.web.config.file=${WEBSERVER_CONFIGURATION_FILE} \
 	-Dorg.ops4j.pax.web.jsp.scratch.dir=${JSP_SCRATCH_DIR} \
+	${OSGI_PROFILE_OPTS} \
 	-cp ${SOLARNODE_HOME}/app/equinox.jar:/usr/share/solarnode/app/ext/* \
 	org.eclipse.core.runtime.adaptor.EclipseStarter \
 	-configuration ${SOLARNODE_RAM_DIR} \

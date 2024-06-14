@@ -1,5 +1,5 @@
 NAME = solarnode-base-console
-VERSION = 1.0.0-2
+VERSION = 1.1.0-0
 ASSEMBLE_PATHS = lib usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -17,7 +17,7 @@ deb : prep app-core assemble table
 		--description 'SolarNode platform console support' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 4.2.2)' \
+		-d 'solarnode-base (>= 4.3)' \
 		--deb-field 'Breaks: solarnode-base (<< 4.2.2)' \
 		--replaces 'solarnode-base (<< 4.2.2)' \
 		--after-install $(NAME).postinst \

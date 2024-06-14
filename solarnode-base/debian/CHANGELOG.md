@@ -6,8 +6,18 @@ The following plugins have changed from the previous release:
 
 | Name                                            | ID                                              | Old Vers | New Vers |
 |:------------------------------------------------|:------------------------------------------------|:---------|:---------|
+| %bundleName                                     | `org.eclipse.equinox.cm`                        | 1.3.100  | 1.6.100  |
+| %systemBundle                                   | `org.eclipse.osgi`                              | 3.14.0   | 3.20.0   |
 | bcpkix                                          | `bcpkix`                                        | 1.47     | [moved](../../solarnode-base-bouncy-castle/debian) |
 | bcprov                                          | `bcprov`                                        | 1.47     | [moved](../../solarnode-base-bouncy-castle/debian) |
+| org.osgi:org.osgi.namespace.implementation      | `org.osgi.namespace.implementation`             | -        | 1.0.0    |
+| org.osgi:org.osgi.service.cm                    | `org.osgi.service.cm`                           | -        | 1.6.1    |
+| org.osgi:org.osgi.service.coordinator           | `org.osgi.service.coordinator`                  | -        | 1.0.2    |
+| org.osgi:org.osgi.service.event                 | `org.osgi.service.event`                        | -        | 1.4.1    |
+| org.osgi:org.osgi.service.jdbc                  | `org.osgi.service.jdbc`                         | -        | 1.1.0    |
+| org.osgi:osgi.annotation                        | `osgi.annotation`                               | -        | 8.1.0    |
+| osgi.cmpn                                       | `osgi.cmpn`                                     | 5.0.0    | -        |
+| osgi.enterprise                                 | `osgi.enterprise`                               | 5.0.0    | -        |
 
 The complete list of plugins included is:
 

@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+systemctl daemon-reload >/dev/null || true
+

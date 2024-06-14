@@ -27,8 +27,8 @@ deb : prep assemble app-core extras table
 	-d 'solarnode-base-spring (>= 2.0)' \
 	-d 'solarnode-base-spring-security (>= 2.0)' \
 	-d 'solarnode-logging' \
-	-d 'java11-runtime-headless' \
-	--deb-field 'Breaks: solarnode-app-core (<< 3.23.2)' \
+	-d 'solarnode-java-runtime' \
+	--deb-field 'Breaks: solarnode-app-core (<< 3.24)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
 	--before-remove $(BASE_NAME).prerm \
@@ -53,6 +53,7 @@ app-core :
 		"-Dnovirgo=1" \
 		$(SN_ANT_OPTS) \
 		deb-package-assemble
+	rm -f $(DEB_BUILD_ROOT)/etc/solarnode/*.profile
 
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
