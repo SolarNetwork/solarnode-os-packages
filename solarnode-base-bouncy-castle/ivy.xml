@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Bouncy Castle PKI support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-BC-PKI"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- PKI -->
+		<dependency org="org.bouncycastle" name="bcprov-jdk18on" rev="1.78.1"/>
+		<dependency org="org.bouncycastle" name="bcpkix-jdk18on" rev="1.78.1"/>
+		<dependency org="org.bouncycastle" name="bcutil-jdk18on" rev="1.78.1"/>
+
+	</dependencies>
+</ivy-module>

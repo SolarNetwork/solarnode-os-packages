@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 4.2.2-1$(if $(DIST),+$(DIST),)
+VERSION = 4.3.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -22,6 +22,7 @@ deb : prep assemble app-core extras table
 	-f \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
+	-d 'solarnode-base-bouncy-castle' \
 	-d 'solarnode-base-jackson' \
 	-d 'solarnode-base-spring (>= 2.0)' \
 	-d 'solarnode-base-spring-security (>= 2.0)' \

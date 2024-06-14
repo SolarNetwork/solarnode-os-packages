@@ -135,10 +135,6 @@
 		<!-- JodaTime -->
 		<dependency org="joda-time" name="joda-time" rev="2.12.2" conf="boot"/>
 
-		<!-- PKI -->
-		<dependency org="org.bouncycastle" name="bcprov-jdk15on" rev="1.47" conf="boot"/>
-		<dependency org="org.bouncycastle" name="bcpkix-jdk15on" rev="1.47" conf="boot"/>
-
 		<!-- OBR -->
 		<dependency org="org.apache.felix" name="org.osgi.service.obr" rev="1.0.2" conf="core">
 			<exclude name="org.osgi.core"/>
