@@ -7,3 +7,8 @@ if [ ! -x "$UTIL" ]; then
 fi
 
 $UTIL reset
+
+if systemctl is-enabled solarnode >/dev/null; then
+	echo "Starting solarnode..."
+	systemctl start solarnode || true
+fi
