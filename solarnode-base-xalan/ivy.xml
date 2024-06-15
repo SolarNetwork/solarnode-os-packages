@@ -3,7 +3,7 @@
 	SolarNode app deployment configuration for Xalan/Xerces XML support.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Jackson"/>
+	<info organisation="SolarNetwork" module="SolarNode-Xalan"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>

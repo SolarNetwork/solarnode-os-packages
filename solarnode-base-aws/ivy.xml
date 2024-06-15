@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for AWS support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-AWS"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- AWS -->
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.aws-sdk-mini" rev="1.12.742.SN20240615A"/>
+
+		<exclude org="commons-codec"/>
+		<exclude org="commons-logging"/>
+		<exclude org="com.fasterxml.jackson.core"/>
+		<exclude org="com.fasterxml.jackson.dataformat"/>
+		<exclude org="io.netty"/>
+		<exclude org="joda-time"/>
+		<exclude org="org.apache.httpcomponents"/>
+		<exclude org="org.osgi"/>
+
+	</dependencies>
+</ivy-module>

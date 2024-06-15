@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for OSGi Console support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Console"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.eclipse.platform" name="org.eclipse.equinox.console" rev="1.4.800">
+			<exclude module="org.eclipse.osgi"/>
+		</dependency>
+
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.runtime" rev="1.1.6">
+			<exclude org="org.osgi"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.command" rev="1.1.2">
+			<exclude org="org.osgi"/>
+		</dependency>
+		<dependency org="org.apache.felix" name="org.apache.felix.gogo.shell" rev="1.1.4">
+			<exclude org="org.osgi"/>
+		</dependency>
+
+	</dependencies>
+</ivy-module>

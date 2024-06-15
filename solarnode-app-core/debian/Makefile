@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 3.23.1-1
+VERSION = 3.25.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
@@ -18,11 +18,15 @@ pkg : app-core table
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-base (>= 4.2.1)' \
 		-d 'sn-solarpkg (>= 1.2)' \
 		-d 'sn-solarssh (>= 1.0)' \
 		-d 'sn-system (>= 1.6)' \
+		-d 'solarnode-base (>= 4.3)' \
+		-d 'solarnode-base-bouncy-castle' \
+		-d 'solarnode-base-blueprint-gemini' \
+		-d 'solarnode-base-jaxb' \
 		-d 'solarnode-base-netty' \
+		-d 'solarnode-base-tiles' \
 		-d 'solarnode-base-xalan' \
 		-d 'solarnode-app-io-mqtt (>= 4.0)' \
 		-d 'solarnode-app-db-h2 (>= 2.0.1) | solarnode-app-db' \

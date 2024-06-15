@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 4.2.1-1$(if $(DIST),+$(DIST),)
+VERSION = 4.4.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -22,11 +22,15 @@ deb : prep assemble app-core extras table
 	-f \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
+	-d 'solarnode-base-aws' \
+	-d 'solarnode-base-bouncy-castle' \
+	-d 'solarnode-base-httpclient' \
 	-d 'solarnode-base-jackson' \
 	-d 'solarnode-base-spring (>= 2.0)' \
 	-d 'solarnode-base-spring-security (>= 2.0)' \
-	-d 'java11-runtime-headless' \
-	--deb-field 'Breaks: solarnode-app-core (<< 3.23.1)' \
+	-d 'solarnode-logging' \
+	-d 'solarnode-java-runtime' \
+	--deb-field 'Breaks: solarnode-app-core (<< 3.25)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
 	--before-remove $(BASE_NAME).prerm \
@@ -51,6 +55,7 @@ app-core :
 		"-Dnovirgo=1" \
 		$(SN_ANT_OPTS) \
 		deb-package-assemble
+	rm -f $(DEB_BUILD_ROOT)/etc/solarnode/*.profile
 
 assemble : 
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
