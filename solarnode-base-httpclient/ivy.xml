@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for HTTP Client support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Httpclient"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- HTTP Client -->
+		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.14">
+			<exclude module="httpclient"/>
+			<exclude module="httpclient-cache"/>
+			<exclude module="fluent-hc"/>
+			<exclude module="httpcore"/>
+			<exclude module="httpmime"/>
+		</dependency>
+		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.16">
+			<exclude module="httpcore"/>
+			<exclude module="httpcore-nio"/>
+		</dependency>
+
+		<exclude org="commons-codec"/>
+
+	</dependencies>
+</ivy-module>

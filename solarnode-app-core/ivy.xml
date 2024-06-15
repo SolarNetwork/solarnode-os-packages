@@ -25,7 +25,7 @@
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdbc.pool.hikari" rev="2.0.4"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.osgi" rev="2.1.0"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.pki.bc" rev="3.1.0"/>
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.s3" rev="3.0.0"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.s3" rev="3.1.0"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="3.3.1"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="3.1.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node" rev="3.12.1"/>
