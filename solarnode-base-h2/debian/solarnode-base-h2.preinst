@@ -5,8 +5,8 @@ if systemctl is-active solarnode >/dev/null; then
 	systemctl stop solarnode || true
 fi
 
-DB_LOC=/run/solarnode/db/solarnode.mv.db
-if [ -e "$DB_LOC" ]; then
+DB_LOC=/run/solarnode/db
+if [ -d "$DB_LOC" ]; then
 	echo "Removing runtime database $DB_LOC"
-	rm -f "$DB_LOC" /run/solarnode/db/solarnode.trace.db
+	rm -rf "$DB_LOC"
 fi
