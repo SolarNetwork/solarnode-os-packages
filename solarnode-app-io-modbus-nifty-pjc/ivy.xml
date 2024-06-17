@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	This is a SolarNode deployment configuration for Modbus based plugins that use the Nifty Modbus
-	jSerialComm framework.
+	PureJavaComm framework.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus-Nifty-jSeriaComm"/>
+	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus-Nifty-PureJavaComm"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="2.2.3"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="1.0.3"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude org="net.solarnetwork.external"/>
