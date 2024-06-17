@@ -1,0 +1,7 @@
+key,type,value,flags,modified
+net.solarnetwork.node.io.s3.1,delegate.objectKeyPrefix,solarnode-resource-upload/,0,2021-07-19 00:00:00
+net.solarnetwork.node.io.s3.1,delegate.s3Client.accessSecret,AWS_ACCESS_SECRET_HERE,0,2021-07-19 00:00:00
+net.solarnetwork.node.io.s3.1,delegate.s3Client.accessToken,AWS_ACCESS_TOKEN_HERE,0,2021-07-19 00:00:00
+net.solarnetwork.node.io.s3.1,delegate.s3Client.bucketName,example-solarnodes,0,2021-07-19 00:00:00
+net.solarnetwork.node.io.s3.1,uid,Camera Storage,0,2021-07-19 00:00:00
+net.solarnetwork.node.io.s3.FACTORY,1,1,0,2021-07-19 00:00:00
