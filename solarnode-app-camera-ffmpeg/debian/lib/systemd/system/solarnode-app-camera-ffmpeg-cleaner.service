@@ -1,0 +1,6 @@
+[Unit]
+Description=Clean out old FFmpeg camera snapshot media files
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/clean-camera-ffmpeg-oldmedia.sh

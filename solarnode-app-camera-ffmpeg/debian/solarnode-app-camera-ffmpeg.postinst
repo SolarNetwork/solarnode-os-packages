@@ -1,0 +1,41 @@
+#!/bin/sh
+set -e
+
+IMG_DIR="/var/lib/solarnode/var/ffmpeg-images"
+IMG_USER=solar
+IMG_GROUP=video
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+if [ ! -d "$IMG_DIR" ]; then
+	mkdir -p "$IMG_DIR"
+	chown $IMG_USER:$IMG_USER "$IMG_DIR"
+fi
+
+if ! getent group $IMG_GROUP >/dev/null; then
+	echo "Adding $IMG_GROUP" group
+	addgroup --system $IMG_GROUP
+fi
+
+if ! id -nG "$IMG_USER" | grep -qw "$IMG_GROUP"; then
+	echo "Adding $IMG_USER to group $IMG_GROUP"
+	usermod -a -G $IMG_GROUP $IMG_USER
+fi
+
+systemctl daemon-reload || true
+service_up solarnode-app-camera-ffmpeg-cleaner.service
+service_up solarnode-app-camera-ffmpeg-cleaner.timer true

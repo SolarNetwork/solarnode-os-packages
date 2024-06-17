@@ -1,0 +1,2 @@
+# The number of days to keep FFmpeg media files
+FFMPEG_MEDIA_KEEP_DAYS=3
