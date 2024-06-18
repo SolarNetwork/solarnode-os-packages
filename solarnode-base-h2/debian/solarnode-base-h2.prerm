@@ -1,12 +1,15 @@
 #!/bin/sh -e
 
+SCRIPT=/usr/share/solarnode/bin/solarnode-h2.sh
+
+if [ ! -x $SCRIPT ]; then
+	exit 0
+fi
+
 if systemctl is-active solarnode >/dev/null; then
 	echo "Stopping solarnode..."
 	systemctl stop solarnode || true
 fi
 
-DB_LOC=/run/solarnode/db
-if [ -d "$DB_LOC" ]; then
-	echo "Removing runtime database $DB_LOC"
-	rm -rf "$DB_LOC"
-fi
+# dump database in preparation of H2 version change
+$SCRIPT dump

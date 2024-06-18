@@ -4,9 +4,3 @@ if systemctl is-active solarnode >/dev/null; then
 	echo "Stopping solarnode..."
 	systemctl stop solarnode || true
 fi
-
-DB_LOC=/run/solarnode/db
-if [ -d "$DB_LOC" ]; then
-	echo "Removing runtime database $DB_LOC"
-	rm -rf "$DB_LOC"
-fi
