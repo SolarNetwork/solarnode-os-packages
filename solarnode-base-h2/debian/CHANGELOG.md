@@ -3,7 +3,7 @@
 This document details the history of changes of the `solarnode-base-h2` package, from newest to
 oldest.
 
-## 1.1.0 - 2022-06-15
+## 1.1.0 - 2022-06-18
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **4.3** or higher
 
