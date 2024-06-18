@@ -7,6 +7,8 @@ SOLARNODE_RAM_DIR="${SOLARNODE_RAM_DIR:-/run/solarnode}"
 SOLARNODE_VAR_DIR="${SOLARNODE_VAR_DIR:-${SOLARNODE_HOME}/var}"
 SOLARNODE_DB_DIR="${SOLARNODE_DB_DIR:-${SOLARNODE_RAM_DIR}/db}"
 
+SOLARNODE_OWNER="${SOLARNODE_OWNER:-solar}"
+
 DB_URL="${DB_URL:-jdbc:h2:${SOLARNODE_DB_DIR}/solarnode}"
 DB_USER="${DB_USER:-sa}"
 DB_BAK_DIR="${DB_BAK_DIR:-${SOLARNODE_VAR_DIR}/db-bak}"
@@ -57,6 +59,9 @@ restore () {
 		echo "Restoring H2 database ${DB_URL} from ${DUMP_DEST}..."
 		if java -cp "${CLASSPATH}" org.h2.tools.RunScript -url "${DB_URL}" -user "${DB_USER}" -script "${DUMP_DEST}" -options compression zip; then
 			rm -f "${DUMP_DEST}"
+			if id -u "${SOLARNODE_OWNER}" >/dev/null 2>/dev/null; then
+				chown -R "${SOLARNODE_OWNER}:${SOLARNODE_OWNER}" "${SOLARNODE_DB_DIR}"
+			fi
 			echo "Restored H2 database ${DB_URL} from ${DUMP_DEST}."
 		else
 			echo "Error restoring H2 database ${DB_URL} from ${DUMP_DEST}." 1>&2
