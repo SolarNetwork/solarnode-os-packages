@@ -1,12 +1,23 @@
 #!/bin/sh -e
 
 UTIL=/usr/share/solarnode/bin/solarnode-utilities.sh
+SCRIPT=/usr/share/solarnode/bin/solarnode-h2.sh
 
-if [ ! -x "$UTIL" ]; then
+if [ -x "$UTIL" ]; then
+	$UTIL reset
+fi
+
+if [ ! -x "$SCRIPT" ]; then
 	exit 0
 fi
 
-$UTIL reset
+if systemctl is-active solarnode >/dev/null; then
+	echo "Stoping solarnode..."
+	systemctl stop solarnode || true
+fi
+
+# restore database for H2 version change
+$SCRIPT restore
 
 if systemctl is-enabled solarnode >/dev/null; then
 	echo "Starting solarnode..."

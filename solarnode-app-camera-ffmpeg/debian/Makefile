@@ -1,12 +1,13 @@
-NAME = solarnode-app-io-modbus-nifty-jsc
-VERSION = 2.2.4-1
-PATHS = var
+NAME = solarnode-app-camera-ffmpeg
+VERSION = 1.0.0-1
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
+ASSEMBLE_PATHS = etc lib usr
+PATHS = $(ASSEMBLE_PATHS) var
 
-pkg : app table
+deb : app-main assemble table
 	fpm -s dir \
 		-t deb \
 		-n $(NAME) \
@@ -14,23 +15,28 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode Modbus I/O - Nifty Modbus - jSerialComm' \
+		--description 'SolarNode - Camera - ffmpeg' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-core (>= 3.2)' \
-		-d 'solarnode-app-io-modbus (>= 3.0)' \
-		-d 'solarnode-base-nifty-modbus-jsc (>= 0.14)' \
-		--conflicts 'solarnode-io-modbus' \
-		--replaces 'solarnode-io-modbus' \
-		--provides 'solarnode-io-modbus' \
+		--deb-no-default-config-files \
+		-d 'solarnode-app-core (>= 3.25)' \
+		-d 'ffmpeg' \
+		-d 'sn-system' \
+		--deb-activate noawait \
+		--after-install $(NAME).postinst \
+		--before-remove $(NAME).prerm \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
 
-app :
+assemble : 
+	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
+	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
+
+app-main :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddeb.nocopy=1" \

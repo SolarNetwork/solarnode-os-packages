@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for Modbus based plugins that use the Nifty Modbus
-	PureJavaComm framework.
+	This is the SolarNode deployment configuration for ffmpeg camera support.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus-Nifty-PureJavaComm"/>
+	<info organisation="SolarNetwork" module="SolarNode-ffmpeg"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="2.2.3"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="1.0.3"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.camera.ffmpeg" rev="3.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
-		<exclude org="net.solarnetwork.external"/>
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
-		<exclude artifact="net.solarnetwork.node.io.modbus"/>
-		<exclude module="nifty-modbus.*" matcher="regexp"/>
 
 		<!-- Global excludes provided by the base system -->
-		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io|logging)" matcher="regexp"/>
+		<exclude artifact="net.solarnetwork.common.mqtt"/>
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
 		<exclude org="com.amazonaws"/>
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
-		<exclude org="com.fazecast"/>
-		<exclude org="io.netty"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
