@@ -12,6 +12,16 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.2.0 - 2024-06-28
+
+The complete list of plugins included is:
+
+| Name                            | ID                         | Vers  |
+|:--------------------------------|:---------------------------|:------|
+| BACnet Communication (BACnet4J) | `n.s.n.io.bacnet.bacnet4j` | 2.2.0 |
+| BACnet4j                        | `n.s.external.bacnet4j`    | 6.0.0 |
+
+
 ## 2.1.0 - 2023-06-28
 
 The complete list of plugins included is:
@@ -20,6 +30,7 @@ The complete list of plugins included is:
 |:--------------------------------|:---------------------------|:------|
 | BACnet Communication (BACnet4J) | `n.s.n.io.bacnet.bacnet4j` | 2.1.0 |
 | BACnet4j                        | `n.s.external.bacnet4j`    | 6.0.0 |
+
 
 ## 2.0.0 - 2023-03-08
 
