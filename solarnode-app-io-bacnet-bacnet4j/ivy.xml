@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for Modbus based plugins that use the 
+	This is a SolarNode deployment configuration for Modbus based plugins that use the
 	BACnet4J framework.
 -->
 <ivy-module version="2.0">
@@ -10,8 +10,9 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.bacnet.bacnet4j" rev="latest.release"/>
-		
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.bacnet4j" rev="6.0.0.SN01"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.bacnet.bacnet4j" rev="2.2.0"/>
+
 		<!-- solarnode-app-io-bacnet excludes -->
 		<exclude artifact="net.solarnetwork.node.io.bacnet"/>
 
