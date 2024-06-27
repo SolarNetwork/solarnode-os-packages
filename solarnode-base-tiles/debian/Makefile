@@ -1,5 +1,5 @@
 NAME = solarnode-base-tiles
-VERSION = 1.0.0-2
+VERSION = 1.0.0-3
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,7 +14,7 @@ deb : prep app-core assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode platform Xalan XSLT/Xerces XML support' \
+		--description 'SolarNode platform Apache Tiles support' \
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 4.2.2)' \
