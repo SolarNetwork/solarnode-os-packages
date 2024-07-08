@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.2.0 - 2024-07-08
+
+This release requires [`solarnode-app-core` 3.26][app-core-log] or newer.
+
+The complete list of plugins included is:
+
+| Name                             | ID                | Vers  |
+|:---------------------------------|:------------------|:------|
+| Serial Communication Support API | `n.s.n.io.serial` | 4.2.0 |
+
+
 ## 3.1.0 - 2024-07-08
 
 This release requires [`solarnode-app-core` 3.26][app-core-log] or newer.
@@ -21,6 +32,7 @@ The complete list of plugins included is:
 | Name                             | ID                | Vers  |
 |:---------------------------------|:------------------|:------|
 | Serial Communication Support API | `n.s.n.io.serial` | 4.1.0 |
+
 
 ## 3.0.0 - 2023-03-08
 
