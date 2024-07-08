@@ -10,7 +10,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.bacnet" rev="2.2.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.bacnet" rev="2.2.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.bacnet" rev="2.3.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
