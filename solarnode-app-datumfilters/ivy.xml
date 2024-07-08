@@ -9,8 +9,8 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.standard" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.tariff" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.standard" rev="3.8.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.tariff" rev="3.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

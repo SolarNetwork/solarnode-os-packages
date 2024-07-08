@@ -12,6 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.0 - 2024-07-08
+
+| Name                 | ID                       | Vers  |
+|:---------------------|:-------------------------|:------|
+| Loxone Miniserver    | `n.s.n.hw.loxone`        | 3.1.0 |
+| Loxone Setup Web App | `n.s.n.setup.web.loxone` | 3.0.4 |
+
+
 ## 1.0.0 - 2024-05-07
 
 | Name                 | ID                       | Vers  |

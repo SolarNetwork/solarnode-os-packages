@@ -1,5 +1,5 @@
 NAME = solarnode-app-storage-s3
-VERSION = 1.0.0-1
+VERSION = 1.0.1-1
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
@@ -20,7 +20,7 @@ deb : app-main assemble table
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		--deb-no-default-config-files \
-		-d 'solarnode-app-core (>= 3.25)' \
+		-d 'solarnode-app-core (>= 3.26)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 

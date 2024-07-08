@@ -9,11 +9,11 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.yasdi4j" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.yasdi4j" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.sma" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sma.webbox" rev="latest.release"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sma.yasdi4j" rev="latest.release"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.yasdi4j" rev="0.1.5.SN03"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.yasdi4j" rev="3.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.sma" rev="3.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sma.webbox" rev="2.1.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sma.yasdi4j" rev="3.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

@@ -12,6 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.0 - 2024-07-08
+
+| Name                | ID                     | Vers  |
+|:--------------------|:-----------------------|:------|
+| BACnet Control      | `n.s.n.control.bacnet` | 2.2.0 |
+| BACnet Datum Source | `n.s.n.datum.bacnet`   | 2.2.0 |
+
+
 ## 1.0.1 - 2024-04-24
 
 | Name                | ID                     | Vers  |
