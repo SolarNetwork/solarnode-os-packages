@@ -29,7 +29,7 @@
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.s3.sdk" rev="2.0.0"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web" rev="3.3.1"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.web.gemini" rev="3.1.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node" rev="3.13.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node" rev="3.14.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.backup.ext" rev="3.0.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc" rev="3.1.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.con" rev="1.1.0"/>
@@ -41,7 +41,7 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.auto" rev="2.0.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.log4j2" rev="1.0.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.security" rev="3.0.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="4.5.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="4.5.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.cmdline" rev="3.1.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.ssh" rev="3.0.0"/>
 

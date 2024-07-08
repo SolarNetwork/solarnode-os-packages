@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-# 3.26.0 - 2024-07-08
+# 3.27.0 - 2024-07-09
 
 The following plugins have changed from the previous release:
 
@@ -21,9 +21,9 @@ The following plugins have changed from the previous release:
 | Common AWS S3 Support           | `n.s.common.s3`                | 3.1.0  | 3.2.0  |
 | Common AWS S3 Support - SDK     | `n.s.common.s3.sdk`            | -      | 2.0.0  |
 | Core OSGi Support               | `n.s.common.osgi`              | 2.1.0  | 2.2.0  |
-| Core Setup Web App              | `n.s.n.setup.web`              | 4.4.0  | 4.5.0  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 4.4.0  | 4.5.1  |
 | Core SolarNetwork Support       | `n.s.common`                   | 3.11.0 | 3.15.0 |
-| Core SolarNode Framework        | `n.s.node`                     | 3.12.1 | 3.13.0 |
+| Core SolarNode Framework        | `n.s.node`                     | 3.12.1 | 3.14.0 |
 
 The complete list of plugins included is:
 
@@ -42,10 +42,10 @@ The complete list of plugins included is:
 | Core Security                   | `n.s.n.setup.security`         | 3.0.0  |
 | Core Settings Support           | `n.s.n.settings.ca`            | 3.4.0  |
 | Core Setup Support              | `n.s.n.setup`                  | 3.0.1  |
-| Core Setup Web App              | `n.s.n.setup.web`              | 4.5.0  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 4.5.1  |
 | Core SolarNetwork Support       | `n.s.common`                   | 3.15.0 |
 | Core SolarNetwork Web Support   | `n.s.common.web`               | 3.3.1  |
-| Core SolarNode Framework        | `n.s.node`                     | 3.13.0 |
+| Core SolarNode Framework        | `n.s.node`                     | 3.14.0 |
 | Debian Setup Support            | `n.s.n.setup.deb`              | 3.0.0  |
 | Eclipse Gemini Web Support      | `n.s.common.web.gemini`        | 3.1.0  |
 | Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.4  |

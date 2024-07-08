@@ -10,7 +10,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.modbus" rev="4.1.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.modbus" rev="4.0.6"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.modbus" rev="4.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
