@@ -12,6 +12,15 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+# 3.27.1 - 2024-07-09
+
+The following plugins have changed from the previous release:
+
+| Name                            | ID                             | Old Vers | New Vers |
+|:--------------------------------|:-------------------------------|:---------|:---------|
+| Core Setup Web App              | `n.s.n.setup.web`              | 4.5.1  | 4.5.2  |
+
+
 # 3.27.0 - 2024-07-09
 
 The following plugins have changed from the previous release:
