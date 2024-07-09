@@ -9,12 +9,13 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.s3" rev="3.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.s3" rev="3.0.1"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.s3"/>
+		<exclude artifact="net.solarnetwork.common.s3.sdk"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
 
@@ -28,6 +29,7 @@
 		<exclude org="org.osgi"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
+		<exclude org="org.springframework.security"/>
 		<exclude org="net.sf.supercsv"/>
 	</dependencies>
 </ivy-module>

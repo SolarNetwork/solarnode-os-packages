@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.2.0 - 2024-07-08
+
+| Name             | ID                  | Vers  |
+|:-----------------|:--------------------|:------|
+| SolarFlux Upload | `n.s.n.upload.flux` | 3.3.0 |
+
+
 ## 1.1.0 - 2024-05-22
 
 | Name             | ID                  | Vers  |
