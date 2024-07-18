@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-SribeJava"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="com.github.scribejava" name="scribejava-core" rev="8.3.3"/>
+		<dependency org="com.github.scribejava" name="scribejava-java8" rev="8.3.3"/>
+		<dependency org="com.github.scribejava" name="scribejava-httpclient-apache" rev="8.3.3"/>
+
+		<exclude org="com.fasterxml.jackson.core"/>
+		<exclude org="org.apache.httpcomponents"/>
+
+	</dependencies>
+</ivy-module>

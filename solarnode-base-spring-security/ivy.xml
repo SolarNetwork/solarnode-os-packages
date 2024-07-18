@@ -10,12 +10,13 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Spring Security -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="5.8.1_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="5.8.1_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="5.8.1_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-messaging" rev="5.8.1_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="5.8.1_1"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-web" rev="5.8.1_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="5.8.7_2"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="5.8.7_2"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="5.8.7_2"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-crypto" rev="5.8.7_2"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-messaging" rev="5.8.7_2"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="5.8.7_2"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-web" rev="5.8.7_2"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude module="aopalliance"/>
