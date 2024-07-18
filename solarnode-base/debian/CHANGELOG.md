@@ -1,5 +1,9 @@
 # SolarNode Base Platform change log
 
+## 4.4.1 - 2024-08-19
+
+This patch release fixes handling of multiple H2 database backup/restore on SolarNode stop/start.
+
 ## 4.4.0 - 2024-06-15
 
 The following plugins have changed from the previous release:

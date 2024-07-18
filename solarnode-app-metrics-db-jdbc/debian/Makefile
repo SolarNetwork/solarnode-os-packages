@@ -18,6 +18,7 @@ pkg : prep assemble app table
 		--description 'SolarNode Metrics DB - JDBC' \
 		--license 'GPL 2.0' \
 		-f \
+		-d 'solarnode-base (>= 4.4.1)' \
 		-d 'solarnode-app-core (>= 3.28)' \
 		--conflicts 'solarnode-app-metrics-db' \
 		--replaces 'solarnode-app-metrics-db' \
