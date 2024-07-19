@@ -1,5 +1,5 @@
 NAME = solarnode-base-scribejava
-VERSION = 8.3.3.0-1
+VERSION = 8.3.3-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -18,7 +18,7 @@ deb : prep app-core assemble table
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 4.4)' \
-		-d 'solarnode-base-jackson' \
+		-d 'solarnode-base-jackson (>= 1.1)' \
 		-d 'solarnode-base-httpclient (>= 1.1)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
