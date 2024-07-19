@@ -22,7 +22,7 @@ SED_ESCAPE='s#[]\#$*.^[]#\\&#g'
 
 ##############################################################################
 # equinox_reset_config
-# 
+#
 # Clear the Equinox runtime config.ini
 #
 equinox_reset_config () {
@@ -118,7 +118,7 @@ setup_restore_db () {
 		setup_dir ${SOLARNODE_DB_DIR}
 		for f in $(ls "${DB_BAK_DIR}"); do
 			case "$f" in
-				solarnode.zip) restore_h2_backup "$f" "${SOLARNODE_DB_DIR}" ;;
+				*.zip) restore_h2_backup "$f" "${SOLARNODE_DB_DIR}" ;;
 				*)
 					if [ -d "${DB_BAK_DIR}/$f" ]; then
 						echo -n "restoring database $f... "
@@ -138,25 +138,25 @@ clean_dir () {
 do_setup () {
 	# Verify ram dir exists; create if necessary
 	setup_dir "${SOLARNODE_RAM_DIR}"
-	
+
 	# Verify tmp dir exists; create if necessary
 	setup_dir "${SOLARNODE_TMP_DIR}"
-	
+
 	# Verify log dir exists; create if necessary
 	setup_dir "${SOLARNODE_LOG_DIR}"
-	
+
 	# Verify var dir exists; create if necessary
 	setup_dir "${SOLARNODE_VAR_DIR}"
-	
+
 	# Verify webapps dir exists; create if necessary
 	setup_dir "${WEBAPPS_DIR}"
-	
+
 	# Clean out lock dir
 	clean_dir "${SOLARNODE_LOCK_DIR}"
-	
+
 	# Copy config.ini into Equinox configuration dir
 	setup_ini
-	
+
 	# Check to restore backup database
 	setup_restore_db
 }
@@ -168,7 +168,7 @@ sync_h2 () {
 	if [ -n "$classpath" ]; then
 		setup_dir "${WORK_DIR}"
 		echo -n "syncing database to $dest.zip... "
-		if java -cp "$classpath" org.h2.tools.Backup -quiet -dir "$src" -file "${WORK_DIR}/$dest.zip"; then
+		if java -cp "$classpath" org.h2.tools.Backup -quiet -dir "$src" -db "$dest" -file "${WORK_DIR}/$dest.zip"; then
 			if [ -s "${WORK_DIR}/$dest.zip" ]; then
 				mv -f "${WORK_DIR}/$dest.zip" "${DB_BAK_DIR}/$dest.zip"
 			fi
@@ -191,13 +191,13 @@ do_sync () {
 				echo "done."
 			else
 				case "$f" in
-					*.db) h2="1" ;;
+					*.trace.db) ;;
+					*.db)
+						sync_h2 "${SOLARNODE_DB_DIR}" "${f%%.*}"
+						;;
 				esac
 			fi
 		done
-		if [ -n "$h2" ]; then
-			sync_h2 "${SOLARNODE_DB_DIR}" "solarnode"
-		fi
 		echo "done."
 	fi
 }
@@ -254,11 +254,11 @@ case $1 in
 	auto-settings-add)
 		auto_settings_add "$2"
 		;;
-		
+
 	auto-settings-remove)
 		auto_settings_remove "$2"
 		;;
-		
+
 	equinox-bundles-add)
 		if [ -z "$2" ]; then
 			echo "Must provide bundle start configuration to add." 1>&2
@@ -266,7 +266,7 @@ case $1 in
 			equinox_config_add_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
 		fi
 		;;
-		
+
 	equinox-bundles-remove)
 		if [ -z "$2" ]; then
 			echo "Must provide bundle start configuration to remove." 1>&2
@@ -274,15 +274,17 @@ case $1 in
 			equinox_config_remove_bundles "${SOLARNODE_HOME}/conf/config.ini" "$2"
 		fi
 		;;
-	
+
+	noop) ;;
+
 	reset)
 		equinox_reset_config
 		;;
-		
+
 	setup)
 		do_setup
 		;;
-		
+
 	start)
 		do_setup
 		;;
@@ -296,9 +298,11 @@ case $1 in
 		fi
 		;;
 
+
+
 	*)
 		# Print help
-		echo "Usage: $0 {auto-settings-add|auto-settings-remove|equinox-bundles-add|equinox-bundles-remove|reset|setup|start|stop}" 1>&2
+		echo "Usage: $0 {auto-settings-add|auto-settings-remove|equinox-bundles-add|equinox-bundles-remove|noop|reset|setup|start|stop}" 1>&2
 		exit 1
 		;;
 esac

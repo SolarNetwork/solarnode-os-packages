@@ -1,0 +1,2 @@
+# Disable configuration of default metrics data source
+# CFG_WITHOUT_METRICS_DATASOURCE=1

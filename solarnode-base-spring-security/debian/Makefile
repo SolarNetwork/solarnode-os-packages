@@ -1,5 +1,5 @@
 NAME = solarnode-base-spring-security
-VERSION = 2.0.0-1
+VERSION = 2.1.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -22,6 +22,7 @@ deb : prep app-core assemble table
 		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
 		--replaces 'solarnode-base (<< 1.13)' \
 		-d 'solarnode-base-reactive-streams' \
+		-d 'solarnode-base-spring (>= 2.0.1)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \
