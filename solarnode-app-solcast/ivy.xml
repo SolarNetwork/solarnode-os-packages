@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration.
+	This is a SolarNode deployment configuration for SMA plugins.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Price-NZ-Grid"/>
+	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.price.nz.wits" rev="1.0.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.solcast" rev="2.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
-		<exclude artifact="net.solarnetwork.node.dao.jdbc"/>
-		<exclude artifact="net.solarnetwork.node.metrics"/>
+		<exclude artifact="net.solarnetwork.node.io.modbus"/>
 
 		<!-- Global excludes provided by the base system -->
-		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|logging|io)" matcher="regexp"/>
+		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
 		<exclude org="com.amazonaws"/>
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
-		<exclude org="com.github.scribejava"/>
-		<exclude org="com.h2database"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
 		<exclude org="net.sf.supercsv"/>
 		<exclude org="org.apache.commons"/>
-		<exclude org="org.apache.httpcomponents"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.eclipse.paho"/>
 		<exclude org="org.osgi"/>
