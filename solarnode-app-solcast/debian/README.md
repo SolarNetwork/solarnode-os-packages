@@ -1,4 +1,4 @@
-# SolarNode Application - SMA
+# SolarNode Application - Solcast
 
 This directory contains support for building the `solarnode-app-solcast` package, which
 provides support for collecting data from the Solcast API. See the
