@@ -1,7 +1,7 @@
-# SolarNode Application - Solcast
+# SolarNode Application - Control - Core
 
-This directory contains support for building the `solarnode-app-solcast` package, which
-provides support for collecting data from the Solcast API. See the
+This directory contains support for building the `solarnode-app-control-core` package, which
+provides core support for working with controls. See the
 [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Build requirements
@@ -22,7 +22,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-solcast_VERSION_all.deb`
+Run `make` to build the package, which will produce `solarnode-app-control-core_VERSION_all.deb`
 in this directory.
 
 [ant]: https://ant.apache.org/

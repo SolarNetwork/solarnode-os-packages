@@ -1,7 +1,7 @@
-# SolarNode Application - Solcast
+# SolarNode Application - Developer - Mock Components
 
-This directory contains support for building the `solarnode-app-solcast` package, which
-provides support for collecting data from the Solcast API. See the
+This directory contains support for building the `solarnode-app-dev-mock` package, which
+provides support for simulating components for development or testing. See the
 [CHANGELOG](./CHANGELOG.md) for release information.
 
 # Build requirements
@@ -22,7 +22,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-solcast_VERSION_all.deb`
+Run `make` to build the package, which will produce `solarnode-app-dev-mock_VERSION_all.deb`
 in this directory.
 
 [ant]: https://ant.apache.org/

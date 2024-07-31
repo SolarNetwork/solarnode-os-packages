@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for standard datum filter plugins.
+	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus"/>
+	<info organisation="SolarNetwork" module="SolarNode-Control-Core"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.standard" rev="3.9.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.tariff" rev="3.2.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.opmode" rev="3.0.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.control" rev="3.1.1"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
+		<exclude artifact="net.solarnetwork.node.io.modbus"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
