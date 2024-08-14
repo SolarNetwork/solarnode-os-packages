@@ -9,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.metrics.dao.jdbc" rev="1.2.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.metrics.dao.jdbc" rev="1.2.1"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

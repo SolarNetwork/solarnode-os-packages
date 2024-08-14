@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.0 - 2024-08-12
+
+This release requires [`solarnode-app-core` 3.32][app-core-log] or newer.
+
+The complete list of plugins included is:
+
+| Name              | ID                        | Vers  |
+|:------------------|:--------------------------|:------|
+| Metrics Harvester | `n.s.n.metrics.harvester` | 1.1.0 |
+
+
 ## 1.0.0 - 2024-07-18
 
 This release requires [`solarnode-app-core` 3.28][app-core-log] or newer.
