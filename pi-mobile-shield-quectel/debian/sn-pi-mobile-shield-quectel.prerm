@@ -9,6 +9,6 @@ service_down () {
 }
 
 if [ "$1" = "remove" ]; then
-	sn-mobile-shield-quectel-reconnect.timer
+	service_down sn-mobile-shield-quectel-reconnect.timer
 	service_down sn-mobile-shield-quectel-pppd
 fi
