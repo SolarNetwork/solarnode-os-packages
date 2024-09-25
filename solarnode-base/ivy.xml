@@ -42,35 +42,35 @@
 		</dependency>
 
 		<!-- Pax Web -->
-		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-jsp" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.16" conf="gemini">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="9.0.17" conf="gemini">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
@@ -90,12 +90,12 @@
 		<!-- Apache Commons -->
 		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.9.4" conf="boot"/>
 		<dependency org="commons-collections" name="commons-collections" rev="3.2.2" conf="boot"/>
-		<dependency org="commons-codec" name="commons-codec" rev="1.17.0" conf="boot"/>
+		<dependency org="commons-codec" name="commons-codec" rev="1.17.1" conf="boot"/>
 		<dependency org="commons-digester" name="commons-digester" rev="2.1" conf="boot">
 			<exclude org="commons-io"/>
 			<exclude org="commons-beanutils"/>
 		</dependency>
-		<dependency org="commons-io" name="commons-io" rev="2.16.1" conf="boot"/>
+		<dependency org="commons-io" name="commons-io" rev="2.17.0" conf="boot"/>
 		<dependency org="commons-fileupload" name="commons-fileupload" rev="1.5" conf="boot">
 			<exclude org="commons-io"/>
 		</dependency>
@@ -110,8 +110,10 @@
 		<dependency org="com.zaxxer" name="HikariCP" rev="5.1.0" conf="boot"/>
 
 		<!-- javax.cache support -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.0.0_1" conf="core"/>
-		<dependency org="org.ehcache" name="ehcache" rev="3.5.2" conf="core">
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.1.1_1" conf="core"/>
+		<dependency org="org.ehcache" name="ehcache" rev="3.6.3" conf="core">
+			<exclude module="cache-api"/>
+			<exclude module="jaxb-runtime"/>
 			<exclude module="slf4j-api"/>
 		</dependency>
 
@@ -126,7 +128,7 @@
 		</dependency>
 
 		<!-- JodaTime -->
-		<dependency org="joda-time" name="joda-time" rev="2.12.2" conf="boot"/>
+		<dependency org="joda-time" name="joda-time" rev="2.13.0" conf="boot"/>
 
 		<!-- OBR -->
 		<dependency org="org.apache.felix" name="org.osgi.service.obr" rev="1.0.2" conf="core">

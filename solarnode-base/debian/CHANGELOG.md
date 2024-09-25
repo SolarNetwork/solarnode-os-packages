@@ -1,5 +1,84 @@
 # SolarNode Base Platform change log
 
+## 4.5.0 - 2024-09-25
+
+The following plugins have changed from the previous release:
+
+| Name                                            | ID                                              | Old Vers | New Vers |
+|:------------------------------------------------|:------------------------------------------------|:---------|:---------|
+| Apache Commons Codec                            | `org.apache.commons.commons-codec`              | 1.17.0  | 1.17.1 |
+| Apache Commons IO                               | `org.apache.commons.commons-io`                 | 2.16.1  | 2.17.0 |
+| Apache ServiceMix :: Bundles :: cache-api       | `org.apache.servicemix.bundles.javax-cache-api` | 1.0.0   | 1.1.1  |
+| ehcache 3                                       | `org.ehcache.ehcache`                           | 3.5.2   | 3.6.3  |
+| Joda-Time                                       | `joda-time`                                     | 2.12.2  | 2.13.0 |
+| OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                 | 9.0.16  | 9.0.17 |
+| OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`        | 9.0.16  | 9.0.17 |
+| OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                 | 9.0.16  | 9.0.17 |
+| OPS4J Pax Web - Runtime                         | `org.ops4j.pax.web.pax-web-runtime`             | 9.0.16  | 9.0.17 |
+| OPS4J Pax Web - Service SPI (internal)          | `org.ops4j.pax.web.pax-web-spi`                 | 9.0.16  | 9.0.17 |
+| OPS4J Pax Web - Tomcat                          | `org.ops4j.pax.web.pax-web-tomcat`              | 9.0.16  | 9.0.17 |
+| OPS4J Pax Web - Tomcat Common                   | `org.ops4j.pax.web.pax-web-tomcat-common`       | 9.0.16  | 9.0.17 |
+| OPS4J Pax Web - Tomcat WebSocket implementation | `org.ops4j.pax.web.pax-web-tomcat-websocket`    | 9.0.16  | 9.0.17 |
+
+The complete list of plugins included is:
+
+| Name                                            | ID                                              | Vers    |
+|:------------------------------------------------|:------------------------------------------------|:--------|
+| %bundleName                                     | `org.eclipse.equinox.cm`                        | 1.5.300 |
+| %systemBundle                                   | `org.eclipse.osgi`                              | 3.20.0  |
+| AOP Alliance API                                | `com.springsource.org.aopalliance`              | 1.0.0   |
+| Apache Commons BeanUtils                        | `org.apache.commons.commons-beanutils`          | 1.9.4   |
+| Apache Commons Codec                            | `org.apache.commons.commons-codec`              | 1.17.1  |
+| Apache Commons Collections                      | `org.apache.commons.collections`                | 3.2.2   |
+| Apache Commons FileUpload                       | `org.apache.commons.commons-fileupload`         | 1.5.0   |
+| Apache Commons IO                               | `org.apache.commons.commons-io`                 | 2.17.0  |
+| Apache Felix Bundle Repository                  | `org.apache.felix.bundlerepository`             | 1.6.6   |
+| Apache Felix EventAdmin                         | `org.apache.felix.eventadmin`                   | 1.6.4   |
+| Apache Felix File Install                       | `org.apache.felix.fileinstall`                  | 3.5.4   |
+| Apache Felix Utils                              | `n.s.external.org.apache.felix.utils`           | 1.8.4   |
+| Apache ServiceMix :: Bundles :: aspectj         | `org.apache.servicemix.bundles.aspectj`         | 1.8.10  |
+| Apache ServiceMix :: Bundles :: cache-api       | `org.apache.servicemix.bundles.javax-cache-api` | 1.1.1   |
+| Apache ServiceMix :: Bundles :: javax.inject    | `org.apache.servicemix.bundles.javax-inject`    | 1.0.0   |
+| Apache Standard Taglib Implementation           | `org.apache.taglibs.standard-impl`              | 1.2.5   |
+| Apache Standard Taglib Specification API        | `org.apache.taglibs.taglibs-standard-spec`      | 1.2.5   |
+| Bean Validation API                             | `jakarta.validation.jakarta.validation-api`     | 2.0.1   |
+| Commons Digester                                | `org.apache.commons.digester`                   | 2.1     |
+| Eclipse Compiler for Java(TM)                   | `org.eclipse.jdt.core.compiler.batch`           | 3.32.0  |
+| Ehcache 3                                       | `org.ehcache`                                   | 3.10.8  |
+| HikariCP                                        | `com.zaxxer.HikariCP`                           | 5.1.0   |
+| Jakarta Annotations API                         | `jakarta.annotation-api`                        | 1.3.5   |
+| Jakarta Authentication                          | `javax.security.auth.message-api`               | 1.1.3   |
+| Jakarta Expression Language 3.0 API             | `javax.el-api`                                  | 3.0.3   |
+| Jakarta Mail API jar                            | `jakarta.mail-api`                              | 1.6.7   |
+| Jakarta Server Pages API                        | `javax.servlet.jsp-api`                         | 2.3.6   |
+| Jakarta Servlet                                 | `jakarta.servlet-api`                           | 4.0.0   |
+| Jakarta WebSocket - Server API                  | `javax.websocket-api`                           | 1.1.2   |
+| JavaBeans Activation Framework                  | `com.sun.activation.jakarta.activation`         | 1.2.1   |
+| JavaBeans Activation Framework API jar          | `jakarta.activation-api`                        | 1.2.1   |
+| jna                                             | `com.sun.jna`                                   | 5.6.0   |
+| Joda-Time                                       | `joda-time`                                     | 2.13.0  |
+| OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                 | 9.0.17  |
+| OPS4J Pax Web - Extender - WAR                  | `org.ops4j.pax.web.pax-web-extender-war`        | 9.0.17  |
+| OPS4J Pax Web - JSP Support                     | `org.ops4j.pax.web.pax-web-jsp`                 | 9.0.17  |
+| OPS4J Pax Web - Runtime                         | `org.ops4j.pax.web.pax-web-runtime`             | 9.0.17  |
+| OPS4J Pax Web - Service SPI (internal)          | `org.ops4j.pax.web.pax-web-spi`                 | 9.0.17  |
+| OPS4J Pax Web - Tomcat                          | `org.ops4j.pax.web.pax-web-tomcat`              | 9.0.17  |
+| OPS4J Pax Web - Tomcat Common                   | `org.ops4j.pax.web.pax-web-tomcat-common`       | 9.0.17  |
+| OPS4J Pax Web - Tomcat WebSocket implementation | `org.ops4j.pax.web.pax-web-tomcat-websocket`    | 9.0.17  |
+| org.osgi:org.osgi.namespace.implementation      | `org.osgi.namespace.implementation`             | 1.0.0   |
+| org.osgi:org.osgi.service.cm                    | `org.osgi.service.cm`                           | 1.6.1   |
+| org.osgi:org.osgi.service.coordinator           | `org.osgi.service.coordinator`                  | 1.0.2   |
+| org.osgi:org.osgi.service.event                 | `org.osgi.service.event`                        | 1.4.1   |
+| org.osgi:org.osgi.service.jdbc                  | `org.osgi.service.jdbc`                         | 1.1.0   |
+| org.osgi:osgi.annotation                        | `osgi.annotation`                               | 8.1.0   |
+| OSGi OBR Service API                            | `org.osgi.service.obr`                          | 1       |
+| pack:tag                                        | `n.s.external.net.sf.packtag`                   | 3.13.1  |
+| smiley-http-proxy-servlet                       | `org.mitre.dsmiley.http-proxy-servlet`          | 1.11    |
+| SolarNetwork Pidfile                            | `n.s.common.pidfile`                            | 1.1.0   |
+| Super CSV Core                                  | `net.sf.supercsv.super-csv`                     | 2.4.0   |
+| Tyrus Websocket Client (JDK)                    | `n.s.external.tyrus-standalone-client-jdk`      | 1.13.0  |
+
+
 ## 4.4.1 - 2024-08-19
 
 This patch release fixes handling of multiple H2 database backup/restore on SolarNode stop/start.
