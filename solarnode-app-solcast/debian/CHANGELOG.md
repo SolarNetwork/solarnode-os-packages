@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.0.1 - 2024-11-05
+
+| Name                 | ID                    | Vers  |
+|:---------------------|:----------------------|:------|
+| Solcast Datum Source | `n.s.n.datum.solcast` | 2.1.1 |
+
+
 ## 1.0.0 - 2024-07-19
 
 | Name                 | ID                    | Vers  |
