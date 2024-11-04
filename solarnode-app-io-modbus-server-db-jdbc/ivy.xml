@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for SMA plugins.
+	This is a SolarNode deployment configuration for Modbus Server DB (JDBC).
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus"/>
+	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus-Server"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.solcast" rev="2.1.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.server.dao.jdbc" rev="1.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
 		<exclude artifact="net.solarnetwork.common.web"/>
 		<exclude artifact="net.solarnetwork.node"/>
+		<exclude artifact="net.solarnetwork.node.dao.jdbc"/>
 		<exclude artifact="net.solarnetwork.node.io.modbus"/>
+		<exclude artifact="net.solarnetwork.node.io.modbus.server"/>
+		<exclude module="nifty-modbus.*" matcher="regexp"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude org="commons-(beanutils|codec|collections|digester|fileupload|io)" matcher="regexp"/>
@@ -24,6 +27,8 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="com.h2database"/>
+		<exclude org="io.netty"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
