@@ -1,0 +1,2 @@
+# Disable configuration of default Modbus Server data source
+# CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1
