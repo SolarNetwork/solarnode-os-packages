@@ -1,0 +1,10 @@
+[Unit]
+Description=Reset Modbus hourly
+
+[Timer]
+OnCalendar=hourly
+AccuracySec=100ms
+RandomizedDelaySec=0
+
+[Install]
+WantedBy=timers.target
