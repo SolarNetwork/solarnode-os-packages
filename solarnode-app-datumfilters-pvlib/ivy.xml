@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for standard datum filter plugins.
+	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Datumfilters"/>
+	<info organisation="SolarNetwork" module="SolarNode-Datumfilters-Pvlib"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.standard" rev="3.10.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.tariff" rev="3.3.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.filter.pvlib" rev="1.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
