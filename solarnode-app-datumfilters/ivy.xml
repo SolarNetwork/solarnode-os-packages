@@ -3,7 +3,7 @@
 	This is a SolarNode deployment configuration for standard datum filter plugins.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus"/>
+	<info organisation="SolarNetwork" module="SolarNode-Datumfilters"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
