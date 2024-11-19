@@ -1,6 +1,6 @@
 NAME = sn-pvlib
 DIST = 
-VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.0.0-3$(if $(DIST),+$(DIST),)
 
 deb : 
 	fpm -s dir -t deb \
@@ -15,6 +15,11 @@ deb :
 		-d 'python3 (>= 3.7)' \
 		-d 'python3-pip' \
 		-d 'python3-venv' \
+		-d 'libatlas3-base' \
+		-d 'libgfortran5' \
+		-d 'libaec0' \
+		-d 'libhdf5-103' \
+		-d 'libsz2' \
 		--after-install $(NAME).postinst \
 		usr var
 
