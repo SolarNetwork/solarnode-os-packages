@@ -20,6 +20,26 @@ cd ..
 make
 ```
 
+## Packaging requirements
+
+Packaging done via [fpm][fpm]. To install `fpm`:
+
+```sh
+apt-get install ruby ruby-dev build-essential
+
+# For Ruby < 2.6
+gem install --no-ri --no-rdoc fpm
+
+# For Ruby 2.6+
+gem install --no-document fpm
+```
+
+Then create packages via:
+
+```sh
+make
+```
+
 To specify a specific distribution target, add the `DIST` parameter, like
 
 ```sh

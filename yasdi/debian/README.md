@@ -19,6 +19,24 @@ make && make DESTDIR=$PWD/local install
 cd ../../../../..
 ```
 
+### Building on Debian 10
+
+Building on Debian 10 in a virtual environment can fail, but the newer `cmake` in backports fixes
+the issue. Install `cmake` from backports like this:
+
+```sh
+# import old debian keys
+apt-key adv --keyserver keyring.debian.org --recv-keys 0E98404D386FA1D9
+apt-key adv --keyserver keyring.debian.org --recv-keys B7C5D7D6350947F8
+
+# configure repo
+echo 'deb http://archive.debian.org/debian buster-backports main contrib non-free' >/etc/apt/sources.list.d/backports.list
+
+# install
+apt update
+apt install cmake/buster-backports
+```
+
 ## Packaging requirements
 
 Packaging done via [fpm][fpm]. To install `fpm`:
