@@ -70,6 +70,11 @@ restore () {
 	fi
 }
 
+if ! command -v java 2>&1 >/dev/null; then
+	echo "Java not available, cannot manage H2 database."
+	exit 0
+fi
+
 # Parse command line parameters.
 case $1 in
 	dump) dump ;;
