@@ -60,6 +60,13 @@ if [ ! -e "$APN" -a -e "$APN_DEFAULT" ]; then
 	ln -s "$APN_DEFAULT" "$APN"
 fi
 
+INITIATE=$CHATSCRIPTS_DIR/initiate
+INITIATE_DEFAULT=/usr/share/solarnode/example/mobile-shield-chat-initiate
+if [ ! -e "$INITIATE" -a -e "$INITIATE_DEFAULT" ]; then
+	echo "Creating default $INITIATE as link to $INITIATE_DEFAULT; you might need to customize this."
+	ln -s "$INITIATE_DEFAULT" "$INITIATE"
+fi
+
 # create default MODE if one does not exist
 MODE=$CHATSCRIPTS_DIR/mode
 MODE_DEFAULT=mode.none

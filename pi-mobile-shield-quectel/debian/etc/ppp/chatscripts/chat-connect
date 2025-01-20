@@ -15,5 +15,5 @@ OK AT+COPS?
 OK @/etc/ppp/chatscripts/mode
 OK AT
 OK @/etc/ppp/chatscripts/apn
-OK ATD*99#
+OK @/etc/ppp/chatscripts/initiate
 CONNECT

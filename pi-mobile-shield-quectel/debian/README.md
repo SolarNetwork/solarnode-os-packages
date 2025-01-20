@@ -42,9 +42,10 @@ The default setup looks like this:
 │   ├── apn -> /usr/share/solarnode/example/mobile-shield-chat-apn
 │   ├── chat-connect
 │   ├── chat-disconnect
-│   ├── mode -> /etc/ppp/chatscripts/mode.none
+│   ├── initiate -> /usr/share/solarnode/example/mobile-shield-chat-initiate
+│   ├── mode -> mode.none
 │   ├── mode.none
-│   ├── pin -> /etc/ppp/chatscripts/pin.none
+│   ├── pin -> pin.none
 │   └── pin.none
 ├── ip-down
 ├── ip-down.d
@@ -66,11 +67,28 @@ To customize, create a `/etc/ppp/chatscripts/apn.mycarrier` file with the necess
 AT+CGDCONT=1,"IP","internet"
 ```
 
-Then create a symlink from that to `/etc/ppp/chatscripts/pin`, e.g.
+Then create a symlink to that from `/etc/ppp/chatscripts/apn`, e.g.
 
 ```sh
-cd /etc/ppp/chatscripts
-ln -sf apn.mycarrier apn
+ln -sf apn.mycarrier /etc/ppp/chatscripts/apn
+```
+
+## Initiate configuration
+
+The initiation of the mobile network must be configured in the `/etc/ppp/chatscripts/initiate` file,
+which is a symlink to the configuration you want to use. This defaults to
+`/usr/share/solarnode/example/mobile-shield-chat-initiate`, which contains `ATD*99#`.
+
+To customize, create a `/etc/ppp/chatscripts/initiate.mycarrier` file with the necessary settings, e.g.
+
+```
+ATD*99***3#
+```
+
+Then create a symlink to that from `/etc/ppp/chatscripts/initiate`, e.g.
+
+```sh
+ln -sf initiate.mycarrier /etc/ppp/chatscripts/initiate
 ```
 
 ## PIN configuration
@@ -81,11 +99,10 @@ Create a `/etc/ppp/chatscripts/pin.code` file with the needed PIN, e.g.
 AT+CPIN=1234
 ```
 
-Then create a symlink from that to `/etc/ppp/chatscripts/pin`, e.g.
+Then create a symlink to that from `/etc/ppp/chatscripts/pin`, e.g.
 
 ```sh
-cd /etc/ppp/chatscripts
-ln -sf pin.code pin
+ln -sf pin.code /etc/ppp/chatscripts/pin
 ```
 
 ## Mode configuration
@@ -96,11 +113,10 @@ Create a `/etc/ppp/chatscripts/mode.X` file with the needed mode, e.g. use `mode
 AT\^SYSCFG=14,2,3fffffff,0,1
 ```
 
-Then create a symlink from that to `/etc/ppp/chatscripts/mode`, e.g.
+Then create a symlink to that from `/etc/ppp/chatscripts/mode`, e.g.
 
 ```sh
-cd /etc/ppp/chatscripts
-ln -sf mode.3G-only mode
+ln -sf mode.3G-only /etc/ppp/chatscripts/mode
 ```
 
 
