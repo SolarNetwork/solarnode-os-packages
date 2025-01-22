@@ -1,6 +1,6 @@
 # SolarNode Elastel EG410 support Debian package
 
-This package provides support for Elastel EG500 devices.
+This package provides support for Elastel EG410 devices.
 
 # USB TTY physical port names
 
@@ -15,10 +15,10 @@ Looking at the side of the device with the HDMI port to the left of the 2 USB po
 
 ```
 +----------+ +-------+
-|   HDMI   | |   1   |
+|   HDMI   | |   2   |
 +----------+ +-------+
              +-------+
-             |   2   |
+             |   1   |
              +-------+
 ```
 
