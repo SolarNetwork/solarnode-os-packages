@@ -4,6 +4,9 @@ This directory contains packaging scripts used to create the `sn-pi-mobile-shiel
 Debian package, which provides configuration and support for Quectel-based 3/4G shields. The goal of
 this package is to configure, start, and maintain a mobile network connection on the shield's modem.
 
+> :warning: This package has been superseded by the
+[sn-pi-mobile-shield-usb](../../pi-mobile-shield-usb/debian) package.
+
 # Services
 
 The `sn-mobile-shield-quectel-pppd` service manages the `pppd` daemon, but is not activated. The
