@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-pi-mobile-shield-usb
 PATHS = etc lib usr
 
@@ -13,6 +13,7 @@ deb : prep
 	--vendor 'SolarNetwork Foundation' \
 	-a all \
 	--force \
+	-d 'iproute2' \
 	-d 'systemd (>= 247)' \
 	-d 'ppp (>= 2.4.9)' \
 	-d 'gpsd (>= 3.22)' \
