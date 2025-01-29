@@ -72,8 +72,7 @@ AT+CGDCONT=1,"IP","internet"
 Then create a symlink from that to `/etc/ppp/chatscripts/pin`, e.g.
 
 ```sh
-cd /etc/ppp/chatscripts
-ln -sf apn.mycarrier apn
+ln -sf apn.mycarrier /etc/ppp/chatscripts/apn
 ```
 
 ## PIN configuration
@@ -87,8 +86,7 @@ AT+CPIN=1234
 Then create a symlink from that to `/etc/ppp/chatscripts/pin`, e.g.
 
 ```sh
-cd /etc/ppp/chatscripts
-ln -sf pin.code pin
+ln -sf pin.code /etc/ppp/chatscripts/pin
 ```
 
 ## Mode configuration
@@ -102,8 +100,7 @@ AT\^SYSCFG=14,2,3fffffff,0,1
 Then create a symlink from that to `/etc/ppp/chatscripts/mode`, e.g.
 
 ```sh
-cd /etc/ppp/chatscripts
-ln -sf mode.3G-only mode
+ln -sf mode.3G-only /etc/ppp/chatscripts/mode
 ```
 
 
