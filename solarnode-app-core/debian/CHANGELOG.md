@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-# 3.39.1 - TODO
+# 3.40.0 - TODO
 
 The following plugins have changed from the previous release:
 
