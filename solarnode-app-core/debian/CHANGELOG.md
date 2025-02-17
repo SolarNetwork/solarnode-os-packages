@@ -12,6 +12,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+# 3.40.0 - TODO
+
+The following plugins have changed from the previous release:
+
+| Name                            | ID                             | Old Vers | New Vers |
+|:--------------------------------|:-------------------------------|:---------|:---------|
+| Core SolarNetwork Support       | `n.s.common`                   | 3.28.0 | 3.28.1 |
+
+The complete list of plugins included is:
+
+TODO
+
 # 3.39.0 - 2024-11-27
 
 The following plugins have changed from the previous release:

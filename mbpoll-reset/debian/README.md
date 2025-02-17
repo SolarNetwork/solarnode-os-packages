@@ -35,7 +35,7 @@ unit, for example to change the `@default` service to run every 15 minutes, crea
 
 ```
 [Timer]
-OnCalendar=*-*-* *:0,15,30,45:*
+OnCalendar=*-*-* *:0,15,30,45:0
 ```
 
 After creating the drop-in, be sure to run
@@ -61,13 +61,13 @@ Tue 2024-10-01 14:15:00 NZDT 10min left Tue 2024-10-01 14:02:05 NZDT 1min 57s ag
 Use `sudo systemctl status` to view the last executed reset status, for example:
 
 ```sh
-sudo systemctl list-timers sn-mbpoll-reset@default
+sudo systemctl status sn-mbpoll-reset@default
 
 ● sn-mbpoll-reset@default.service - Reset Modubs
      Loaded: loaded (/lib/systemd/system/sn-mbpoll-reset@.service; static)
      Active: failed (Result: exit-code) since Tue 2024-10-01 14:02:06 NZDT; 3min 29s ago
 TriggeredBy: ● sn-mbpoll-reset@default.timer
-    Process: 2866 ExecStart=/usr/bin/sh -c /usr/bin/mbpoll -q -0 -1 -t 4:hex -a ${MODBUS_UNIT} -r ${MODBUS_REGISTER} ${MODBUS_ADDR} ${MODBUS_DATA} (code=exited, status=1/FAILUR>
+    Process: 2866 ExecStart=/bin/sh -c /usr/bin/mbpoll -q -0 -1 -t 4:hex -a ${MODBUS_UNIT} -r ${MODBUS_REGISTER} ${MODBUS_ADDR} ${MODBUS_DATA} (code=exited, status=1/FAILUR>
    Main PID: 2866 (code=exited, status=1/FAILURE)
         CPU: 14ms
 

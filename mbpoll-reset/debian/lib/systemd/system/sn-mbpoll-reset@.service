@@ -4,5 +4,6 @@ ConditionPathExists=/etc/solarnode/sn-mbpoll-reset@%i.conf
 
 [Service]
 Type=oneshot
+Restart=no
 EnvironmentFile=/etc/solarnode/sn-mbpoll-reset@%i.conf
-ExecStart=/usr/bin/sh -c "/usr/bin/mbpoll -q -0 -1 ${MODBUS_OPTS} -a ${MODBUS_UNIT} -r ${MODBUS_REGISTER} ${MODBUS_ADDR} ${MODBUS_DATA}"
+ExecStart=/bin/sh -c "/usr/bin/mbpoll -q -0 -1 ${MODBUS_OPTS} -a ${MODBUS_UNIT} -r ${MODBUS_REGISTER} ${MODBUS_ADDR} ${MODBUS_DATA}"
