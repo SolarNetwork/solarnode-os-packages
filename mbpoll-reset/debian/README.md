@@ -51,7 +51,7 @@ to apply the change.
 You can view the timer schedule with `sudo systemctl list-timers` like:
 
 ```sh
-sudo systemctl list-timers sn-mbpoll-reset@default
+systemctl list-timers sn-mbpoll-reset@default
 NEXT                         LEFT       LAST                         PASSED       UNIT                          ACTIVATES
 Tue 2024-10-01 14:15:00 NZDT 10min left Tue 2024-10-01 14:02:05 NZDT 1min 57s ago sn-mbpoll-reset@default.timer sn-mbpoll-reset@default.service
 ```
