@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-modbus-nifty-pjc
-VERSION = 1.1.6-1
+VERSION = 1.1.7-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
