@@ -1,26 +1,6 @@
-# SolarNode Elastel EG410 support Debian package
+# SolarNode IoT DIN iMX8p support Debian package
 
-This package provides support for Elastel EG410 devices.
-
-# USB TTY physical port names
-
-This package installs some udev rules that create consistently named symlinks to USB TTY (serial)
-devices based on the physical USB ports on the device. This is to help with configuring services
-that depend on serial devices being plugged into specific ports for deployment reasons.
-
-Links are named `/dev/ttyUSB_X` where `X` is a number staring a `1`.
-
-Looking at the side of the device with the HDMI port to the left of the 2 USB ports labeled as
-`ttyUSB_1` and `ttyUSB_2`:
-
-```
-+----------+ +-------+
-|   HDMI   | |   2   |
-+----------+ +-------+
-             +-------+
-             |   1   |
-             +-------+
-```
+This package provides support for Compulab IoT DIN iMX8p devices.
 
 # Building
 
