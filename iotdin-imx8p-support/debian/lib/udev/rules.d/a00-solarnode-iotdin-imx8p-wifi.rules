@@ -1,0 +1,2 @@
+# Rename WiFi network interfaces from mlan to wlan for compatibility
+SUBSYSTEM=="net", DRIVERS=="?*", KERNEL=="mlan*", NAME="wlan%n"
