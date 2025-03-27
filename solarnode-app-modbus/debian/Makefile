@@ -1,5 +1,5 @@
 NAME = solarnode-app-modbus
-VERSION = 1.2.2-1
+VERSION = 1.3.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -19,7 +19,7 @@ pkg : app table
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-core (>= 3.26)' \
-		-d 'solarnode-app-io-modbus (>= 3.2)' \
+		-d 'solarnode-app-io-modbus (>= 3.3)' \
 		-d 'solarnode-io-modbus' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
