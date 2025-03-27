@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-modbus-server-db-jdbc
-VERSION = 1.0.0-1
+VERSION = 1.1.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
