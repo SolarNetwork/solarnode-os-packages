@@ -1,5 +1,5 @@
 NAME = solarnode-app-metrics-db-jdbc
-VERSION = 1.3.0-1
+VERSION = 1.3.1-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

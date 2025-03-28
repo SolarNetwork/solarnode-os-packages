@@ -3,13 +3,13 @@
 	This is a SolarNode deployment configuration for Bacnet plugins.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus"/>
+	<info organisation="SolarNetwork" module="SolarNode-App-Bacnet"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.bacnet" rev="2.2.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.bacnet" rev="2.2.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.bacnet" rev="2.3.1"/>
 
 		<!-- solarnode-app-core excludes -->
