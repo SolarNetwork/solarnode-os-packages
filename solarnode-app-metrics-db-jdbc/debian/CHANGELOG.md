@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 1.3.0 - TODO
+## 1.3.1 - 2025-03-28
 
 This release requires [`solarnode-app-core` 3.40][app-core-log] or newer.
 
@@ -20,7 +20,7 @@ The complete list of plugins included is:
 
 | Name               | ID                       | Vers  |
 |:-------------------|:-------------------------|:------|
-| Metrics DAO (JDBC) | `n.s.n.metrics.dao.jdbc` | 1.3.0 |
+| Metrics DAO (JDBC) | `n.s.n.metrics.dao.jdbc` | 1.3.1 |
 
 
 ## 1.2.1 - 2024-08-12

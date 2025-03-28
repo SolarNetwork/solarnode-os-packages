@@ -12,6 +12,15 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.1 - 2025-03-28
+
+The complete list of plugins included is:
+
+| Name                             | ID                                | Vers  |
+|:---------------------------------|:----------------------------------|:------|
+| Modbus Server Persistence (JDBC) | `n.s.n.io.modbus.server.dao.jdbc` | 1.1.1 |
+
+
 ## 1.1.0 - 2025-03-13
 
 The complete list of plugins included is:
