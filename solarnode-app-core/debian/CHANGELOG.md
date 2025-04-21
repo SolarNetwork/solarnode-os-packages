@@ -12,6 +12,53 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+# 3.41.0 - 2025-04-22
+
+The following plugins have changed from the previous release:
+
+| Name                            | ID                             | Old Vers | New Vers |
+|:--------------------------------|:-------------------------------|:---------|:---------|
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 3.3.1  | 3.4.0  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 4.10.3 | 4.11.0 |
+| Core SolarNetwork Support       | `n.s.common`                   | 3.30.1 | 3.31.0 |
+| Core SolarNode Framework        | `n.s.node`                     | 3.22.2 | 3.23.0 |
+
+The complete list of plugins included is:
+
+| Name                            | ID                             | Vers   |
+|:--------------------------------|:-------------------------------|:-------|
+| Auto Setup                      | `n.s.n.setup.auto`             | 2.0.0  |
+| Backup External Filesystems     | `n.s.n.backup.ext`             | 3.0.0  |
+| Bouncy Castle PKI               | `n.s.common.pki.bc`            | 3.1.0  |
+| Command Line System Service     | `n.s.n.system.cmdline`         | 3.1.0  |
+| Common AWS S3 Support           | `n.s.common.s3`                | 3.2.0  |
+| Common AWS S3 Support - SDK     | `n.s.common.s3.sdk`            | 2.0.0  |
+| Core Database Connection        | `n.s.n.dao.jdbc.con`           | 1.1.0  |
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 3.4.0  |
+| Core OSGi Support               | `n.s.common.osgi`              | 2.2.0  |
+| Core Reactor Service            | `n.s.n.reactor.simple`         | 3.1.0  |
+| Core Security                   | `n.s.n.setup.security`         | 3.0.0  |
+| Core Settings Support           | `n.s.n.settings.ca`            | 3.5.0  |
+| Core Setup Support              | `n.s.n.setup`                  | 3.0.1  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 4.11.0 |
+| Core SolarNetwork Support       | `n.s.common`                   | 3.31.0 |
+| Core SolarNetwork Web Support   | `n.s.common.web`               | 3.3.3  |
+| Core SolarNode Framework        | `n.s.node`                     | 3.23.0 |
+| Debian Setup Support            | `n.s.n.setup.deb`              | 3.0.0  |
+| Eclipse Gemini Web Support      | `n.s.common.web.gemini`        | 3.1.0  |
+| Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.4  |
+| Log4j2 Support                  | `n.s.n.setup.log4j2`           | 1.0.0  |
+| Metadata Service (SolarNetwork) | `n.s.n.metadata.json`          | 3.2.2  |
+| Metrics Core                    | `n.s.n.metrics`                | 1.2.0  |
+| Reactor Database Storage        | `n.s.n.reactor.dao.jdbc`       | 3.1.0  |
+| S3 Backup                       | `n.s.n.backup.s3`              | 3.0.0  |
+| S3 Setup                        | `n.s.n.setup.s3`               | 3.0.1  |
+| SolarIn/HTTP Upload Service     | `n.s.n.upload.bulkjsonwebpost` | 3.0.0  |
+| SolarIn/MQTT integration        | `n.s.n.upload.mqtt`            | 3.2.1  |
+| SolarNet Location Service       | `n.s.n.location.ws`            | 4.0.0  |
+| Spring Expression Service       | `n.s.common.expr.spel`         | 3.1.0  |
+| System SSH Support              | `n.s.n.system.ssh`             | 3.0.0  |
+
 # 3.40.3 - 2025-03-28
 
 The following plugins have changed from the previous release:
@@ -24,7 +71,6 @@ The following plugins have changed from the previous release:
 | Core SolarNetwork Web Support   | `n.s.common.web`               | 3.3.2  | 3.3.3  |
 | Core SolarNode Framework        | `n.s.node`                     | 3.22.1 | 3.22.2 |
 | SolarIn/MQTT integration        | `n.s.n.upload.mqtt`            | 3.2.0  | 3.2.1  |
-
 
 The complete list of plugins included is:
 
