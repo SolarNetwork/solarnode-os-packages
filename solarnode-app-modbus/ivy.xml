@@ -13,7 +13,7 @@
 			<exclude org="net.solarnetwork.common"/>
 			<exclude name="net.solarnetwork.node.io.modbus"/>
 		</dependency>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.modbus" rev="4.1.1">
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.modbus" rev="4.2.0">
 			<exclude org="net.solarnetwork.common"/>
 			<exclude name="net.solarnetwork.node.io.modbus"/>
 		</dependency>

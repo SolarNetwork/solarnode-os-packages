@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-h2-nonvolatile
-VERSION = 2.0.0-1
+VERSION = 2.0.2-1
 ASSEMBLE_PATHS = etc
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -24,7 +24,7 @@ pkg : prep app assemble table
 		--replaces 'solarnode-app-db' \
 		-d 'solarnode-base (>= 1.14)' \
 		-d 'solarnode-base-h2 (>= 1.0)' \
-		-d 'solarnode-app-core (>= 2.7)' \
+		-d 'solarnode-app-core (>= 3.41)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \
