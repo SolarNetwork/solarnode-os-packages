@@ -12,6 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.9.0 - 2025-04-30
+
+| Name                     | ID                            | Vers   |
+|:-------------------------|:------------------------------|:-------|
+| Datum Filters (Standard) | `n.s.n.datum.filter.standard` | 3.13.0 |
+| Tariff Datum Filter      | `n.s.n.datum.filter.tariff`   | 3.3.0  |
+
+
 ## 1.8.0 - 2025-04-22
 
 | Name                     | ID                            | Vers   |
