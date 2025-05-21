@@ -1,5 +1,5 @@
-NAME = solarnode-base-purejavacomm
-VERSION = 1.0.2-2
+NAME = solarnode-base-jna
+VERSION = 1.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,15 +14,12 @@ deb : prep app-core assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode platform PureJavaComm support' \
+		--description 'SolarNode platform Java Native Access support' \
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 4.6)' \
-		-d 'solarnode-base-jna' \
-		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
-		--replaces 'solarnode-base (<< 1.13)' \
-		--deb-field 'Breaks: solarnode-app-io-pjc (<< 1.1)' \
-		--replaces 'solarnode-app-io-pjc (<< 1.1)' \
+		--deb-field 'Breaks: solarnode-base (<< 4.6)' \
+		--replaces 'solarnode-base (<< 4.6)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

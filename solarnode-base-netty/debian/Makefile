@@ -1,5 +1,5 @@
 NAME = solarnode-base-netty
-VERSION = 1.1.0-0
+VERSION = 1.2.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -17,7 +17,7 @@ deb : prep app-core assemble table
 		--description 'SolarNode platform Netty support' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 1.13)' \
+		-d 'solarnode-base (>= 4.6)' \
 		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
 		--replaces 'solarnode-base (<< 1.13)' \
 		--after-install $(NAME).postinst \
