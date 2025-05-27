@@ -1,5 +1,5 @@
 NAME = solarnode-base-nifty-modbus-pjc
-VERSION = 0.17.0-1
+VERSION = 0.18.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -18,6 +18,7 @@ deb : prep app-core assemble table
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 1.13)' \
+		-d 'solarnode-base-netty (>= 1.2)' \
 		-d 'solarnode-base-purejavacomm' \
 		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
 		--replaces 'solarnode-base (<< 1.13)' \

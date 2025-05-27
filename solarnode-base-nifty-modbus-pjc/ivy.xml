@@ -9,11 +9,11 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-api" rev="0.17.0"/>
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-core" rev="0.17.0"/>
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu" rev="0.17.0"/>
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu-pjc" rev="0.17.0"/>
-		<dependency org="net.solarnetwork.common" name="nifty-modbus-tcp" rev="0.17.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-api" rev="0.18.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-core" rev="0.18.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu" rev="0.18.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-rtu-pjc" rev="0.18.0"/>
+		<dependency org="net.solarnetwork.common" name="nifty-modbus-tcp" rev="0.18.0"/>
 
 		<exclude org="io.netty"/>
 		<exclude org="net.java.dev.jna"/>

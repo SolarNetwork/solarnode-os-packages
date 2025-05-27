@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for Modbus based plugins that use the Jamod PJC
-	framework.
+	This is a SolarNode deployment configuration for the MQTT Netty framework.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus-Jamod-PJC"/>
+	<info organisation="SolarNetwork" module="SolarNode-IO-MQTT-Netty"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt.netty" rev="4.0.3"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt.netty" rev="4.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-mqtt-netty
-VERSION = 4.0.3-1
+VERSION = 4.1.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -19,6 +19,7 @@ pkg : app table
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-io-mqtt (>= 4.0)' \
+		-d 'solarnode-base-netty (>= 1.2)' \
 		--conflicts 'solarnode-io-mqtt' \
 		--replaces 'solarnode-io-mqtt' \
 		--provides 'solarnode-io-mqtt' \
