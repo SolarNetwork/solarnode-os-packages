@@ -3,6 +3,17 @@
 This document details the history of changes of the `solarnode-base-h2` package, from newest to
 oldest.
 
+## 1.2.0 - 2025-05-28
+
+ * Requires [`solarnode-base`](../../solarnode-base/debian) **4.3** or higher
+
+The complete list of plugins included is:
+
+| Name               | ID               | Vers    |
+|:-------------------|:-----------------|:--------|
+| H2 Database Engine | `com.h2database` | 2.3.232 |
+
+
 ## 1.1.0 - 2022-06-18
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **4.3** or higher

@@ -10,7 +10,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- H2 Support -->
-		<dependency org="com.h2database" name="h2" rev="2.2.224" />
+		<dependency org="com.h2database" name="h2" rev="2.3.232" />
 
 		<!-- Global excludes provided by the base system -->
 
