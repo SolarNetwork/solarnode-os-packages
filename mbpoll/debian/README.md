@@ -29,10 +29,6 @@ Packaging done via [fpm][fpm]. To install `fpm`:
 ```sh
 $ sudo apt install ruby ruby-dev build-essential
 
-# For Ruby < 2.6
-$ sudo gem install --no-ri --no-rdoc fpm
-
-# For Ruby 2.6+
 $ sudo gem install --no-document fpm
 ```
 To specify a specific distribution target, add the `DIST` parameter, like

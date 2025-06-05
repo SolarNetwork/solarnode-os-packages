@@ -12,10 +12,6 @@ The exact build requirements vary for each package. Most packages use [`make`][m
 ```sh
 sudo apt install git ruby ruby-dev build-essential
 
-# For Ruby < 2.6
-sudo gem install --no-ri --no-rdoc fpm
-
-# For Ruby 2.6+
 sudo gem install --no-document fpm
 ```
 

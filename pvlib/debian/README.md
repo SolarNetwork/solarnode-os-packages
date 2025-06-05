@@ -13,7 +13,7 @@ Packaging is done via `make` with [fpm][fpm]. To get started:
 
 ```sh
 sudo apt-get install ruby ruby-dev build-essential
-sudo gem install --no-ri --no-rdoc fpm
+sudo gem install --no-document fpm
 ```
 
 # Building
