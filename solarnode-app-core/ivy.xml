@@ -47,7 +47,7 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.ssh" rev="3.0.0"/>
 
 		<!-- For standard deployments, include the .setup, .bulkjsonwebpost, and .mqtt bundles -->
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="3.0.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="3.0.2"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.bulkjsonwebpost" rev="3.0.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.upload.mqtt" rev="3.2.1"/>
 

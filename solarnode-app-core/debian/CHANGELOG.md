@@ -21,6 +21,7 @@ The following plugins have changed from the previous release:
 | Core Database Connection        | `n.s.n.dao.jdbc.con`           | 1.1.0  | 1.2.0 |
 | Core Database Storage Support   | `n.s.n.dao.jdbc`               | 3.5.1  | 3.6.0 |
 | Core Reactor Service            | `n.s.n.reactor.simple`         | 3.1.0  | 3.1.1 |
+| Core Setup Support              | `n.s.n.setup`                  | 3.0.1  | 3.0.2 |
 | Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 2.0.5  | 2.0.6 |
 | Reactor Database Storage        | `n.s.n.reactor.dao.jdbc`       | 3.1.0  | 3.1.1 |
 
@@ -40,7 +41,7 @@ The complete list of plugins included is:
 | Core Reactor Service            | `n.s.n.reactor.simple`         | 3.1.1  |
 | Core Security                   | `n.s.n.setup.security`         | 3.0.0  |
 | Core Settings Support           | `n.s.n.settings.ca`            | 3.5.0  |
-| Core Setup Support              | `n.s.n.setup`                  | 3.0.1  |
+| Core Setup Support              | `n.s.n.setup`                  | 3.0.2  |
 | Core Setup Web App              | `n.s.n.setup.web`              | 4.11.1 |
 | Core SolarNetwork Support       | `n.s.common`                   | 3.32.0 |
 | Core SolarNetwork Web Support   | `n.s.common.web`               | 3.3.3  |
