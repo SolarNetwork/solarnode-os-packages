@@ -1,12 +1,13 @@
-NAME = solarnode-app-core
-VERSION = 3.45.0-1
-PATHS = var
+NAME = solarnode-app-db-postgres
+VERSION = 1.0.0-1
+ASSEMBLE_PATHS = etc usr
+PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
-SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
+SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
-pkg : app-core table
+pkg : prep app assemble table
 	fpm -s dir \
 		-t deb \
 		-n $(NAME) \
@@ -14,32 +15,34 @@ pkg : app-core table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode application core' \
+		--description 'SolarNode DB - Postgres' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'sn-solarpkg (>= 1.2)' \
-		-d 'sn-solarssh (>= 1.0)' \
-		-d 'sn-system (>= 1.6)' \
-		-d 'solarnode-base (>= 4.6)' \
-		-d 'solarnode-base-bouncy-castle' \
-		-d 'solarnode-base-blueprint-gemini' \
-		-d 'solarnode-base-jaxb' \
-		-d 'solarnode-base-netty' \
-		-d 'solarnode-base-tiles' \
-		-d 'solarnode-base-xalan' \
-		-d 'solarnode-app-io-mqtt (>= 4.0)' \
-		-d 'solarnode-app-db-h2 (>= 2.0.3) | solarnode-app-db' \
+		--provides 'solarnode-app-db' \
+		--conflicts 'solarnode-app-db' \
+		--replaces 'solarnode-app-db' \
+		-d 'solarnode-base-postgres' \
+		-d 'solarnode-app-core (>= 3.45)' \
 		--after-install $(NAME).postinst \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
+prep : 
+	rm -rf $(DEB_BUILD_ROOT)
+	mkdir -p $(DEB_BUILD_ROOT)
+	find $(ASSEMBLE_PATHS) -type f -name .DS_Store -delete
+
+assemble : 
+	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
+
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
 
-app-core :
+app :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
+		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
 		"-Ddeb.nocopy=1" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble

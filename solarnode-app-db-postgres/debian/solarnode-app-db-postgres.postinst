@@ -1,0 +1,36 @@
+#!/bin/sh -e
+
+USER=solar
+
+SOLARNODE_HOME=/var/lib/solarnode
+CONF_DIR=/etc/solarnode
+WORK_DIR=/run/solarnode
+
+setup_datasource () {
+	local conf_file="${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-postgres.cfg"
+	local conf_file_example="/usr/share/solarnode/example/net.solarnetwork.jdbc.pool.hikari-solarnode-postgres.cfg"
+	if [ ! -e "$conf_file" -a -e "$conf_file_example" ]; then
+		echo "Creating default Postgres DataSource configuration $conf_file."
+		install -o $USER -g $USER -m 600 "$conf_file_example" "$conf_file"
+	fi
+}
+
+setup_datasource
+
+# Metrics DataSource
+if ! grep -q '^CFG_WITHOUT_METRICS_DATASOURCE=1' /etc/default/solarnode-app-metrics-db-jdbc 2>/dev/null 1>&2; then
+	echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-metrics-db-jdbc.'
+	echo 'CFG_WITHOUT_METRICS_DATASOURCE=1' >>/etc/default/solarnode-app-metrics-db-jdbc
+fi
+
+# Modbus Server DataSource
+if ! grep -q '^CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' /etc/default/solarnode-app-io-modbus-server-db-jdbc 2>/dev/null 1>&2; then
+	echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-io-modbus-server-db-jdbc.'
+	echo 'CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' >>/etc/default/solarnode-app-io-modbus-server-db-jdbc
+fi
+
+if [ -f /usr/share/solarnode/bin/solarnode-app-db-postgres-utils.sh ]; then
+	. /usr/share/solarnode/bin/solarnode-app-db-postgres-utils.sh
+	setup_db_user
+	setup_db
+fi
