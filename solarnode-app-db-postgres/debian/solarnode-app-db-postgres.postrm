@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ]; then
+	if systemctl is-enabled solarnode-app-db-postgres.service >/dev/null; then
+		systemctl disable solarnode-app-db-postgres.service || true
+	fi
+	systemctl daemon-reload >/dev/null || true
+fi

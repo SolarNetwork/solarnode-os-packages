@@ -1,10 +1,21 @@
 #!/bin/sh -e
 
+CONF="/usr/share/solarnode/default/solarnode-app-db-postgres"
+VENDOR_CONF="/etc/default/solarnode-app-db-postgres"
+
 USER=solar
+PG_USER=postgres
 
 SOLARNODE_HOME=/var/lib/solarnode
 CONF_DIR=/etc/solarnode
 WORK_DIR=/run/solarnode
+
+if [ -e "$CONF" ]; then
+	. "$CONF"
+fi
+if [ -e "$VENDOR_CONF" ]; then
+	. "$VENDOR_CONF"
+fi
 
 setup_datasource () {
 	local conf_file="${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-postgres.cfg"
@@ -15,22 +26,41 @@ setup_datasource () {
 	fi
 }
 
-setup_datasource
+setup_conf () {
+	local conf_file="/etc/postgresql/17/main/conf.d/solarnode.conf"
+	local conf_file_example="/usr/share/solarnode/example/postgres.conf"
+	if [ ! -e "$conf_file" -a -e "$conf_file_example" ]; then
+		echo "Creating default Postgres configuration $conf_file."
+		install -o $PG_USER -g $PG_USER -m 644 "$conf_file_example" "$conf_file"
+	fi
+}
 
-# Metrics DataSource
-if ! grep -q '^CFG_WITHOUT_METRICS_DATASOURCE=1' /etc/default/solarnode-app-metrics-db-jdbc 2>/dev/null 1>&2; then
-	echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-metrics-db-jdbc.'
-	echo 'CFG_WITHOUT_METRICS_DATASOURCE=1' >>/etc/default/solarnode-app-metrics-db-jdbc
-fi
+if [ "$1" = "configure" ]; then
+	systemctl daemon-reload >/dev/null || true
+	if ! systemctl --quiet is-enabled solarnode-app-db-postgres.service >/dev/null; then
+		echo 'Enabling solarnode-app-db-postgres.service...'
+		systemctl enable solarnode-app-db-postgres.service || true
+	fi
 
-# Modbus Server DataSource
-if ! grep -q '^CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' /etc/default/solarnode-app-io-modbus-server-db-jdbc 2>/dev/null 1>&2; then
-	echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-io-modbus-server-db-jdbc.'
-	echo 'CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' >>/etc/default/solarnode-app-io-modbus-server-db-jdbc
-fi
+	setup_datasource
+	
+	if [ -z "$CFG_WITHOUT_POSTGRES_SETTINGS" ]; then
+		setup_conf
+	fi
+	
+	if systemctl --quiet is-active postgresql@17-main; then
+		systemctl restart postgresql@17-main || true
+	fi
 
-if [ -f /usr/share/solarnode/bin/solarnode-app-db-postgres-utils.sh ]; then
-	. /usr/share/solarnode/bin/solarnode-app-db-postgres-utils.sh
-	setup_db_user
-	setup_db
+	# Metrics DataSource
+	if ! grep -q '^CFG_WITHOUT_METRICS_DATASOURCE=1' /etc/default/solarnode-app-metrics-db-jdbc 2>/dev/null 1>&2; then
+		echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-metrics-db-jdbc.'
+		echo 'CFG_WITHOUT_METRICS_DATASOURCE=1' >>/etc/default/solarnode-app-metrics-db-jdbc
+	fi
+	
+	# Modbus Server DataSource
+	if ! grep -q '^CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' /etc/default/solarnode-app-io-modbus-server-db-jdbc 2>/dev/null 1>&2; then
+		echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-io-modbus-server-db-jdbc.'
+		echo 'CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' >>/etc/default/solarnode-app-io-modbus-server-db-jdbc
+	fi
 fi

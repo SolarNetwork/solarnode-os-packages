@@ -27,3 +27,27 @@ setup_db () {
 		su $PG_ADMIN_USER -c "psql $PSQL_CONN_ARGS -U $PG_ADMIN_USER -d $PG_ADMIN_DB -P pager=off -XtAc "'"'"CREATE DATABASE $PG_DB WITH ENCODING='UTF8' OWNER=$PG_DB_OWNER TEMPLATE=$PG_TEMPLATE_DB LC_COLLATE='C' LC_CTYPE='C'"'"'
 	fi
 }
+
+# Parse command line parameters.
+case $1 in
+	setup)
+		setup_db_user
+		setup_db
+		;;
+
+	setup-user)
+		setup_db_user
+		;;
+
+	start-db)
+		setup_db
+		;;
+
+	*)
+		# Print help
+		echo "Usage: $0 {auto-settings-add|auto-settings-remove|equinox-bundles-add|equinox-bundles-remove|noop|reset|setup|start|stop}" 1>&2
+		exit 1
+		;;
+esac
+
+exit 0

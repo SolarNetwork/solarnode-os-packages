@@ -1,0 +1,11 @@
+[Unit]
+Description=SolarNode Postgres database setup
+PartOf=postgresql@17-main.service
+After=postgresql@17-main.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /usr/share/solarnode/bin/solarnode-app-db-postgres-utils.sh setup
+
+[Install]
+WantedBy=postgresql@17-main.service

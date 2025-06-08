@@ -1,6 +1,6 @@
 NAME = solarnode-app-db-postgres
 VERSION = 1.0.0-1
-ASSEMBLE_PATHS = etc usr
+ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -22,9 +22,11 @@ pkg : prep app assemble table
 		--provides 'solarnode-app-db' \
 		--conflicts 'solarnode-app-db' \
 		--replaces 'solarnode-app-db' \
+		-d 'postgresql-17' \
 		-d 'solarnode-base-postgres' \
 		-d 'solarnode-app-core (>= 3.45)' \
 		--after-install $(NAME).postinst \
+		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
