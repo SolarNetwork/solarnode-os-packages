@@ -9,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.loxone" rev="3.1.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.loxone" rev="3.1.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web.loxone" rev="3.0.4"/>
 
 		<!-- solarnode-app-core excludes -->
