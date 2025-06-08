@@ -1,0 +1,2 @@
+# Disable configuration of default Data data source
+# CFG_WITHOUT_DATA_DATASOURCE=1

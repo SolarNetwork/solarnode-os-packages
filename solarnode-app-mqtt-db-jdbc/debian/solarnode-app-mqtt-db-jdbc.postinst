@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+CONF="/usr/share/solarnode/default/solarnode-app-mqtt-db-jdbc"
+VENDOR_CONF="/etc/default/solarnode-data-db-jdbc"
+
+DATASOURCE_CONF_DEFAULT="/usr/share/solarnode/example/net.solarnetwork.jdbc.pool.hikari-solarnode-mqtt.cfg"
+DATASOURCE_CONF="/etc/solarnode/services/net.solarnetwork.jdbc.pool.hikari-solarnode-data.cfg"
+
+USER=solar
+
+if [ -e "$CONF" ]; then
+	. "$CONF"
+fi
+if [ -e "$VENDOR_CONF" ]; then
+	. "$VENDOR_CONF"
+fi
+
+if [ -z "$CFG_WITHOUT_DATA_DATASOURCE" -a ! -e "$DATASOURCE_CONF" -a -e "$DATASOURCE_CONF_DEFAULT" ]; then
+	echo "Creating default Data database configuration $DATASOURCE_CONF"
+	cp "$DATASOURCE_CONF_DEFAULT" "$DATASOURCE_CONF"
+	if id -u "$USER" >/dev/null 2>/dev/null; then
+		chown "$USER:$USER" "$DATASOURCE_CONF"
+	fi
+fi
