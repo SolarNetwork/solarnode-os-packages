@@ -52,6 +52,12 @@ if [ "$1" = "configure" ]; then
 		systemctl restart postgresql@17-main || true
 	fi
 
+	# Data datasource
+	if ! grep -q '^CFG_WITHOUT_DATA_DATASOURCE=1' /etc/default/solarnode-data-db-jdbc 2>/dev/null 1>&2; then
+		echo 'Disabling automatic data datasource in /etc/default/solarnode-data-db-jdbc.'
+		echo 'CFG_WITHOUT_DATA_DATASOURCE=1' >>/etc/default/solarnode-data-db-jdbc
+	fi
+
 	# Metrics DataSource
 	if ! grep -q '^CFG_WITHOUT_METRICS_DATASOURCE=1' /etc/default/solarnode-app-metrics-db-jdbc 2>/dev/null 1>&2; then
 		echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-metrics-db-jdbc.'
