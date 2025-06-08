@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+APT_CONF="/etc/apt/sources.list.d/pgdg.list"
+KEY_FILE="/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc"
+
+if [ ! -e "$KEY_FILE" ]; then
+	if type curl >/dev/null 2>&1; then
+		echo "Downloading PGDG package signing key from www.postgresql.org."
+		install -d /usr/share/postgresql-common/pgdg
+		curl -s -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail \
+			https://www.postgresql.org/media/keys/ACCC4CF8.asc
+	fi
+fi
+
+if [ -e /etc/os-release -a ! -e "$APT_CONF" -a -e "$KEY_FILE" ]; then
+	relname="$(grep VERSION_CODENAME /etc/os-release |sed 's/^.*=//')"
+	if [ -n "$relname" ]; then
+		echo "Adding PGDG apt package repository."
+		echo "deb [signed-by=${KEY_FILE}] https://apt.postgresql.org/pub/repos/apt ${relname}-pgdg main" \
+			>"$APT_CONF"
+	fi
+fi
