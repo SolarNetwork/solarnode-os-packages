@@ -52,7 +52,14 @@ if [ "$1" = "configure" ]; then
 		systemctl restart postgresql@17-main || true
 	fi
 
-	# Data datasource
+	# Default DataSource
+	if [ -e "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode.cfg" ]; then
+		echo "Disabling old DataSource configuration ${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode.cfg."
+		mv "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode.cfg" \
+			"${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode.cfg.disabled"
+	fi
+
+	# Data DataSource
 	if ! grep -q '^CFG_WITHOUT_DATA_DATASOURCE=1' /etc/default/solarnode-data-db-jdbc 2>/dev/null 1>&2; then
 		echo 'Disabling automatic data datasource in /etc/default/solarnode-data-db-jdbc.'
 		echo 'CFG_WITHOUT_DATA_DATASOURCE=1' >>/etc/default/solarnode-data-db-jdbc

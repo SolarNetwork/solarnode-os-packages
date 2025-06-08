@@ -10,7 +10,9 @@ The [sn-pgdg-repo](../../pgdg-repo/debian/) package can be used to integrate tha
 SolarNode, and should be installed before this package. For example:
 
 ```sh
-sudo apt install sn-pgdg-repo solarnode-app-db-postgres
+sudo apt install sn-pgdg-repo
+sudo apt update
+sudo apt install solarnode-app-db-postgres
 ```
 
 > :warning: **Note** if migrating an existing SolarNode from a different database platform, you
