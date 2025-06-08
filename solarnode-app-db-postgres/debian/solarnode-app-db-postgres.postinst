@@ -38,7 +38,7 @@ setup_conf () {
 if [ "$1" = "configure" ]; then
 	systemctl daemon-reload >/dev/null || true
 	if ! systemctl --quiet is-enabled solarnode-app-db-postgres.service >/dev/null; then
-		echo 'Enabling solarnode-app-db-postgres.service...'
+		echo 'Enabling solarnode-app-db-postgres.service.'
 		systemctl enable solarnode-app-db-postgres.service || true
 	fi
 
@@ -57,16 +57,31 @@ if [ "$1" = "configure" ]; then
 		echo 'Disabling automatic data datasource in /etc/default/solarnode-data-db-jdbc.'
 		echo 'CFG_WITHOUT_DATA_DATASOURCE=1' >>/etc/default/solarnode-data-db-jdbc
 	fi
+	if [ -e "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-data.cfg" ]; then
+		echo "Disabling old DataSource configuration ${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-data.cfg."
+		mv "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-data.cfg" \
+			"${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-data.cfg.disabled"
+	fi
 
 	# Metrics DataSource
 	if ! grep -q '^CFG_WITHOUT_METRICS_DATASOURCE=1' /etc/default/solarnode-app-metrics-db-jdbc 2>/dev/null 1>&2; then
 		echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-metrics-db-jdbc.'
 		echo 'CFG_WITHOUT_METRICS_DATASOURCE=1' >>/etc/default/solarnode-app-metrics-db-jdbc
 	fi
+	if [ -e "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-metrics.cfg" ]; then
+		echo "Disabling old DataSource configuration ${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-metrics.cfg."
+		mv "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-metrics.cfg" \
+			"${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-metrics.cfg.disabled"
+	fi
 	
 	# Modbus Server DataSource
 	if ! grep -q '^CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' /etc/default/solarnode-app-io-modbus-server-db-jdbc 2>/dev/null 1>&2; then
 		echo 'Disabling automatic metrics datasource in /etc/default/solarnode-app-io-modbus-server-db-jdbc.'
 		echo 'CFG_WITHOUT_MODBUS_SERVER_DATASOURCE=1' >>/etc/default/solarnode-app-io-modbus-server-db-jdbc
+	fi
+	if [ -e "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-modbus-server.cfg" ]; then
+		echo "Disabling old DataSource configuration ${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-modbus-server.cfg."
+		mv "${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-modbus-server.cfg" \
+			"${CONF_DIR}/services/net.solarnetwork.jdbc.pool.hikari-solarnode-modbus-server.cfg.disabled"
 	fi
 fi
