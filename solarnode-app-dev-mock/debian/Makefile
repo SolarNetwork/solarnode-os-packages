@@ -1,5 +1,5 @@
 NAME = solarnode-app-dev-mock
-VERSION = 1.0.2-1
+VERSION = 1.0.3-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
