@@ -10,16 +10,11 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- HTTP Client -->
-		<dependency org="org.apache.httpcomponents" name="httpclient-osgi" rev="4.5.14">
-			<exclude module="httpclient"/>
-			<exclude module="httpclient-cache"/>
-			<exclude module="fluent-hc"/>
-			<exclude module="httpcore"/>
-			<exclude module="httpmime"/>
+		<dependency org="org.wso2.orbit.org.apache.httpcomponents" name="httpcore5" rev="5.3.4.wso2v1">
+			<exclude org="org.apache.httpcomponents.client5"/>
 		</dependency>
-		<dependency org="org.apache.httpcomponents" name="httpcore-osgi" rev="4.4.16">
-			<exclude module="httpcore"/>
-			<exclude module="httpcore-nio"/>
+		<dependency org="org.wso2.orbit.org.apache.httpcomponents" name="httpclient5" rev="5.4.1.wso2v1">
+			<exclude org="org.apache.httpcomponents.client5"/>
 		</dependency>
 		<dependency org="org.apache.httpcomponents" name="httpasyncclient-osgi" rev="4.1.5">
 			<exclude module="httpasyncclient"/>
