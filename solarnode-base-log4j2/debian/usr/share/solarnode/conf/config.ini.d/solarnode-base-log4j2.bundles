@@ -1,1 +1,1 @@
-,boot/log4j-api-2.23.1.jar@1\:start,boot/log4j-core-2.23.1.jar@1\:start,boot/log4j-slf4j-impl-2.23.1.jar@1\:start
+,boot/log4j-api-2.24.3.jar@start,boot/log4j-core-2.24.3.jar@start,boot/log4j-slf4j2-impl-2.24.3.jar@2\:start

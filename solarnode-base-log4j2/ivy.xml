@@ -10,9 +10,9 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Logging -->
-		<dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.23.1"/>
-		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.23.1"/>
-		<dependency org="org.apache.logging.log4j" name="log4j-slf4j-impl" rev="2.23.1"/>
+		<dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.24.3"/>
+		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.24.3"/>
+		<dependency org="org.apache.logging.log4j" name="log4j-slf4j2-impl" rev="2.24.3"/>
 
 		<exclude org="org.slf4j"/>
 

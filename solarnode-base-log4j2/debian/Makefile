@@ -1,5 +1,5 @@
 NAME = solarnode-base-log4j2
-VERSION = 2.23.1-2
+VERSION = 2.24.3-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -20,7 +20,7 @@ deb : prep app-core assemble table
 		-d 'solarnode-base (>= 4.2.2)' \
 		--deb-field 'Breaks: solarnode-base (<< 4.2.2)' \
 		--replaces 'solarnode-base (<< 4.2.2)' \
-		-d 'solarnode-base-slf4j (>= 1.7.36)' \
+		-d 'solarnode-base-slf4j (>= 2.0)' \
 		--conflicts 'solarnode-logging' \
 		--replaces 'solarnode-logging' \
 		--provides 'solarnode-logging' \
