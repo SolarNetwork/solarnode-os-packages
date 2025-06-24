@@ -1,5 +1,5 @@
 NAME = solarnode-base-aws
-VERSION = 1.0.0-1
+VERSION = 1.0.0-2
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -21,6 +21,8 @@ deb : prep app-core assemble table
 		--deb-field 'Breaks: solarnode-app-core (<< 3.25)' \
 		--deb-field 'Breaks: solarnode-base (<< 4.4)' \
 		--replaces 'solarnode-base (<< 4.4)' \
+		-d 'solarnode-base-jaxb' \
+		-d 'solarnode-base-httpclient' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

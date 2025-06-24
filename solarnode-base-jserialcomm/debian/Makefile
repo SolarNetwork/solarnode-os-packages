@@ -1,5 +1,5 @@
 NAME = solarnode-base-jserialcomm
-VERSION = 2.10.4-1
+VERSION = 2.10.4-2
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
