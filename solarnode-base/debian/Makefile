@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 4.6.0-1$(if $(DIST),+$(DIST),)
+VERSION = 5.0.0-1$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -22,15 +22,19 @@ deb : prep assemble app-core extras table
 	-f \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
+	-d 'solarnode-base-asm' \
 	-d 'solarnode-base-aws' \
 	-d 'solarnode-base-bouncy-castle' \
-	-d 'solarnode-base-httpclient' \
+	-d 'solarnode-base-jetty' \
 	-d 'solarnode-base-jackson' \
-	-d 'solarnode-base-spring (>= 2.0)' \
-	-d 'solarnode-base-spring-security (>= 2.0)' \
+	-d 'solarnode-base-spifly' \
+	-d 'solarnode-base-spring (>= 3.0)' \
+	-d 'solarnode-base-spring-security (>= 3.0)' \
 	-d 'solarnode-logging' \
 	-d 'solarnode-java-runtime' \
-	--deb-field 'Breaks: solarnode-app-core (<< 3.44)' \
+	--deb-field 'Breaks: solarnode-app-core (<< 4.0)' \
+	--deb-field 'Breaks: solarnode-base-jaxb (<< 2.0)' \
+	--deb-field 'Breaks: solarnode-base-blueprint-gemini (<< 4.0)' \
 	--provides 'solarnode-framework' \
 	--after-install $(BASE_NAME).postinst \
 	--before-remove $(BASE_NAME).prerm \
