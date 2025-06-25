@@ -52,9 +52,6 @@
 		</dependency>
 		<dependency org="commons-io" name="commons-io" rev="2.19.0" conf="boot"/>
 
-		<!-- Tyrus Websocket support -->
-		<dependency org="org.glassfish.tyrus.bundles" name="tyrus-standalone-client-jdk" rev="2.2.0" conf="core"/>
-
 		<!-- CSV -->
 		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="core"/>
 
@@ -81,6 +78,7 @@
 		<dependency org="jakarta.authentication" name="jakarta.authentication-api" rev="3.1.0"/>
 		<dependency org="jakarta.servlet" name="jakarta.servlet-api" rev="6.1.0"/>
 		<dependency org="jakarta.websocket" name="jakarta.websocket-api" rev="2.2.0"/>
+		<dependency org="jakarta.websocket" name="jakarta.websocket-client-api" rev="2.2.0"/>
 
 		<dependency org="org.unbescape" name="unbescape" rev="1.1.6.RELEASE" conf="core"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-inject" rev="1_3" conf="boot"/>

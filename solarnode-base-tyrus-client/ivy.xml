@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Tyrus-Client"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.glassfish.tyrus.bundles" name="tyrus-standalone-client-jdk" rev="2.2.0" />
+
+	</dependencies>
+</ivy-module>

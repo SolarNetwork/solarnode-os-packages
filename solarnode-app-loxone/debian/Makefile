@@ -19,6 +19,7 @@ pkg : app table
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-core (>= 3.45)' \
+		-d 'solarnode-base-tyrus-client' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
