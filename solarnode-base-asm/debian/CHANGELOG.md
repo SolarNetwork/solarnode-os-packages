@@ -3,7 +3,7 @@
 This document details the history of changes of the `solarnode-base-asm` package, from newest
 to oldest.
 
-## 1.0.0 - 2025-06-08
+## 1.0.0 - 2025-06-24
 
  * Requires [`solarnode-base`](../../solarnode-base/debian) **4.3** or higher
 
