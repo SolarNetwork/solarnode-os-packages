@@ -1,6 +1,6 @@
 # SolarNode Application - Tyrus Websocket Client
 
-This directory contains support for building the `solarnode-base-asm` package. This adds
+This directory contains support for building the `solarnode-base-tyrus-client` package. This adds
 [Tyrus Websocket Client][tyrus] support to the SolarNode platform. See [CHANGELOG](./CHANGELOG.md)
 for release information.
 
