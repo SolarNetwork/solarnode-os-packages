@@ -65,7 +65,7 @@
 		<exclude org="jakarta.annotation"/>
 		<exclude org="jakarta.el"/>
 		<exclude org="jakarta.servlet"/>
-
+		<exclude org="org.apache.felix"/>
 		<exclude org="org.slf4j"/>
 
 	</dependencies>

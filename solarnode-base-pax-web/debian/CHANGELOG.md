@@ -11,11 +11,6 @@ The complete list of plugins included is:
 
 | Name                                            | ID                                                   | Vers   |
 |:------------------------------------------------|:-----------------------------------------------------|:-------|
-| Jakarta Authentication                          | `javax.security.auth.message-api`                    | 1.1.3  |
-| Jakarta Expression Language API                 | `jakarta.el-api`                                     | 6.0.1  |
-| Jakarta Mail API                                | `jakarta.mail-api`                                   | 2.1.3  |
-| Jakarta Servlet                                 | `jakarta.servlet-api`                                | 6.1.0  |
-| Jakarta WebSocket - Server API                  | `jakarta.websocket-api`                              | 2.2.0  |
 | OPS4J Pax Url - war:                            | `org.ops4j.pax.url.war`                              | 3.0.1  |
 | OPS4J Pax Web - Annotation API compatibility    | `org.ops4j.pax.web.pax-web-compatibility-annotation` | 11.0.0 |
 | OPS4J Pax Web - API                             | `org.ops4j.pax.web.pax-web-api`                      | 11.0.0 |
