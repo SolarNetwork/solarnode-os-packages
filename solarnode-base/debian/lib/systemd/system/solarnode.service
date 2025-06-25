@@ -11,7 +11,7 @@ Environment=SOLARNODE_RAM_DIR=/run/solarnode
 Environment=SOLARNODE_DB_DIR=/run/solarnode/db
 Environment=SOLARNODE_LOGDIR=/run/solarnode/log
 Environment=SOLARNODE_PERSIST_LOGDIR=/var/lib/solarnode/var/log
-Environment=LOG4J_CONFIGURATION_FILE=/etc/solarnode/log4j2.xml
+Environment=SOLARNODE_LOGGING_PROPS=
 Environment=JSP_SCRATCH_DIR=/var/lib/solarnode/var/work
 Environment=WEBSERVER_CONFIGURATION_FILE=/etc/solarnode/tomcat-server.xml
 Environment="OSGI_OPTS=-clean"
@@ -32,7 +32,7 @@ WorkingDirectory=/var/lib/solarnode
 ExecStart=/usr/bin/java $JAVA_OPTS \
 	-Djava.io.tmpdir=${SOLARNODE_RAM_DIR}/tmp \
 	-Djava.util.logging.config.file=${SOLARNODE_HOME}/conf/jre-logging.properties \
-	-Dlog4j2.contextSelector=org.apache.logging.log4j.core.selector.BasicContextSelector \
+	$SOLARNODE_LOGGING_PROPS \
 	-Djava.library.path=/usr/lib/jni:${SOLARNODE_HOME}/lib:/usr/lib \
 	-Dsn.home=${SOLARNODE_HOME} \
 	-Dderby.system.home=${SOLARNODE_DB_DIR} \
