@@ -30,6 +30,7 @@ The complete list of plugins included is:
 | Apache ServiceMix :: Bundles :: aspectj      | `org.apache.servicemix.bundles.aspectj`         | 1.8.10   |
 | Apache ServiceMix :: Bundles :: cache-api    | `org.apache.servicemix.bundles.javax-cache-api` | 1.1.1    |
 | Apache ServiceMix :: Bundles :: javax.inject | `org.apache.servicemix.bundles.javax-inject`    | 1.0.0    |
+| attoparser                                   | `org.attoparser`                                | 2.0.7    |
 | Commons Digester                             | `org.apache.commons.digester`                   | 2.1      |
 | Eclipse Compiler for Java(TM)                | `org.eclipse.jdt.core.compiler.batch`           | 3.41.0   |
 | HikariCP                                     | `com.zaxxer.HikariCP`                           | 6.3.0    |
