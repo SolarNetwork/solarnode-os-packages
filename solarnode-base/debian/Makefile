@@ -22,12 +22,11 @@ deb : prep assemble app-core extras table
 	-f \
 	-d 'systemd (>= 215)' \
 	-d 'sn-system (>= 1.2.0)' \
-	-d 'solarnode-base-asm' \
 	-d 'solarnode-base-aws' \
 	-d 'solarnode-base-bouncy-castle' \
 	-d 'solarnode-base-jetty' \
 	-d 'solarnode-base-jackson' \
-	-d 'solarnode-base-spifly' \
+	-d 'solarnode-base-spi' \
 	-d 'solarnode-base-spring (>= 3.0)' \
 	-d 'solarnode-base-spring-security (>= 3.0)' \
 	-d 'solarnode-logging' \

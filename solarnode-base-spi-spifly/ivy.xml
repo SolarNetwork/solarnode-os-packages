@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	SolarNode app deployment configuration for Spifly support.
+	SolarNode app deployment configuration.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Spifly"/>
+	<info organisation="SolarNetwork" module="SolarNode-SPI-Spifly"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>

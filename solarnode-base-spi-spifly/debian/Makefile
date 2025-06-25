@@ -1,4 +1,4 @@
-NAME = solarnode-base-spifly
+NAME = solarnode-base-spi-spifly
 VERSION = 1.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
@@ -19,6 +19,9 @@ deb : prep app-core assemble table
 		-f \
 		-d 'solarnode-base (>= 4.3)' \
 		-d 'solarnode-base-asm' \
+		--conflicts 'solarnode-base-spi' \
+		--replaces 'solarnode-base-spi' \
+		--provides 'solarnode-base-spi' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

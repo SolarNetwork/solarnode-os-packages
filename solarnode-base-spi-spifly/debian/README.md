@@ -1,6 +1,6 @@
-# SolarNode Application - Spifly
+# SolarNode Application - Service Provider - Spifly
 
-This directory contains support for building the `solarnode-base-spifly` package. This adds
+This directory contains support for building the `solarnode-base-spi-spifly` package. This adds
 [Spifly][spifly] support to the SolarNode platform. See [CHANGELOG](./CHANGELOG.md)
 for release information.
 
@@ -22,7 +22,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-base-spifly_VERSION_all.deb` in
+Run `make` to build the package, which will produce `solarnode-base-spi-spifly_VERSION_all.deb` in
 this directory.
 
 [ant]: https://ant.apache.org/
