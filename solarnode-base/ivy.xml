@@ -17,7 +17,7 @@
 		</dependency>
 
 		<!-- OSGi runtime -->
-		<dependency org="org.eclipse.platform" name="org.eclipse.osgi" rev="3.23.0" conf="boot"/>
+		<dependency org="org.eclipse.platform" name="org.eclipse.osgi" rev="3.23.100" conf="boot"/>
 		<dependency org="org.osgi" name="org.osgi.service.cm" rev="1.6.1"/>
 		<dependency org="org.osgi" name="org.osgi.service.coordinator" rev="1.0.2"/>
 		<dependency org="org.osgi" name="org.osgi.service.event" rev="1.4.1"/>
