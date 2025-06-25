@@ -23,6 +23,7 @@ deb : prep app-core assemble table
 		--replaces 'solarnode-base (<< 1.13)' \
 		-d 'solarnode-base-reactive-streams' \
 		-d 'solarnode-base-spring (>= 3.0)' \
+		-d 'solarnode-base-micrometer' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \
