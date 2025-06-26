@@ -10,12 +10,12 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus" rev="5.3.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus" rev="6.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
-		<exclude artifact="net.solarnetwork.common.web"/>
+		<exclude artifact="net.solarnetwork.common.web.jakarta"/>
 		<exclude artifact="net.solarnetwork.node"/>
 
 		<!-- Global excludes provided by the base system -->
@@ -24,7 +24,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
-		<exclude org="javax.servlet"/>
+		<exclude org="jakarta.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
 		<exclude org="net.sf.supercsv"/>
