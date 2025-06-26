@@ -12,6 +12,15 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.0.0 - 2025-06-24
+
+The complete list of plugins included is:
+
+| Name                        | ID                  | Vers  |
+|:----------------------------|:--------------------|:------|
+| H2 Database Storage Support | `n.s.n.dao.jdbc.h2` | 3.0.0 |
+
+
 ## 2.0.4 - 2025-06-09
 
 The complete list of plugins included is:
