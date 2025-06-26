@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for serial based plugins that use the RXTX
-	framework.
+	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
 	<info organisation="SolarNetwork" module="SolarNode-IO-Serial-RXTX"/>
@@ -11,7 +10,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Serial support -->
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.serial.rxtx" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.serial.rxtx" rev="5.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

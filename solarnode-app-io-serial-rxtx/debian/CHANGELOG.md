@@ -12,6 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 4.0.0 - 2025-06-24
+
+This release requires [`solarnode-app-io-serial` 4.0][io-serial-log] or newer.
+
+The complete list of plugins included is:
+
+
+
 ## 3.0.0 - 2023-03-08
 
 This release requires [`solarnode-app-io-serial` 3.0][io-serial-log] or newer.
