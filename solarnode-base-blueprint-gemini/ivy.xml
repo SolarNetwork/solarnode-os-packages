@@ -15,6 +15,7 @@
 
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.org.eclipse.gemini.blueprint.extender.config" rev="4.0.0.SN01"/>
 
+		<exclude org="javax.inject"/>
 		<exclude org="org.apache.servicemix.bundles"/>
 		<exclude org="org.eclipse.osgi"/>
 		<exclude org="org.osgi"/>

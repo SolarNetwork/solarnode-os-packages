@@ -43,7 +43,7 @@ app-core :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build-deb-app.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
-		"-Dapp.dirname=boot" \
+		"-Dapp.dirname=core" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble
 
