@@ -10,7 +10,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Modbus support -->
-        <dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.mbus.jmbus" rev="latest.release"/>
+        <dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.mbus.jmbus" rev="3.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
