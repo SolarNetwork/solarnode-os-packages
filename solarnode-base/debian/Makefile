@@ -1,7 +1,7 @@
 NAME = solarnode-base
 BASE_NAME = $(NAME)
 DIST = 
-VERSION = 5.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 5.0.0-2$(if $(DIST),+$(DIST),)
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -26,11 +26,11 @@ deb : prep assemble app-core extras table
 	-d 'solarnode-base-bouncy-castle' \
 	-d 'solarnode-base-jetty' \
 	-d 'solarnode-base-jackson' \
-	-d 'solarnode-base-spi' \
+	-d 'solarnode-base-spi-spifall | solarnode-base-spi' \
 	-d 'solarnode-base-spring (>= 3.0)' \
 	-d 'solarnode-base-spring-security (>= 3.0)' \
 	-d 'solarnode-logging' \
-	-d 'solarnode-java-runtime' \
+	-d 'solarnode-base-java17 (>= 1.0.2) | solarnode-java-runtime' \
 	--deb-field 'Breaks: solarnode-app-core (<< 4.0)' \
 	--deb-field 'Breaks: solarnode-base-jaxb (<< 2.0)' \
 	--deb-field 'Breaks: solarnode-base-blueprint-gemini (<< 4.0)' \
