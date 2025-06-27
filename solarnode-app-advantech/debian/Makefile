@@ -1,4 +1,4 @@
-NAME = solarnode-app-schneider
+NAME = solarnode-app-advantech
 VERSION = 1.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,7 +14,7 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode - Schneider' \
+		--description 'SolarNode - Advantech' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \

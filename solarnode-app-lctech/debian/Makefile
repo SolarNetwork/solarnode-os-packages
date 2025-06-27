@@ -1,4 +1,4 @@
-NAME = solarnode-app-schneider
+NAME = solarnode-app-lctech
 VERSION = 1.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,12 +14,12 @@ pkg : app table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode - Schneider' \
+		--description 'SolarNode - LC Tech' \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-core (>= 4.0)' \
-		-d 'solarnode-app-io-modbus (>= 4.0)' \
+		-d 'solarnode-app-io-serial (>= 4.0)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
