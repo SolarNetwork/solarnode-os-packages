@@ -1,5 +1,5 @@
 NAME = solarnode-app-price-nz-grid
-VERSION = 1.0.1-1
+VERSION = 2.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -20,7 +20,7 @@ pkg : app table
 		-f \
 		-d 'solarnode-base-httpclient (>= 1.1)' \
 		-d 'solarnode-base-scribejava' \
-		-d 'solarnode-app-core (>= 3.28)' \
+		-d 'solarnode-app-core (>= 4.0)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 

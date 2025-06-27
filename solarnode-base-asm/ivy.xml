@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-ASM"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- ASM -->
+		<dependency org="org.ow2.asm" name="asm" rev="9.8"/>
+		<dependency org="org.ow2.asm" name="asm-analysis" rev="9.8"/>
+		<dependency org="org.ow2.asm" name="asm-commons" rev="9.8"/>
+		<dependency org="org.ow2.asm" name="asm-tree" rev="9.8"/>
+		<dependency org="org.ow2.asm" name="asm-util" rev="9.8"/>
+
+	</dependencies>
+</ivy-module>

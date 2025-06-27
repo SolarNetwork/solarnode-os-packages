@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-SPI-Spifall"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.osgi" name="org.osgi.service.serviceloader" rev="1.0.0"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.spifall" rev="1.0.0"/>
+
+	</dependencies>
+</ivy-module>

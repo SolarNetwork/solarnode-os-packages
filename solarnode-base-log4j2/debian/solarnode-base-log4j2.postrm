@@ -2,8 +2,10 @@
 
 UTIL=/usr/share/solarnode/bin/solarnode-utilities.sh
 
-if [ ! -x "$UTIL" ]; then
-	exit 0
+if [ "$1" = "remove" ]; then
+	if [ -x "$UTIL" ]; then
+		$UTIL reset
+	fi
+	
+	systemctl daemon-reload >/dev/null || true
 fi
-
-$UTIL reset

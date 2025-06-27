@@ -1,5 +1,5 @@
 NAME = solarnode-base-spring
-VERSION = 2.0.1-1
+VERSION = 3.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -18,9 +18,10 @@ deb : prep app-core assemble table
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-base (>= 2.0)' \
+		-d 'solarnode-base (>= 5.0)' \
 		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
 		--replaces 'solarnode-base (<< 1.13)' \
+		--deb-field 'Breaks: solarnode-base-spring-security (<< 3.0)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

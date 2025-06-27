@@ -1,5 +1,5 @@
 NAME = solarnode-app-protobuf
-VERSION = 3.1.0-1
+VERSION = 4.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -20,8 +20,8 @@ deb : prep app-core app-main assemble table
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-base (>= 2.0)' \
-		-d 'solarnode-app-core (>= 3.26)' \
+		-d 'solarnode-base (>= 5.0)' \
+		-d 'solarnode-app-core (>= 4.0)' \
 		-d 'protobuf-compiler (>= 3.6)' \
 		-d 'protobuf-compiler (<< 3.22)' \
 		--after-install $(NAME).postinst \

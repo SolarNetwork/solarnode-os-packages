@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-postgres
-VERSION = 1.0.0-1
+VERSION = 2.0.0-1
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -24,7 +24,7 @@ pkg : prep app assemble table
 		--replaces 'solarnode-app-db' \
 		-d 'postgresql-17' \
 		-d 'solarnode-base-postgres' \
-		-d 'solarnode-app-core (>= 3.45)' \
+		-d 'solarnode-app-core (>= 4.0)' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

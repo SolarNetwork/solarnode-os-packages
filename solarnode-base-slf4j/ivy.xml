@@ -9,9 +9,10 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.36"/>
-		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.7.36"/>
-		<dependency org="org.slf4j" name="osgi-over-slf4j" rev="1.7.36"/>
+		<dependency org="org.slf4j" name="slf4j-api" rev="2.0.17"/>
+		<dependency org="org.slf4j" name="jcl-over-slf4j" rev="2.0.17"/>
+		<dependency org="org.slf4j" name="jul-to-slf4j" rev="2.0.17"/>
+		<dependency org="org.slf4j" name="osgi-over-slf4j" rev="2.0.17"/>
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.tomcat-juli-slf4j" rev="9.0.54"/>
 
 	</dependencies>

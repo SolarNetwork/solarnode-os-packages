@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-h2
-VERSION = 2.0.4-1
+VERSION = 3.0.0-1
 ASSEMBLE_PATHS = etc
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -23,7 +23,7 @@ pkg : prep app assemble table
 		--conflicts 'solarnode-app-db' \
 		--replaces 'solarnode-app-db' \
 		-d 'solarnode-base-h2 (>= 1.1)' \
-		-d 'solarnode-app-core (>= 3.45)' \
+		-d 'solarnode-app-core (>= 4.0)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 

@@ -1,5 +1,5 @@
 NAME = solarnode-base-nifty-modbus-pjc
-VERSION = 0.18.0-1
+VERSION = 0.18.0-2
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

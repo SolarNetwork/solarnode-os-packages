@@ -12,6 +12,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.0.0 - 2025-06-24
+
+This release requires [`solarnode-app-io-bacnet` 2.0][io-bacnet-log] or newer.
+
+The complete list of plugins included is:
+
+| Name                            | ID                         | Vers  |
+|:--------------------------------|:---------------------------|:------|
+| BACnet Communication (BACnet4J) | `n.s.n.io.bacnet.bacnet4j` | 3.0.0 |
+| BACnet4j                        | `n.s.external.bacnet4j`    | 6.0.0 |
+
+
 ## 2.2.0 - 2024-06-28
 
 The complete list of plugins included is:

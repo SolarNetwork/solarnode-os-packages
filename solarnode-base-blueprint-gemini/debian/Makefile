@@ -1,5 +1,5 @@
 NAME = solarnode-base-blueprint-gemini
-VERSION = 3.0.0-2
+VERSION = 4.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -17,7 +17,7 @@ deb : prep app-core assemble table
 		--description 'SolarNode platform Gemini Blueprint support' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 4.2.2)' \
+		-d 'solarnode-base (>= 5.0)' \
 		--deb-field 'Breaks: solarnode-base (<< 4.2.2)' \
 		--replaces 'solarnode-base (<< 4.2.2)' \
 		--conflicts 'osgi-blueprint' \
@@ -43,7 +43,7 @@ app-core :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/equinox/build-deb-app.xml" \
 		"-Divy.file=$(SN_IVY_FILE)" \
 		"-Ddir.deb.assemble=$(DEB_BUILD_ROOT)" \
-		"-Dapp.dirname=boot" \
+		"-Dapp.dirname=core" \
 		$(SN_ANT_OPTS) \
 		clean deb-package-assemble
 

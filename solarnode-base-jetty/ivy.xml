@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Jetty support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Jetty"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.eclipse.jetty" name="jetty-alpn-client" rev="12.0.22"/>
+		<dependency org="org.eclipse.jetty" name="jetty-client" rev="12.0.22"/>
+		<dependency org="org.eclipse.jetty" name="jetty-http" rev="12.0.22"/>
+		<dependency org="org.eclipse.jetty" name="jetty-io" rev="12.0.22"/>
+		<dependency org="org.eclipse.jetty" name="jetty-util" rev="12.0.22"/>
+
+		<exclude org="org.slf4j"/>
+
+	</dependencies>
+</ivy-module>

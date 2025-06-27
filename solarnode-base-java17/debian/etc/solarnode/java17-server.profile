@@ -9,7 +9,22 @@ org.osgi.framework.system.packages = \
  com.sun.org.apache.xpath.internal,\
  com.sun.org.apache.xpath.internal.jaxp,\
  com.sun.org.apache.xpath.internal.objects,\
+ java.awt,\
+ java.awt.color,\
+ java.awt.datatransfer,\
+ java.awt.dnd,\
+ java.awt.dnd.peer,\
+ java.awt.event,\
+ java.awt.font,\
+ java.awt.geom,\
+ java.awt.im,\
+ java.awt.im.spi,\
+ java.awt.image,\
+ java.awt.image.renderable,\
+ java.awt.peer,\
+ java.awt.print,\
  java.beans,\
+ java.beans.beancontext,\
  java.io,\
  java.lang,\
  java.lang.annotation,\

@@ -1,5 +1,5 @@
 NAME = solarnode-app-io-serial-rxtx
-VERSION = 3.0.0-1
+VERSION = 4.0.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
@@ -18,7 +18,7 @@ pkg : app table
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-io-serial (>= 3.0)' \
+		-d 'solarnode-app-io-serial (>= 4.0)' \
 		-d 'sn-rxtx (>= 1.0)' \
 		--conflicts 'solarnode-io-serial' \
 		--replaces 'solarnode-io-serial' \

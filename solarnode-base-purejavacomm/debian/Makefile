@@ -1,5 +1,5 @@
 NAME = solarnode-base-purejavacomm
-VERSION = 1.0.2-2
+VERSION = 1.0.2-3
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for modbus API plugins that require a corresponding
-	implementation plugin to work.
+	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
 	<info organisation="SolarNetwork" module="SolarNode-DB-H2"/>
@@ -10,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.h2" rev="2.0.3"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.dao.jdbc.h2" rev="3.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

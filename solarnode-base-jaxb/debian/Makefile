@@ -1,5 +1,5 @@
 NAME = solarnode-base-jaxb
-VERSION = 1.0.0-2
+VERSION = 1.0.0-3
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -17,9 +17,10 @@ deb : prep app-core assemble table
 		--description 'SolarNode platform JAXB support' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 4.2.2)' \
+		-d 'solarnode-base (>= 5.0)' \
 		--deb-field 'Breaks: solarnode-base (<< 4.2.2)' \
 		--replaces 'solarnode-base (<< 4.2.2)' \
+		-d 'solarnode-base-javax-legacy' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \
