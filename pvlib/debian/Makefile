@@ -1,8 +1,8 @@
 NAME = sn-pvlib
 DIST = 
-VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.1.0-2$(if $(DIST),+$(DIST),)
 
-deb : 
+deb : prep
 	fpm -s dir -t deb \
 		-n $(NAME) \
 		-v $(VERSION) \
@@ -22,6 +22,9 @@ deb :
 		-d 'libsz2' \
 		--after-install $(NAME).postinst \
 		usr var
+
+prep : 
+	find $(PATHS) -type f -name .DS_Store -delete
 
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
