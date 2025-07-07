@@ -1,5 +1,5 @@
 NAME = solarnode-app-db-postgres
-VERSION = 2.0.0-1
+VERSION = 2.0.1-1
 ASSEMBLE_PATHS = etc lib usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

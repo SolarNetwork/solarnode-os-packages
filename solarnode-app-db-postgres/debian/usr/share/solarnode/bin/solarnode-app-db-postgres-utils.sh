@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 PSQL_CONN_ARGS="${PSQL_CONN_ARGS:-}"
 PG_DB_OWNER="${PG_DB_OWNER:-solarnode}"
@@ -21,7 +21,7 @@ setup_db_user () {
 }
 
 setup_db () {
-	# Check that database user exists
+	# Check that database exists
 	if [ -z $(su $PG_ADMIN_USER -c "psql $PSQL_CONN_ARGS -U $PG_ADMIN_USER -d $PG_ADMIN_DB -P pager=off -XtAc "'"'"SELECT 1 FROM pg_database WHERE datname='$PG_DB'"'"') ]; then
 		echo "Creating SolarNode Postgres database $PG_DB"
 		su $PG_ADMIN_USER -c "psql $PSQL_CONN_ARGS -U $PG_ADMIN_USER -d $PG_ADMIN_DB -P pager=off -XtAc "'"'"CREATE DATABASE $PG_DB WITH ENCODING='UTF8' OWNER=$PG_DB_OWNER TEMPLATE=$PG_TEMPLATE_DB LC_COLLATE='C' LC_CTYPE='C'"'"'
