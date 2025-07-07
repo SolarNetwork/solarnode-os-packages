@@ -15,7 +15,7 @@ drop_db () {
 	# Drop database if it exists
 	if [ -n $(su $PG_ADMIN_USER -c "psql $PSQL_CONN_ARGS -U $PG_ADMIN_USER -d $PG_ADMIN_DB -P pager=off -XtAc "'"'"SELECT 1 FROM pg_database WHERE datname='$PG_DB'"'"') ]; then
 		echo "Dropping SolarNode Postgres database $PG_DB"
-		su $PG_ADMIN_USER -c "psql $PSQL_CONN_ARGS -U $PG_ADMIN_USER -d $PG_ADMIN_DB -P pager=off -XtAc "'"'"DROP DATABASE IF EXISTS $PG_DB WITH (FORCE)"'"'
+		su $PG_ADMIN_USER -c "psql $PSQL_CONN_ARGS -U $PG_ADMIN_USER -d $PG_ADMIN_DB -P pager=off -XtAc "'"'"DROP DATABASE IF EXISTS $PG_DB WITH (FORCE)"'"' >/dev/null
 		systemctl restart postgresql@17-main || true
 	fi
 }
