@@ -25,6 +25,7 @@ The following plugins have changed from the previous release:
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
 | Core Setup Support              | `n.s.n.setup`                  | 4.0.0 | 4.0.1 |
+| Core Setup Web App              | `n.s.n.setup.web`              | 5.0.0 | 5.0.1 |
 
 The complete list of plugins included is:
 
@@ -43,7 +44,7 @@ The complete list of plugins included is:
 | Core Security                   | `n.s.n.setup.security`         | 4.0.0 |
 | Core Settings Support           | `n.s.n.settings.ca`            | 4.0.0 |
 | Core Setup Support              | `n.s.n.setup`                  | 4.0.1 |
-| Core Setup Web App              | `n.s.n.setup.web`              | 5.0.0 |
+| Core Setup Web App              | `n.s.n.setup.web`              | 5.0.1 |
 | Core SolarNetwork Support       | `n.s.common`                   | 4.0.0 |
 | Core SolarNetwork Web Support   | `n.s.common.web.jakarta`       | 2.0.6 |
 | Core SolarNode Framework        | `n.s.node`                     | 4.0.0 |
