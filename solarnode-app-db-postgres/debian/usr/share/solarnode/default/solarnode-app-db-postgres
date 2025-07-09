@@ -1,0 +1,2 @@
+# Disable configuration of default Postgres settings
+# CFG_WITHOUT_POSTGRES_SETTINGS=1

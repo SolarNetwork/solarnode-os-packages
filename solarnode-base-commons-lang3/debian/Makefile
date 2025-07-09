@@ -1,5 +1,5 @@
 NAME = solarnode-base-commons-lang3
-VERSION = 3.12.0-1
+VERSION = 3.12.0-2
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

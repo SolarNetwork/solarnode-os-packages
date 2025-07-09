@@ -17,6 +17,11 @@ make them shorter, using the following conventions:
 The plugins have not changed in this release, but the package now depends on the
 `solarnode-base-purejavacom` package instead of `solarnode-app-io-pjc`.
 
+| Name                               | ID                    | Vers  |
+|:-----------------------------------|:----------------------|:------|
+| Serial Communication Support (PJC) | `n.s.n.io.serial.pjc` | 4.0.0 |
+
+
 ## 3.0.0 - 2023-03-08
 
 This release requires [`solarnode-app-io-serial` 3.0][io-serial-log] or newer.

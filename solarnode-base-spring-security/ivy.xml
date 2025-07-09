@@ -9,19 +9,25 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<!-- Spring Security -->
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="5.8.7_2"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="5.8.7_2"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="5.8.7_2"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-crypto" rev="5.8.7_2"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-messaging" rev="5.8.7_2"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-taglibs" rev="5.8.7_2"/>
-		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-web" rev="5.8.7_2"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-acl" rev="6.4.5_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-config" rev="6.4.5_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-core" rev="6.4.5_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-crypto" rev="6.4.5_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-data" rev="6.4.5_1"/>
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.spring-security-messaging" rev="6.4.5_1"/>
+
+		<!-- See https://github.com/apache/servicemix-bundles/pull/293 -->
+		<dependency org="net.solarnetwork.external" name="org.apache.servicemix.bundles.spring-security-web" rev="6.4.5_SN01"/>
 
 		<!-- Global excludes provided by the base system -->
 		<exclude module="aopalliance"/>
 		<exclude module="commons-logging"/>
+		<exclude org="io.micrometer"/>
+		<exclude org="jakarta.activation"/>
+		<exclude org="jakarta.xml.bind"/>
+		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
+		<exclude org="org.springframework.data"/>
 		<exclude org="org.springframework.security"/>
 
 	</dependencies>

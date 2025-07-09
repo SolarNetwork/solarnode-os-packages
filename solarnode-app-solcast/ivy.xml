@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for SMA plugins.
+	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-IO-Modbus"/>
+	<info organisation="SolarNetwork" module="SolarNode-Solcast"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.solcast" rev="2.1.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.solcast" rev="3.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Measure-Indriya"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.indriya" rev="2.0.4"/>
+
+		<exclude org="jakarta.activation"/>
+		<exclude org="jakarta.xml.bind"/>
+		<exclude org="javax.inject"/>
+		<exclude org="javax.measure"/>
+		<exclude org="org.osgi"/>
+		<exclude org="org.slf4j"/>
+		<exclude org="org.springframework"/>
+		<exclude org="si.uom"/>
+		<exclude org="systems.uom"/>
+		<exclude org="tech.units"/>
+
+	</dependencies>
+</ivy-module>

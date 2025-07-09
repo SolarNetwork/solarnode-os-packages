@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for JAXB support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-JAXB"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- JAXB -->
+		<dependency org="jakarta.xml.bind" name="jakarta.xml.bind-api" rev="4.0.2"/>
+		<dependency org="org.glassfish.jaxb" name="jaxb-core" rev="4.0.5"/>
+		<dependency org="org.glassfish.jaxb" name="jaxb-runtime" rev="4.0.5"/>
+		<dependency org="org.jvnet.staxex" name="stax-ex" rev="2.1.0"/>
+		<dependency org="com.sun.istack" name="istack-commons-runtime" rev="4.1.2"/>
+		<dependency org="com.sun.xml.fastinfoset" name="FastInfoset" rev="2.1.1"/>
+
+		<exclude org="jakarta.activation"/>
+		<exclude org="org.eclipse.angus"/>
+		<exclude module="txw2"/>
+
+	</dependencies>
+</ivy-module>

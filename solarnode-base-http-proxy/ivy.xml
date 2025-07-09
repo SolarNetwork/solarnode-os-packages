@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for HTTP proxy support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-HTTP-proxy"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.mitre.dsmiley.httpproxy" name="smiley-http-proxy-servlet" rev="2.0"/>
+
+		<exclude org="org.apache.httpcomponents"/>
+
+	</dependencies>
+</ivy-module>

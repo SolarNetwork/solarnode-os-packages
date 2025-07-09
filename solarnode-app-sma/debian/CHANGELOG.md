@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.0.0 - 2025-06-24
+
+| Name                                 | ID                        | Vers  |
+|:-------------------------------------|:--------------------------|:------|
+| SMA Core Support                     | `n.s.n.hw.sma`            | 4.0.0 |
+| SMA Power Datum DataSource (yasdi4j) | `n.s.n.datum.sma.yasdi4j` | 4.0.0 |
+| SMA WebBox Data Source               | `n.s.n.datum.sma.webbox`  | 3.0.0 |
+| SMA yasdi4j                          | `n.s.external.yasdi4j`    | 0.1.5 |
+| SMA yasdi4j Support                  | `n.s.n.io.yasdi4j`        | 4.0.0 |
+
+
 ## 1.2.0 - 2024-07-09
 
 | Name                                 | ID                        | Vers  |

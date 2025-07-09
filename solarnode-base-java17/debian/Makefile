@@ -1,5 +1,5 @@
 NAME = solarnode-base-java17
-VERSION = 1.0.1-1
+VERSION = 1.0.2-1
 ASSEMBLE_PATHS = etc lib
 PATHS = $(ASSEMBLE_PATHS)
 

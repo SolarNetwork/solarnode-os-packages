@@ -10,9 +10,9 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Protobuf Support -->
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdt" rev="3.0.0" />
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.protobuf" rev="3.0.0" />
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.protobuf" rev="3.1.0" />
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdt" rev="4.0.0" />
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.protobuf" rev="4.0.0" />
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.protobuf" rev="4.0.0" />
 
 		<!-- Global excludes provided by solarnode-app-core -->
 		<exclude artifact="net.solarnetwork.common"/>
@@ -25,6 +25,7 @@
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
 		<exclude org="com.google.protobuf"/>
+		<exclude org="io.micrometer"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.sf.supercsv"/>
 		<exclude org="org.apache.commons"/>
@@ -34,5 +35,6 @@
 		<exclude org="org.quartz-scheduler"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
+		<exclude org="org.springframework.security"/>
 	</dependencies>
 </ivy-module>

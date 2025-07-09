@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-OGNL"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.ognl" rev="3.3.4_1" />
+
+		<exclude org="org.javassist"/>
+
+	</dependencies>
+</ivy-module>

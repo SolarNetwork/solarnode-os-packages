@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	This is a SolarNode deployment configuration for BACnet API plugins that require a corresponding
-	implementation plugin to work.
+	This is a SolarNode deployment configuration.
 -->
 <ivy-module version="2.0">
 	<info organisation="SolarNetwork" module="SolarNode-IO-BACnet"/>
@@ -10,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.bacnet" rev="latest.release"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.bacnet" rev="2.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

@@ -1,5 +1,5 @@
 NAME = solarnode-base-tiles
-VERSION = 1.0.0-3
+VERSION = 1.0.0-4
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

@@ -1,5 +1,5 @@
 NAME = solarnode-base-scribejava
-VERSION = 8.3.3-1
+VERSION = 8.3.3-2
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

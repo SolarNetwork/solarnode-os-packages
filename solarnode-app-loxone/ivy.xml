@@ -9,13 +9,13 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.loxone" rev="3.1.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web.loxone" rev="3.0.4"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.loxone" rev="4.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web.loxone" rev="4.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
 		<exclude artifact="net.solarnetwork.common.osgi"/>
-		<exclude artifact="net.solarnetwork.common.web"/>
+		<exclude artifact="net.solarnetwork.common.web.jakarta"/>
 		<exclude artifact="net.solarnetwork.node"/>
 		<exclude artifact="net.solarnetwork.node.dao.jdbc"/>
 
@@ -26,9 +26,9 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
-		<exclude org="javax.annotation"/>
-		<exclude org="javax.servlet"/>
-		<exclude org="javax.websocket"/>
+		<exclude org="jakarta.annotation"/>
+		<exclude org="jakarta.servlet"/>
+		<exclude org="jakarta.websocket"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
 		<exclude org="net.sf.supercsv"/>

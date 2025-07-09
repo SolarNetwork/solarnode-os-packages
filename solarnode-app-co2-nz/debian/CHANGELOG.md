@@ -12,6 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.0.0 - 2025-06-24
+
+This release requires [`solarnode-app-core` 4.0][app-core-log] or newer.
+
+The complete list of plugins included is:
+
+
+
 ## 1.0.0 - 2025-06-05
 
 This release requires [`solarnode-app-core` 3.44][app-core-log] or newer.

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Micrometer support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Micrometer"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- See https://github.com/micrometer-metrics/micrometer/issues/6406 -->
+		<dependency org="net.solarnetwork.external" name="micrometer-commons" rev="1.15.2-SN01"/>
+		<dependency org="io.micrometer" name="micrometer-observation" rev="1.15.1">
+			<exclude module="micrometer-commons"/>
+		</dependency>
+
+	</dependencies>
+</ivy-module>

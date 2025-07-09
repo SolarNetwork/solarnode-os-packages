@@ -9,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt.netty" rev="4.1.0"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.mqtt.netty" rev="5.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>

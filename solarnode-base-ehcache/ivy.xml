@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Ehcache support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Ehcache"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<dependency org="net.solarnetwork.external" name="ehcache" rev="3.11.0.SN01">
+			<artifact name="ehcache" type="jar" url="https://repo1.maven.org/maven2/net/solarnetwork/external/ehcache/3.11.0.SN01/ehcache-3.11.0.SN01-jakarta.jar"/>
+		</dependency>
+
+		<exclude org="org.slf4j"/>
+
+	</dependencies>
+</ivy-module>

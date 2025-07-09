@@ -9,8 +9,11 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.opmode" rev="3.0.1"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.control" rev="3.1.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.conductor" rev="2.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.opmode" rev="4.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.ping" rev="4.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.control" rev="4.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.opmode" rev="4.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
