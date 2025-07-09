@@ -1,6 +1,6 @@
 NAME = sn-pvlib
 DIST = 
-VERSION = 1.1.0-2$(if $(DIST),+$(DIST),)
+VERSION = 1.1.1-1$(if $(DIST),+$(DIST),)
 
 deb : prep
 	fpm -s dir -t deb \
