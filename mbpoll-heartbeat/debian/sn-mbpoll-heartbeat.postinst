@@ -1,0 +1,29 @@
+#!/bin/sh -e
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+default_conf=/etc/solarnode/sn-mbpoll-heartbeat@default.conf
+default_conf_src=/usr/share/solarnode/example/sn-mbpoll-heartbeat.conf
+if [ ! -e "$default_conf" ]; then
+	echo 'Creating sn-mbpoll-heartbeat@default service'
+	if [ -e "$default_conf_src" ]; then
+		cp  "$default_conf_src" "$default_conf"
+	fi
+	systemctl daemon-reload || true
+	service_up sn-mbpoll-heartbeat@default.service
+	service_up sn-mbpoll-heartbeat@default.timer true
+fi

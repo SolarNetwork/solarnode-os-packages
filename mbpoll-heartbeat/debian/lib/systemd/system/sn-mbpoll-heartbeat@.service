@@ -1,0 +1,9 @@
+[Unit]
+Description=Modubs heatbeat
+ConditionPathExists=/etc/solarnode/sn-mbpoll-heartbeat@%i.conf
+
+[Service]
+Type=oneshot
+Restart=no
+EnvironmentFile=/etc/solarnode/sn-mbpoll-heartbeat@%i.conf
+ExecStart=/usr/share/solarnode/bin/sn-mbpoll-heartbeat.sh
