@@ -1,5 +1,5 @@
 NAME = solarnode-base-spring-security
-VERSION = 3.0.0-1
+VERSION = 3.0.1-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
