@@ -10,8 +10,8 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- See https://github.com/micrometer-metrics/micrometer/issues/6406 -->
-		<dependency org="net.solarnetwork.external" name="micrometer-commons" rev="1.15.2-SN01"/>
-		<dependency org="io.micrometer" name="micrometer-observation" rev="1.15.1">
+		<dependency org="io.micrometer" name="micrometer-commons" rev="1.15.2"/>
+		<dependency org="io.micrometer" name="micrometer-observation" rev="1.15.2">
 			<exclude module="micrometer-commons"/>
 		</dependency>
 
