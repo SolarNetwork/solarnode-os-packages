@@ -9,11 +9,11 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.modbus" rev="5.1.0">
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.control.modbus" rev="5.1.1">
 			<exclude org="net.solarnetwork.common"/>
 			<exclude name="net.solarnetwork.node.io.modbus"/>
 		</dependency>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.modbus" rev="5.0.0">
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.modbus" rev="5.0.1">
 			<exclude org="net.solarnetwork.common"/>
 			<exclude name="net.solarnetwork.node.io.modbus"/>
 		</dependency>

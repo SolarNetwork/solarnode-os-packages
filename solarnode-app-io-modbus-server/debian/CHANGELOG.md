@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.0.2 - 2025-08-21
+
+| Name                | ID                       | Vers  |
+|:--------------------|:-------------------------|:------|
+| Modbus Server (TCP) | `n.s.n.io.modbus.server` | 5.0.2 |
+
+
 ## 2.0.1 - 2025-07-22
 
 This release requires [`solarnode-app-core` 4.0][app-core-log] or newer.
