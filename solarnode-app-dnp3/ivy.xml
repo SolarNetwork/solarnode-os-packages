@@ -9,8 +9,8 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.opendnp3-bindings" rev="2.3.2.SN02"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.dnp3" rev="4.0.0"/>
+		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.opendnp3-bindings" rev="3.1.2.SN01"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.dnp3" rev="5.0.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
