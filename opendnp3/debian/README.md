@@ -86,7 +86,32 @@ make && make install
 rm -rf local/usr/lib/cmake
 cd ../../..
 
-make DIST=buster UPSTREAM_VERSION=3.1.2
+make DIST=bullseye UPSTREAM_VERSION=3.1.2
+```
+
+## Debian 12
+
+```
+sudo apt install git gcc g++ libc-dev cmake make patch libssl3 libssl-dev openjdk-17-jdk maven \
+    ruby ruby-dev build-essential
+
+sudo gem install --no-document fpm
+
+git clone https://github.com/SolarNetwork/solarnode-os-packages.git
+cd solarnode-os-packages/opendnp3/debian/
+git clone https://github.com/dnp3/opendnp3.git dnp3
+cd dnp3
+git checkout 3.1.2
+mkdir -p build/native
+cd build/native
+cmake ../.. -DDNP3_JAVA=ON -DDNP3_TLS=ON -DDNP3_DECODER=ON \
+    -DJAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 \
+    -DCMAKE_INSTALL_PREFIX:PATH=$PWD/local/usr
+make && make install
+rm -rf local/usr/lib/cmake
+cd ../../..
+
+make DIST=bookworm UPSTREAM_VERSION=3.1.2 SSL_DEP=libssl3
 ```
 
 [wiki-docs]: https://github.com/SolarNetworkFoundation/solarnetwork-ops/wiki/OpenDNP3-Debian-Packaging
