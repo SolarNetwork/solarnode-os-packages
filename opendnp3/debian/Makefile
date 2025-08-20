@@ -21,12 +21,6 @@ deb : jni
 	-C $(DNP3_INSTALL_DIR) \
 	--force \
 	-d $(SSL_DEP) \
-	--deb-activate noawait \
-	--after-install opendnp3.postinst \
-	--before-remove opendnp3.prerm \
-	--after-remove opendnp3.postrm \
-	--deb-config opendnp3.config \
-	--deb-templates opendnp3.templates \
 	usr/lib
 
 jni : $(DNP3_INSTALL_DIR)/usr/lib/jni
