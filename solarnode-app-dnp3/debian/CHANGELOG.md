@@ -12,6 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.0.0 - 2025-08-21
+
+| Name              | ID                               | Vers  |
+|:------------------|:---------------------------------|:------|
+| DNP3 Integration  | `n.s.n.io.dnp3`                  | 5.0.0 |
+| OpenDNP3 Bindings | `n.s.external.opendnp3-bindings` | 3.1.2 |
+
+
 ## 1.0.0 - 2025-06-28
 
 | Name              | ID                               | Vers  |
