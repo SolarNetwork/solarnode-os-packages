@@ -15,7 +15,6 @@ deb : prep
 	--force \
 	-d 'iproute2' \
 	-d 'systemd (>= 247)' \
-	-d 'gpsd (>= 3.22)' \
 	-d 'modemmanager' \
 	-d 'socat' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
