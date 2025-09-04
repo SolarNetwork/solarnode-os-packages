@@ -11,8 +11,8 @@ This package is know to support the following mobile packages:
 
 # Services
 
-The `sn-pi-mobile-pppd` service manages the `pppd` daemon, but is not installed. The
-`sn-pi-mobile-reconnect` service is managed by a timer, that runs the
+The `sn-mobile-shield-usb-pppd` service manages the `pppd` daemon, but is not installed. The
+`sn-mobile-shield-usb-reconnect` service is managed by a timer, that runs the
 `/usr/share/solarnode/bin/sn-pi-mobile-reconnect.sh` script to verify if the `1.1.1.1` DNS service
 can be reached via `ping`. If not, the `sn-pi-mobile-pppd` service is restarted.
 
