@@ -1,0 +1,11 @@
+[Unit]
+Description=Mobile ModemManager setup
+ConditionPathExists=/dev/modem
+Before=network.target
+Wants=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/mobile-mm-init.sh
+KillMode=none
+RemainAfterExit=yes

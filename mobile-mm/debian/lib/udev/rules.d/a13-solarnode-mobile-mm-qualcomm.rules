@@ -1,0 +1,12 @@
+ACTION!="add|change|move|bind", GOTO="mm_qualcomm_port_types_end"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="05c6", GOTO="mm_qualcomm_port_types"
+GOTO="mm_qualcomm_port_types_end"
+
+LABEL="mm_qualcomm_port_types"
+SUBSYSTEMS=="usb", ATTRS{bInterfaceNumber}=="?*", ENV{.MM_USBIFNUM}="$attr{bInterfaceNumber}"
+
+# A-LINK 3GU
+ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9330", ENV{.MM_USBIFNUM}=="06", SUBSYSTEM=="tty", ENV{ID_MM_PORT_TYPE_AT_PRIMARY}="1"
+ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9330", ENV{.MM_USBIFNUM}=="06", SUBSYSTEM=="tty", SYMLINK+="modem"
+
+LABEL="mm_qualcomm_port_types_end"
