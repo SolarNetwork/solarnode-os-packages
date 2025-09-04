@@ -1,0 +1,10 @@
+[Unit]
+Description=Mobile ModemManager setup modem device
+After=ModemManager.service
+
+[Path]
+Unit=sn-mobile-mm-init.service
+PathExists=/dev/modem
+
+[Install]
+WantedBy=multi-user.target

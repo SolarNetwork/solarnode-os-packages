@@ -1,125 +1,58 @@
-# SolarNode Mobile Shield (USB) Debian package
+# SolarNode Mobile (Modem Manager) package
 
-This directory contains packaging scripts used to create the `sn-pi-mobile-shield-usb`
-Debian package, which provides configuration and support for USB-based 3/4G shields. The goal of
-this package is to configure, start, and maintain a mobile network connection on the shield's modem.
-
-This package is know to support the following mobile packages:
-
- * Quectel UC20, EC25
- * SimTech A7600G-H
+This directory contains packaging scripts used to create the `sn-mobile-mm` Debian package, which
+provides configuration and support for mobile networking via the ModemManager package.
 
 # Services
 
-The `sn-mobile-shield-usb-pppd` service manages the `pppd` daemon, but is not installed. The
-`sn-mobile-shield-usb-reconnect` service is managed by a timer, that runs the
-`/usr/share/solarnode/bin/sn-pi-mobile-reconnect.sh` script to verify if the `1.1.1.1` DNS service
-can be reached via `ping`. If not, the `sn-pi-mobile-pppd` service is restarted.
+The `sn-mobile-mm-init` service initializes the modem once during system boot. The
+`sn-mobile-mm-init.path` unit watches for the `/dev/modem` link to get created so start
+`sn-mobile-mm-init.service` (in case the device is added later).
+
+# Network configuration
+
+The package will install an `/etc/systemd/network/30-wwan.network` file if one does not already
+exist, **and** the `CFG_WITHOUT_NETWORK` configuration is not set (see next section). To disable
+this behavior set this configuration to `1` **before installing this package**, for example:
+
+```sh
+echo 'CFG_WITHOUT_NETWORK=1' |sudo tee -a /etc/default/sn-mobile-mm
+```
 
 # Configuration
 
-Several aspects of the PPP connection can be easily customized, mostly in the `/etc/ppp` directory.
+The `/etc/default/sn-mobild-mm` file can be used to configure aspects of this package. The default
+values are in the `/usr/share/solarnode/default/mobile-mm-init-default` file.
 
-## Network ping configuration
+| Configuration | Description |
+|:--------------|:------------|
+| `CFG_WITHOUT_NETWORK` | Disable creating the `30-wwan.network` file on package installation. |
+| `AT_INIT_FILE` | Path to a file of `AT` modem commands to configure the modem with when the `sn-mobile-mm-init` service runs. Defaults to `/usr/share/solarnode/example/mobile-mm-init-default`  (see next section). |
 
-The `sn-pi-mobile-reconnect` timer runs periodically to test that the network is reachable. The
-`/etc/default/sn-pi-mobile-shield` file contains the various parameters that can be configured:
+## Modem init
 
-```
-# Enable the auto-reconnect task
-AUTO_RECONNECT_ENABLE=1
-
-# The network interface to test for
-NET_INTERFACE="ppp0"
-
-# The host or IP address to ping
-PING_HOST="1.1.1.1"
-```
-
-The `/etc/ppp` directory contains all the PPP configuration of the mobile network connection.
-The default setup looks like this:
+The `AT_INIT_FILE` configuration file is where you can configure the mobile APN and any other setting. The default commands are:
 
 ```
-/etc/ppp
-├── chatscripts
-│   ├── apn -> /usr/share/solarnode/example/mobile-shield-chat-apn
-│   ├── chat-connect
-│   ├── chat-disconnect
-│   ├── initiate -> /usr/share/solarnode/example/mobile-shield-chat-initiate
-│   ├── mode -> mode.none
-│   ├── mode.none
-│   ├── pin -> pin.none
-│   └── pin.none
-├── ip-down
-├── ip-down.d
-│   └── 10-sn-mobile-shield-network-restart
-├── options -> /usr/share/solarnode/example/mobile-shield-ppp-options
-└── peers
-    └── sn-provider
-```
-
-## APN configuration
-
-The APN of the mobile network must be configured in the `/etc/ppp/chatscripts/apn` file, which is
-a symlink to the APN configuration you want to use. This defaults to
-`/usr/share/solarnode/example/mobile-shield-chat-apn`, which uses the APN value `internet`.
-
-To customize, create a `/etc/ppp/chatscripts/apn.mycarrier` file with the necessary settings, e.g.
-
-```
+AT+USBNETIP=0
 AT+CGDCONT=1,"IP","internet"
 ```
 
-Then create a symlink to that from `/etc/ppp/chatscripts/apn`, e.g.
+To use custom settings, create a file with the desired commands and then configure the
+`/etc/default/sn-mobile-mm` file with an `AT_INIT_FILE` with the path to that file. For example:
 
 ```sh
-ln -sf apn.mycarrier /etc/ppp/chatscripts/apn
-```
+# copy default commands to new file
+sudo cp /usr/share/solarnode/example/mobile-mm-init-default /usr/local/etc/sn-mobile-mm-init
 
-## Initiate configuration
+# edit custom commands as needed...
+sudo nano /usr/local/etc/sn-mobile-mm-init
 
-The initiation of the mobile network must be configured in the `/etc/ppp/chatscripts/initiate` file,
-which is a symlink to the configuration you want to use. This defaults to
-`/usr/share/solarnode/example/mobile-shield-chat-initiate`, which contains `ATD*99#`.
+# configure custom settings
+echo 'AT_INIT_FILE=/usr/local/etc/sn-mobile-mm-init' |sudo tee -a /etc/default/sn-mobile-mm
 
-To customize, create a `/etc/ppp/chatscripts/initiate.mycarrier` file with the necessary settings, e.g.
-
-```
-ATD*99***3#
-```
-
-Then create a symlink to that from `/etc/ppp/chatscripts/initiate`, e.g.
-
-```sh
-ln -sf initiate.mycarrier /etc/ppp/chatscripts/initiate
-```
-
-## PIN configuration
-
-Create a `/etc/ppp/chatscripts/pin.code` file with the needed PIN, e.g.
-
-```
-AT+CPIN=1234
-```
-
-Then create a symlink to that from `/etc/ppp/chatscripts/pin`, e.g.
-
-```sh
-ln -sf pin.code /etc/ppp/chatscripts/pin
-```
-
-## Mode configuration
-
-Create a `/etc/ppp/chatscripts/mode.X` file with the needed mode, e.g. use `mode.3G-only` like
-
-```
-AT\^SYSCFG=14,2,3fffffff,0,1
-```
-
-Then create a symlink to that from `/etc/ppp/chatscripts/mode`, e.g.
-
-```sh
-ln -sf mode.3G-only /etc/ppp/chatscripts/mode
+# manually run init (or else reboot)
+sudo systemctl start sn-mobile-mm-init
 ```
 
 
