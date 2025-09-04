@@ -1,0 +1,5 @@
+# Disable configuration of network related services
+# CFG_WITHOUT_NETWORK=1
+
+# Mobile AT init
+# AT_INIT_FILE=/usr/share/solarnode/example/mobile-mm-init-default

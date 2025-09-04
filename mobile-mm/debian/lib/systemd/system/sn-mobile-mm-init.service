@@ -1,0 +1,12 @@
+[Unit]
+Description=Mobile ModemManager setup
+ConditionPathExists=/dev/modem
+After=ModemManager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/mobile-mm-init.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

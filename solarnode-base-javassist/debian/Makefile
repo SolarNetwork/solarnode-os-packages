@@ -1,5 +1,5 @@
 NAME = solarnode-base-javassist
-VERSION = 1.0.0-1
+VERSION = 1.0.0-2
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,7 +14,7 @@ deb : prep app-core assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode platform Thmyeleaf support' \
+		--description 'SolarNode platform Javassist support' \
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 4.3)' \
