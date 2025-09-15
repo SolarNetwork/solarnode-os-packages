@@ -12,9 +12,16 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.10.4 - 2022-12-20
+## 2.11.2 - 2025-09-14
 
-This release requires [`solarnode-app-core` 1.17][app-core-1170] or newer.
+The complete list of plugins included is:
+
+| Name        | ID                         | Vers  |
+|:------------|:---------------------------|:------|
+| jSerialComm | `com.fazecast.jSerialComm` | 2.11.2 |
+
+
+## 2.10.4 - 2022-12-20
 
 The complete list of plugins included is:
 
@@ -25,7 +32,7 @@ The complete list of plugins included is:
 
 ## 2.9.2 - 2022-07-08
 
-This release requires [`solarnode-app-core` 1.17][app-core-1170] or newer.
+This release requires [`solarnode-app-core` 1.13][base] or newer.
 
 The complete list of plugins included is:
 
@@ -34,4 +41,4 @@ The complete list of plugins included is:
 | jSerialComm | `com.fazecast.jSerialComm` | 2.9.2 |
 
 
-[app-core-1170]: ../../solarnode-app-core/debian/CHANGELOG.md#1170---2021-05-17
+[base]: ../../solarnode-base/debian/CHANGELOG.md
