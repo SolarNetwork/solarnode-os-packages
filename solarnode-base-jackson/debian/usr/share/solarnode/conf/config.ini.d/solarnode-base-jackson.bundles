@@ -1,1 +1,1 @@
-,boot/jackson-annotations-2.19.0.jar@start,boot/jackson-core-2.19.0.jar@start,boot/jackson-databind-2.19.0.jar@start,boot/jackson-dataformat-cbor-2.19.0.jar@start,boot/jackson-datatype-jsr310-2.19.0.jar@start
+,boot/jackson-annotations-2.20.jar@start,boot/jackson-core-2.20.0.jar@start,boot/jackson-databind-2.20.0.jar@start,boot/jackson-dataformat-cbor-2.20.0.jar@start,boot/jackson-datatype-jsr310-2.20.0.jar@start

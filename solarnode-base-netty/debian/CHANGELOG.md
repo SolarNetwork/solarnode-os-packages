@@ -1,11 +1,30 @@
-# SolarNode Platform - Netty - H2 change log
+# SolarNode Platform - Netty change log
 
 This document details the history of changes of the `solarnode-base-netty` package, from newest to
 oldest.
 
-## 1.2.1 - 2025-06-09
+## 1.2.2 - 2025-10-06
 
- * Requires [`solarnode-base`](../../solarnode-base/debian) **1.13** or higher
+The complete list of plugins included is:
+
+| Name                               | ID                                      | Vers  |
+|:-----------------------------------|:----------------------------------------|:------|
+| Netty/Buffer                       | `io.netty.buffer`                       | 4.2.6 |
+| Netty/Codec                        | `io.netty.codec`                        | 4.2.6 |
+| Netty/Codec/Base                   | `io.netty.codec-base`                   | 4.2.6 |
+| Netty/Codec/Compression            | `io.netty.codec-compression`            | 4.2.6 |
+| Netty/Codec/HTTP                   | `io.netty.codec-http`                   | 4.2.6 |
+| Netty/Codec/HTTP2                  | `io.netty.codec-http2`                  | 4.2.6 |
+| Netty/Codec/MQTT                   | `io.netty.codec-mqtt`                   | 4.2.6 |
+| Netty/Codec/Stomp                  | `io.netty.codec-stomp`                  | 4.2.6 |
+| Netty/Common                       | `io.netty.common`                       | 4.2.6 |
+| Netty/Handler                      | `io.netty.handler`                      | 4.2.6 |
+| Netty/Resolver                     | `io.netty.resolver`                     | 4.2.6 |
+| Netty/Transport                    | `io.netty.transport`                    | 4.2.6 |
+| Netty/Transport/Native/Unix/Common | `io.netty.transport-native-unix-common` | 4.2.6 |
+
+
+## 1.2.1 - 2025-06-09
 
 The complete list of plugins included is:
 
@@ -18,7 +37,6 @@ The complete list of plugins included is:
 | Netty/Codec/HTTP                   | `io.netty.codec-http`                   | 4.2.2 |
 | Netty/Codec/HTTP2                  | `io.netty.codec-http2`                  | 4.2.2 |
 | Netty/Codec/MQTT                   | `io.netty.codec-mqtt`                   | 4.2.2 |
-| Netty/Codec/Protobuf               | `io.netty.codec-protobuf`               | 4.2.2 |
 | Netty/Codec/Stomp                  | `io.netty.codec-stomp`                  | 4.2.2 |
 | Netty/Common                       | `io.netty.common`                       | 4.2.2 |
 | Netty/Handler                      | `io.netty.handler`                      | 4.2.2 |
@@ -42,7 +60,6 @@ The complete list of plugins included is:
 | Netty/Codec/HTTP                   | `io.netty.codec-http`                   | 4.2.1 |
 | Netty/Codec/HTTP2                  | `io.netty.codec-http2`                  | 4.2.1 |
 | Netty/Codec/MQTT                   | `io.netty.codec-mqtt`                   | 4.2.1 |
-| Netty/Codec/Protobuf               | `io.netty.codec-protobuf`               | 4.2.1 |
 | Netty/Codec/Stomp                  | `io.netty.codec-stomp`                  | 4.2.1 |
 | Netty/Common                       | `io.netty.common`                       | 4.2.1 |
 | Netty/Handler                      | `io.netty.handler`                      | 4.2.1 |

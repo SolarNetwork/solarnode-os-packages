@@ -10,11 +10,11 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Jackson JSON -->
-		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.19.0"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.19.0"/>
-		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.19.0"/>
-		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.19.0"/>
-		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-jsr310" rev="2.19.0"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="2.20"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.20.0"/>
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.20.0"/>
+		<dependency org="com.fasterxml.jackson.dataformat" name="jackson-dataformat-cbor" rev="2.20.0"/>
+		<dependency org="com.fasterxml.jackson.datatype" name="jackson-datatype-jsr310" rev="2.20.0"/>
 
 	</dependencies>
 </ivy-module>
