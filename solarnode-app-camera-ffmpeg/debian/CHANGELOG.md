@@ -3,6 +3,13 @@
 This changelog is for the `solarnode-app-camera-ffmpeg` package created by the `Makefile` in
 this directory.
 
+## 2.0.1 - 2025-10-07
+
+| Name                      | ID                            | Vers  |
+|:--------------------------|:------------------------------|:------|
+| Camera Control via FFmpeg | `n.s.n.control.camera.ffmpeg` | 4.0.1 |
+
+
 ## 2.0.0 - 2025-06-24
 
 | Name                      | ID                            | Vers  |
