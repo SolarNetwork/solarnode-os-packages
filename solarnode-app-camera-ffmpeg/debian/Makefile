@@ -1,5 +1,5 @@
 NAME = solarnode-app-camera-ffmpeg
-VERSION = 2.0.0-1
+VERSION = 2.0.1-1
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
