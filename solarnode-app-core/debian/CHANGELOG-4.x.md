@@ -18,6 +18,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 4.2.1 - 2025-10-17
+
+The following plugins have changed from the previous release:
+
+| Name                            | ID                             | Old Vers | New Vers |
+|:--------------------------------|:-------------------------------|:---------|:---------|
+| Core Database Storage Support   | `n.s.n.dao.jdbc`               | 4.0.0 | 4.0.1 |
+| Core SolarNode Framework        | `n.s.node`                     | 4.0.2 | 4.0.3 |
+
+The complete list of plugins included is:
+
+
 ## 4.2.0 - 2025-10-13
 
 The following plugins have changed from the previous release:
