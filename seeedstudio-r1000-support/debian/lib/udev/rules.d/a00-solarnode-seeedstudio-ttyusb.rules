@@ -1,0 +1,7 @@
+# Give ttyUSB devices stable symlink names based on physical port location (devpath)
+
+KERNEL!="ttyUSB[0-9]*", GOTO="solarnode_ttyUSB_end"
+
+DRIVERS=="usb", PROGRAM="/usr/share/solarnode/bin/seeedstudio-r1000-tty-usb-namer.sh %s{devpath}", SYMLINK+="%c"
+
+LABEL="solarnode_ttyUSB_end"
