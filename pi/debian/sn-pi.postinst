@@ -2,7 +2,7 @@
 set -e
 
 # support images like /boot/firmware (using that over /boot if both exist)
-CONFIG_FILE="$(find /boot -depth -name config.txt -print -quit)"
+CONFIG_FILE="$(find /boot -name config.txt -print |tail -1)"
 
 # e.g. $CONFIG_FILE 'dtparam=watchdog=on' 'dtparam=watchdog'
 config_set () {
