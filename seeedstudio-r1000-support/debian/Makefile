@@ -18,6 +18,7 @@ deb : prep
 	-d 'linux-headers-rpi-v8' \
 	--conflicts 'sn-pi-usb-support' \
 	--replaces 'sn-pi-usb-support' \
+	--before-install $(NAME).preinst \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
 	$(PATHS)

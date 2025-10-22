@@ -4,7 +4,9 @@ set -e
 DKMS_NAME=rtc-pcf8563w
 DKMS_PACKAGE_NAME=sn-seeedstudio-r1000-support
 DKMS_VERSION=0.1
-CONFIG_FILE="$(find /boot -depth -name config.txt -print -quit)"
+CONFIG_FILE="$(find /boot -name config.txt -print |tail -1)"
+DIVERT_DIR=/usr/share/solarnode/overlays
+OVERLAYS_DIR=/boot/firmware/overlays
 
 # e.g. $CONFIG_FILE 'dtparam=watchdog=on' 'dtparam=watchdog'
 config_set () {
@@ -52,6 +54,12 @@ case "$1" in
 	;;
 esac
 
+if [ -f $DIVERT_DIR/reComputer-R100x.dtbo ]; then
+	rm -f $OVERLAYS_DIR/reComputer-R100x.dtbo
+	dpkg-divert --package snrpikernelhack --rename --remove $OVERLAYS_DIR/reComputer-R100x.dtbo
+	sync
+fi
+
 config_set $CONFIG_FILE 'enable_uart=1' 'enable_uart' \
 	"Turning on uart in $CONFIG_FILE; will be enabled on reboot."
 
@@ -61,5 +69,5 @@ config_set $CONFIG_FILE 'dtoverlay=dwc2,dr_mode=host' 'dtoverlay=dwc2,dr_mode' \
 config_set $CONFIG_FILE 'dtoverlay=vc4-kms-v3d' 'dtoverlay=vc4-kms-v3d' \
 	"Configuring dtoverlay vc4-kms-v3d in $CONFIG_FILE; will be enabled on reboot."
 
-config_set $CONFIG_FILE 'dtoverlay=vc4-kms-dsi-7inch' 'dtoverlay=vc4-kms-dsi-7inch' \
-	"Configuring dtoverlay vc4-kms-dsi-7inch in $CONFIG_FILE; will be enabled on reboot."
+config_set $CONFIG_FILE 'dtoverlay=reComputer-R100x,uart2' 'dtoverlay=reComputer-R100x' \
+	"Configuring dtoverlay reComputer-R100x in $CONFIG_FILE; will be enabled on reboot."
