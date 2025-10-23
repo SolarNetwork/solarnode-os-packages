@@ -8,10 +8,10 @@ This package installs some udev rules that create consistently named symlinks to
 devices based on the physical USB ports on the device. This is to help with configuring services
 that depend on serial devices being plugged into specific ports for deployment reasons.
 
-Links are named `/dev/ttyUSB_X` where `X` is a number staring a `1`.
+Links are named `/dev/ttyUSB_X` where `X` is a number.
 
 Looking at the side of the device with the HDMI port above the 2 USB ports labeled as
-`ttyUSB_1` and `ttyUSB_2`:
+`ttyUSB_3` and `ttyUSB_2`:
 
 ```
 +--------+
