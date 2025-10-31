@@ -1,6 +1,6 @@
 DIST = 
 NAME = sn-seeedstudio-r1000v1-support
-VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.0.0-2$(if $(DIST),+$(DIST),)
 PATHS = usr
 
 deb : prep

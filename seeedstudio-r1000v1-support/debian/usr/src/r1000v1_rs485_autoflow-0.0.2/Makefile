@@ -8,7 +8,8 @@ ccflags-y := -std=gnu11 -Wno-declaration-after-statement \
 	-DMODULE_NAME=\"$(MODULE_NAME)\" \
 	-DMODULE_VER=\"$(MODULE_VER)\"
 
-KDIR ?= /lib/modules/$(shell uname -r)/build
+KVERSION ?= $(shell uname -r)
+KDIR ?= /lib/modules/$(KVERSION)/build
 PWD := $(shell pwd)
 
 DKMSDIR := /usr/src/$(MODULE_NAME)-$(MODULE_VER)

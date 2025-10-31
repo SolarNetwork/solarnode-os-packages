@@ -6,9 +6,8 @@
 #
 
 KVERSION ?= $(shell uname -r)
-BASEDIR := /lib/modules/$(shell uname -r)
-KERNELDIR ?= $(BASEDIR)/build
-PWD :=$(shell pwd)
+KDIR ?= /lib/modules/$(KVERSION)/build
+PWD := $(shell pwd)
 
 obj-m				+= rtc-pcf8563w.o
 
@@ -17,12 +16,12 @@ all: clean modules modules_install
 
 .PHONY:modules
 modules:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+	$(MAKE) -C $(KDIR) M=$(PWD) modules
 
 .PHONY:modules_install
 modules_install:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install
+	$(MAKE) -C $(KDIR) M=$(PWD) modules_install
 
 .PHONY:clean
 clean:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
+	$(MAKE) -C $(KDIR) M=$(PWD) clean

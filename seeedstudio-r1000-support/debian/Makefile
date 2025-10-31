@@ -1,6 +1,6 @@
 DIST = 
 NAME = sn-seeedstudio-r1000-support
-VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.0.0-2$(if $(DIST),+$(DIST),)
 PATHS = boot lib usr
 
 deb : prep
