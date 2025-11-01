@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+DIVERT_DIR=/usr/share/solarnode/overlays
+OVERLAYS_DIR=/boot/firmware/overlays
+
+mkdir -p $DIVERT_DIR
+mkdir -p $OVERLAYS_DIR
+
+dpkg-divert --package snrpikernelhack --rename --divert $DIVERT_DIR/reComputer-R100x.dtbo $OVERLAYS_DIR/reComputer-R100x.dtbo

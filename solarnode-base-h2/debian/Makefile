@@ -1,5 +1,5 @@
 NAME = solarnode-base-h2
-VERSION = 1.2.0-3
+VERSION = 1.3.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
