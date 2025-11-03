@@ -12,6 +12,15 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.1.1 - 2025-11-04
+
+| Name              | ID                             | Vers  |
+|:------------------|:-------------------------------|:------|
+| Mock Battery      | `n.s.n.datum.battery.mock`     | 2.0.0 |
+| Mock Control      | `n.s.n.control.mock`           | 4.1.0 |
+| Mock Energy Meter | `n.s.n.datum.energymeter.mock` | 4.0.1 |
+
+
 ## 2.1.0 - 2025-07-09
 
 | Name              | ID                             | Vers  |
