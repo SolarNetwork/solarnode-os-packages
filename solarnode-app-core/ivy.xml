@@ -39,7 +39,7 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.metrics" rev="2.0.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.dao.jdbc" rev="4.0.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.reactor.simple" rev="4.0.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.settings.ca" rev="4.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.settings.ca" rev="4.0.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="4.0.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.auto" rev="3.0.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.log4j2" rev="2.0.0"/>
