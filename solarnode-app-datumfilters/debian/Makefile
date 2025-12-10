@@ -1,5 +1,5 @@
 NAME = solarnode-app-datumfilters
-VERSION = 2.2.0-1
+VERSION = 2.3.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
