@@ -10,19 +10,19 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- Netty -->
-		<dependency org="io.netty" name="netty-buffer" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-codec" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-codec-base" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-codec-compression" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-codec-http" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-codec-http2" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-codec-mqtt" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-codec-stomp" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-common" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-handler" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-resolver" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-transport" rev="4.2.6.Final"/>
-		<dependency org="io.netty" name="netty-transport-native-unix-common" rev="4.2.6.Final"/>
+		<dependency org="io.netty" name="netty-buffer" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-codec" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-codec-base" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-codec-compression" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-codec-http" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-codec-http2" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-codec-mqtt" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-codec-stomp" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-common" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-handler" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-resolver" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-transport" rev="4.2.9.Final"/>
+		<dependency org="io.netty" name="netty-transport-native-unix-common" rev="4.2.9.Final"/>
 
 		<!-- Global excludes -->
 		<exclude artifact="netty-codec-marshalling"/>
