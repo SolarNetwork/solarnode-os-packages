@@ -1,5 +1,5 @@
 NAME = solarnode-base-log4j2
-VERSION = 2.24.3-1
+VERSION = 2.25.3-1
 ASSEMBLE_PATHS = lib usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
