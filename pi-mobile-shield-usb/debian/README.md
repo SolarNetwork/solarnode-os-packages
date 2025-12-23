@@ -58,6 +58,26 @@ The default setup looks like this:
     └── sn-provider
 ```
 
+## System network configuration
+
+For devices where mobile is the only active internet connection, but you have other network devices
+configured in `/etc/systemd/network`, you may need to disable the `RequiredForOnline` setting so
+that `systemd-timesyncd` starts synchronizing with NTP servers. Add a `[Link]` section to all
+`*.network` configurations in `/etc/systemd/network` **except** the `ppp` network, like this:
+
+```
+[Link]
+RequiredForOnline=false
+```
+
+You can verify if NTP synchronization is active with `timedatectl status`. Look for a line like
+
+```
+System clock synchronized: yes
+```
+
+<img alt="Console output of timedatectl command" src="docs/timedatectl-status-ntp-sync@2x.png" width="417">
+
 ## APN configuration
 
 The APN of the mobile network must be configured in the `/etc/ppp/chatscripts/apn` file, which is
