@@ -3,6 +3,27 @@
 This document details the history of changes of the `solarnode-base-netty` package, from newest to
 oldest.
 
+## 1.2.3 - 2025-12-24
+
+The complete list of plugins included is:
+
+| Name                               | ID                                      | Vers  |
+|:-----------------------------------|:----------------------------------------|:------|
+| Netty/Buffer                       | `io.netty.buffer`                       | 4.2.9 |
+| Netty/Codec                        | `io.netty.codec`                        | 4.2.9 |
+| Netty/Codec/Base                   | `io.netty.codec-base`                   | 4.2.9 |
+| Netty/Codec/Compression            | `io.netty.codec-compression`            | 4.2.9 |
+| Netty/Codec/HTTP                   | `io.netty.codec-http`                   | 4.2.9 |
+| Netty/Codec/HTTP2                  | `io.netty.codec-http2`                  | 4.2.9 |
+| Netty/Codec/MQTT                   | `io.netty.codec-mqtt`                   | 4.2.9 |
+| Netty/Codec/Stomp                  | `io.netty.codec-stomp`                  | 4.2.9 |
+| Netty/Common                       | `io.netty.common`                       | 4.2.9 |
+| Netty/Handler                      | `io.netty.handler`                      | 4.2.9 |
+| Netty/Resolver                     | `io.netty.resolver`                     | 4.2.9 |
+| Netty/Transport                    | `io.netty.transport`                    | 4.2.9 |
+| Netty/Transport/Native/Unix/Common | `io.netty.transport-native-unix-common` | 4.2.9 |
+
+
 ## 1.2.2 - 2025-10-06
 
 The complete list of plugins included is:

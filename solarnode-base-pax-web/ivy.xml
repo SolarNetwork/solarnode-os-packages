@@ -3,7 +3,7 @@
 	SolarNode app deployment configuration for Pax Web support.
 -->
 <ivy-module version="2.0">
-	<info organisation="SolarNetwork" module="SolarNode-Pax-WEb"/>
+	<info organisation="SolarNetwork" module="SolarNode-Pax-Web"/>
 	<configurations>
 		<conf name="runtime" visibility="public" description="The Runtime"/>
 	</configurations>
@@ -16,47 +16,47 @@
 			<exclude org="org.ops4j.pax.swissbox"/>
 			<exclude module="pax-url-commons"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-api" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-compatibility-annotation" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-compatibility-annotation" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-compatibility-el" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-compatibility-el" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-compatibility-servlet" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-compatibility-servlet" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-extender-war" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-runtime" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-spi" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-common" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-tomcat-websocket" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>
-		<dependency org="org.ops4j.pax.web" name="pax-web-websocket" rev="11.0.0">
+		<dependency org="org.ops4j.pax.web" name="pax-web-websocket" rev="11.1.0">
 			<exclude org="org.ops4j.base"/>
 			<exclude org="org.ops4j.pax.swissbox"/>
 		</dependency>

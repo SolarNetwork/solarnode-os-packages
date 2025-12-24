@@ -1,1 +1,1 @@
-,boot/net.solarnetwork.common.slf4j-to-log4j2-1.0.0.jar,boot/net.solarnetwork.common.log4j2-to-log4j2-core-1.0.0.jar,boot/log4j-core-2.24.3.jar@start,boot/log4j-slf4j2-impl-2.24.3.jar@2\:start,boot/log4j-api-2.24.3.jar@start
+,boot/net.solarnetwork.common.slf4j-to-log4j2-1.0.0.jar,boot/net.solarnetwork.common.log4j2-to-log4j2-core-1.0.0.jar,boot/log4j-core-2.25.3.jar@start,boot/log4j-slf4j2-impl-2.25.3.jar@2\:start,boot/log4j-api-2.25.3.jar@start

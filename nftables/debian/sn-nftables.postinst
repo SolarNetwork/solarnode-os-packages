@@ -4,7 +4,7 @@ set -e
 if [ "$1" = "configure" ]; then
 	systemctl daemon-reload >/dev/null || true
 	
-	if [ -e /usr/share/solarnode/conf/nftables.conf ]; then
+	if [ ! -e /etc/nftables.conf -a -e /usr/share/solarnode/conf/nftables.conf ]; then
 		echo 'Installing /etc/nftables.conf rules from /usr/share/solarnode/conf/nftables.conf.'
 		cp -a /usr/share/solarnode/conf/nftables.conf /etc/nftables.conf
 	fi
