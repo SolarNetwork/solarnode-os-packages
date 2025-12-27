@@ -3,6 +3,16 @@
 This document details the history of changes of the `solarnode-base-jackson` package, from newest to
 oldest.
 
+## 1.4.0 - 2025-12-27
+
+| Name                     | ID                                                         | Vers   |
+|:-------------------------|:-----------------------------------------------------------|:-------|
+| Jackson dataformat: CBOR | `com.fasterxml.jackson.dataformat.jackson-dataformat-cbor` | 2.20.0 |
+| Jackson datatype: JSR310 | `com.fasterxml.jackson.datatype.jackson-datatype-jsr310`   | 2.20.0 |
+| Jackson-core             | `com.fasterxml.jackson.core.jackson-core`                  | 2.20.0 |
+| jackson-databind         | `com.fasterxml.jackson.core.jackson-databind`              | 2.20.0 |
+
+
 ## 1.3.0 - 2025-10-06
 
 | Name                     | ID                                                         | Vers   |

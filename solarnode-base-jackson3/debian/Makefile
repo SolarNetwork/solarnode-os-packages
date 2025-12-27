@@ -1,5 +1,5 @@
-NAME = solarnode-base-jackson
-VERSION = 1.4.0-1
+NAME = solarnode-base-jackson3
+VERSION = 1.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -14,7 +14,7 @@ deb : prep app-core assemble table
 		-a all \
 		-m 'packaging@solarnetwork.org.nz' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'SolarNode platform Jackson JSON support' \
+		--description 'SolarNode platform Jackson JSON 3 support' \
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 1.13)' \

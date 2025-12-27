@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	SolarNode app deployment configuration for Jackson JSON 3 support.
+-->
+<ivy-module version="2.0">
+	<info organisation="SolarNetwork" module="SolarNode-Jackson3"/>
+	<configurations>
+		<conf name="runtime" visibility="public" description="The Runtime"/>
+	</configurations>
+	<dependencies defaultconfmapping="runtime->default(runtime)">
+
+		<!-- Jackson JSON -->
+		<dependency org="tools.jackson.core" name="jackson-core" rev="3.0.3"/>
+		<dependency org="tools.jackson.core" name="jackson-databind" rev="3.0.3"/>
+		<dependency org="tools.jackson.dataformat" name="jackson-dataformat-cbor" rev="3.0.3"/>
+
+		<exclude org="com.fasterxml.jackson.core" module="jackson-annotations"/>
+
+	</dependencies>
+</ivy-module>
