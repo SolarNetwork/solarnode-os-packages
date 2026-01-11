@@ -1,5 +1,5 @@
 NAME = solarnode-base-jackson
-VERSION = 1.3.0-1
+VERSION = 1.4.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -18,6 +18,7 @@ deb : prep app-core assemble table
 		--license 'GPL 2.0' \
 		-f \
 		-d 'solarnode-base (>= 1.13)' \
+		-d 'solarnode-base-jackson-annotations' \
 		--deb-field 'Breaks: solarnode-base (<< 1.13)' \
 		--replaces 'solarnode-base (<< 1.13)' \
 		--after-install $(NAME).postinst \

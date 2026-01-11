@@ -9,3 +9,8 @@ to oldest.
 
 The complete list of plugins included is:
 
+| Name                                      | ID                                              | Vers  |
+|:------------------------------------------|:------------------------------------------------|:------|
+| Apache ServiceMix :: Bundles :: thymeleaf | `org.apache.servicemix.bundles.thymeleaf`       | 3.1.2 |
+| Thymeleaf-extras-springsecurity6          | `n.s.external.thymeleaf-extras-springsecurity6` | 3.1.2 |
+| Thymeleaf-spring6                         | `n.s.external.thymeleaf-spring6`                | 3.1.2 |

@@ -77,9 +77,6 @@
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-cache-api" rev="1.1.1_1" conf="boot"/>
 		<dependency org="org.apache.servicemix.bundles" name="org.apache.servicemix.bundles.javax-inject" rev="1_3" conf="boot"/>
 
-		<!-- CSV -->
-		<dependency org="net.sf.supercsv" name="super-csv" rev="2.4.0" conf="core"/>
-
 		<!-- Other Utilities -->
 		<dependency org="org.attoparser" name="attoparser" rev="2.0.7.RELEASE" conf="core"/>
 		<dependency org="org.unbescape" name="unbescape" rev="1.1.6.RELEASE" conf="core"/>
@@ -97,6 +94,7 @@
 		<exclude org="javax.servlet.jsp"/>
 		<exclude org="log4j"/>
 		<exclude org="net.sf.ehcache"/>
+		<exclude org="net.sf.supercsv"/>
 		<exclude org="org.easymock"/>
 		<exclude org="org.ow2.asm"/>
 		<exclude org="org.slf4j"/>
