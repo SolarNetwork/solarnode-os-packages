@@ -10,7 +10,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<dependency org="net.solarnetwork.external" name="net.solarnetwork.external.opendnp3-bindings" rev="3.1.2.SN01"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.dnp3" rev="5.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.dnp3" rev="5.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
@@ -24,6 +24,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="de.siegmar"/>
 		<exclude org="jakarta.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>

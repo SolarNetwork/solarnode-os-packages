@@ -9,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.server" rev="5.1.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.server" rev="5.2.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
@@ -25,6 +25,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="de.siegmar"/>
 		<exclude org="io.netty"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
