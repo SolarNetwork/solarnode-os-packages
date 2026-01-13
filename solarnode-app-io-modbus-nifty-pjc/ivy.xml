@@ -10,8 +10,8 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="3.0.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="2.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="3.1.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="2.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude org="net.solarnetwork.external"/>
