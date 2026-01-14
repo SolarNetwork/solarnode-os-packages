@@ -1,5 +1,5 @@
 NAME = solarnode-base-bouncy-castle
-VERSION = 1.0.0-2
+VERSION = 1.1.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
