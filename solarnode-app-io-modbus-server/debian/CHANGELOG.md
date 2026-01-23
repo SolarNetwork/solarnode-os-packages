@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.4.0 - 2026-01-22
+
+| Name          | ID                       | Vers  |
+|:--------------|:-------------------------|:------|
+| Modbus Server | `n.s.n.io.modbus.server` | 5.4.0 |
+
+
 ## 2.3.0 - 2026-01-14
 
 | Name                | ID                       | Vers  |
