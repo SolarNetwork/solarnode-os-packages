@@ -22,6 +22,21 @@ Looking at the side of the device with the HDMI port to the right of the 2 USB p
 +-------+  +---+
 ```
 
+# udev discovery
+
+Run `udevadm` to print out all available attributes on a connected USB device:
+
+```sh
+# monitor
+udevadm monitor -u -p
+
+# print out all attributes
+udevadm info -p $(udevadm info -q path -n /dev/ttyUSB0) -a
+
+# test a device
+udevadm test $(udevadm info -q path -n /dev/ttyUSB0)
+```
+
 # Building
 
 Packaging done via [fpm][fpm]. To install `fpm`:
