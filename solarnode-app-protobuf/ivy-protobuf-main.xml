@@ -11,7 +11,7 @@
 
 		<!-- Protobuf Support -->
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdt" rev="4.0.0" />
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.protobuf" rev="4.0.0" />
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.protobuf" rev="4.0.1" />
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.protobuf" rev="4.0.0" />
 
 		<!-- Global excludes provided by solarnode-app-core -->

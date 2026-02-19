@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.1.0 - 2026-02-19
+
+| Name                   | ID                        | Vers  |
+|:-----------------------|:--------------------------|:------|
+| OpenWeatherMap Weather | `n.s.n.datum.weather.owm` | 4.1.0 |
+
+
 ## 2.0.0 - 2025-06-24
 
 This release requires [`solarnode-app-core` 4.0][app-core-log] or newer.

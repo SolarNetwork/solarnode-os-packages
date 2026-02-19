@@ -12,6 +12,15 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.1.1 - 2026-02-19
+
+The complete list of plugins included is:
+
+| Name                           | ID                          | Vers  |
+|:-------------------------------|:----------------------------|:------|
+| New Zealand Grid Market Prices | `n.s.n.datum.price.nz.wits` | 2.1.1 |
+
+
 ## 2.1.0 - 2025-09-10
 
 The complete list of plugins included is:

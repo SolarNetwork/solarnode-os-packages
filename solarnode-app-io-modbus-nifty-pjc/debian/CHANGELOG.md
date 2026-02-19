@@ -12,6 +12,14 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.1.1 - 2026-02-19
+
+| Name                                                     | ID                          | Vers  |
+|:---------------------------------------------------------|:----------------------------|:------|
+| Modbus Communication Support (Nifty Modbus)              | `n.s.n.io.modbus.nifty`     | 3.1.1 |
+| Modbus Communication Support - Serial (Nifty Modbus PJC) | `n.s.n.io.modbus.nifty.pjc` | 2.1.1 |
+
+
 ## 2.1.0 - 2026-01-14
 
 The complete list of plugins included is:
