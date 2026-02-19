@@ -7,3 +7,9 @@ KERNEL!="ttyUSB[0-9]*", GOTO="solarnode_ttyUSB_end"
 DRIVERS=="usb", PROGRAM="/usr/share/solarnode/bin/iotdin-imx8p-tty-usb-namer.sh %s{devpath}", SYMLINK+="%c"
 
 LABEL="solarnode_ttyUSB_end"
+
+# Support for ttyACM
+SUBSYSTEM=="tty", KERNELS=="1-1:1.0", DRIVERS=="cdc_acm", SYMLINK+="ttyACM_0"
+SUBSYSTEM=="tty", KERNELS=="1-1:1.2", DRIVERS=="cdc_acm", SYMLINK+="ttyACM_1"
+SUBSYSTEM=="tty", KERNELS=="1-1:1.4", DRIVERS=="cdc_acm", SYMLINK+="ttyACM_2"
+SUBSYSTEM=="tty", KERNELS=="1-1:1.6", DRIVERS=="cdc_acm", SYMLINK+="ttyACM_3"
