@@ -79,6 +79,7 @@
 
 		<!-- Other Utilities -->
 		<dependency org="org.attoparser" name="attoparser" rev="2.0.7.RELEASE" conf="core"/>
+		<dependency org="org.jspecify" name="jspecify" rev="1.0.0" conf="boot"/>
 		<dependency org="org.unbescape" name="unbescape" rev="1.1.6.RELEASE" conf="core"/>
 
 		<!-- Global excludes -->
