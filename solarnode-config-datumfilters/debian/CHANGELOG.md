@@ -7,6 +7,3 @@ directory.
 
 Initial release.
 
-
-[ecogy-app-core-1160]: ../../ecogy-solarnode-app-core/debian/CHANGELOG.md#1160---2021-07-19
-[solarnode-base-log]: ../../solarnode-base/debian/CHANGELOG.md
