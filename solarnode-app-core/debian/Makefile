@@ -1,5 +1,5 @@
 NAME = solarnode-app-core
-VERSION = 4.7.1-1
+VERSION = 4.8.0-1
 PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/ivy-deb.xml
@@ -21,7 +21,7 @@ pkg : app-core table
 		-d 'sn-solarpkg (>= 1.2)' \
 		-d 'sn-solarssh (>= 1.0)' \
 		-d 'sn-system (>= 1.6)' \
-		-d 'solarnode-base (>= 5.0)' \
+		-d 'solarnode-base (>= 5.3)' \
 		-d 'solarnode-base-bouncy-castle' \
 		-d 'solarnode-base-blueprint-gemini (>= 4.0)' \
 		-d 'solarnode-base-fastcsv' \
