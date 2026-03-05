@@ -3,6 +3,11 @@
 This directory contains support for building the `solarnode-config-datumfilters` package. This
 provides standard configuration for core Datum Filters support in SolarNode.
 
+> :warning: You might need to restart SolarNode **twice** after installing this package: first to
+> have the configuration populated and then a second time to ensure the configuration is loaded.
+> Be sure to wait for SolarNode to fully start before the second restart.
+
+
 ## Datum Queue Main Filter Chain
 
 This configures an empty [Filter Chain][fc] named **Chain - Main** with the identifier `Main`, and

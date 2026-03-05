@@ -13,7 +13,7 @@ deb : prep
 		--vendor 'SolarNetwork Foundation' \
 		--license 'Apache License 2.0' \
 		-f \
-		-d 'solarnode-base' \
+		-d 'solarnode-app-core (>= 4.8)' \
 		$(PATHS)
 
 prep : 
