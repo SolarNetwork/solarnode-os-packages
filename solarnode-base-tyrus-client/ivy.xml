@@ -9,7 +9,13 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="org.glassfish.tyrus.bundles" name="tyrus-standalone-client-jdk" rev="2.2.0" />
+		<dependency org="org.glassfish.tyrus" name="tyrus-core" rev="2.2.2" />
+		<dependency org="org.glassfish.tyrus" name="tyrus-spi" rev="2.2.2" />
+		<dependency org="org.glassfish.tyrus" name="tyrus-client" rev="2.2.2" />
+		<dependency org="org.glassfish.tyrus" name="tyrus-container-jdk-client" rev="2.2.2" />
 
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.tyrus-core-container-jdk" rev="2.2.0" />
+
+		<exclude org="jakarta.websocket"/>
 	</dependencies>
 </ivy-module>

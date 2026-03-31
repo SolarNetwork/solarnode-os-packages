@@ -1,5 +1,5 @@
 NAME = solarnode-base-tyrus-client
-VERSION = 1.0.0-1
+VERSION = 1.1.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS)
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -20,6 +20,7 @@ deb : prep app-core assemble table
 		-d 'solarnode-base (>= 5.0)' \
 		--deb-field 'Breaks: solarnode-base (<< 5.0)' \
 		--replaces 'solarnode-base (<< 5.0)' \
+		-d 'solarnode-base-jaxb-jakarta' \
 		--after-install $(NAME).postinst \
 		--after-remove $(NAME).postrm \
 		--chdir $(DEB_BUILD_ROOT) \

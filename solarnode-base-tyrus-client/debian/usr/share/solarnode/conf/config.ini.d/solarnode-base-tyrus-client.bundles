@@ -1,1 +1,1 @@
-,core/tyrus-standalone-client-jdk-2.2.0.jar@start
+,core/tyrus-core-2.2.2.jar@start,core/tyrus-spi-2.2.2.jar@start,core/tyrus-client-2.2.2.jar@start,core/tyrus-container-jdk-client-2.2.2.jar@start,core/net.solarnetwork.common.tyrus-core-container-jdk-2.2.0.jar
