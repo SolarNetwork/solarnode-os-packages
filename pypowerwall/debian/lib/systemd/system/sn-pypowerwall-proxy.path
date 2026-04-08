@@ -1,0 +1,10 @@
+[Unit]
+Description=SolarNode PyPowerwall Proxy configuration
+Wants=network.target
+
+[Path]
+Unit=sn-pypowerwall-proxy.service
+PathChanged=/etc/solarnode/sn-pypowerwall-proxy.conf
+
+[Install]
+Alias=multi-user.target.wants/sn-pypowerwall-proxy.path
