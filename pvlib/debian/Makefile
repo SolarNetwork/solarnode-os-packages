@@ -1,6 +1,7 @@
 NAME = sn-pvlib
 DIST = 
 VERSION = 1.1.1-1$(if $(DIST),+$(DIST),)
+PATHS = usr var
 
 deb : prep
 	fpm -s dir -t deb \
@@ -21,7 +22,7 @@ deb : prep
 		-d 'libhdf5-103' \
 		-d 'libsz2' \
 		--after-install $(NAME).postinst \
-		usr var
+		$(PATHS)
 
 prep : 
 	find $(PATHS) -type f -name .DS_Store -delete
