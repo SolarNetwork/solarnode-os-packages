@@ -1,0 +1,9 @@
+[Unit]
+Description=SolarNode PyPowerwall Proxy configuration monitor
+Wants=network.target
+
+[Path]
+PathChanged=/etc/solarnode/sn-pypowerwall-proxy.conf
+
+[Install]
+WantedBy=multi-user.target

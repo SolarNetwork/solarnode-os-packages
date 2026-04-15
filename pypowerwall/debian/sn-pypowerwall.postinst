@@ -30,6 +30,6 @@ $PYPOWERWALL_VENV/bin/pip3 cache purge || true
 systemctl daemon-reload || true
 
 if ! systemctl is-enabled sn-pypowerwall-proxy.path >/dev/null; then
-	echo 'Enabling sn-pypowerwall-proxy.path...'
-	systemctl enable sn-pypowerwall-proxy.path || true
+	echo 'Enabling sn-pypowerwall-proxy-restart.path...'
+	systemctl enable sn-pypowerwall-proxy-restart.path || true
 fi
