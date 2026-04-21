@@ -1,7 +1,7 @@
 NAME = sn-pypowerwall
 DIST = 
 VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
-PATHS = lib usr
+PATHS = etc lib usr
 
 deb : prep
 	fpm -s dir -t deb \
@@ -19,6 +19,7 @@ deb : prep
 		--after-install $(NAME).postinst \
 		--before-remove $(NAME).prerm \
 		--after-remove $(NAME).postrm \
+		--deb-no-default-config-files \
 		$(PATHS)
 
 prep : 
