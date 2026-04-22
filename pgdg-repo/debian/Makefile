@@ -9,7 +9,6 @@ deb :
 		-m 'SolarNetwork Packaging <packaging@solarnetwork.org.nz>' \
 		--vendor 'SolarNetwork Foundation' \
 		--description 'Postgres Development Group apt repository support.' \
-		--url https://github.com/epsilonrt/mbpoll \
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/pgdg-repo/debian" \
 		-d 'curl' \
