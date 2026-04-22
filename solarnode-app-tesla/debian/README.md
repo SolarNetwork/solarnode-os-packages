@@ -22,7 +22,7 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 # Building
 
-Run `make` to build the package, which will produce `solarnode-app-sunspec_VERSION_all.deb`
+Run `make` to build the package, which will produce `solarnode-app-tesla_VERSION_all.deb`
 in this directory.
 
 [ant]: https://ant.apache.org/
