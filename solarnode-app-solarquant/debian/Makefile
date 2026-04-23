@@ -1,12 +1,13 @@
 NAME = solarnode-app-solarquant
 VERSION = 1.0.0-1
-PATHS = var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
+ASSEMBLE_PATHS = usr var
+PATHS = $(ASSEMBLE_PATHS)
 
-pkg : app table
+pkg : app assemble table
 	fpm -s dir \
 		-t deb \
 		-n $(NAME) \
@@ -19,11 +20,16 @@ pkg : app table
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-core (>= 4.8)' \
+		-d 'solarnode-base-httpclient (>= 1.1)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
 clean : 
 	rm $(NAME)_$(VERSION)_all.deb
+
+assemble : 
+	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
+	find $(DEB_BUILD_ROOT) -type f -name .DS_Store -delete
 
 app :
 	ant -f "$(SN_BUILD_ROOT)/solarnode-deploy/generic/build.xml" \
