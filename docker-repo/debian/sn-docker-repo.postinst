@@ -3,6 +3,8 @@ set -e
 
 APT_CONF="/etc/apt/sources.list.d/docker.list"
 KEY_FILE="/etc/apt/keyrings/docker.asc"
+SN_USER=solar
+DOCKER_GROUP=docker
 
 if [ ! -e "$KEY_FILE" ]; then
 	if type curl >/dev/null 2>&1; then
@@ -22,4 +24,14 @@ if [ -e /etc/os-release -a ! -e "$APT_CONF" -a -e "$KEY_FILE" ]; then
 			>"$APT_CONF"
 		echo "Run apt-update to access Docker packages."
 	fi
+fi
+
+if ! getent group $DOCKER_GROUP >/dev/null; then
+	echo "Adding $DOCKER_GROUP group"
+	addgroup --system $DOCKER_GROUP
+fi
+
+if ! id -nG "$SN_USER" | grep -qw "$DOCKER_GROUP"; then
+	echo "Adding $SN_USER to group $DOCKER_GROUP"
+	usermod -a -G $DOCKER_GROUP $SN_USER
 fi
