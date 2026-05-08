@@ -1,0 +1,8 @@
+# SolarNode PyPowerwall Proxy restart service unit 
+
+[Unit]
+Description=SolarNode PyPowerwall Proxy restart
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart sn-pypowerwall-proxy.service

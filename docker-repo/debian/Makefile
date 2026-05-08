@@ -1,4 +1,4 @@
-NAME = sn-pgdg-repo
+NAME = sn-docker-repo
 VERSION = 1.0.0-1
 
 deb : 
@@ -8,9 +8,9 @@ deb :
 		-v $(VERSION) \
 		-m 'SolarNetwork Packaging <packaging@solarnetwork.org.nz>' \
 		--vendor 'SolarNetwork Foundation' \
-		--description 'Postgres Development Group apt repository support.' \
+		--description 'Docker apt repository support.' \
 		--license 'GPL 2.0' \
-		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/pgdg-repo/debian" \
+		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/docker-repo/debian" \
 		-d 'curl' \
 		--after-install $(NAME).postinst \
 		--force

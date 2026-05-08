@@ -1,0 +1,16 @@
+#!/bin/sh -e
+
+# for testing, set WPA_CONF=/path/to/test.conf 
+PW_CONF="${WPA_CONF:-/etc/solarnode/sn-pypowerwall.conf}"
+PW_PROXY_CONF="${WPA_CONF:-/etc/solarnode/sn-pypowerwall-proxy.conf}"
+
+if [ "$1" = "purge" ]; then
+	if [ -e "$PW_CONF" ]; then
+		echo "Removing PyPowerwall config $PW_CONF..."
+		rm -f "$PW_CONF"
+	fi
+	if [ -e "$PW_PROXY_CONF" ]; then
+		echo "Removing PyPowerwall Proxy config $PW_PROXY_CONF..."
+		rm -f "$PW_PROXY_CONF"
+	fi
+fi

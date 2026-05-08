@@ -9,7 +9,7 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.tesla.powerwall" rev="2.0.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.tesla.powerwall" rev="2.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude artifact="net.solarnetwork.common"/>
@@ -23,6 +23,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="de.siegmar"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
 		<exclude org="net.java.dev.jna"/>
@@ -31,11 +32,14 @@
 		<exclude org="org.apache.httpcomponents"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.eclipse.paho"/>
+		<exclude org="org.jspecify"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.quartz-scheduler"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
 		<exclude org="org.springframework.security"/>
 		<exclude org="org.mitre.dsmiley.httpproxy"/>
+		<exclude org="tools.jackson.core"/>
+		<exclude org="tools.jackson.dataformat"/>
 	</dependencies>
 </ivy-module>

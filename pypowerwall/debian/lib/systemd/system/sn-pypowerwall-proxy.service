@@ -1,0 +1,19 @@
+# SolarNode PyPowerwall Proxy service unit 
+
+[Unit]
+Description=SolarNode PyPowerwall Proxy
+ConditionPathExists=/etc/solarnode/sn-pypowerwall.conf
+ConditionPathExists=/etc/solarnode/sn-pypowerwall-proxy.conf
+
+[Service]
+Type=simple
+User=solar
+Group=solar
+WorkingDirectory=/run/sn-pypowerwall
+RuntimeDirectory=sn-pypowerwall
+ExecStart=/usr/share/solarnode/bin/sn-pypowerwall-proxy.sh
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,35 @@
+#!/bin/sh -e
+
+default_conf=/etc/solarnode/sn-pypowerwall.conf
+default_conf_src=/usr/share/solarnode/example/sn-pypowerwall.conf
+
+# make configuration
+if [ ! -e "$default_conf" ]; then
+	echo 'Creating sn-pypowerwall virtual environment'
+	if [ -e "$default_conf_src" ]; then
+		echo "Creating sn-pypowerwall default configuration $default_conf"
+		cp  "$default_conf_src" "$default_conf"
+	fi
+fi
+
+. "$default_conf"
+
+# setup venv
+if [ ! -d "$PYPOWERWALL_VENV" ]; then
+	echo "Creating sn-pypowerwall virtual environment $PYPOWERWALL_VENV"
+	python3 -m venv "$PYPOWERWALL_VENV"
+fi
+
+# install pypowerwall
+$PYPOWERWALL_VENV/bin/pip3 install --upgrade --upgrade-strategy only-if-needed --prefer-binary \
+  pypowerwall bs4
+
+# clear package cache to free space
+$PYPOWERWALL_VENV/bin/pip3 cache purge || true
+
+systemctl daemon-reload || true
+
+if ! systemctl is-enabled sn-pypowerwall-proxy-restart.path >/dev/null; then
+	echo 'Enabling sn-pypowerwall-proxy-restart.path...'
+	systemctl enable sn-pypowerwall-proxy-restart.path || true
+fi
