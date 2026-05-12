@@ -16,7 +16,7 @@ make them shorter, using the following conventions:
 
 | Name              | ID                               | Vers  |
 |:------------------|:---------------------------------|:------|
-| DNP3 Integration  | `n.s.n.io.dnp3`                  | 5.1.1 |
+| DNP3 Integration  | `n.s.n.io.dnp3`                  | 5.1.2 |
 | OpenDNP3 Bindings | `n.s.external.opendnp3-bindings` | 3.1.2 |
 
 
