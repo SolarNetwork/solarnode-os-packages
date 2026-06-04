@@ -1,5 +1,5 @@
-DIST = 
-VERSION = 2.0.0-2$(if $(DIST),+$(DIST),)
+DIST =
+VERSION = 3.0.0-1$(if $(DIST),+$(DIST),)
 NAME = solarnode-bluetooth-setup
 PATHS = etc lib usr
 
@@ -15,7 +15,6 @@ deb : prep
 	--force \
 	-d 'systemd (>= 232)' \
 	-d 'bluetooth' \
-	-d 'bluez-tools' \
 	-d 'python3' \
 	-d 'python3-dbus' \
 	-d 'python3-gi' \
@@ -24,8 +23,8 @@ deb : prep
 	--before-remove $(NAME).prerm \
 	$(PATHS)
 
-prep : 
+prep :
 	find $(PATHS) -type f -name .DS_Store -delete
 
-clean : 
+clean :
 	rm $(NAME)_$(VERSION)_all.deb
