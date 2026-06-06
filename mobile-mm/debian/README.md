@@ -56,6 +56,25 @@ sudo systemctl start sn-mobile-mm-init
 ```
 
 
+# `solarcfg` integration
+
+This package installs a `/usr/share/solarnode/cfg.d/mobile.sh` service script so the mobile
+connection can be managed via the `solarcfg` helper (provided by the `sn-system` package):
+
+```sh
+# report connection status (operator, signal, state)
+sudo solarcfg mobile status
+# reset the connection (disable then enable the modem)
+sudo solarcfg mobile reset
+# restart the ModemManager service
+sudo solarcfg mobile restart
+```
+
+This is used by the SolarNode `net.solarnetwork.node.setup.mobile` plugin, which exposes the same
+actions to the SolarNode UI and to remote clients (such as the mobile app) via a `SystemConfigure`
+instruction with a `service` parameter of `/setup/network/mobile`.
+
+
 # Packaging
 
 This section describes how the `sn-pi-mobile-shield-usb` package is created.
