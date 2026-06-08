@@ -7,26 +7,17 @@
 
 import array
 import logging
+import os
 import os.path
+import signal
 import socket
-import struct
 import sys
-import time
 
 import dbus
 import dbus.exceptions
 import dbus.mainloop.glib
 import dbus.service
-
-MainLoop = None
-try:
-    from gi.repository import GLib
-
-    MainLoop = GLib.MainLoop
-except ImportError:
-    import gobject as GObject
-
-    MainLoop = GObject.MainLoop
+from gi.repository import GLib
 
 DBUS_OM_IFACE = "org.freedesktop.DBus.ObjectManager"
 DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
@@ -47,20 +38,21 @@ GATT_MANAGER_IFACE = "org.bluez.GattManager1"
 AGENT_INTERFACE = "org.bluez.Agent1"
 AGENT_PATH = "/net/solarnetwork/node/setup/agent"
 
-SN_STOMP_ADDRESS = '127.0.0.1'
+# Default address/port of the SolarNode STOMP setup server
+# (net.solarnetwork.node.setup.stomp); change here if the upstream bundle
+# is reconfigured.
+SN_STOMP_ADDRESS = "127.0.0.1"
 SN_STOMP_PORT = 8780
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(os.environ.get("SN_BT_SETUP_PERIPHERAL_LOG_LEVEL", "INFO").upper())
 logHandler = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logHandler.setFormatter(formatter)
 logger.addHandler(logHandler)
 
-logger.setLevel(logging.DEBUG)
-
-bus = None
-mainloop = None
+bus: dbus.SystemBus | None = None
+mainloop: GLib.MainLoop | None = None
 
 
 class InvalidArgsException(dbus.exceptions.DBusException):
@@ -69,74 +61,6 @@ class InvalidArgsException(dbus.exceptions.DBusException):
 
 class NotSupportedException(dbus.exceptions.DBusException):
     _dbus_error_name = "org.bluez.Error.NotSupported"
-
-
-class NotPermittedException(dbus.exceptions.DBusException):
-    _dbus_error_name = "org.bluez.Error.NotPermitted"
-
-
-class InvalidValueLengthException(dbus.exceptions.DBusException):
-    _dbus_error_name = "org.bluez.Error.InvalidValueLength"
-
-
-class FailedException(dbus.exceptions.DBusException):
-    _dbus_error_name = "org.bluez.Error.Failed"
-
-
-def find_adapter(bus):
-    """
-    Returns the first object that the bluez service has that has a GattManager1 interface
-    """
-    remote_om = dbus.Interface(bus.get_object(BUS_NAME, "/"), DBUS_OM_IFACE)
-    objects = remote_om.GetManagedObjects()
-
-    for o, props in objects.items():
-        if GATT_MANAGER_IFACE in props.keys():
-            return o
-
-    return None
-
-
-class Application(dbus.service.Object):
-    """
-    org.bluez.GattApplication1 interface implementation.
-    """
-
-    def __init__(self, bus):
-        self.path = "/"
-        self.services = []
-        dbus.service.Object.__init__(self, bus, self.path)
-
-    def get_path(self):
-        return dbus.ObjectPath(self.path)
-
-    def add_service(self, service):
-        self.services.append(service)
-
-    @dbus.service.method(DBUS_OM_IFACE, out_signature="a{oa{sa{sv}}}")
-    def GetManagedObjects(self):
-        response = {}
-        logger.info("GetManagedObjects")
-
-        for service in self.services:
-            response[service.get_path()] = service.get_properties()
-            chrcs = service.get_characteristics()
-            for chrc in chrcs:
-                response[chrc.get_path()] = chrc.get_properties()
-                descs = chrc.get_descriptors()
-                for desc in descs:
-                    response[desc.get_path()] = desc.get_properties()
-
-        return response
-
-
-def register_app_cb():
-    logger.info("GATT application registered")
-
-
-def register_app_error_cb(error):
-    logger.critical("Failed to register application: " + str(error))
-    mainloop.quit()
 
 
 class Service(dbus.service.Object):
@@ -172,10 +96,7 @@ class Service(dbus.service.Object):
         self.characteristics.append(characteristic)
 
     def get_characteristic_paths(self):
-        result = []
-        for chrc in self.characteristics:
-            result.append(chrc.get_path())
-        return result
+        return [chrc.get_path() for chrc in self.characteristics]
 
     def get_characteristics(self):
         return self.characteristics
@@ -219,10 +140,7 @@ class Characteristic(dbus.service.Object):
         self.descriptors.append(descriptor)
 
     def get_descriptor_paths(self):
-        result = []
-        for desc in self.descriptors:
-            result.append(desc.get_path())
-        return result
+        return [desc.get_path() for desc in self.descriptors]
 
     def get_descriptors(self):
         return self.descriptors
@@ -235,30 +153,28 @@ class Characteristic(dbus.service.Object):
         return self.get_properties()[GATT_CHRC_IFACE]
 
     @dbus.service.method(GATT_CHRC_IFACE, in_signature="a{sv}", out_signature="ay")
-    def ReadValue(self, options):
+    def ReadValue(self, options) -> list[int]:
         logger.info("Default ReadValue called, returning error")
         raise NotSupportedException()
 
     @dbus.service.method(GATT_CHRC_IFACE, in_signature="aya{sv}")
-    def WriteValue(self, value, options):
+    def WriteValue(self, value, options) -> None:
         logger.info("Default WriteValue called, returning error")
         raise NotSupportedException()
 
     @dbus.service.method(GATT_CHRC_IFACE)
-    def StartNotify(self):
+    def StartNotify(self) -> None:
         logger.info("Default StartNotify called, returning error")
         raise NotSupportedException()
 
     @dbus.service.method(GATT_CHRC_IFACE)
-    def StopNotify(self):
+    def StopNotify(self) -> None:
         logger.info("Default StopNotify called, returning error")
         raise NotSupportedException()
 
     @dbus.service.signal(DBUS_PROP_IFACE, signature="sa{sv}as")
     def PropertiesChanged(self, interface, changed, invalidated):
         pass
-
-    ## @dbus.service.signal(DBUS_PROP_IFACE, signature="o"
 
 
 class Descriptor(dbus.service.Object):
@@ -294,12 +210,12 @@ class Descriptor(dbus.service.Object):
         return self.get_properties()[GATT_DESC_IFACE]
 
     @dbus.service.method(GATT_DESC_IFACE, in_signature="a{sv}", out_signature="ay")
-    def ReadValue(self, options):
+    def ReadValue(self, options) -> list[int]:
         logger.info("Default ReadValue called, returning error")
         raise NotSupportedException()
 
     @dbus.service.method(GATT_DESC_IFACE, in_signature="aya{sv}")
-    def WriteValue(self, value, options):
+    def WriteValue(self, value, options) -> None:
         logger.info("Default WriteValue called, returning error")
         raise NotSupportedException()
 
@@ -308,6 +224,7 @@ class Advertisement(dbus.service.Object):
     """
     A BlueZ advertisement.
     """
+
     PATH_BASE = "/net/solarnetwork/node/setup/advertisement"
 
     def __init__(self, bus, index, advertising_type):
@@ -371,8 +288,6 @@ class Advertisement(dbus.service.Object):
         self.service_data[uuid] = dbus.Array(data, signature="y")
 
     def add_local_name(self, name):
-        if not self.local_name:
-            self.local_name = ""
         self.local_name = dbus.String(name)
 
     def add_data(self, ad_type, data):
@@ -399,304 +314,392 @@ def register_ad_cb():
 
 def register_ad_error_cb(error):
     logger.critical("Failed to register advertisement: " + str(error))
+    assert mainloop is not None
     mainloop.quit()
 
 
 class CharacteristicUserDescriptionDescriptor(Descriptor):
     """
-    Writable CUD descriptor.
+    Read-only CUD descriptor exposing the parent characteristic's description.
     """
+
     CUD_UUID = "2901"
 
-    def __init__(
-            self, bus, index, characteristic,
-    ):
-        self.value = array.array("B", characteristic.description.encode())
-        self.value = self.value.tolist()
+    def __init__(self, bus, index, characteristic):
+        self.value = array.array("B", characteristic.description.encode()).tolist()
         Descriptor.__init__(self, bus, index, self.CUD_UUID, ["read"], characteristic)
 
     def ReadValue(self, options):
         return self.value
 
-    def WriteValue(self, value, options):
-        if not self.writable:
-            raise NotPermittedException()
-        self.value = value
-
 
 class UartAdvertisement(Advertisement):
     """
-    Generic UUART advertisement.
+    Generic UUART advertisement. The ``service_uuid`` argument must match the
+    UUID of the GATT service we're exposing, pass ``UartService.uuid`` so the
+    two stay coupled at the call site.
     """
-    uuid = '7d2fd14b-8897-48de-9719-15aa4edb5d57'
 
-    def __init__(self, bus, index, local_name):
+    def __init__(self, bus, index, local_name, service_uuid):
         Advertisement.__init__(self, bus, index, "peripheral")
-        self.add_service_uuid(self.uuid)
+        self.add_service_uuid(service_uuid)
 
         self.add_local_name(local_name)
         self.include_tx_power = True
 
 
-class Agent(dbus.service.Object):
+class TxCharacteristic(Characteristic):
     """
-    A BlueZ agent that manages authorization requests.
+    Notify characteristic that streams bytes from the STOMP server back to
+    subscribed centrals.
+
+    Notifications are broadcast to all subscribers, with multiple concurrent
+    centrals their STOMP streams will interleave on the BLE side. In practice
+    SolarNode setup is one-central-at-a-time.
     """
-    exit_on_release = True
 
-    def set_exit_on_release(self, exit_on_release):
-        self.exit_on_release = exit_on_release
+    uuid = "7d2fd14d-8897-48de-9719-15aa4edb5d57"
+    description = "STOMP server responses (notify)."
 
-    @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
-    def Release(self):
-        logger.info("Release")
-        if self.exit_on_release:
-            mainloop.quit()
+    def __init__(self, bus, index, service):
+        Characteristic.__init__(self, bus, index, self.uuid, ["notify"], service)
+        self.add_descriptor(CharacteristicUserDescriptionDescriptor(bus, 1, self))
+        self.notifying = False
 
-    @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
-    def AuthorizeService(self, device, uuid):
-        logger.info("AuthorizeService (%s, %s)" % (device, uuid))
-        authorize = ask("Authorize connection (yes/no): ")
-        if authorize == "yes":
+    def StartNotify(self):
+        if self.notifying:
             return
-        raise Rejected("Connection rejected by user")
+        self.notifying = True
+        logger.info("StartNotify")
 
-    @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="s")
-    def RequestPinCode(self, device):
-        logger.info("RequestPinCode (%s)" % (device))
-        set_trusted(device)
-        return ask("Enter PIN Code: ")
-
-    @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="u")
-    def RequestPasskey(self, device):
-        logger.info("RequestPasskey (%s)" % (device))
-        set_trusted(device)
-        passkey = ask("Enter passkey: ")
-        return dbus.UInt32(passkey)
-
-    @dbus.service.method(AGENT_INTERFACE, in_signature="ouq", out_signature="")
-    def DisplayPasskey(self, device, passkey, entered):
-        logger.info("DisplayPasskey (%s, %06u entered %u)" % (device, passkey, entered))
-
-    @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
-    def DisplayPinCode(self, device, pincode):
-        logger.info("DisplayPinCode (%s, %s)" % (device, pincode))
-
-    @dbus.service.method(AGENT_INTERFACE, in_signature="ou", out_signature="")
-    def RequestConfirmation(self, device, passkey):
-        logger.info("RequestConfirmation (%s, %06d)" % (device, passkey))
-        confirm = ask("Confirm passkey (yes/no): ")
-        if confirm == "yes":
-            set_trusted(device)
+    def StopNotify(self):
+        if not self.notifying:
             return
-        raise Rejected("Passkey doesn't match")
+        self.notifying = False
+        logger.info("StopNotify")
 
-    @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="")
-    def RequestAuthorization(self, device):
-        logger.info("RequestAuthorization (%s)" % (device))
-        auth = ask("Authorize? (yes/no): ")
-        if auth == "yes":
+    def push(self, data: bytes) -> None:
+        if not self.notifying:
+            logger.debug("push: no subscriber, dropping %d bytes", len(data))
             return
-        raise Rejected("Pairing rejected")
-
-    @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
-    def Cancel(self):
-        logger.info("Cancel")
+        value = dbus.Array(data, signature="y")
+        self.PropertiesChanged(GATT_CHRC_IFACE, {"Value": value}, [])
 
 
-def ask(prompt):
-    try:
-        return raw_input(prompt)
-    except:
-        return input(prompt)
+class RxCharacteristic(Characteristic):
+    """
+    Write characteristic. Each connected central gets its own TCP socket to
+    the SolarNetwork STOMP server. Bytes received from the server are pushed
+    back to the central via ``TxCharacteristic`` (Notify). Reads are driven
+    by ``GLib.io_add_watch`` so the main loop is never blocked on TCP I/O.
+
+    Failure-mode sentinels pushed to the central: ``\\x07`` if the STOMP
+    backend refuses the connection, ``\\x18`` if a previously-open session
+    is torn down (server FIN, OSError, or HUP/ERR on the io watch).
+    """
+
+    uuid = "7d2fd14c-8897-48de-9719-15aa4edb5d57"
+    description = "Submit frames to SolarNetwork STOMP server."
+
+    def __init__(self, bus, index, service, tx: "TxCharacteristic"):
+        Characteristic.__init__(self, bus, index, self.uuid, ["write"], service)
+        self.add_descriptor(CharacteristicUserDescriptionDescriptor(bus, 1, self))
+        self.tx = tx
+        self.central_sockets = {}  # device path, socket
+        self.central_watches = {}  # device path, GLib source id
+
+    def _open_socket(self, device: str) -> socket.socket | None:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Tight TCP keepalive so a hung or FIN-lost STOMP server gets
+        # detected in ~45 s instead of the default Linux ~2 h. Pairs
+        # with `on_device_connect`'s "kill stale socket" guard: that
+        # one handles the central-side teardown, this handles the
+        # server side. Linux-specific options are best-effort,
+        # wrapped so a future port to a kernel without TCP_KEEPIDLE
+        # still gets bare-minimum SO_KEEPALIVE.
+        try:
+            sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+            sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30)
+            sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 5)
+            sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 3)
+        except (OSError, AttributeError) as e:
+            logger.warning("Couldn't tune TCP keepalive for %s: %s", device, e)
+        try:
+            sock.connect((SN_STOMP_ADDRESS, SN_STOMP_PORT))
+        except OSError as e:
+            logger.warning("STOMP connect failed for %s: %s", device, e)
+            return None
+
+        self.central_sockets[device] = sock
+        source_id = GLib.io_add_watch(
+            sock.fileno(),
+            GLib.PRIORITY_DEFAULT,
+            GLib.IO_IN | GLib.IO_HUP | GLib.IO_ERR,
+            lambda fd, condition: self._on_readable(device, condition),
+        )
+        self.central_watches[device] = source_id
+        logger.info("STOMP socket opened for %s", device)
+        return sock
+
+    def _on_readable(self, device: str, condition: int) -> bool:
+        # GLib I/O watch callback: return True to stay armed, False to detach.
+        sock = self.central_sockets.get(device)
+        if sock is None:
+            return False
+
+        if condition & (GLib.IO_HUP | GLib.IO_ERR):
+            logger.info("STOMP HUP/ERR for %s (condition=%s)", device, condition)
+            self.tx.push(b"\x18")
+            self._close_socket(device)
+            return False
+
+        try:
+            data = sock.recv(4096)
+        except OSError as e:
+            logger.warning("STOMP recv failed for %s: %s", device, e)
+            self.tx.push(b"\x18")
+            self._close_socket(device)
+            return False
+
+        if not data:
+            logger.info("STOMP closed by peer for %s", device)
+            self.tx.push(b"\x18")
+            self._close_socket(device)
+            return False
+
+        logger.debug(
+            "received (%d bytes):\n%s",
+            len(data),
+            data.decode("utf-8", errors="replace"),
+        )
+        self.tx.push(data)
+        return True
+
+    def _close_socket(self, device: str) -> None:
+        # Detach the GLib watch before closing the fd: otherwise GLib observes
+        # the closed fd, fires IO_HUP, and re-enters this method.
+        source_id = self.central_watches.pop(device, None)
+        if source_id is not None:
+            GLib.source_remove(source_id)
+        sock = self.central_sockets.pop(device, None)
+        if sock is not None:
+            try:
+                sock.close()
+            except OSError:
+                pass
+
+    def WriteValue(self, value, options):
+        device = options["device"]
+        logger.debug("WRITE from %s (%d bytes)", device, len(value))
+
+        sock = self.central_sockets.get(device) or self._open_socket(device)
+        if sock is None:
+            self.tx.push(b"\x07")
+            return
+
+        # dbus.Byte is an int subclass, so bytes() round-trips the BLE write
+        # without re-encoding (values >= 0x80 stay one byte each).
+        byte_value = bytes(value)
+        logger.debug(
+            "sent (%d bytes):\n%s",
+            len(byte_value),
+            byte_value.decode("utf-8", errors="replace"),
+        )
+        try:
+            sock.sendall(byte_value)
+        except OSError as e:
+            logger.warning("STOMP send failed for %s: %s", device, e)
+            self._close_socket(device)
+            self.tx.push(b"\x18")
+
+    def on_device_disconnect(self, device: str) -> None:
+        if device in self.central_sockets:
+            logger.info("Central disconnected, closing STOMP socket: %s", device)
+            self._close_socket(device)
+
+    def on_device_connect(self, device: str) -> None:
+        # Defense-in-depth against missed disconnect signals: if we still
+        # hold a TCP socket for this device path from a previous BLE
+        # session, the SolarNode STOMP server may still treat that
+        # session as active and reject the next CONNECT with
+        # "Already connected." Tear it down so the next WriteValue
+        # lazy-opens a fresh socket.
+        if device in self.central_sockets:
+            logger.info(
+                "Central reconnected; tearing down stale STOMP socket: %s",
+                device,
+            )
+            self._close_socket(device)
+
+    def close_all(self) -> None:
+        for device in list(self.central_sockets):
+            self._close_socket(device)
+
+
+class UartService(Service):
+    """
+    UART-style service that bridges BLE writes and Notify with the
+    SolarNetwork STOMP server.
+    """
+
+    uuid = "7d2fd14b-8897-48de-9719-15aa4edb5d57"
+
+    def __init__(self, bus, index):
+        Service.__init__(self, bus, index, self.uuid, True)
+        self.tx = TxCharacteristic(bus, 0, self)
+        self.add_characteristic(self.tx)
+        self.rx = RxCharacteristic(bus, 1, self, self.tx)
+        self.add_characteristic(self.rx)
 
 
 def set_trusted(path):
+    assert bus is not None
     props = dbus.Interface(
         bus.get_object("org.bluez", path), "org.freedesktop.DBus.Properties"
     )
     props.Set("org.bluez.Device1", "Trusted", True)
 
 
-class Rejected(dbus.DBusException):
-    _dbus_error_name = "org.bluez.Error.Rejected"
-
-
-class SmartAgent(Agent):
+class SmartAgent(dbus.service.Object):
     """
-    An agent which mimics NoInputNoOutput, but will allow you to
-    programmatically manage authorization.
+    BlueZ agent registered as NoInputNoOutput, auto-trusts pairing requests
+    without prompting. The interactive prompt variant (BlueZ's upstream
+    simple-agent shape) is intentionally omitted: under systemd there is no
+    TTY, so prompting via input() would EOFError on the first pairing attempt.
     """
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
+    def Release(self):
+        # BlueZ calls Release when our agent registration is being dropped.
+        # Quitting trips main()'s finally block, which closes STOMP sockets
+        # and unregisters the advertisement/application/agent in sequence.
+        logger.info("Release")
+        assert mainloop is not None
+        mainloop.quit()
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
     def AuthorizeService(self, device, uuid):
-        logger.info("AuthorizeService (%s, %s)" % (device, uuid))
-        return
+        logger.info("AuthorizeService (%s, %s)", device, uuid)
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="s")
     def RequestPinCode(self, device):
-        logger.info("RequestPinCode (%s)" % (device))
+        logger.info("RequestPinCode (%s)", device)
         set_trusted(device)
-        return
+        return ""
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="u")
     def RequestPasskey(self, device):
-        logger.info("RequestPasskey (%s)" % (device))
+        logger.info("RequestPasskey (%s)", device)
         set_trusted(device)
-        return;
+        return dbus.UInt32(0)
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="ouq", out_signature="")
+    def DisplayPasskey(self, device, passkey, entered):
+        logger.info("DisplayPasskey (%s, %06u entered %u)", device, passkey, entered)
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
+    def DisplayPinCode(self, device, pincode):
+        logger.info("DisplayPinCode (%s, %s)", device, pincode)
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="ou", out_signature="")
     def RequestConfirmation(self, device, passkey):
-        logger.info("RequestConfirmation (%s, %06d)" % (device, passkey))
+        logger.info("RequestConfirmation (%s, %06d)", device, passkey)
         set_trusted(device)
-        return
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="")
     def RequestAuthorization(self, device):
-        logger.info("RequestAuthorization (%s)" % (device))
-        return
+        logger.info("RequestAuthorization (%s)", device)
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
+    def Cancel(self):
+        logger.info("Cancel")
 
 
-class TxCharacteristic(Characteristic):
+class Application(dbus.service.Object):
     """
-    A read characteristic that stores read value corresponding to device address.
+    org.bluez.GattApplication1 interface implementation.
     """
-    uuid = '7d2fd14d-8897-48de-9719-15aa4edb5d57'
-    description = 'Read the SolarNetwork STOMP server response.'
 
-    def __init__(self, bus, index, service):
-        Characteristic.__init__(self, bus, index, self.uuid,
-                                ['read'], service)
-        self.add_descriptor(CharacteristicUserDescriptionDescriptor(bus, 1, self))
+    PATH = "/net/solarnetwork/node/setup/app"
 
-        self.device_value = {}
+    def __init__(self, bus, services=()):
+        self.path = self.PATH
+        self.services = list(services)
+        dbus.service.Object.__init__(self, bus, self.path)
 
-    def ReadValue(self, options):
-        value = None
+    def get_path(self):
+        return dbus.ObjectPath(self.path)
 
-        logger.debug('READ: ' + options['device'])
-        if options['device'] in self.device_value:
-            value = self.device_value[options['device']]
-        else:
-            value = b'\x26'
+    @dbus.service.method(DBUS_OM_IFACE, out_signature="a{oa{sa{sv}}}")
+    def GetManagedObjects(self):
+        response = {}
+        logger.info("GetManagedObjects")
 
-        logger.debug('value:\n' + value.decode('utf-8'))
-        return value
+        for service in self.services:
+            response[service.get_path()] = service.get_properties()
+            chrcs = service.get_characteristics()
+            for chrc in chrcs:
+                response[chrc.get_path()] = chrc.get_properties()
+                descs = chrc.get_descriptors()
+                for desc in descs:
+                    response[desc.get_path()] = desc.get_properties()
 
-    def set_value(self, value, device):
-        if value is not None:
-            self.device_value[device] = value
-        else:
-            self.device_value[device] = b'\x07'
+        return response
 
 
-class RxCharacteristic(Characteristic):
+def register_app_cb():
+    logger.info("GATT application registered")
+
+
+def register_app_error_cb(error):
+    logger.critical("Failed to register application: " + str(error))
+    assert mainloop is not None
+    mainloop.quit()
+
+
+def find_adapter(bus):
     """
-    A write characteristic that interacts with the local SolarNetwork STOMP server.
+    Returns the D-Bus path of the BlueZ adapter to use.
+
+    Honors ``SN_BT_SETUP_PERIPHERAL_ADAPTER`` (e.g. ``SN_BT_SETUP_PERIPHERAL_ADAPTER=hci0``) to disambiguate
+    when multiple adapters are present; otherwise returns the first adapter
+    that advertises org.bluez.GattManager1.
     """
-    uuid = '7d2fd14c-8897-48de-9719-15aa4edb5d57'
-    description = 'Submit frames to SolarNetwork STOMP server.'
+    remote_om = dbus.Interface(bus.get_object(BUS_NAME, "/"), DBUS_OM_IFACE)
+    objects = remote_om.GetManagedObjects()
 
-    def __init__(self, bus, index, service, tx_set_value):
-        Characteristic.__init__(self, bus, index, self.uuid,
-                                ['write'], service)
-        self.add_descriptor(CharacteristicUserDescriptionDescriptor(bus, 1, self))
-        self.tx_set_value = tx_set_value
-        self.central_sockets = {}
-
-    def __get_socket(self, device):
-        if device not in self.central_sockets:
-            sock = self.__new_socket(device, SN_STOMP_ADDRESS, SN_STOMP_PORT)
-
-            if sock is None:
-                return None
-
-            self.central_sockets[device] = sock
-            return sock
-
-        # Check the connection of the stored socket.
-        #
-        # If the response data is empty, the server has closed the connection.
-        # If this is the case, then get a new socket.
-        try:
-            sock = self.central_sockets[device]
-            data = sock.recv(16, socket.MSG_DONTWAIT | socket.MSG_PEEK)
-
-            if len(data) == 0:
-                sock = self.__new_socket(device, SN_STOMP_ADDRESS, SN_STOMP_PORT)
-
-                if sock is None:
-                    return None
-
-                self.central_sockets[device] = sock
-        except:
-            pass
-
-        return self.central_sockets[device]
-
-    def __new_socket(self, device, address, port):
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.connect((SN_STOMP_ADDRESS, SN_STOMP_PORT))
-            return sock
-
-        # If the server is currently not running or not accepting
-        # connections, return None.
-        except Exception as e:
-            logger.warning(e)
+    preferred = os.environ.get("SN_BT_SETUP_PERIPHERAL_ADAPTER")
+    if preferred:
+        preferred_path = "/org/bluez/" + preferred
+        props = objects.get(preferred_path)
+        if props is None:
+            logger.critical(
+                "SN_BT_SETUP_PERIPHERAL_ADAPTER=%s not found on bus", preferred
+            )
             return None
+        if GATT_MANAGER_IFACE not in props:
+            logger.critical(
+                "SN_BT_SETUP_PERIPHERAL_ADAPTER=%s lacks GattManager1", preferred
+            )
+            return None
+        logger.info(
+            "Using adapter %s (from SN_BT_SETUP_PERIPHERAL_ADAPTER)", preferred_path
+        )
+        return preferred_path
 
-    def send_value(self, value, device):
-        sock = self.__get_socket(device)
-        if sock is None:
-            self.tx_set_value(b'\x07', device)
-            return
+    for o, props in objects.items():
+        if GATT_MANAGER_IFACE in props.keys():
+            logger.info("Using adapter %s", o)
+            return o
 
-        byteValue = (''.join([chr(dbusByte) for dbusByte in value])).encode()
-        logger.debug('sent:\n' + byteValue.decode('utf-8'))
-        sock.sendall(byteValue)
-
-        try:
-            sock.settimeout(0.5)
-            data = sock.recv(4096)
-        except socket.timeout:
-            data = b'\x00'
-
-        logger.debug('received:\n' + data.decode('utf-8'))
-        self.tx_set_value(data, device)
-
-    def WriteValue(self, value, options):
-        logger.debug('WRITE: ' + options['device'])
-        try:
-            self.send_value(value, options['device'])
-        except Exception as e:
-            logger.warning(e)
-
-
-class UartService(Service):
-    """
-    The UUART service that interacts with the SolarNetwork STOMP server.
-    """
-    uuid = '7d2fd14b-8897-48de-9719-15aa4edb5d57'
-
-    def __init__(self, bus, index):
-        Service.__init__(self, bus, index, self.uuid, True)
-        self.add_characteristic(TxCharacteristic(bus, 0, self))
-        self.add_characteristic(RxCharacteristic(bus, 1, self, self.characteristics[0].set_value))
+    return None
 
 
 def set_state(state, adapter_props):
-    value = None
-    if state is True:
-        value = dbus.Boolean(1)
-        logger.info("Setting host state to ON...")
-    else:
-        logger.info("Setting host state to OFF...")
-        value = dbus.Boolean(0)
-
-    adapter_props.Set(BLUEZ_ADAPTER_IFACE, "Powered", value)
-    adapter_props.Set(BLUEZ_ADAPTER_IFACE, "Discoverable", value)
-    adapter_props.Set(BLUEZ_ADAPTER_IFACE, "Pairable", value)
+    logger.info("Setting host state to %s...", "ON" if state else "OFF")
+    value = dbus.Boolean(bool(state))
+    for prop in ("Powered", "Discoverable", "Pairable"):
+        adapter_props.Set(BLUEZ_ADAPTER_IFACE, prop, value)
 
 
 def main():
@@ -715,19 +718,25 @@ def main():
     adapter_props = dbus.Interface(adapter_obj, DBUS_PROP_IFACE)
 
     # Get the required local_name
-    if os.path.exists('/etc/machine-info') is False:
+    if not os.path.exists("/etc/machine-info"):
         logger.info("Node has not been registered")
         set_state(False, adapter_props)
         sys.exit(0)
 
+    local_name = None
     try:
-        with open('/etc/machine-info') as f:
+        with open("/etc/machine-info") as f:
             lines = f.readlines()
             for line in lines:
-                if line.startswith('PRETTY_HOSTNAME='):
-                    local_name = line.split('=')[1].strip().replace('"', '')
-    except:
-        logger.critical("Cannot get PRETTY_HOSTNAME")
+                if line.startswith("PRETTY_HOSTNAME="):
+                    local_name = line.split("=", 1)[1].strip().replace('"', "")
+    except OSError:
+        logger.critical("Cannot read /etc/machine-info")
+        set_state(False, adapter_props)
+        return
+
+    if local_name is None:
+        logger.critical("PRETTY_HOSTNAME not set in /etc/machine-info")
         set_state(False, adapter_props)
         return
 
@@ -737,21 +746,35 @@ def main():
     service_manager = dbus.Interface(adapter_obj, GATT_MANAGER_IFACE)
     ad_manager = dbus.Interface(adapter_obj, LE_ADVERTISING_MANAGER_IFACE)
 
-    # Create UART advertisement.
-    advertisement = UartAdvertisement(bus, 0, local_name)
     obj = bus.get_object(BUS_NAME, "/org/bluez")
 
-    # Create Agent
-    #
-    # Only use if the any of the default agent behaviours aren't sufficient.
-    # Also check for sspmode usage for adapter.
-    # agent = SmartAgent(bus, AGENT_PATH)
-    agent = Agent(bus, AGENT_PATH)
+    agent = SmartAgent(bus, AGENT_PATH)
 
-    app = Application(bus)
-    app.add_service(UartService(bus, 2))
+    service = UartService(bus, 0)
+    app = Application(bus, [service])
 
-    mainloop = MainLoop()
+    # Advertisement carries the service UUID so centrals can discover us.
+    advertisement = UartAdvertisement(bus, 0, local_name, service.uuid)
+
+    def on_device_properties_changed(interface, changed, invalidated, path=None):
+        if interface != "org.bluez.Device1":
+            return
+        if path is None or "Connected" not in changed:
+            return
+        if changed["Connected"]:
+            service.rx.on_device_connect(path)
+        else:
+            service.rx.on_device_disconnect(path)
+
+    device_signal_match = bus.add_signal_receiver(
+        on_device_properties_changed,
+        signal_name="PropertiesChanged",
+        dbus_interface=DBUS_PROP_IFACE,
+        arg0="org.bluez.Device1",
+        path_keyword="path",
+    )
+
+    mainloop = GLib.MainLoop()
 
     # Register the agent.
     agent_manager = dbus.Interface(obj, BLUEZ_AGENTMANAGER_IFACE)
@@ -772,16 +795,46 @@ def main():
         app.get_path(),
         {},
         reply_handler=register_app_cb,
-        error_handler=[register_app_error_cb],
+        error_handler=register_app_error_cb,
     )
     agent_manager.RequestDefaultAgent(AGENT_PATH)
+
+    def _on_shutdown_signal():
+        logger.info("Shutdown signal received")
+        assert mainloop is not None
+        mainloop.quit()
+        return False
+
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGTERM, _on_shutdown_signal)
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGINT, _on_shutdown_signal)
 
     logger.info("Entered mainloop")
     try:
         mainloop.run()
-    except KeyboardInterrupt:
-        logger.info("Exiting mainloop...")
-        sys.exit(0)
+    finally:
+        logger.info("Shutting down...")
+        service.rx.close_all()
+        try:
+            device_signal_match.remove()
+        except dbus.exceptions.DBusException as e:
+            logger.warning("Failed to remove device signal receiver: %s", e)
+        for name, action in (
+            (
+                "advertisement",
+                lambda: ad_manager.UnregisterAdvertisement(advertisement.get_path()),
+            ),
+            (
+                "application",
+                lambda: service_manager.UnregisterApplication(app.get_path()),
+            ),
+            ("agent", lambda: agent_manager.UnregisterAgent(AGENT_PATH)),
+        ):
+            try:
+                action()
+                logger.info("%s unregistered", name)
+            except dbus.exceptions.DBusException as e:
+                logger.warning("Failed to unregister %s: %s", name, e)
+        logger.info("Shutdown complete")
 
 
 if __name__ == "__main__":

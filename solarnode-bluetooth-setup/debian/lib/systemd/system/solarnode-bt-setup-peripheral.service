@@ -7,6 +7,7 @@ StartLimitBurst=20
 
 [Service]
 Type=simple
+EnvironmentFile=-/etc/solarnode/bluetooth-setup.env
 ExecStart=/usr/bin/python3 /usr/share/solarnode/bin/sn-bt-setup-peripheral.py
 Restart=always
 
