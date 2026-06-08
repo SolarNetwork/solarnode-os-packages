@@ -4,7 +4,7 @@ This directory contains packaging scripts used to enable SolarNode Bluetooth Set
 
 # Services
 
-This package enables a systemd `solarnode-bt-setup-peripheral.service` service.
+This package enables a systemd `solarnode-bt-setup-peripheral` service.
 
 ## Environment variables
 
@@ -12,6 +12,14 @@ This package enables a systemd `solarnode-bt-setup-peripheral.service` service.
 | ---------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `SN_BT_SETUP_PERIPHERAL_LOG_LEVEL` | `INFO`  | The log level. An enum value of `NOTSET`, `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`. See the [Python documentation](https://docs.python.org/3/library/logging.html#logging-levels) for more details. |
 | `SN_BT_SETUP_PERIPHERAL_ADAPTER`   | _n/a_   | The _name_ of the Bluetooth adapter to use (not the full D-Bus path). Falls through to the first adapter that advertises `org.bluez.GattManager1`. The value will look like `hciN`, such as `hci0`.        |
+
+These environment variables can be defined in `/etc/solarnode/bluetooth-setup.env`.
+See this [example](./usr/share/solarnode/example/bluetooth-setup.env) for reference.
+After creating or changing the variables file, restart the service with
+
+```sh
+sudo systemctl restart solarnode-bt-setup-peripheral
+```
 
 # Packaging
 
