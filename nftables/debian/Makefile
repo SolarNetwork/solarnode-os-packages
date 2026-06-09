@@ -1,7 +1,7 @@
 DIST = 
-VERSION = 1.1.3-1$(if $(DIST),+$(DIST),)
+VERSION = 1.2.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-nftables
-PATHS = etc usr var
+PATHS = etc lib usr var
 
 deb : prep
 	fpm -s dir -t deb \
