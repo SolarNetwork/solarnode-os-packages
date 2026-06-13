@@ -143,6 +143,20 @@ ln -sf mode.3G-only /etc/ppp/chatscripts/mode
 ```
 
 
+# `solarcfg` integration
+
+This package installs a `/usr/share/solarnode/cfg.d/mobile.sh` service script so the mobile
+connection can be managed via the `solarcfg` helper (provided by the `sn-system` package):
+
+```sh
+# report connection status (interface, address, link state)
+sudo solarcfg mobile status
+# reset the connection (restart the PPP connection)
+sudo solarcfg mobile reset
+# restart the PPP connection service
+sudo solarcfg mobile restart
+```
+
 # Packaging
 
 This section describes how the `sn-pi-mobile-shield-usb` package is created.
