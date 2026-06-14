@@ -24,7 +24,7 @@ if [ ${AUTO_RECONNECT_ENABLE} -eq 0 ]; then
 fi
 
 # Get status of network neterface, e.g. UP, DOWN, UNKNOWN
-iface_status=$(ip -br link show |grep '^ppp0' |awk '{print $2}')
+iface_status="$(ip -br link show 2>/dev/null |grep "^${NET_INTERFACE}" |awk '{print $2}')"
 
 if [ -z "${iface_status}" ]; then
 	# interface not found
