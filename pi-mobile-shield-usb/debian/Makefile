@@ -17,6 +17,8 @@ deb : prep
 	-d 'systemd (>= 247)' \
 	-d 'ppp (>= 2.4.9)' \
 	-d 'gpsd (>= 3.22)' \
+	--conflicts 'sn-mobile-mm' \
+	--replaces 'sn-mobile-mm' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
 	--conflicts 'sn-pi-mobile-shield-quectel' \
 	--replaces 'sn-pi-mobile-shield-quectel' \
