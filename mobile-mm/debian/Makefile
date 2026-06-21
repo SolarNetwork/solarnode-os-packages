@@ -1,7 +1,7 @@
 DIST = 
 VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-mobile-mm
-PATHS = lib usr
+PATHS = etc lib usr
 
 deb : prep
 	fpm -s dir -t deb \
