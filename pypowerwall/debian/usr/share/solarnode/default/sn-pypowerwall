@@ -1,0 +1,9 @@
+# Enable auto network restart (1) or disable (0)
+AUTO_RECONNECT_ENABLE=1
+
+# Network interface to check
+NET_INTERFACE="wlan0"
+
+# Host to ping for reachability
+PING_HOST="192.168.91.1"
+

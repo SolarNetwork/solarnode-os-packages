@@ -4,6 +4,21 @@
 PW_CONF="${WPA_CONF:-/etc/solarnode/sn-pypowerwall.conf}"
 PW_PROXY_CONF="${WPA_CONF:-/etc/solarnode/sn-pypowerwall-proxy.conf}"
 
+service_down () {
+	name="$1"
+	if systemctl is-enabled "$name" >/dev/null; then
+		echo "Disabling $name..."
+		systemctl disable --now "$name" || true
+	fi
+}
+
+if [ "$1" = "remove" ]; then
+	service_down sn-pypowerwall-proxy-restart.path
+	service_down sn-pypowerwall-proxy.service
+	service_down sn-pypowerwall-reconnect.timer
+	systemctl daemon-reload >/dev/null || true
+fi
+
 if [ "$1" = "purge" ]; then
 	if [ -e "$PW_CONF" ]; then
 		echo "Removing PyPowerwall config $PW_CONF..."
@@ -14,3 +29,4 @@ if [ "$1" = "purge" ]; then
 		rm -f "$PW_PROXY_CONF"
 	fi
 fi
+

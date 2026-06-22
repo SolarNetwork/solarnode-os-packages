@@ -3,6 +3,22 @@
 default_conf=/etc/solarnode/sn-pypowerwall.conf
 default_conf_src=/usr/share/solarnode/example/sn-pypowerwall.conf
 
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
 # make configuration
 if [ ! -e "$default_conf" ]; then
 	echo 'Creating sn-pypowerwall virtual environment'
@@ -29,7 +45,6 @@ $PYPOWERWALL_VENV/bin/pip3 cache purge || true
 
 systemctl daemon-reload || true
 
-if ! systemctl is-enabled sn-pypowerwall-proxy-restart.path >/dev/null; then
-	echo 'Enabling sn-pypowerwall-proxy-restart.path...'
-	systemctl enable sn-pypowerwall-proxy-restart.path || true
-fi
+service_up sn-pypowerwall-proxy-restart.path
+service_up sn-pypowerwall-proxy.service 1
+service_up sn-pypowerwall-reconnect.timer 1

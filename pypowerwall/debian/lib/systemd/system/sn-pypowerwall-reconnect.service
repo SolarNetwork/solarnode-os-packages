@@ -1,0 +1,7 @@
+[Unit]
+Description=PyPowerwall network auto reconnect
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/sn-pypowerwall-reconnect.sh
+KillMode=none

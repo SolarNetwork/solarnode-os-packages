@@ -18,7 +18,6 @@ deb : prep
 		-d 'python3-venv' \
 		--after-install $(NAME).postinst \
 		--before-remove $(NAME).prerm \
-		--after-remove $(NAME).postrm \
 		--deb-no-default-config-files \
 		$(PATHS)
 
