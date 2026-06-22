@@ -1,11 +1,8 @@
-# SolarNode Mobile Shield (USB) Debian package
+# SolarNode Mobile (USB PPP) Debian package
 
-This directory contains packaging scripts used to create the `sn-pi-mobile-shield-usb`
-Debian package, which provides configuration and support for USB-based 3/4G shields. The goal of
-this package is to configure, start, and maintain a mobile network connection on the shield's modem.
-
-> :warning: This package has been superseded by the
-[sn-mobile-usb-ppp](../../mobile-usb-ppp/debian) package.
+This directory contains packaging scripts used to create the `sn-mobile-usb-ppp` Debian package,
+which provides configuration and support for USB-based 3/4G modems. The goal of this package is to
+configure, start, and maintain a mobile network connection on the modem.
 
 This package is know to support the following mobile packages:
 
@@ -14,10 +11,10 @@ This package is know to support the following mobile packages:
 
 # Services
 
-The `sn-mobile-shield-usb-pppd` service manages the `pppd` daemon, but is not installed. The
-`sn-mobile-shield-usb-reconnect` service is managed by a timer, that runs the
-`/usr/share/solarnode/bin/sn-pi-mobile-reconnect.sh` script to verify if the `1.1.1.1` DNS service
-can be reached via `ping`. If not, the `sn-pi-mobile-pppd` service is restarted.
+The `sn-mobile-usb-ppp-pppd` service manages the `pppd` daemon, but is not installed. The
+`sn-mobile-usb-ppp-reconnect` service is managed by a timer, that runs the
+`/usr/share/solarnode/bin/sn-mobile-usb-ppp-reconnect.sh` script to verify if the `1.1.1.1` DNS
+service can be reached via `ping`. If not, the `sn-pi-mobile-pppd` service is restarted.
 
 # Configuration
 
@@ -25,8 +22,9 @@ Several aspects of the PPP connection can be easily customized, mostly in the `/
 
 ## Network ping configuration
 
-The `sn-pi-mobile-reconnect` timer runs periodically to test that the network is reachable. The
-`/etc/default/sn-pi-mobile-shield` file contains the various parameters that can be configured:
+The `sn-mobile-usb-ppp-reconnect` timer runs periodically to test that the network is reachable. An
+`/etc/default/sn-mobile-usb-ppp` file can be used to configure various parameters; see the
+default values in `/usr/share/solarnode/default/sn-mobile-usb-ppp`:
 
 ```
 # Enable the auto-reconnect task
@@ -45,7 +43,7 @@ The default setup looks like this:
 ```
 /etc/ppp
 ├── chatscripts
-│   ├── apn -> /usr/share/solarnode/example/mobile-shield-chat-apn
+│   ├── apn -> /usr/share/solarnode/example/mobile-usb-ppp-chat-apn
 │   ├── chat-connect
 │   ├── chat-disconnect
 │   ├── initiate -> /usr/share/solarnode/example/mobile-shield-chat-initiate
@@ -56,7 +54,7 @@ The default setup looks like this:
 ├── ip-down
 ├── ip-down.d
 │   └── 10-sn-mobile-shield-network-restart
-├── options -> /usr/share/solarnode/example/mobile-shield-ppp-options
+├── options -> /usr/share/solarnode/example/mobile-usb-ppp-options
 └── peers
     └── sn-provider
 ```
@@ -83,9 +81,9 @@ System clock synchronized: yes
 
 ## APN configuration
 
-The APN of the mobile network must be configured in the `/etc/ppp/chatscripts/apn` file, which is
-a symlink to the APN configuration you want to use. This defaults to
-`/usr/share/solarnode/example/mobile-shield-chat-apn`, which uses the APN value `internet`.
+The APN of the mobile network must be configured in the `/etc/ppp/chatscripts/apn` file, which is a
+symlink to the APN configuration you want to use. This defaults to
+`/usr/share/solarnode/example/mobile-usb-ppp-chat-apn`, which uses the APN value `internet`.
 
 To customize, create a `/etc/ppp/chatscripts/apn.mycarrier` file with the necessary settings, e.g.
 
@@ -103,7 +101,7 @@ ln -sf apn.mycarrier /etc/ppp/chatscripts/apn
 
 The initiation of the mobile network must be configured in the `/etc/ppp/chatscripts/initiate` file,
 which is a symlink to the configuration you want to use. This defaults to
-`/usr/share/solarnode/example/mobile-shield-chat-initiate`, which contains `ATD*99#`.
+`/usr/share/solarnode/example/mobile-usb-ppp-chat-initiate`, which contains `ATD*99#`.
 
 To customize, create a `/etc/ppp/chatscripts/initiate.mycarrier` file with the necessary settings, e.g.
 
@@ -162,7 +160,7 @@ sudo solarcfg mobile restart
 
 # Packaging
 
-This section describes how the `sn-pi-mobile-shield-usb` package is created.
+This section describes how the `sn-mobile-usb-ppp` package is created.
 
 ## Packaging requirements
 

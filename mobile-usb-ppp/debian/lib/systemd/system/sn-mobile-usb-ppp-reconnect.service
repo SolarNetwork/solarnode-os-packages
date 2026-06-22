@@ -1,0 +1,7 @@
+[Unit]
+Description=USB mobile network auto reconnect
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/mobile-usb-ppp-reconnect.sh
+KillMode=none

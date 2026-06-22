@@ -1,0 +1,8 @@
+[Unit]
+Description=USB mobile network PPPd managed connection
+
+[Service]
+ExecStartPre=-/bin/rm -f /var/lock/LCK..modem
+ExecStart=/usr/sbin/pppd call sn-provider nodetach nolog
+Restart=on-failure
+RestartSec=30

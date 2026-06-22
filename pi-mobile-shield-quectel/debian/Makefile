@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.2.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.2.0-2$(if $(DIST),+$(DIST),)
 NAME = sn-pi-mobile-shield-quectel
 PATHS = etc lib usr
 
@@ -18,6 +18,10 @@ deb : prep
 	-d 'ppp (>= 2.4.9)' \
 	-d 'gpsd (>= 3.22)' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
+	--conflicts 'sn-mobile-mm' \
+	--replaces 'sn-mobile-mm' \
+	--conflicts 'sn-mobile-usb-ppp' \
+	--replaces 'sn-mobile-usb-ppp' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
 	--after-remove $(NAME).postrm \

@@ -1,0 +1,10 @@
+[Unit]
+Description=USB mobile network auto reconnect periodic task
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=2min
+RandomizedDelaySec=10
+
+[Install]
+WantedBy=timers.target

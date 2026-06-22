@@ -1,5 +1,5 @@
 DIST =
-VERSION = 1.2.0-2$(if $(DIST),+$(DIST),)
+VERSION = 1.2.0-3$(if $(DIST),+$(DIST),)
 NAME = sn-pi-mobile-shield-usb
 PATHS = etc lib usr
 
@@ -20,6 +20,8 @@ deb : prep
 	-d 'sn-system (>= 1.5.0)' \
 	--conflicts 'sn-mobile-mm' \
 	--replaces 'sn-mobile-mm' \
+	--conflicts 'sn-mobile-usb-ppp' \
+	--replaces 'sn-mobile-usb-ppp' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
 	--conflicts 'sn-pi-mobile-shield-quectel' \
 	--replaces 'sn-pi-mobile-shield-quectel' \
