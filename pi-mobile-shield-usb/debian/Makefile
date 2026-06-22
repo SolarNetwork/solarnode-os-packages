@@ -1,5 +1,5 @@
 DIST =
-VERSION = 1.2.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.2.0-2$(if $(DIST),+$(DIST),)
 NAME = sn-pi-mobile-shield-usb
 PATHS = etc lib usr
 

@@ -23,18 +23,20 @@ reload_udev () {
 	fi
 }
 
-# Enable max_usb_current per 
-# https://github.com/sixfab/Sixfab_PPP_Installer/blob/ad9f62aaf02cee8e69f1278844aa9a4db145d0c1/ppp_installer/install.sh#L137-L141
-if grep -q '^max_usb_current=1' /boot/config.txt; then
-	true
-else
-	echo 'Enabling max_usb_current in /boot/config.txt; will be enabled on reboot.'
-	if grep -q 'max_usb_current' /boot/config.txt; then
-		# update
-		sed -i -e '/max_usb_current/c max_usb_current=1' /boot/config.txt || true
+if [ -e /boot/config.txt ]; then
+	# Enable max_usb_current per 
+	# https://github.com/sixfab/Sixfab_PPP_Installer/blob/ad9f62aaf02cee8e69f1278844aa9a4db145d0c1/ppp_installer/install.sh#L137-L141
+	if grep -q '^max_usb_current=1' /boot/config.txt; then
+		true
 	else
-		# add in
-		echo 'max_usb_current=1' >>/boot/config.txt
+		echo 'Enabling max_usb_current in /boot/config.txt; will be enabled on reboot.'
+		if grep -q 'max_usb_current' /boot/config.txt; then
+			# update
+			sed -i -e '/max_usb_current/c max_usb_current=1' /boot/config.txt || true
+		else
+			# add in
+			echo 'max_usb_current=1' >>/boot/config.txt
+		fi
 	fi
 fi
 
