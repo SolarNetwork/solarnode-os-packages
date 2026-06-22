@@ -1,5 +1,5 @@
-DIST = 
-VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
+DIST =
+VERSION = 1.2.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-pi-mobile-shield-usb
 PATHS = etc lib usr
 
@@ -17,6 +17,7 @@ deb : prep
 	-d 'systemd (>= 247)' \
 	-d 'ppp (>= 2.4.9)' \
 	-d 'gpsd (>= 3.22)' \
+	-d 'sn-system (>= 1.5.0)' \
 	--conflicts 'sn-mobile-mm' \
 	--replaces 'sn-mobile-mm' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
@@ -30,8 +31,8 @@ deb : prep
 	--deb-no-default-config-files \
 	$(PATHS)
 
-prep : 
+prep :
 	find $(PATHS) -type f -name .DS_Store -delete
 
-clean : 
+clean :
 	rm $(NAME)_$(VERSION)_all.deb

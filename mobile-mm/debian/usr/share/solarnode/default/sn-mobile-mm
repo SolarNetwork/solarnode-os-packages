@@ -3,3 +3,7 @@
 
 # Mobile AT init
 # AT_INIT_FILE=/usr/share/solarnode/example/mobile-mm-init-default
+
+# APN used to establish the data connection. Keep in sync with the APN set in
+# the AT init file (AT+CGDCONT). Defaults to "internet".
+# MOBILE_APN=internet

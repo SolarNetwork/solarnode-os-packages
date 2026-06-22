@@ -1,7 +1,7 @@
 DIST = 
-VERSION = 1.0.1-1$(if $(DIST),+$(DIST),)
+VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
 NAME = sn-mobile-mm
-PATHS = lib usr
+PATHS = etc lib usr
 
 deb : prep
 	fpm -s dir -t deb \
@@ -17,6 +17,7 @@ deb : prep
 	-d 'systemd (>= 247)' \
 	-d 'modemmanager' \
 	-d 'socat' \
+	-d 'sn-system (>= 1.5.0)' \
 	--conflicts 'sn-pi-sixfab-3g-shield-vodafone' \
 	--conflicts 'sn-pi-mobile-shield-quectel' \
 	--replaces 'sn-pi-mobile-shield-quectel' \
