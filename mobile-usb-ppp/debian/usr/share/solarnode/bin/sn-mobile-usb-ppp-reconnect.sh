@@ -34,14 +34,14 @@ iface_status="$(ip -br link show 2>/dev/null |grep "^${NET_INTERFACE}" |awk '{pr
 if [ -z "${iface_status}" ]; then
 	# interface not found
 	echo "Network interface ${NET_INTERFACE} not found, will start now."
-	systemctl restart sn-mobile-shield-usb-pppd
+	systemctl restart sn-mobile-usb-ppp-pppd
 else
 	echo -n "Pinging ${PING_HOST} on ${NET_INTERFACE}... " 1>&2
 
 	if ! ping -q -I ${NET_INTERFACE} -c 1 ${PING_HOST} -s 0 >/dev/null; then
 		echo "FAIL"
 		echo "Unable to ping ${PING_HOST} on ${NET_INTERFACE}, will reconnect now."
-		systemctl restart sn-mobile-shield-usb-pppd
+		systemctl restart sn-mobile-usb-ppp-pppd
 	else
 		echo "OK"
 	fi

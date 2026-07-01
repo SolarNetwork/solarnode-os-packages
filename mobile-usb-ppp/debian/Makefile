@@ -1,5 +1,5 @@
 DIST =
-VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.0.1-1$(if $(DIST),+$(DIST),)
 NAME = sn-mobile-usb-ppp
 PATHS = etc lib usr
 
