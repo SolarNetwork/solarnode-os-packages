@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.1 - 2026-07-07
+
+| Name                         | ID                            | Vers  |
+|:-----------------------------|:------------------------------|:------|
+| Tesla Powerwall Datum Source | `n.s.n.datum.tesla.powerwall` | 2.1.1 |
+
+
 ## 1.1.0 - 2026-04-21
 
 | Name                         | ID                            | Vers  |
