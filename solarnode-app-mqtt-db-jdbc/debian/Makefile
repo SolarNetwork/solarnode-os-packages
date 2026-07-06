@@ -1,5 +1,5 @@
 NAME = solarnode-app-mqtt-db-jdbc
-VERSION = 2.0.0-1
+VERSION = 2.1.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -19,7 +19,7 @@ pkg : prep assemble app table
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-core (>= 4.0)' \
+		-d 'solarnode-app-core (>= 4.10)' \
 		--after-install $(NAME).postinst \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)

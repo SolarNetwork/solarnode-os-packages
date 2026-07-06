@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.1.0 - 2026-07-07
+
+| Name                    | ID                    | Vers  |
+|:------------------------|:----------------------|:------|
+| MQTT Persistence (JDBC) | `n.s.n.dao.mqtt.jdbc` | 4.1.0 |
+
+
 ## 2.0.0 - 2025-06-24
 
 | Name                    | ID                    | Vers  |
