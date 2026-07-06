@@ -1,5 +1,5 @@
 NAME = solarnode-app-metrics-db-jdbc
-VERSION = 2.0.0-1
+VERSION = 2.1.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
@@ -18,8 +18,8 @@ pkg : prep assemble app table
 		--description 'SolarNode Metrics DB - JDBC' \
 		--license 'GPL 2.0' \
 		-f \
-		-d 'solarnode-base (>= 5.0)' \
-		-d 'solarnode-app-core (>= 4.0)' \
+		-d 'solarnode-base (>= 5.3)' \
+		-d 'solarnode-app-core (>= 4.10)' \
 		--conflicts 'solarnode-app-metrics-db' \
 		--replaces 'solarnode-app-metrics-db' \
 		--provides 'solarnode-app-metrics-db' \
