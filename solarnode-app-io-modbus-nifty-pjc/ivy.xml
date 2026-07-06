@@ -10,8 +10,8 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="3.1.1"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="2.1.1"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty" rev="3.2.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.io.modbus.nifty.pjc" rev="2.2.0"/>
 
 		<!-- solarnode-app-core excludes -->
 		<exclude org="net.solarnetwork.external"/>
@@ -29,6 +29,7 @@
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
 		<exclude org="com.fazecast"/>
+		<exclude org="de.siegmar"/>
 		<exclude org="io.netty"/>
 		<exclude org="javax.servlet"/>
 		<exclude org="joda-time"/>
@@ -37,11 +38,14 @@
 		<exclude org="org.apache.commons"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.eclipse.paho"/>
+		<exclude org="org.jspecify"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.quartz-scheduler"/>
 		<exclude org="org.slf4j"/>
 		<exclude org="org.springframework"/>
 		<exclude org="org.springframework.security"/>
 		<exclude org="org.mitre.dsmiley.httpproxy"/>
+		<exclude org="tools.jackson.core"/>
+		<exclude org="tools.jackson.dataformat"/>
 	</dependencies>
 </ivy-module>

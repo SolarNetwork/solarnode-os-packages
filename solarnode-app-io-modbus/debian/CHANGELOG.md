@@ -13,6 +13,15 @@ make them shorter, using the following conventions:
 | `n.s.n`         | `net.solarnetwork.node`   |
 
 
+## 4.2.0 - 2026-07-07
+
+The complete list of plugins included is:
+
+| Name                             | ID                | Vers  |
+|:---------------------------------|:------------------|:------|
+| Modbus Communication Support API | `n.s.n.io.modbus` | 6.2.0 |
+
+
 ## 4.1.0 - 2026-01-22
 
 The complete list of plugins included is:
