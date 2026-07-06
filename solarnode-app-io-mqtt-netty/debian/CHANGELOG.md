@@ -12,6 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 5.1.0 - 2026-07-07
+
+This release requires [`solarnode-app-io-mqtt` 5.1][io-mqtt-log] or newer.
+
+The complete list of plugins included is:
+
+| Name                | ID                      | Vers  |
+|:--------------------|:------------------------|:------|
+| MQTT client - Netty | `n.s.common.mqtt.netty` | 5.1.0 |
+
+
 ## 5.0.0 - 2025-06-24
 
 This release requires [`solarnode-app-io-mqtt` 5.0][io-mqtt-log] or newer.

@@ -29,7 +29,7 @@ pkg : app-core table
 		-d 'solarnode-base-jackson3' \
 		-d 'solarnode-base-netty' \
 		-d 'solarnode-base-thymeleaf' \
-		-d 'solarnode-app-io-mqtt (>= 4.0)' \
+		-d 'solarnode-app-io-mqtt (>= 5.1)' \
 		-d 'solarnode-app-db-h2 (>= 2.0.3) | solarnode-app-db' \
 		-d 'solarnode-base-pax-web' \
 		--after-install $(NAME).postinst \
