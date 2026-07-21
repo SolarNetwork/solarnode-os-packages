@@ -1,6 +1,16 @@
 #!/bin/sh
 set -e
 
+CONF="/usr/share/solarnode/default/solarnode-bluetooth-setup"
+VENDOR_CONF="/etc/default/solarnode-bluetooth-setup"
+
+if [ -e "$CONF" ]; then
+	. "$CONF"
+fi
+if [ -e "$VENDOR_CONF" ]; then
+	. "$VENDOR_CONF"
+fi
+
 service_up () {
 	name="$1"
 	start="$2"
@@ -40,6 +50,15 @@ else
 	else
 		# add in
 		echo 'AutoEnable = true' >>$BLUETOOTH_CONF
+	fi
+fi
+
+setup_user_conf_example='/usr/share/solarnode/example/solarnode-bluetooth-setup-user.csv'
+setup_user_conf='/etc/solarnode/auto-settings.d/solarnode-bluetooth-setup.csv'
+if [ -z "$CFG_WITHOUT_SETUP_USER" -a ! -e "${setup_user_conf}" ]; then
+	if [ -e "${setup_user_conf_example}" ]; then
+		echo "Creating default setup user configuration ${setup_user_conf}"
+		cp "${setup_user_conf_example}" "${setup_user_conf}"
 	fi
 fi
 

@@ -21,6 +21,19 @@ After creating or changing the variables file, restart the service with
 sudo systemctl restart solarnode-bt-setup-peripheral
 ```
 
+# Setup user configuration
+
+A default setup user account with username `setup` and password `setup` will be configured in
+`/etc/solarnode/auto-settings.d/solarnode-bluetooth-setup.csv`, unless a
+`/etc/default/solarnode-bluetooth-setup` file exists **before installing the package** with the
+following:
+
+```sh
+CFG_WITHOUT_SETUP_USER=1
+```
+
+This file can be updated as needed to change the username and/or password.
+
 # Packaging
 
 This section describes how the `solarnode-bluetooth-setup` package is created.

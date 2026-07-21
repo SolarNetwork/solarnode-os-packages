@@ -1,5 +1,5 @@
 DIST =
-VERSION = 3.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 3.1.0-1$(if $(DIST),+$(DIST),)
 NAME = solarnode-bluetooth-setup
 PATHS = etc lib usr
 
@@ -15,6 +15,8 @@ deb : prep
 	--force \
 	-d 'systemd (>= 232)' \
 	-d 'bluetooth' \
+	-d 'bluez (>= 5.55)' \
+	-d 'bluez-firmware' \
 	-d 'python3' \
 	-d 'python3-dbus' \
 	-d 'python3-gi' \

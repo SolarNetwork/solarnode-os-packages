@@ -1,0 +1,2 @@
+# Disable configuration of setup user
+# CFG_WITHOUT_SETUP_USER=1
