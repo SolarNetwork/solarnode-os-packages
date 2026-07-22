@@ -17,7 +17,7 @@ deb : prep
 	-d 'bluetooth' \
 	-d 'bluez (>= 5.55)' \
 	-d 'bluez-firmware' \
-	-d 'python3' \
+	-d 'python3 (>= 3.9)' \
 	-d 'python3-dbus' \
 	-d 'python3-gi' \
 	--deb-no-default-config-files \

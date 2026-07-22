@@ -12,6 +12,7 @@ import os.path
 import signal
 import socket
 import sys
+from typing import Optional
 
 import dbus
 import dbus.exceptions
@@ -51,8 +52,8 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 logHandler.setFormatter(formatter)
 logger.addHandler(logHandler)
 
-bus: dbus.SystemBus | None = None
-mainloop: GLib.MainLoop | None = None
+bus: Optional[dbus.SystemBus] = None
+mainloop: Optional[GLib.MainLoop] = None
 
 
 class InvalidArgsException(dbus.exceptions.DBusException):
@@ -408,7 +409,7 @@ class RxCharacteristic(Characteristic):
         self.central_sockets = {}  # device path, socket
         self.central_watches = {}  # device path, GLib source id
 
-    def _open_socket(self, device: str) -> socket.socket | None:
+    def _open_socket(self, device: str) -> Optional[socket.socket]:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # Tight TCP keepalive so a hung or FIN-lost STOMP server gets
         # detected in ~45 s instead of the default Linux ~2 h. Pairs
@@ -774,7 +775,8 @@ def main():
         path_keyword="path",
     )
 
-    mainloop = GLib.MainLoop()
+    loop = GLib.MainLoop()
+    mainloop = loop
 
     # Register the agent.
     agent_manager = dbus.Interface(obj, BLUEZ_AGENTMANAGER_IFACE)
@@ -801,8 +803,7 @@ def main():
 
     def _on_shutdown_signal():
         logger.info("Shutdown signal received")
-        assert mainloop is not None
-        mainloop.quit()
+        loop.quit()
         return False
 
     GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGTERM, _on_shutdown_signal)
@@ -810,7 +811,7 @@ def main():
 
     logger.info("Entered mainloop")
     try:
-        mainloop.run()
+        loop.run()
     finally:
         logger.info("Shutting down...")
         service.rx.close_all()
