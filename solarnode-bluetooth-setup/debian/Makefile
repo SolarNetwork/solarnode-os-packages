@@ -1,5 +1,5 @@
 DIST =
-VERSION = 3.1.0-1$(if $(DIST),+$(DIST),)
+VERSION = 3.1.0-2$(if $(DIST),+$(DIST),)
 NAME = solarnode-bluetooth-setup
 PATHS = etc lib usr
 
