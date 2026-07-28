@@ -4,7 +4,9 @@ This directory contains packaging scripts used to enable SolarNode Bluetooth Set
 
 # Services
 
-This package enables a systemd `solarnode-bt-setup-peripheral` service.
+This package enables a systemd `solarnode-bt-setup-peripheral` service, along with a
+`solarnode-bt-setup-peripheral-restart.path` unit and the
+`solarnode-bt-setup-peripheral-restart` service it triggers.
 
 ## Environment variables
 

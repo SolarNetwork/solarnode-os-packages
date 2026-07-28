@@ -63,4 +63,5 @@ if [ -z "$CFG_WITHOUT_SETUP_USER" -a ! -e "${setup_user_conf}" ]; then
 fi
 
 systemctl daemon-reload || true
+service_up solarnode-bt-setup-peripheral-restart.path true
 service_up solarnode-bt-setup-peripheral true

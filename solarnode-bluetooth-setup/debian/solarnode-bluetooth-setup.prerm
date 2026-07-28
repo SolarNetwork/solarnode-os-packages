@@ -10,5 +10,6 @@ service_down () {
 }
 
 if [ "$1" = "remove" ]; then
+	service_down solarnode-bt-setup-peripheral-restart.path
 	service_down solarnode-bt-setup-peripheral
 fi

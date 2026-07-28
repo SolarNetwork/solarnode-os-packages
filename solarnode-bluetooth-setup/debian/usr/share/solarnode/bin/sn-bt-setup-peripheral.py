@@ -8,7 +8,6 @@
 import array
 import logging
 import os
-import os.path
 import signal
 import socket
 import sys
@@ -54,6 +53,19 @@ logger.addHandler(logHandler)
 
 bus: Optional[dbus.SystemBus] = None
 mainloop: Optional[GLib.MainLoop] = None
+
+exit_status = 0
+
+
+def fail_and_quit(message, *args) -> None:
+    """
+    Log a critical failure, mark the process as failed, and stop the main loop.
+    """
+    global exit_status
+    exit_status = 1
+    logger.critical(message, *args)
+    assert mainloop is not None
+    mainloop.quit()
 
 
 class InvalidArgsException(dbus.exceptions.DBusException):
@@ -314,9 +326,7 @@ def register_ad_cb():
 
 
 def register_ad_error_cb(error):
-    logger.critical("Failed to register advertisement: " + str(error))
-    assert mainloop is not None
-    mainloop.quit()
+    fail_and_quit("Failed to register advertisement: %s", error)
 
 
 class CharacteristicUserDescriptionDescriptor(Descriptor):
@@ -571,12 +581,9 @@ class SmartAgent(dbus.service.Object):
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
     def Release(self):
-        # BlueZ calls Release when our agent registration is being dropped.
-        # Quitting trips main()'s finally block, which closes STOMP sockets
-        # and unregisters the advertisement/application/agent in sequence.
-        logger.info("Release")
-        assert mainloop is not None
-        mainloop.quit()
+        # BlueZ calls Release when our agent registration is being dropped,
+        # usually because bluetoothd is going away.
+        fail_and_quit("Agent registration released by BlueZ")
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
     def AuthorizeService(self, device, uuid):
@@ -653,9 +660,7 @@ def register_app_cb():
 
 
 def register_app_error_cb(error):
-    logger.critical("Failed to register application: " + str(error))
-    assert mainloop is not None
-    mainloop.quit()
+    fail_and_quit("Failed to register application: %s", error)
 
 
 def find_adapter(bus):
@@ -696,6 +701,28 @@ def find_adapter(bus):
     return None
 
 
+def read_pretty_hostname() -> Optional[str]:
+    """
+    Returns the ``PRETTY_HOSTNAME`` value from ``/etc/machine-info``, which we
+    advertise as the BLE local name.
+
+    Raises ``OSError`` if the file exists but cannot be read.
+    """
+    try:
+        with open("/etc/machine-info") as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        return None
+
+    for line in lines:
+        if line.startswith("PRETTY_HOSTNAME="):
+            # An empty value would register an advertisement with a blank
+            # LocalName, so treat it the same as an absent key.
+            return line.split("=", 1)[1].strip().replace('"', "") or None
+
+    return None
+
+
 def set_state(state, adapter_props):
     logger.info("Setting host state to %s...", "ON" if state else "OFF")
     value = dbus.Boolean(bool(state))
@@ -703,7 +730,7 @@ def set_state(state, adapter_props):
         adapter_props.Set(BLUEZ_ADAPTER_IFACE, prop, value)
 
 
-def main():
+def main() -> int:
     global bus
     global mainloop
 
@@ -712,34 +739,28 @@ def main():
 
     adapter = find_adapter(bus)
     if not adapter:
+        # bluetoothd may still be coming up, or the adapter may not be attached
+        # yet...
         logger.critical("GattManager1 interface not found")
-        return
+        return 1
 
     adapter_obj = bus.get_object(BUS_NAME, adapter)
     adapter_props = dbus.Interface(adapter_obj, DBUS_PROP_IFACE)
 
-    # Get the required local_name
-    if not os.path.exists("/etc/machine-info"):
-        logger.info("Node has not been registered")
-        set_state(False, adapter_props)
-        sys.exit(0)
-
-    local_name = None
+    # Get the required local_name.
     try:
-        with open("/etc/machine-info") as f:
-            lines = f.readlines()
-            for line in lines:
-                if line.startswith("PRETTY_HOSTNAME="):
-                    local_name = line.split("=", 1)[1].strip().replace('"', "")
-    except OSError:
-        logger.critical("Cannot read /etc/machine-info")
+        local_name = read_pretty_hostname()
+    except OSError as e:
+        logger.critical("Cannot read /etc/machine-info: %s", e)
         set_state(False, adapter_props)
-        return
+        return 1
 
     if local_name is None:
-        logger.critical("PRETTY_HOSTNAME not set in /etc/machine-info")
+        # A node that hasn't been registered yet has nothing to advertise, and
+        # no amount of retrying changes that.
+        logger.info("Node has not been registered yet, not advertising")
         set_state(False, adapter_props)
-        return
+        return 0
 
     set_state(True, adapter_props)
 
@@ -837,6 +858,8 @@ def main():
                 logger.warning("Failed to unregister %s: %s", name, e)
         logger.info("Shutdown complete")
 
+    return exit_status
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
