@@ -327,7 +327,7 @@ class Advertisement(dbus.service.Object):
 
     @dbus.service.method(LE_ADVERTISEMENT_IFACE, in_signature="", out_signature="")
     def Release(self):
-        logger.info("%s: Released!" % self.path)
+        logger.info("%s: Released!", self.path)
 
 
 def register_ad_cb():
