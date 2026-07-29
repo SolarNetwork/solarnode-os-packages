@@ -4,7 +4,7 @@
 Description=SolarNode Bluetooth Setup peripheral identity monitor
 
 [Path]
-PathChanged=/etc/machine-info
+PathChanged=/etc/solarnode/identity.json
 
 [Install]
 WantedBy=bluetooth.target

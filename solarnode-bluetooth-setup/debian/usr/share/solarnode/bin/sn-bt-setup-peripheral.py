@@ -6,6 +6,7 @@
 # https://github.com/bluez/bluez
 
 import array
+import json
 import logging
 import os
 import signal
@@ -43,6 +44,14 @@ AGENT_PATH = "/net/solarnetwork/node/setup/agent"
 # is reconfigured.
 SN_STOMP_ADDRESS = "127.0.0.1"
 SN_STOMP_PORT = 8780
+# The node's identity, whose nodeId we advertise.
+SN_IDENTITY_PATH = "/etc/solarnode/identity.json"
+SN_LABEL_CONF_PATHS = (
+    "/usr/share/solarnode/default/sn-system",
+    "/etc/default/sn-system",
+)
+SN_LABEL_KEY = "CFG_SOLARNODE_LABEL="
+SN_LABEL_DEFAULT = "SolarNode"
 
 logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("SN_BT_SETUP_PERIPHERAL_LOG_LEVEL", "INFO").upper())
@@ -701,26 +710,50 @@ def find_adapter(bus):
     return None
 
 
-def read_pretty_hostname() -> Optional[str]:
+def read_node_id() -> Optional[int]:
     """
-    Returns the ``PRETTY_HOSTNAME`` value from ``/etc/machine-info``, which we
-    advertise as the BLE local name.
+    Returns the ``nodeId`` from ``/etc/solarnode/identity.json``, or ``None``
+    when the node has not been registered yet.
 
     Raises ``OSError`` if the file exists but cannot be read.
     """
     try:
-        with open("/etc/machine-info") as f:
-            lines = f.readlines()
+        with open(SN_IDENTITY_PATH) as f:
+            identity = json.load(f)
     except FileNotFoundError:
         return None
+    except (ValueError, UnicodeDecodeError) as e:
+        logger.warning("Ignoring unparsable %s: %s", SN_IDENTITY_PATH, e)
+        return None
 
-    for line in lines:
-        if line.startswith("PRETTY_HOSTNAME="):
-            # An empty value would register an advertisement with a blank
-            # LocalName, so treat it the same as an absent key.
-            return line.split("=", 1)[1].strip().replace('"', "") or None
+    node_id = identity.get("nodeId") if isinstance(identity, dict) else None
+    if not isinstance(node_id, int) or isinstance(node_id, bool):
+        return None
 
-    return None
+    return node_id
+
+
+def read_node_label() -> str:
+    """
+    Returns ``CFG_SOLARNODE_LABEL`` from the sn-system configuration, so the
+    name we advertise matches the pretty hostname identity-configure.sh derives
+    from the same value.
+    """
+    label = SN_LABEL_DEFAULT
+
+    for path in SN_LABEL_CONF_PATHS:
+        try:
+            with open(path) as f:
+                lines = f.readlines()
+        except OSError:
+            continue
+        for line in lines:
+            if line.strip().startswith(SN_LABEL_KEY):
+                value = line.strip().split("=", 1)[1].strip().strip("\"'")
+                if value:
+                    label = value
+
+    return label
 
 
 def set_state(state, adapter_props):
@@ -749,18 +782,21 @@ def main() -> int:
 
     # Get the required local_name.
     try:
-        local_name = read_pretty_hostname()
+        node_id = read_node_id()
     except OSError as e:
-        logger.critical("Cannot read /etc/machine-info: %s", e)
+        logger.critical("Cannot read %s: %s", SN_IDENTITY_PATH, e)
         set_state(False, adapter_props)
         return 1
 
-    if local_name is None:
+    if node_id is None:
         # A node that hasn't been registered yet has nothing to advertise, and
         # no amount of retrying changes that.
         logger.info("Node has not been registered yet, not advertising")
         set_state(False, adapter_props)
         return 0
+
+    local_name = f"{read_node_label()} {node_id}"
+    logger.info("Advertising as %s", local_name)
 
     set_state(True, adapter_props)
 
