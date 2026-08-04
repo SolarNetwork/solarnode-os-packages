@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # SolarNode mobile (cellular/4G) network helper script for the
-# sn-pi-mobile-shield-usb package, which manages cellular connectivity via
+# sn-mobile-usb-ppp package, which manages cellular connectivity via
 # pppd (rather than ModemManager).
 #
 # Invoked by the solarcfg wrapper:
@@ -16,11 +16,11 @@
 #   reset/restart -> human-readable result lines on STDOUT; errors on STDERR
 #             with a non-zero exit code.
 
-PPPD_SERVICE="sn-mobile-shield-usb-pppd"
+PPPD_SERVICE="sn-mobile-usb-ppp-pppd"
 NET_INTERFACE="ppp0"
 
 # honor the interface override shared with the auto-reconnect task
-DEFAULTS="/etc/default/sn-pi-mobile-shield"
+DEFAULTS="/etc/default/sn-mobile-usb-ppp"
 if [ -e "$DEFAULTS" ]; then
 	. "$DEFAULTS"
 fi
