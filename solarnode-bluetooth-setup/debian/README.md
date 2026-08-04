@@ -4,7 +4,14 @@ This directory contains packaging scripts used to enable SolarNode Bluetooth Set
 
 # Services
 
-This package enables a systemd `solarnode-bt-setup-peripheral` service.
+This package enables a systemd `solarnode-bt-setup-peripheral` service, along with a
+`solarnode-bt-setup-peripheral-restart.path` unit and the
+`solarnode-bt-setup-peripheral-restart` service it triggers.
+
+The peripheral advertises itself as `SolarNode X`, where `X` is the `nodeId` from
+`/etc/solarnode/identity.json`. The `SolarNode` label comes from `CFG_SOLARNODE_LABEL` in
+`/etc/default/sn-system`, so the advertised name matches the pretty hostname that
+`identity-configure.sh` sets from the same value.
 
 ## Environment variables
 

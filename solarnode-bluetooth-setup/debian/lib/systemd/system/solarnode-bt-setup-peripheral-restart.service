@@ -1,0 +1,8 @@
+# SolarNode Bluetooth Setup peripheral restart service unit
+
+[Unit]
+Description=SolarNode Bluetooth Setup peripheral restart
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart solarnode-bt-setup-peripheral.service

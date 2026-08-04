@@ -2,14 +2,16 @@
 Description=SolarNode Bluetooth Setup peripheral
 After=bluetooth.service
 PartOf=bluetooth.service
-StartLimitIntervalSec=5
-StartLimitBurst=20
+StartLimitIntervalSec=0
 
 [Service]
 Type=simple
 EnvironmentFile=-/etc/solarnode/bluetooth-setup.env
 ExecStart=/usr/bin/python3 /usr/share/solarnode/bin/sn-bt-setup-peripheral.py
-Restart=always
+# on-failure, not always: the peripheral exits 0 when the node has no ID yet
+# (nothing to advertise)
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=bluetooth.target

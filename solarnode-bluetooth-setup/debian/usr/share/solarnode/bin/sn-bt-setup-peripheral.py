@@ -6,9 +6,9 @@
 # https://github.com/bluez/bluez
 
 import array
+import json
 import logging
 import os
-import os.path
 import signal
 import socket
 import sys
@@ -44,6 +44,14 @@ AGENT_PATH = "/net/solarnetwork/node/setup/agent"
 # is reconfigured.
 SN_STOMP_ADDRESS = "127.0.0.1"
 SN_STOMP_PORT = 8780
+# The node's identity, whose nodeId we advertise.
+SN_IDENTITY_PATH = "/etc/solarnode/identity.json"
+SN_LABEL_CONF_PATHS = (
+    "/usr/share/solarnode/default/sn-system",
+    "/etc/default/sn-system",
+)
+SN_LABEL_KEY = "CFG_SOLARNODE_LABEL="
+SN_LABEL_DEFAULT = "SolarNode"
 
 logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("SN_BT_SETUP_PERIPHERAL_LOG_LEVEL", "INFO").upper())
@@ -54,6 +62,19 @@ logger.addHandler(logHandler)
 
 bus: Optional[dbus.SystemBus] = None
 mainloop: Optional[GLib.MainLoop] = None
+
+exit_status = 0
+
+
+def fail_and_quit(message, *args) -> None:
+    """
+    Log a critical failure, mark the process as failed, and stop the main loop.
+    """
+    global exit_status
+    exit_status = 1
+    logger.critical(message, *args)
+    assert mainloop is not None
+    mainloop.quit()
 
 
 class InvalidArgsException(dbus.exceptions.DBusException):
@@ -306,7 +327,7 @@ class Advertisement(dbus.service.Object):
 
     @dbus.service.method(LE_ADVERTISEMENT_IFACE, in_signature="", out_signature="")
     def Release(self):
-        logger.info("%s: Released!" % self.path)
+        logger.info("%s: Released!", self.path)
 
 
 def register_ad_cb():
@@ -314,9 +335,7 @@ def register_ad_cb():
 
 
 def register_ad_error_cb(error):
-    logger.critical("Failed to register advertisement: " + str(error))
-    assert mainloop is not None
-    mainloop.quit()
+    fail_and_quit("Failed to register advertisement: %s", error)
 
 
 class CharacteristicUserDescriptionDescriptor(Descriptor):
@@ -571,12 +590,9 @@ class SmartAgent(dbus.service.Object):
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
     def Release(self):
-        # BlueZ calls Release when our agent registration is being dropped.
-        # Quitting trips main()'s finally block, which closes STOMP sockets
-        # and unregisters the advertisement/application/agent in sequence.
-        logger.info("Release")
-        assert mainloop is not None
-        mainloop.quit()
+        # BlueZ calls Release when our agent registration is being dropped,
+        # usually because bluetoothd is going away.
+        fail_and_quit("Agent registration released by BlueZ")
 
     @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
     def AuthorizeService(self, device, uuid):
@@ -653,9 +669,7 @@ def register_app_cb():
 
 
 def register_app_error_cb(error):
-    logger.critical("Failed to register application: " + str(error))
-    assert mainloop is not None
-    mainloop.quit()
+    fail_and_quit("Failed to register application: %s", error)
 
 
 def find_adapter(bus):
@@ -696,6 +710,52 @@ def find_adapter(bus):
     return None
 
 
+def read_node_id() -> Optional[int]:
+    """
+    Returns the ``nodeId`` from ``/etc/solarnode/identity.json``, or ``None``
+    when the node has not been registered yet.
+
+    Raises ``OSError`` if the file exists but cannot be read.
+    """
+    try:
+        with open(SN_IDENTITY_PATH) as f:
+            identity = json.load(f)
+    except FileNotFoundError:
+        return None
+    except (ValueError, UnicodeDecodeError) as e:
+        logger.warning("Ignoring unparsable %s: %s", SN_IDENTITY_PATH, e)
+        return None
+
+    node_id = identity.get("nodeId") if isinstance(identity, dict) else None
+    if not isinstance(node_id, int) or isinstance(node_id, bool):
+        return None
+
+    return node_id
+
+
+def read_node_label() -> str:
+    """
+    Returns ``CFG_SOLARNODE_LABEL`` from the sn-system configuration, so the
+    name we advertise matches the pretty hostname identity-configure.sh derives
+    from the same value.
+    """
+    label = SN_LABEL_DEFAULT
+
+    for path in SN_LABEL_CONF_PATHS:
+        try:
+            with open(path) as f:
+                lines = f.readlines()
+        except OSError:
+            continue
+        for line in lines:
+            if line.strip().startswith(SN_LABEL_KEY):
+                value = line.strip().split("=", 1)[1].strip().strip("\"'")
+                if value:
+                    label = value
+
+    return label
+
+
 def set_state(state, adapter_props):
     logger.info("Setting host state to %s...", "ON" if state else "OFF")
     value = dbus.Boolean(bool(state))
@@ -703,7 +763,7 @@ def set_state(state, adapter_props):
         adapter_props.Set(BLUEZ_ADAPTER_IFACE, prop, value)
 
 
-def main():
+def main() -> int:
     global bus
     global mainloop
 
@@ -712,34 +772,31 @@ def main():
 
     adapter = find_adapter(bus)
     if not adapter:
+        # bluetoothd may still be coming up, or the adapter may not be attached
+        # yet...
         logger.critical("GattManager1 interface not found")
-        return
+        return 1
 
     adapter_obj = bus.get_object(BUS_NAME, adapter)
     adapter_props = dbus.Interface(adapter_obj, DBUS_PROP_IFACE)
 
-    # Get the required local_name
-    if not os.path.exists("/etc/machine-info"):
-        logger.info("Node has not been registered")
-        set_state(False, adapter_props)
-        sys.exit(0)
-
-    local_name = None
+    # Get the required local_name.
     try:
-        with open("/etc/machine-info") as f:
-            lines = f.readlines()
-            for line in lines:
-                if line.startswith("PRETTY_HOSTNAME="):
-                    local_name = line.split("=", 1)[1].strip().replace('"', "")
-    except OSError:
-        logger.critical("Cannot read /etc/machine-info")
+        node_id = read_node_id()
+    except OSError as e:
+        logger.critical("Cannot read %s: %s", SN_IDENTITY_PATH, e)
         set_state(False, adapter_props)
-        return
+        return 1
 
-    if local_name is None:
-        logger.critical("PRETTY_HOSTNAME not set in /etc/machine-info")
+    if node_id is None:
+        # A node that hasn't been registered yet has nothing to advertise, and
+        # no amount of retrying changes that.
+        logger.info("Node has not been registered yet, not advertising")
         set_state(False, adapter_props)
-        return
+        return 0
+
+    local_name = f"{read_node_label()} {node_id}"
+    logger.info("Advertising as %s", local_name)
 
     set_state(True, adapter_props)
 
@@ -837,6 +894,8 @@ def main():
                 logger.warning("Failed to unregister %s: %s", name, e)
         logger.info("Shutdown complete")
 
+    return exit_status
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

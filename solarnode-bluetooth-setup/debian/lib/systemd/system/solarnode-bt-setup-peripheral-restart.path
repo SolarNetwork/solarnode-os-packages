@@ -1,0 +1,10 @@
+# SolarNode Bluetooth Setup peripheral restart path unit
+
+[Unit]
+Description=SolarNode Bluetooth Setup peripheral identity monitor
+
+[Path]
+PathChanged=/etc/solarnode/identity.json
+
+[Install]
+WantedBy=bluetooth.target
