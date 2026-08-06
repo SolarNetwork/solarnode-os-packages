@@ -14,9 +14,14 @@ if [ -e "$VENDOR_CONF" ]; then
 	. "$VENDOR_CONF"
 fi
 
-if [ -e "$AT_INIT_FILE" -a -e /dev/modem ]; then
-	echo "Initializing modem from $AT_INIT_FILE"
-	cat "$AT_INIT_FILE" |socat - /dev/modem,crnl >/dev/null
+if [ -e "$AT_INIT_FILE" -a -h /dev/modem -a -e /dev/modem ]; then
+	echo "Initializing modem from $AT_INIT_FILE:"
+	while IFS= read -r line; do
+		echo "$line"
+		echo "$line" |socat - /dev/modem,crnl >/dev/null
+		sleep 1
+	done < "$AT_INIT_FILE"
+	echo "Done initializing modem from $AT_INIT_FILE."
 fi
 
 # Enable the modem and bring up the data connection. ModemManager does not
