@@ -52,7 +52,7 @@ sudo nano /usr/local/etc/sn-mobile-mm-init
 echo 'AT_INIT_FILE=/usr/local/etc/sn-mobile-mm-init' |sudo tee -a /etc/default/sn-mobile-mm
 
 # manually run init (or else reboot)
-sudo systemctl start sn-mobile-mm-init
+sudo systemctl restart sn-mobile-mm-init
 ```
 
 
