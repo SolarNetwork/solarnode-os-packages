@@ -1,0 +1,2 @@
+# Rename modem network interface from eth1 to wwan for compatibility
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="cdc_ether", NAME="wwan0"

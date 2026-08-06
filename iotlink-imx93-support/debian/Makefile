@@ -1,6 +1,6 @@
 DIST = 
 NAME = sn-iotlink-imx93-support
-VERSION = 1.0.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.0.1-1$(if $(DIST),+$(DIST),)
 PATHS = lib
 
 deb : prep
