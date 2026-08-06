@@ -22,7 +22,7 @@ echo 'CFG_WITHOUT_NETWORK=1' |sudo tee -a /etc/default/sn-mobile-mm
 # Configuration
 
 The `/etc/default/sn-mobild-mm` file can be used to configure aspects of this package. The default
-values are in the `/usr/share/solarnode/default/mobile-mm-init-default` file.
+values are in the `/usr/share/solarnode/default/sn-mobile-mm` file.
 
 | Configuration | Description |
 |:--------------|:------------|
