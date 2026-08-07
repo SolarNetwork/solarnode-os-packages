@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.1.1-1$(if $(DIST),+$(DIST),)
+VERSION = 1.1.2-1$(if $(DIST),+$(DIST),)
 NAME = sn-mobile-mm
 PATHS = etc lib usr
 

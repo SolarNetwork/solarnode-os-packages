@@ -5,6 +5,13 @@ GOTO="mm_qualcomm_port_types_end"
 LABEL="mm_qualcomm_port_types"
 SUBSYSTEMS=="usb", ATTRS{bInterfaceNumber}=="?*", ENV{.MM_USBIFNUM}="$attr{bInterfaceNumber}"
 
-ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9330", ENV{.MM_USBIFNUM}=="06", SUBSYSTEM=="tty", SYMLINK+="modem"
+ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9330", ENV{.MM_USBIFNUM}=="02", SUBSYSTEM=="tty", \
+	ENV{ID_MM_PORT_TYPE_AT_PRIMARY}="1"
+ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9330", ENV{.MM_USBIFNUM}=="04", SUBSYSTEM=="tty", \
+	ENV{ID_MM_PORT_IGNORE}="1"
+ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9330", ENV{.MM_USBIFNUM}=="06", SUBSYSTEM=="tty", \
+	ENV{ID_MM_PORT_TYPE_AT_SECONDARY}="1", SYMLINK+="modem"
+ATTRS{idVendor}=="05c6", ATTRS{idProduct}=="9330", ENV{.MM_USBIFNUM}=="08", SUBSYSTEM=="tty", \
+	ENV{ID_MM_PORT_IGNORE}="1"
 
 LABEL="mm_qualcomm_port_types_end"

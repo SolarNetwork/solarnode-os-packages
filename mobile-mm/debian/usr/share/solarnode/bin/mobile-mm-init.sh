@@ -18,7 +18,7 @@ if [ -e "$AT_INIT_FILE" -a -h /dev/modem -a -e /dev/modem ]; then
 	echo "Initializing modem from $AT_INIT_FILE:"
 	while IFS= read -r line; do
 		echo "$line"
-		echo "$line" |socat - /dev/modem,crnl >/dev/null
+		echo "$line" |socat -u - /dev/modem,crnl >/dev/null
 		sleep 1
 	done < "$AT_INIT_FILE"
 	echo "Done initializing modem from $AT_INIT_FILE."
