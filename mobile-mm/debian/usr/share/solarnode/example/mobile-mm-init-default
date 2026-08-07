@@ -1,2 +1,2 @@
-AT+USBNETIP=0
+AT+USBNETIP=1
 AT+CGDCONT=1,"IP","internet"
