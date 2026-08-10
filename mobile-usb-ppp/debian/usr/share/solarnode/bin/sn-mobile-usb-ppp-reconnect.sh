@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 AUTO_RECONNECT_ENABLE=0
 NET_INTERFACE="ppp0"
