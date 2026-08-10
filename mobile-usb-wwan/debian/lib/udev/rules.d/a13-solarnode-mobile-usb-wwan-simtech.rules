@@ -1,0 +1,33 @@
+ACTION!="add|change|move|bind", GOTO="snmm_simtech_port_types_end"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1e0e", GOTO="snmm_simtech_port_types"
+GOTO="snmm_simtech_port_types_end"
+
+LABEL="snmm_simtech_port_types"
+SUBSYSTEMS=="usb", ATTRS{bInterfaceNumber}=="?*", ENV{.MM_USBIFNUM}="$attr{bInterfaceNumber}"
+
+# A-LINK 3GU
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="cefe", ENV{.MM_USBIFNUM}=="02", SUBSYSTEM=="tty", SYMLINK+="modem"
+
+# Prolink PH-300
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9100", ENV{.MM_USBIFNUM}=="03", SUBSYSTEM=="tty", SYMLINK+="modem"
+
+# SCT UM300
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9200", ENV{.MM_USBIFNUM}=="03", SUBSYSTEM=="tty", SYMLINK+="modem"
+
+# SIM7000, SIM7100, SIM7600...
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9001", ENV{.MM_USBIFNUM}=="01", SUBSYSTEM=="tty", SYMLINK+="gps", TAG+="systemd", ENV{SYSTEMD_WANTS}="gpsdctl@%k.service"
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9001", ENV{.MM_USBIFNUM}=="02", SUBSYSTEM=="tty", SYMLINK+="modem"
+
+# SIM7070, SIM7080, SIM7090 (default layout)...
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9205", ENV{.MM_USBIFNUM}=="01", SUBSYSTEM=="tty", SYMLINK+="gps", TAG+="systemd", ENV{SYSTEMD_WANTS}="gpsdctl@%k.service"
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9205", ENV{.MM_USBIFNUM}=="02", SUBSYSTEM=="tty", SYMLINK+="modem"
+
+
+# SIM7070, SIM7080, SIM7090 (secondary layout)...
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9206", ENV{.MM_USBIFNUM}=="01", SUBSYSTEM=="tty", SYMLINK+="gps", TAG+="systemd", ENV{SYSTEMD_WANTS}="gpsdctl@%k.service"
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9206", ENV{.MM_USBIFNUM}=="02", SUBSYSTEM=="tty", SYMLINK+="modem"
+
+# SIM A7600E-H, A7602E-H
+ATTRS{idVendor}=="1e0e", ATTRS{idProduct}=="9011", ENV{.MM_USBIFNUM}=="04", SYMLINK+="modem"
+
+LABEL="snmm_simtech_port_types_end"

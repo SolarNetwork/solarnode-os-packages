@@ -1,0 +1,6 @@
+[Unit]
+Description=USB wwan mobile network validation periodic task
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/mobile-usb-wwan-validate.sh

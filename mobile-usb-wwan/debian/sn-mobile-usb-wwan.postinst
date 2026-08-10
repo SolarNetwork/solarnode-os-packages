@@ -1,0 +1,60 @@
+#!/bin/sh
+set -e
+
+USER=solar
+CONF="/usr/share/solarnode/default/sn-mobile-usb-wwan"
+VENDOR_CONF="/etc/default/sn-mobile-usb-wwan"
+
+if [ -e "$CONF" ]; then
+	. "$CONF"
+fi
+if [ -e "$VENDOR_CONF" ]; then
+	. "$VENDOR_CONF"
+fi
+
+if [ -z "$CFG_WITHOUT_NETWORK" -a ! -e /etc/systemd/network/30-wwan.network ]; then
+	if [ -e /usr/share/solarnode/example/30-wwan.network ]; then
+		echo 'Creating default /etc/systemd/network/30-wwan.network'
+		cp /usr/share/solarnode/example/30-wwan.network /etc/systemd/network/30-wwan.network
+	fi
+fi
+
+service_up () {
+	name="$1"
+	start="$2"
+	if ! systemctl is-enabled "$name" >/dev/null; then
+		echo "Enabling $name..."
+		systemctl enable "$name" || true
+	fi
+	if [ -n "$start" ]; then
+		if ! systemctl is-active "$name" >/dev/null; then
+			systemctl start "$name" || true
+		else
+			systemctl restart "$name" || true
+		fi
+	fi
+}
+
+service_down () {
+	name="$1"
+	if systemctl is-enabled "$name" >/dev/null; then
+		echo "Disabling $name..."
+		systemctl disable --now "$name" || true
+	fi
+}
+
+reload_udev () {
+	if [ -x /usr/bin/udevadm ]; then
+		/usr/bin/udevadm control --reload-rules && /usr/bin/udevadm trigger || true
+	fi
+}
+
+systemctl daemon-reload || true
+reload_udev
+sleep 1
+networkctl reload
+
+echo "Running /usr/share/solarnode/cfg.d/mobile.sh configure"
+/usr/share/solarnode/cfg.d/mobile.sh configure || true
+
+service_up sn-mobile-usb-wwan-validate.timer true
