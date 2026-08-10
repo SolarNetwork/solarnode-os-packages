@@ -5,5 +5,21 @@
 # AT_INIT_FILE=/usr/share/solarnode/example/mobile-mm-init-default
 
 # APN used to establish the data connection. Keep in sync with the APN set in
-# the AT init file (AT+CGDCONT). Defaults to "internet".
+# the AT init file (AT+CGDCONT) or use $MOBILE_APN variable in that file.
+# Defaults to "internet".
 # MOBILE_APN=internet
+
+# Require MobileManager to connect, rather than just register
+# MOBILE_DO_CONNECT=1
+
+# Add custom modem reset command hook
+# MOBILE_RESET_HOOK = /path/to/script/here
+
+# Enable the auto-reconnect task
+# AUTO_RECONNECT_ENABLE=1
+
+# The network interface to test for
+NET_INTERFACE="wwan0"
+
+# The host or IP address to ping
+PING_HOST="1.1.1.1"

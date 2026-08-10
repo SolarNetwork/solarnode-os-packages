@@ -1,4 +1,5 @@
-#!/bin/sh -e
+#!/bin/sh
+set -e
 
 service_down () {
 	name="$1"
@@ -9,5 +10,5 @@ service_down () {
 }
 
 if [ "$1" = "remove" ]; then
-	service_down sn-mobile-mm-init
+	service_down sn-mobile-mm-reconnect.timer
 fi

@@ -42,6 +42,5 @@ reload_udev () {
 }
 
 systemctl daemon-reload || true
-service_up sn-mobile-mm-init.service true
-service_up sn-mobile-mm-init.path true
+service_up sn-mobile-mm-reconnect.timer true
 reload_udev

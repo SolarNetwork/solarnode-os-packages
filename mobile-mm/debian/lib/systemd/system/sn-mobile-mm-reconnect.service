@@ -1,0 +1,7 @@
+[Unit]
+Description=MobileManager mobile network auto reconnect
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/solarnode/bin/mobile-mm-reconnect.sh
+KillMode=none

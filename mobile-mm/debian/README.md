@@ -5,9 +5,9 @@ provides configuration and support for mobile networking via the ModemManager pa
 
 # Services
 
-The `sn-mobile-mm-init` service initializes the modem once during system boot. The
-`sn-mobile-mm-init.path` unit watches for the `/dev/modem` link to get created so start
-`sn-mobile-mm-init.service` (in case the device is added later).
+The `sn-mobile-mm-reconnect` service runs from a timer, to periodically check that the internet
+is reachable. Although the service is configured to run when you install this package, it must
+be enabled to actually perform the check, see [below](#network-ping-configuration).
 
 # Network configuration
 
@@ -21,13 +21,19 @@ echo 'CFG_WITHOUT_NETWORK=1' |sudo tee -a /etc/default/sn-mobile-mm
 
 # Configuration
 
-The `/etc/default/sn-mobild-mm` file can be used to configure aspects of this package. The default
+The `/etc/default/sn-mobile-mm` file can be used to configure aspects of this package. The default
 values are in the `/usr/share/solarnode/default/sn-mobile-mm` file.
 
 | Configuration | Description |
 |:--------------|:------------|
-| `CFG_WITHOUT_NETWORK` | Disable creating the `30-wwan.network` file on package installation. |
 | `AT_INIT_FILE` | Path to a file of `AT` modem commands to configure the modem with when the `sn-mobile-mm-init` service runs. Defaults to `/usr/share/solarnode/example/mobile-mm-init-default`  (see next section). |
+| `AUTO_RECONNECT_ENABLE` | Set to `1` to enable the [ping reconnect](#network-ping-configuration) task. |
+| `CFG_WITHOUT_NETWORK` | Disable creating the `30-wwan.network` file on package installation. |
+| `MOBILE_APN` | The APN used to configure the modem network connection. Defaults to `internet`. |
+| `MOBILE_DO_CONNECT` | By default the ModemManager integration only attempts to register the modem. Set to `1` to ask it to connect as well. |
+| `MOBILE_RESET_HOOK` | An optional script to run when `solarcfg mobile reset` is run. |
+| `NET_INTERFACE` | The interface to use in the ping reconnect task; defaults to `wwan0`. |
+| `PING_HOST` | The host to ping in the ping reconnect task; defaults to `1.1.1.1`. |
 
 ## Modem init
 
@@ -51,10 +57,29 @@ sudo nano /usr/local/etc/sn-mobile-mm-init
 # configure custom settings
 echo 'AT_INIT_FILE=/usr/local/etc/sn-mobile-mm-init' |sudo tee -a /etc/default/sn-mobile-mm
 
-# manually run init (or else reboot)
-sudo systemctl restart sn-mobile-mm-init
+# manually run configure to apply the settings
+sudo /usr/share/solarnode/cfg.d/mobile.sh configure
 ```
 
+This `configure` command typically need only be run once, as the modem will save the settings to
+its non-volatile memory.
+
+## Network ping configuration
+
+The `sn-mobile-mm-reconnect` timer runs periodically to test that the network is reachable. The
+`/etc/default/sn-mobile-mm` file can be used to configure various parameters; see the table
+in the previous section. The following settings affect the ping task:
+
+```
+# Enable the auto-reconnect task
+AUTO_RECONNECT_ENABLE=1
+
+# The network interface to test for
+NET_INTERFACE="wwan0"
+
+# The host or IP address to ping
+PING_HOST="1.1.1.1"
+```
 
 # `solarcfg` integration
 
@@ -62,12 +87,17 @@ This package installs a `/usr/share/solarnode/cfg.d/mobile.sh` service script so
 connection can be managed via the `solarcfg` helper (provided by the `sn-system` package):
 
 ```sh
+# configure modem
+sudo ~solar/bin/solarcfg mobile configure
+
 # report connection status (operator, signal, state)
-sudo solarcfg mobile status
+sudo ~solar/bin/solarcfg mobile status
+
 # reset the connection (disable then enable the modem)
-sudo solarcfg mobile reset
+sudo ~solar/bin/solarcfg mobile reset
+
 # restart the ModemManager service
-sudo solarcfg mobile restart
+sudo ~solar/bin/solarcfg mobile restart
 ```
 
 This is used by the SolarNode `net.solarnetwork.node.setup.mobile` plugin, which exposes the same
@@ -77,7 +107,7 @@ instruction with a `service` parameter of `/setup/network/mobile`.
 
 # Packaging
 
-This section describes how the `sn-pi-mobile-shield-usb` package is created.
+This section describes how the `sn-pi-mobile-mm` package is created.
 
 ## Packaging requirements
 

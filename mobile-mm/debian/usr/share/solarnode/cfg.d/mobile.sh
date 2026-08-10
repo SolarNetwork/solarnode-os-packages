@@ -45,6 +45,14 @@ modem_connected () {
 	mmcli -m any -K 2>/dev/null | grep -q '^modem.generic.state *: *connected'
 }
 
+modem_registered () {
+	local state="$(mmcli -m any -K 2>/dev/null | sed -n 's/^modem\.generic\.state *: *//p')"
+	case "$state" in
+		registered|connected) return 0;;
+	esac
+	return 1
+}
+
 # wait up to ~30s for ModemManager to detect a modem (it may still be probing
 # right after boot or a ModemManager restart)
 wait_for_modem () {
@@ -61,10 +69,9 @@ wait_for_modem () {
 wait_for_register () {
 	local i=0 state
 	while [ $i -lt 30 ]; do
-		state="$(mmcli -m any -K 2>/dev/null | sed -n 's/^modem\.generic\.state *: *//p')"
-		case "$state" in
-			registered|connected) return 0;;
-		esac
+		if modem_registered; then
+			return 0;
+		fi
 		sleep 2
 		i=$((i + 1))
 	done
@@ -92,7 +99,7 @@ do_status () {
 	act="$(printf '%s\n' "$kv" | sed -n 's/^modem\.generic\.access-technologies\.value\[1\] *: *//p')"
 
 	echo "present: true"
-	if [ "$state" = "connected" ]; then
+	if [ "$state" = "connected" -o \( -z "$MOBILE_DO_CONNECT" -a "$state" = "registered" \) ]; then
 		echo "active: true"
 	else
 		echo "active: false"
@@ -124,12 +131,14 @@ do_connect () {
 		echo "Modem did not register on the network." 1>&2
 		exit 5
 	fi
-	echo "Connecting (apn=${APN})..."
-	if mmcli -m any --simple-connect="apn=${APN}" >/dev/null 2>&1; then
-		echo "Mobile connection established."
-	else
-		echo "Failed to establish mobile connection." 1>&2
-		exit 6
+	if [ -n "$MOBILE_DO_CONNECT" ]; then
+		echo "Connecting (apn=${APN})..."
+		if mmcli -m any --simple-connect="apn=${APN}" >/dev/null 2>&1; then
+			echo "Mobile connection established."
+		else
+			echo "Failed to establish mobile connection." 1>&2
+			exit 6
+		fi
 	fi
 	return 0
 }
@@ -146,7 +155,18 @@ do_reset () {
 	fi
 	echo "Disabling modem..."
 	mmcli -m any --disable >/dev/null 2>&1
+
+	if [ -n "$MOBILE_RESET_HOOK" -a -x "$MOBILE_RESET_HOOK" ]; then
+		echo "Resetting modem with $MOBILE_RESET_HOOK..."
+		if sh "$MOBILE_RESET_HOOK"; then
+			echo "Modem reset."
+		else
+			echo "Error resetting modem."
+		fi
+	fi
+
 	sleep 2
+
 	# do_connect re-enables the radio and re-establishes the data bearer, which
 	# does not auto-attach on this image after an enable.
 	do_connect
@@ -163,12 +183,24 @@ do_restart () {
 	do_connect
 }
 
+do_configure () {
+	systemctl stop ModemManager || true
+	if /usr/share/solarnode/bin/mobile-mm-init.sh; then
+		echo 'Modem configured.'
+		do_restart
+	else
+		echo 'Unable to configure modem.' 1>&2
+		exit 1
+	fi
+}
+
 case "$ACTION" in
-	status)  do_status "$@";;
-	connect) do_connect "$@";;
-	reset)   do_reset "$@";;
-	restart) do_restart "$@";;
+	configure) do_configure "$@";;
+	status)    do_status "$@";;
+	connect)   do_connect "$@";;
+	reset)     do_reset "$@";;
+	restart)   do_restart "$@";;
 	*)
-		echo "Action '${ACTION}' not supported. Use one of: status, connect, reset, restart." 1>&2
+		echo "Action '${ACTION}' not supported. Use one of: configure status, connect, reset, restart." 1>&2
 		exit 1
 esac
