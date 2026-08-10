@@ -1,7 +1,7 @@
 DIST = 
 NAME = sn-iotdin-imx8p-support
-VERSION = 1.2.0-1$(if $(DIST),+$(DIST),)
-PATHS = lib usr
+VERSION = 1.3.0-1$(if $(DIST),+$(DIST),)
+PATHS = lib usr var
 
 deb : prep
 	fpm -s dir -t deb \

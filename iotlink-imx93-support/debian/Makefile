@@ -1,7 +1,7 @@
 DIST = 
 NAME = sn-iotlink-imx93-support
 VERSION = 1.0.1-1$(if $(DIST),+$(DIST),)
-PATHS = lib
+PATHS = lib usr var
 
 deb : prep
 	fpm -s dir -t deb \
