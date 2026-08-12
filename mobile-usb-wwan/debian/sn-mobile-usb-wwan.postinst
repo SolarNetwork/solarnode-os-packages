@@ -52,7 +52,7 @@ reload_udev () {
 systemctl daemon-reload || true
 reload_udev
 sleep 1
-networkctl reload
+networkctl reload 2>/dev/null || true
 
 echo "Running /usr/share/solarnode/cfg.d/mobile.sh configure"
 /usr/share/solarnode/cfg.d/mobile.sh configure || true
