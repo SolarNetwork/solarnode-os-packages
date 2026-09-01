@@ -177,13 +177,13 @@ get_plmn () {
 			Quectel)
 				# expecting AT+QSPN output like +QSPN: "Verizon Wireless","VZW","",0,"311480"
 				# for which we want to print out 311480
-				echo 'AT+QSPN' |socat - "$MODEM_DEV,rawer,crnl" |grep '^+QSPN' |awk -F',' '{ gsub(/"/, "", $5); print $5 }'
+				echo 'AT+QSPN' |socat - "$dev,rawer,crnl" |grep '^+QSPN' |awk -F',' '{ gsub(/"/, "", $5); print $5 }'
 				;;
 
 			SIMCOM*)
 				# expecting AT+CPSI output like +CPSI: LTE,Online,530-24,0xF232,2592021,24,EUTRAN-BAND28,9610,3,3,-9,-92,-83,6
 				# for which we want to print out 53024
-				echo AT+CPSI? |socat - "$dev,rawer,crnl" |grep '+CPSI' |awk -F',' '{ printf("%s%s", substr($3,1,3), substr($3,5)) }'
+				echo 'AT+CPSI?' |socat - "$dev,rawer,crnl" |grep '^+CPSI' |awk -F',' '{ printf("%s%s\n", substr($3,1,3), substr($3,5)) }'
 				;;
 
 			*)

@@ -5,7 +5,7 @@ CONF="/usr/share/solarnode/default/sn-mobile-usb-wwan"
 VENDOR_CONF="/etc/default/sn-mobile-usb-wwan"
 
 MODEM_DEV="/dev/modem"
-NETSET_FILE="/usr/local/share/mobile-network-settings.json"
+MOBILE_NETWORK_SETTINGS=
 AT_INIT_FILE="/usr/share/solarnode/example/mobile-usb-wwan-init-default"
 CONF_VARIABLES='$MOBILE_APN'
 
@@ -40,26 +40,23 @@ if [ -e "$VENDOR_CONF" ]; then
 	set +a
 fi
 
-TMP_DIR="${TMPDIR:-/tmp}"
-
 if [ ! -e "$MODEM_DEV" ]; then
     echo "Modem device $MODEM_DEV not available." >&2
     exit 1
 fi
 
 NETSET_CGDCONT=
-
-if [ -e "$NETSET_FILE" ]; then
+if [ -e "$MOBILE_NETWORK_SETTINGS_FILE" ]; then
 	PLMN="$(/usr/share/solarnode/cfg.d/mobile.sh plmn)"
 	if [ -n "$PLMN" ]; then
 		# look up NETSET_KEY
 		NETSET_KEY="$(jq -r --arg plmn "$PLMN" '.data[] | select(.plmn == $plmn) | .iso + " " + .network' /usr/share/solarnode/data/mobile-mcc-mnc.json)"
 		if [ -n "$NETSET_KEY" ]; then
-			NETSET_APN="$(jq -r --arg key "$NETSET_KEY" '.[$key] | .apn // empty' "$NETSET_FILE")"
+			NETSET_APN="$(jq -r --arg key "$NETSET_KEY" '.[$key] | .apn // empty' "$MOBILE_NETWORK_SETTINGS_FILE")"
 			if [ -n "$NETSET_APN" ]; then
 				MOBILE_APN="$NETSET_APN"
 			fi
-			NETSET_CGDCONT="$(jq -r --arg key "$NETSET_KEY" '.[$key] | .cgdcont // empty' "$NETSET_FILE")"
+			NETSET_CGDCONT="$(jq -r --arg key "$NETSET_KEY" '.[$key] | .cgdcont // empty' "$MOBILE_NETWORK_SETTINGS_FILE")"
 			if [ -n "$NETSET_APN" ]; then
 				MOBILE_APN="$NETSET_APN"
 			fi
@@ -70,8 +67,8 @@ fi
 # make sure MOBILE_API exported with default fallback
 export MOBILE_APN="${MOBILE_APN:-internet}"
 
+TMP_DIR="${TMPDIR:-/tmp}"
 if [ -e "$AT_INIT_FILE" ]; then
-
 	echo "Initializing modem from $AT_INIT_FILE:"
 	tmp_init="$(mktemp -p "${TMP_DIR}" sn-mobile-usb-wwan-init-XXXXX)"
 	if [ -n "$NETSET_CGDCONT" ]; then
@@ -84,7 +81,7 @@ if [ -e "$AT_INIT_FILE" ]; then
 
 	while IFS= read -r cmd; do
 		echo "$cmd"
-		echo "$cmd" | socat -u - "$MODEM_DEV,rawer,crnl" >/dev/null
+		echo "$cmd" |socat -u - "$MODEM_DEV,rawer,crnl" >/dev/null
 		sleep 0.5
 	done < "$tmp_init"
 	rm -f "${tmp_init}" || true

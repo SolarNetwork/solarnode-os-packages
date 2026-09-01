@@ -12,6 +12,9 @@
 # Add custom modem reset command hook
 # MOBILE_RESET_HOOK=/path/to/script/here
 
+# Mobile network settings JSON database
+# MOBILE_NETWORK_SETTINGS_FILE=/path/to/mobile-network-settings.json
+
 # Enable the auto-reconnect task
 # AUTO_RECONNECT_ENABLE=1
 
