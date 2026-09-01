@@ -5,6 +5,7 @@ CONF="/usr/share/solarnode/default/sn-mobile-usb-wwan"
 VENDOR_CONF="/etc/default/sn-mobile-usb-wwan"
 
 MODEM_DEV="/dev/modem"
+NETSET_FILE="/usr/local/share/mobile-network-settings.json"
 AT_INIT_FILE="/usr/share/solarnode/example/mobile-usb-wwan-init-default"
 CONF_VARIABLES='$MOBILE_APN'
 
@@ -41,16 +42,46 @@ fi
 
 TMP_DIR="${TMPDIR:-/tmp}"
 
-# make sure MOBILE_API exported with default fallback
-export MOBILE_APN="${MOBILE_APN:-internet}"
-
 if [ ! -e "$MODEM_DEV" ]; then
     echo "Modem device $MODEM_DEV not available." >&2
     exit 1
-elif [ -e "$AT_INIT_FILE" ]; then
+fi
+
+NETSET_CGDCONT=
+
+if [ -e "$NETSET_FILE" ]; then
+	PLMN="$(/usr/share/solarnode/cfg.d/mobile.sh plmn)"
+	if [ -n "$PLMN" ]; then
+		# look up NETSET_KEY
+		NETSET_KEY="$(jq -r --arg plmn "$PLMN" '.data[] | select(.plmn == $plmn) | .iso + " " + .network' /usr/share/solarnode/data/mobile-mcc-mnc.json)"
+		if [ -n "$NETSET_KEY" ]; then
+			NETSET_APN="$(jq -r --arg key "$NETSET_KEY" '.[$key] | .apn // empty' "$NETSET_FILE")"
+			if [ -n "$NETSET_APN" ]; then
+				MOBILE_APN="$NETSET_APN"
+			fi
+			NETSET_CGDCONT="$(jq -r --arg key "$NETSET_KEY" '.[$key] | .cgdcont // empty' "$NETSET_FILE")"
+			if [ -n "$NETSET_APN" ]; then
+				MOBILE_APN="$NETSET_APN"
+			fi
+		fi
+	fi
+fi
+
+# make sure MOBILE_API exported with default fallback
+export MOBILE_APN="${MOBILE_APN:-internet}"
+
+if [ -e "$AT_INIT_FILE" ]; then
+
 	echo "Initializing modem from $AT_INIT_FILE:"
 	tmp_init="$(mktemp -p "${TMP_DIR}" sn-mobile-usb-wwan-init-XXXXX)"
-	cat "$AT_INIT_FILE" |envsubst "$CONF_VARIABLES" >"$tmp_init"
+	if [ -n "$NETSET_CGDCONT" ]; then
+		cat "$AT_INIT_FILE" \
+			|sed -e 's/^AT.CGDCONT=.*/'"$NETSET_CGDCONT"'/' \
+			|envsubst "$CONF_VARIABLES" >"$tmp_init"
+	else
+		cat "$AT_INIT_FILE" |envsubst "$CONF_VARIABLES" >"$tmp_init"
+	fi
+
 	while IFS= read -r cmd; do
 		echo "$cmd"
 		echo "$cmd" | socat -u - "$MODEM_DEV,rawer,crnl" >/dev/null

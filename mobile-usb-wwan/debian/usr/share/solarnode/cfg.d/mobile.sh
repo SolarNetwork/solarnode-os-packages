@@ -32,6 +32,7 @@ VENDOR_CONF="/etc/default/sn-mobile-usb-wwan"
 NET_INTERFACE="${NET_INTERFACE:-wwan0}"
 APN="${MOBILE_APN:-internet}"
 
+MODEM_DEV="/dev/modem"
 STATE_FILE="/var/lib/misc/sn-mobile-usb-wwan"
 
 ACTION="$1"
@@ -141,12 +142,67 @@ do_configure () {
 	fi
 }
 
+do_unconfigure () {
+	rm -f "$STATE_FILE"
+}
+
+get_manufacturer () {
+	local dev="$1";
+	if [ -z "$dev" ]; then
+		dev="$MODEM_DEV"
+	fi
+	if [ -e "$dev" ]; then
+		echo 'AT+CGMI' |socat - "$dev,,rawer,crnl" |egrep -v '^(AT\+CGMI|OK|)$'
+	fi
+}
+
+get_imsi () {
+	local dev="$1";
+	if [ -z "$dev" ]; then
+		dev="$MODEM_DEV"
+	fi
+	if [ -e "$dev" ]; then
+		echo AT+CIMI |socat - "$dev,rawer,crnl" |sed -n '2p'
+	fi
+}
+
+get_plmn () {
+	local dev="$1";
+	if [ -z "$dev" ]; then
+		dev="$MODEM_DEV"
+	fi
+	if [ -e "$dev" ]; then
+		local manfact="$(get_manufacturer "$dev")"
+		case "$manfact" in
+			Quectel)
+				# expecting AT+QSPN output like +QSPN: "Verizon Wireless","VZW","",0,"311480"
+				# for which we want to print out 311480
+				echo 'AT+QSPN' |socat - "$MODEM_DEV,rawer,crnl" |grep '^+QSPN' |awk -F',' '{ gsub(/"/, "", $5); print $5 }'
+				;;
+
+			SIMCOM*)
+				# expecting AT+CPSI output like +CPSI: LTE,Online,530-24,0xF232,2592021,24,EUTRAN-BAND28,9610,3,3,-9,-92,-83,6
+				# for which we want to print out 53024
+				echo AT+CPSI? |socat - "$dev,rawer,crnl" |grep '+CPSI' |awk -F',' '{ printf("%s%s", substr($3,1,3), substr($3,5)) }'
+				;;
+
+			*)
+				echo 'Unknown modem manufacturer [$manfact]' 1>&2
+				exit 1
+		esac
+	fi
+}
+
 case "$ACTION" in
-	configure) do_configure "$@";;
-	status)    do_status "$@";;
-	reset)     do_reset "$@";;
-	restart)   do_restart "$@";;
+	configure)    do_configure "$@";;
+	imsi)         get_imsi "$@";;
+	manufacturer) get_manufacturer "$@";;
+	plmn)         get_plmn "$@";;
+	status)       do_status "$@";;
+	reset)        do_reset "$@";;
+	restart)      do_restart "$@";;
+	unconfigure)  do_unconfigure "$@";;
 	*)
-		echo "Action '${ACTION}' not supported. Use one of: configure, status, reset, restart." 1>&2
+		echo "Action '${ACTION}' not supported. Use one of: configure, imsi, manufacturer, plmn, status, reset, restart, unconfigure." 1>&2
 		exit 1
 esac

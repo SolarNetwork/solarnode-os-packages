@@ -105,6 +105,9 @@ This is used by the SolarNode `net.solarnetwork.node.setup.mobile` plugin, which
 actions to the SolarNode UI and to remote clients (such as the mobile app) via a `SystemConfigure`
 instruction with a `service` parameter of `/setup/network/mobile`.
 
+# Attribution
+
+The package includes MCC/MCN data from https://mcc-mnc.org.
 
 # Packaging
 
