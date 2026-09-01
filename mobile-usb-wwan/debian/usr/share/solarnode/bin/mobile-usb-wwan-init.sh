@@ -5,7 +5,7 @@ CONF="/usr/share/solarnode/default/sn-mobile-usb-wwan"
 VENDOR_CONF="/etc/default/sn-mobile-usb-wwan"
 
 MODEM_DEV="/dev/modem"
-MOBILE_NETWORK_SETTINGS=
+MOBILE_NETWORK_SETTINGS_FILE=
 AT_INIT_FILE="/usr/share/solarnode/example/mobile-usb-wwan-init-default"
 CONF_VARIABLES='$MOBILE_APN'
 
