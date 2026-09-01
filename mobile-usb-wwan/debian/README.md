@@ -31,6 +31,7 @@ values are in the `/usr/share/solarnode/default/sn-mobile-usb-wwan` file.
 | `AUTO_RECONNECT_ENABLE` | Set to `1` to enable the [ping reconnect](#network-ping-configuration) task. |
 | `CFG_WITHOUT_NETWORK` | Disable creating the `30-wwan.network` file on package installation. |
 | `MOBILE_APN` | The APN used to configure the modem network connection. Defaults to `internet`. |
+| `MOBILE_NETWORK_SETTINGS_FILE` | The path to a JSON mobile network settings file. See [Mobile network settings](#mobile-network-settings) for more info. |
 | `MOBILE_RESET_HOOK` | An optional script to run when `solarcfg mobile reset` is run. |
 | `NET_INTERFACE` | The interface to use in the ping reconnect task; defaults to `wwan0`. |
 | `PING_HOST` | The host to ping in the ping reconnect task; defaults to `1.1.1.1`. |
@@ -64,6 +65,31 @@ sudo /usr/share/solarnode/cfg.d/mobile.sh configure
 
 This `configure` command typically need only be run once, as the modem will save the settings to
 its non-volatile memory.
+
+## Mobile network settings
+
+The `MOBILE_NETWORK_SETTINGS_FILE` configuration file is where you can provide mobile network
+settings that override the connection settings. The file is a JSON object, with keys in the form
+`COUNTRY PROVIDER` that have object values for the following settings:
+
+| Network Setting | Description |
+|:----------------|:------------|
+| `apn` | The mobile APN name to connect to. |
+| `cgdcont` | A full `AT+CGDCONT` command to send to the modem to connect with. |
+
+An example file looks like this:
+
+```json
+{
+	"NZ 2degrees": {
+		"apn": "internet"
+	},
+	"US AT&T": {
+		"apn": "sentinelent01.com.attz",
+		"cgdcont": "AT+CGDCONT=3,\"IPV4V6\",\"$MOBILE_APN\",,0,0"
+	}
+}
+```
 
 ## Network ping configuration
 
