@@ -1,5 +1,5 @@
 DIST = 
-VERSION = 1.1.0-1$(if $(DIST),+$(DIST),)
+VERSION = 1.1.0-2$(if $(DIST),+$(DIST),)
 NAME = sn-mobile-usb-wwan
 PATHS = etc lib usr
 
@@ -14,6 +14,7 @@ deb : prep
 	-a all \
 	--force \
 	-d 'iproute2' \
+	-d 'jq' \
 	-d 'systemd (>= 247)' \
 	-d 'socat' \
 	-d 'sn-system (>= 1.5.0)' \
