@@ -18,15 +18,18 @@ EOF
 
 read -r -p "Are you sure you want to continue? (y/n) " REPLY
 if [ "$REPLY" = 'y' -o "$REPLY" = 'Y' ]]; then
-	# 1: reset SolarNode to clean state
+	# reset SolarNode to clean state
 	sn-reset -a && sudo systemctl stop solarnode
 
-	# 2: Remove SSH host keys
+	# Remove SSH host keys
 	sudo rm -f /etc/ssh/ssh_host*
 
-	# 3: Ensure /boot/grub directory exists
+	# Ensure /boot/grub directory exists
 	[ -d /boot/grub ] || sudo mkdir /boot/grub
 
-	# 4: Copy image to eMMC
+	# Clear any local state
+	rm -rf /var/lib/misc/*
+
+	# Copy image to eMMC
 	sudo cl-deploy
 fi
