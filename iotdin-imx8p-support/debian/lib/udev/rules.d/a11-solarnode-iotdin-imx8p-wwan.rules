@@ -1,0 +1,2 @@
+# Rename modem network interface from eth1 to wwan for compatibility (override a10-solarnode.rules)
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="cdc_ether", NAME="wwan0"
