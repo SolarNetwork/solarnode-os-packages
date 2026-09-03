@@ -13,6 +13,7 @@ deb : prep
 	--vendor 'SolarNetwork Foundation' \
 	-a all \
 	--force \
+	-d 'gettext-base' \
 	-d 'iproute2' \
 	-d 'jq' \
 	-d 'systemd (>= 247)' \
