@@ -28,7 +28,7 @@ if [ "$REPLY" = 'y' -o "$REPLY" = 'Y' ]]; then
 	[ -d /boot/grub ] || sudo mkdir /boot/grub
 
 	# Clear any local state
-	rm -rf /var/lib/misc/*
+	sudo rm -rf /var/lib/misc/*
 
 	# Copy image to eMMC
 	sudo cl-deploy
