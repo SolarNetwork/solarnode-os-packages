@@ -80,6 +80,17 @@ if [ -e "$AT_INIT_FILE" ]; then
 	fi
 
 	while IFS= read -r cmd; do
+		# some commands might reset the modem, making the device briefly disappear,
+		# so include a wait loop for the device to come back, with a 30s timeout
+		timeout=30
+		while [ ! -e "$MODEM_DEV" ] && [ "$timeout" -gt 0 ]; do
+			sleep 1
+			timeout=$((timeout - 1))
+		done
+		if [ ! -e "$MODEM_DEV" ]; then
+			echo "Timeout waiting for $MODEM_DEV" 1>&2
+			exit 1
+		fi
 		echo "$cmd"
 		echo "$cmd" |socat -u - "$MODEM_DEV,rawer,crnl" >/dev/null
 		sleep 0.5
