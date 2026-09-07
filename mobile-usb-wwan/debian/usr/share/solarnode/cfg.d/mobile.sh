@@ -215,9 +215,33 @@ get_network () {
 	fi
 }
 
+do_help () {
+	h=$(cat <<-EOF
+		Usage: mobile <action> [<args>]
+
+		<action> is one of:
+
+		configure              Perform one-time modem hardware configuration.
+		country                Get the mobile network ISO country code.
+		ismi                   Get the International Mobile Subscriber Identity.
+		manufacturer           Get the modem manufacturer.
+		network                Get the name of the mobile network operator.
+		net-info               Get a mobile network information JSON record.
+		plmn                   Get the Public Land Mobile Network (MCC + MNC).
+		status                 Show connectivity status information.
+		reset                  Reboot the modem, after one-time configuration.
+		restart                Restart system networking.
+		unconfigure            Clear the configuration state so the reset/configure
+		                       commands can execute again.
+		EOF
+		)
+	echo "$h" 1>&2
+}
+
 case "$ACTION" in
 	configure)    do_configure "$@";;
 	country)      get_country "$@";;
+	help|-?)      do_help ;;
 	imsi)         get_imsi "$@";;
 	manufacturer) get_manufacturer "$@";;
 	network)      get_network "$@";;
@@ -228,6 +252,7 @@ case "$ACTION" in
 	restart)      do_restart "$@";;
 	unconfigure)  do_unconfigure "$@";;
 	*)
-		echo "Action '${ACTION}' not supported. Use one of: configure, imsi, manufacturer, plmn, status, reset, restart, unconfigure." 1>&2
+		echo "Action '${ACTION}' not supported." 1>&2
+		do_help
 		exit 1
 esac
