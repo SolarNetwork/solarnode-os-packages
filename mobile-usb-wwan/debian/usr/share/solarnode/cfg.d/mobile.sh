@@ -34,6 +34,7 @@ APN="${MOBILE_APN:-internet}"
 
 MODEM_DEV="/dev/modem"
 STATE_FILE="/var/lib/misc/sn-mobile-usb-wwan"
+NETINFO_FILE="/usr/share/solarnode/data/mobile-mcc-mnc.json"
 
 ACTION="$1"
 shift 2>/dev/null
@@ -193,10 +194,34 @@ get_plmn () {
 	fi
 }
 
+get_netinfo () {
+	local plmn="$(get_plmn "$@")";
+	if [ -n "$plmn" -a -e "$NETINFO_FILE" ]; then
+		jq -r --arg plmn "$plmn" '.data[] | select(.plmn == $plmn)' "$NETINFO_FILE"
+	fi
+}
+
+get_country () {
+	local json="$(get_netinfo "$@")"
+	if [ -n "$json" ]; then
+		echo "$json" |jq -r '.iso'
+	fi
+}
+
+get_network () {
+	local json="$(get_netinfo "$@")"
+	if [ -n "$json" ]; then
+		echo "$json" |jq -r '.network'
+	fi
+}
+
 case "$ACTION" in
 	configure)    do_configure "$@";;
+	country)      get_country "$@";;
 	imsi)         get_imsi "$@";;
 	manufacturer) get_manufacturer "$@";;
+	network)      get_network "$@";;
+	net-info)     get_netinfo "$@";;
 	plmn)         get_plmn "$@";;
 	status)       do_status "$@";;
 	reset)        do_reset "$@";;
