@@ -13,7 +13,7 @@ deb : prep
 		--description 'SolarNode pvlib support' \
 		--license 'Apache License 2.0' \
 		-f \
-		-d 'python3 (>= 3.7)' \
+		-d 'python3 (>= 3.9)' \
 		-d 'python3-pip' \
 		-d 'python3-venv' \
 		-d 'libatlas3-base' \
