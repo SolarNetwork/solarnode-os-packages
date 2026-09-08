@@ -201,6 +201,16 @@ get_netinfo () {
 	fi
 }
 
+get_sigqual () {
+	local dev="$1";
+	if [ -z "$dev" ]; then
+		dev="$MODEM_DEV"
+	fi
+	if [ -e "$dev" ]; then
+		echo 'AT+CSQ' |socat - "$dev,rawer,crnl" |grep '^+CSQ:' |awk -F' ' '{ print $2 }'
+	fi
+}
+
 get_country () {
 	local json="$(get_netinfo "$@")"
 	if [ -n "$json" ]; then
@@ -239,18 +249,19 @@ do_help () {
 }
 
 case "$ACTION" in
-	configure)    do_configure "$@";;
-	country)      get_country "$@";;
-	help|-?)      do_help ;;
-	imsi)         get_imsi "$@";;
-	manufacturer) get_manufacturer "$@";;
-	network)      get_network "$@";;
-	net-info)     get_netinfo "$@";;
-	plmn)         get_plmn "$@";;
-	status)       do_status "$@";;
-	reset)        do_reset "$@";;
-	restart)      do_restart "$@";;
-	unconfigure)  do_unconfigure "$@";;
+	configure)      do_configure "$@";;
+	country)        get_country "$@";;
+	help|-?)        do_help ;;
+	imsi)           get_imsi "$@";;
+	manufacturer)   get_manufacturer "$@";;
+	network)        get_network "$@";;
+	net-info)       get_netinfo "$@";;
+	plmn)           get_plmn "$@";;
+	signal-quality) get_sigqual "$@";;
+	status)         do_status "$@";;
+	reset)          do_reset "$@";;
+	restart)        do_restart "$@";;
+	unconfigure)    do_unconfigure "$@";;
 	*)
 		echo "Action '${ACTION}' not supported." 1>&2
 		do_help
