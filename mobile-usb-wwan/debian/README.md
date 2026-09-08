@@ -137,7 +137,7 @@ The package includes MCC/MCN data from https://mcc-mnc.org.
 
 # Packaging
 
-This section describes how the `sn-pi-mobile-usb-wwan` package is created.
+This section describes how the `sn-mobile-usb-wwan` package is created.
 
 ## Packaging requirements
 
