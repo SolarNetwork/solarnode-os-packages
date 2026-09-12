@@ -10,6 +10,12 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
         <dependency org="net.solarnetwork.external" name="net.solarnetwork.external.linux-jna" rev="1.1.1"/>
+        <dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.linux-spi" rev="1.0.0"/>
+
+		<exclude org="net.java.dev.jna"/>
+		<exclude org="org.jspecify"/>
+		<exclude org="org.osgi"/>
+		<exclude org="org.slf4j"/>
 
 	</dependencies>
 </ivy-module>
