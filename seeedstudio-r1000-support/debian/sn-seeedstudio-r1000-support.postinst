@@ -4,7 +4,7 @@ set -e
 DKMS_NAME=rtc-pcf8563w
 DKMS_PACKAGE_NAME=sn-seeedstudio-r1000-support
 DKMS_VERSION=0.1
-CONFIG_FILE="$(find /boot -name config.txt -print |tail -1)"
+CONFIG_FILE="$(find /boot -name config.txt -print |sort |tail -1)"
 DIVERT_DIR=/usr/share/solarnode/overlays
 OVERLAYS_DIR=/boot/firmware/overlays
 
