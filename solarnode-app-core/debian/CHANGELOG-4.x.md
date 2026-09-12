@@ -28,7 +28,8 @@ The following plugins have changed from the previous release:
 |:--------------------------------|:-------------------------------|:---------|:---------|
 | Core Reactor Service            | `n.s.n.reactor.simple`         | 4.2.0  | 4.3.0  |
 | Core Setup Web App              | `n.s.n.setup.web`              | 5.3.1  | 5.3.2  |
-| Core SolarNode Framework        | `n.s.node`                     | 4.6.0  | 4.8.0  |
+| Core SolarNetwork Support       | `n.s.common`                   | 4.51.0 | 4.52.0 |
+| Core SolarNode Framework        | `n.s.node`                     | 4.6.0  | 4.9.0  |
 
 The complete list of plugins included is:
 
