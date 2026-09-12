@@ -1,0 +1,45 @@
+#!/bin/sh
+set -e
+
+# support images like /boot/firmware (using that over /boot if both exist)
+CONFIG_FILE="$(find /boot -name config.txt -print |sort |tail -1)"
+
+USER=solar
+GROUP=spi
+
+# e.g. $CONFIG_FILE 'dtparam=watchdog=on' 'dtparam=watchdog'
+config_set () {
+	local conf_file="$1"
+	local param="$2"
+	local gtest="$3"
+	local msg="$4"
+	if grep -q "^$param" $conf_file 2>/dev/null; then
+		true
+	else
+		echo "$msg"
+		if grep -q "$gtest" $conf_file 2>/dev/null; then
+			# update
+			sed -i -e "/$gtest/c $param" $conf_file || true
+		else
+			# add in
+			echo "$param" >>$conf_file
+		fi
+	fi
+}
+
+if [ -e $CONFIG_FILE ]; then
+	# enable SPI
+	config_set $CONFIG_FILE 'dtparam=spi=on' 'dtparam=spi' \
+		"Turning on spi dtparam in $CONFIG_FILE; will be enabled on reboot."
+fi
+
+# if user and group exist, add user to group if not already a member
+if id -u "$USER" >/dev/null 2>&1 && getent group "$GROUP" >/dev/null 2>&1; then
+	# ensure solar user in spi group
+	if ! id -nG "$USER" |grep -qw "$GROUP"; then
+		# not a member so add now
+		if usermod -a -G "$GROUP" "$USER"; then
+			echo "Added $USER to $GROUP group."
+		fi
+	fi
+fi
