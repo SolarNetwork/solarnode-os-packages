@@ -18,7 +18,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 4.13.0 - 2026-09-07
+## 4.13.0 - 2026-09-16
 
 Requires [`solarnode-base`](../../solarnode-base/debian) **5.3** or higher.
 
@@ -26,9 +26,10 @@ The following plugins have changed from the previous release:
 
 | Name                            | ID                             | Old Vers | New Vers |
 |:--------------------------------|:-------------------------------|:---------|:---------|
-| Core Reactor Service            | `n.s.n.reactor.simple`         | 4.2.0  | 4.3.0  |
+| Core Reactor Service            | `n.s.n.reactor.simple`         | 4.2.0  | 4.3.1  |
 | Core Setup Web App              | `n.s.n.setup.web`              | 5.3.1  | 5.3.2  |
 | Core SolarNetwork Support       | `n.s.common`                   | 4.51.0 | 4.52.0 |
+| Core SolarNetwork Web Support   | `n.s.common.web.jakarta`       | 2.4.3  | 2.5.0  |
 | Core SolarNode Framework        | `n.s.node`                     | 4.6.0  | 4.9.0  |
 
 The complete list of plugins included is:
@@ -44,14 +45,14 @@ The complete list of plugins included is:
 | Core Database Connection        | `n.s.n.dao.jdbc.con`           | 2.0.1  |
 | Core Database Storage Support   | `n.s.n.dao.jdbc`               | 4.3.0  |
 | Core OSGi Support               | `n.s.common.osgi`              | 3.1.0  |
-| Core Reactor Service            | `n.s.n.reactor.simple`         | 4.3.0  |
+| Core Reactor Service            | `n.s.n.reactor.simple`         | 4.3.1  |
 | Core Security                   | `n.s.n.setup.security`         | 4.1.0  |
 | Core Settings Support           | `n.s.n.settings.ca`            | 4.2.0  |
 | Core Setup Support              | `n.s.n.setup`                  | 4.1.0  |
-| Core Setup Web App              | `n.s.n.setup.web`              | 5.3.1  |
-| Core SolarNetwork Support       | `n.s.common`                   | 4.51.0 |
-| Core SolarNetwork Web Support   | `n.s.common.web.jakarta`       | 2.4.3  |
-| Core SolarNode Framework        | `n.s.node`                     | 4.8.0  |
+| Core Setup Web App              | `n.s.n.setup.web`              | 5.3.2  |
+| Core SolarNetwork Support       | `n.s.common`                   | 4.52.0 |
+| Core SolarNetwork Web Support   | `n.s.common.web.jakarta`       | 2.5.0  |
+| Core SolarNode Framework        | `n.s.node`                     | 4.9.0  |
 | Debian Setup Support            | `n.s.n.setup.deb`              | 4.0.0  |
 | Eclipse Gemini Web Support      | `n.s.common.web.gemini`        | 4.0.0  |
 | Hikari JDBC Connection Pool     | `n.s.common.jdbc.pool.hikari`  | 3.1.0  |
