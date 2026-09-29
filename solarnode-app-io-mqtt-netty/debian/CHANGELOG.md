@@ -12,6 +12,15 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 5.2.0 - 2026-09-26
+
+This release requires [`solarnode-app-io-mqtt` 5.2][io-mqtt-log] or newer.
+
+| Name                | ID                      | Vers  |
+|:--------------------|:------------------------|:------|
+| MQTT client - Netty | `n.s.common.mqtt.netty` | 5.3.1 |
+
+
 ## 5.1.0 - 2026-07-07
 
 This release requires [`solarnode-app-io-mqtt` 5.1][io-mqtt-log] or newer.
