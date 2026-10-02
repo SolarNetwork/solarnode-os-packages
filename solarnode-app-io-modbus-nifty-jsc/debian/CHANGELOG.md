@@ -12,7 +12,17 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.3.0 - 2026-10-03
+
+| Name                                                     | ID                          | Vers  |
+|:---------------------------------------------------------|:----------------------------|:------|
+| Modbus Communication Support (Nifty Modbus)              | `n.s.n.io.modbus.nifty`     | 3.2.0 |
+| Modbus Communication Support - Serial (Nifty Modbus JSC) | `n.s.n.io.modbus.nifty.jsc` | 3.3.0 |
+
+
 ## 3.2.0 - 2026-07-07
+
+This release requires [`solarnode-app-io-modbus` 4.2][io-mdobus-log] or newer.
 
 | Name                                                     | ID                          | Vers  |
 |:---------------------------------------------------------|:----------------------------|:------|
