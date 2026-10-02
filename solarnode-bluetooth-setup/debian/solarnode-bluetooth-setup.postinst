@@ -58,6 +58,9 @@ setup_user_conf='/etc/solarnode/auto-settings.d/solarnode-bluetooth-setup.csv'
 if [ -z "$CFG_WITHOUT_SETUP_USER" -a ! -e "${setup_user_conf}" ]; then
 	if [ -e "${setup_user_conf_example}" ]; then
 		echo "Creating default setup user configuration ${setup_user_conf}"
+		if [ ! -d "${setup_user_conf%/*}" ]; then
+			mkdir -p "${setup_user_conf%/*}"
+		fi
 		cp "${setup_user_conf_example}" "${setup_user_conf}"
 	fi
 fi
