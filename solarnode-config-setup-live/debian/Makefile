@@ -7,7 +7,7 @@ deb : prep
 		-t deb \
 		-n $(NAME) \
 		-v $(VERSION) \
-		--description 'SolarNode configuration - Setup live datum' \
+		--description 'SolarNode configuration - Setup Live' \
 		-a all \
 		--maintainer 'packaging@solarnetwork.org.nz>' \
 		--vendor 'SolarNetwork Foundation' \
