@@ -20,7 +20,7 @@
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
 		<!-- SolarNode basic support (this needed for most any deployment) -->
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="4.52.0"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common" rev="4.54.0"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.expr.spel" rev="4.2.1"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.jdbc.pool.hikari" rev="3.1.0"/>
 		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.osgi" rev="3.1.0"/>
@@ -43,7 +43,7 @@
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup" rev="4.1.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.auto" rev="3.1.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.log4j2" rev="2.0.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.security" rev="4.1.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.security" rev="4.1.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.setup.web" rev="5.3.2"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.cmdline" rev="4.2.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.system.ssh" rev="4.1.0"/>
