@@ -9,9 +9,9 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.sunspec" rev="5.1.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.hw.sunspec" rev="5.2.0"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sunspec.environmental" rev="2.1.0"/>
-		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sunspec.inverter" rev="5.1.0"/>
+		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sunspec.inverter" rev="5.1.1"/>
 		<dependency org="net.solarnetwork.node" name="net.solarnetwork.node.datum.sunspec.meter" rev="5.1.0"/>
 
 		<!-- solarnode-app-core excludes -->
