@@ -12,6 +12,21 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 4.1.0 - 2026-10-08
+
+This release requires [`solarnode-app-core` 4.0][app-core-log] or newer. It recommends the
+`solarnode-config-setup-live` package, which configures the data source polling that live datum
+streaming relies on.
+
+Adds live datum streaming via the `/setup/datum/live` destination, plus `UNSUBSCRIBE`,
+`DISCONNECT`, and receipt support.
+
+The complete list of plugins included is:
+
+| Name            | ID                  | Vers  |
+|:----------------|:--------------------|:------|
+| Setup via STOMP | `n.s.n.setup.stomp` | 4.1.0 |
+
 ## 4.0.0 - 2025-06-24
 
 This release requires [`solarnode-app-core` 4.0][app-core-log] or newer.

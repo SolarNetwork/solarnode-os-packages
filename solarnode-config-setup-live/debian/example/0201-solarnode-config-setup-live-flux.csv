@@ -1,0 +1,4 @@
+key,type,value,flags,modified,note
+net.solarnetwork.node.upload.flux.INSTANCE_ID,filtersCount,FILTER_COUNT,,2026-10-08 00:00:00,
+net.solarnetwork.node.upload.flux.INSTANCE_ID,filters[FILTER_INDEX].requiredOperationalMode,setup-live,,2026-10-08 00:00:00,
+net.solarnetwork.node.upload.flux.INSTANCE_ID,filters[FILTER_INDEX].frequencySeconds,60,,2026-10-08 00:00:00,
