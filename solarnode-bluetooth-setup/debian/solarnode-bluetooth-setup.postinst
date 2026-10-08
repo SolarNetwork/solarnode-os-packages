@@ -52,6 +52,26 @@ else
 		echo 'AutoEnable = true' >>$BLUETOOTH_CONF
 	fi
 fi
+# Disable EATT so all notifications use the one ATT bearer, in order, and
+# centrals do not enable Multiple Handle Value Notifications, which overflow
+# a buffer in BlueZ before 5.60.
+bluetooth_changed=
+if grep -q '^Channels[[:space:]]*=[[:space:]]*1[[:space:]]*$' $BLUETOOTH_CONF; then
+	true
+else
+	echo "Setting Channels = 1 in the [GATT] section of $BLUETOOTH_CONF."
+	if grep -q '^[#[:space:]]*Channels[[:space:]]*=' $BLUETOOTH_CONF; then
+		# update
+		sed -i -e '/^[#[:space:]]*Channels[[:space:]]*=/c Channels = 1' $BLUETOOTH_CONF || true
+	elif grep -q '^\[GATT\]' $BLUETOOTH_CONF; then
+		# add in to the existing section
+		sed -i -e '/^\[GATT\]/a Channels = 1' $BLUETOOTH_CONF || true
+	else
+		# add in a new section
+		printf '\n[GATT]\nChannels = 1\n' >>$BLUETOOTH_CONF
+	fi
+	bluetooth_changed=1
+fi
 
 setup_user_conf_example='/usr/share/solarnode/example/solarnode-bluetooth-setup-user.csv'
 setup_user_conf='/etc/solarnode/auto-settings.d/solarnode-bluetooth-setup.csv'
@@ -66,5 +86,8 @@ if [ -z "$CFG_WITHOUT_SETUP_USER" -a ! -e "${setup_user_conf}" ]; then
 fi
 
 systemctl daemon-reload || true
+if [ -n "$bluetooth_changed" ]; then
+	systemctl try-restart bluetooth.service || true
+fi
 service_up solarnode-bt-setup-peripheral-restart.path true
 service_up solarnode-bt-setup-peripheral true
