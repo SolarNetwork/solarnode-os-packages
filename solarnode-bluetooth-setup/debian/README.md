@@ -41,6 +41,21 @@ CFG_WITHOUT_SETUP_USER=1
 
 This file can be updated as needed to change the username and/or password.
 
+# BlueZ configuration
+
+Installing the package sets the following in `/etc/bluetooth/main.conf`:
+
+| Setting                   | Purpose                                                                                                                   |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------ |
+| `DiscoverableTimeout = 0` | Stay discoverable.                                                                                                        |
+| `AutoEnable = true`       | Power on the adapter at startup.                                                                                          |
+| `Channels = 1` (`[GATT]`) | Disable EATT, so notifications use one ATT bearer and arrive in order, and centrals do not enable multiple notifications. |
+
+BlueZ truncates a notification that does not fit the ATT MTU, so the peripheral splits STOMP
+data into notifications of at most MTU - 5 bytes, using the MTU BlueZ reports with each write.
+BlueZ before 5.60 can overflow a buffer when a central has enabled Multiple Handle Value
+Notifications, so on those versions the peripheral also sends notifications 25 ms apart.
+
 # Packaging
 
 This section describes how the `solarnode-bluetooth-setup` package is created.

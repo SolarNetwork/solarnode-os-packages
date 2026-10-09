@@ -6,13 +6,15 @@
 # https://github.com/bluez/bluez
 
 import array
+import collections
 import json
 import logging
 import os
 import signal
 import socket
+import subprocess
 import sys
-from typing import Optional
+from typing import Iterator, Optional
 
 import dbus
 import dbus.exceptions
@@ -53,6 +55,22 @@ SN_LABEL_CONF_PATHS = (
 SN_LABEL_KEY = "CFG_SOLARNODE_LABEL="
 SN_LABEL_DEFAULT = "SolarNode"
 
+# The ATT MTU of a connection before the central negotiates a larger one.
+ATT_DEFAULT_MTU = 23
+# The bytes of each ATT PDU a notification value cannot use: the opcode and
+# handle (3), plus a 2-byte length when BlueZ batches notifications into a
+# Handle Value Multiple Notification. BlueZ silently truncates a value that
+# does not fit, so every notification must stay within MTU - 5 bytes.
+ATT_NOTIFY_OVERHEAD = 5
+
+# BlueZ before 5.60 overflows its buffer when a central has enabled Multiple
+# Handle Value Notifications and a second notification arrives within its
+# 10 ms batching window, so on those versions notifications are sent this many
+# milliseconds apart.
+BLUEZ_PACING_BEFORE = (5, 60)
+NOTIFY_PACE_MS = 25
+BLUETOOTHD_PATH = "/usr/libexec/bluetooth/bluetoothd"
+
 logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("SN_BT_SETUP_PERIPHERAL_LOG_LEVEL", "INFO").upper())
 logHandler = logging.StreamHandler()
@@ -75,6 +93,39 @@ def fail_and_quit(message, *args) -> None:
     logger.critical(message, *args)
     assert mainloop is not None
     mainloop.quit()
+
+
+def notification_chunks(data: bytes, mtu: int) -> Iterator[bytes]:
+    """
+    Split ``data`` into notification values that fit an ATT MTU of ``mtu``.
+    """
+    size = max(1, mtu - ATT_NOTIFY_OVERHEAD)
+    for start in range(0, len(data), size):
+        yield data[start : start + size]
+
+
+def bluez_version() -> Optional[tuple[int, int]]:
+    """
+    Returns the ``(major, minor)`` version of ``bluetoothd``, or ``None`` if it
+    cannot be determined.
+    """
+    try:
+        result = subprocess.run(
+            [BLUETOOTHD_PATH, "--version"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=True,
+        )
+    except (OSError, subprocess.SubprocessError) as e:
+        logger.warning("Cannot determine BlueZ version: %s", e)
+        return None
+    parts = result.stdout.strip().split(".")
+    try:
+        return int(parts[0]), int(parts[1])
+    except (ValueError, IndexError):
+        logger.warning("Cannot parse BlueZ version %r", result.stdout)
+        return None
 
 
 class InvalidArgsException(dbus.exceptions.DBusException):
@@ -376,15 +427,27 @@ class TxCharacteristic(Characteristic):
     Notifications are broadcast to all subscribers, with multiple concurrent
     centrals their STOMP streams will interleave on the BLE side. In practice
     SolarNode setup is one-central-at-a-time.
+
+    BlueZ does not fragment a notification value that exceeds the MTU, it
+    truncates it, so ``push`` splits data into MTU-sized notifications. The
+    central reassembles STOMP frames by their NUL terminator. The STOMP server
+    never sends the raw control bytes ``\\x07`` or ``\\x18`` (JSON escapes
+    them), so a 1-byte chunk cannot be mistaken for a sentinel.
+
+    With a ``pace_ms`` greater than zero, notifications are queued and sent at
+    least that many milliseconds apart, in order.
     """
 
     uuid = "7d2fd14d-8897-48de-9719-15aa4edb5d57"
     description = "STOMP server responses (notify)."
 
-    def __init__(self, bus, index, service):
+    def __init__(self, bus, index, service, pace_ms: int = 0):
         Characteristic.__init__(self, bus, index, self.uuid, ["notify"], service)
         self.add_descriptor(CharacteristicUserDescriptionDescriptor(bus, 1, self))
         self.notifying = False
+        self.pace_ms = pace_ms
+        self.pending: collections.deque = collections.deque()
+        self.pace_source: Optional[int] = None
 
     def StartNotify(self):
         if self.notifying:
@@ -396,13 +459,43 @@ class TxCharacteristic(Characteristic):
         if not self.notifying:
             return
         self.notifying = False
+        self.pending.clear()
         logger.info("StopNotify")
 
-    def push(self, data: bytes) -> None:
+    def push(self, data: bytes, mtu: int = ATT_DEFAULT_MTU) -> None:
         if not self.notifying:
             logger.debug("push: no subscriber, dropping %d bytes", len(data))
             return
-        value = dbus.Array(data, signature="y")
+        chunks = list(notification_chunks(data, mtu))
+        if len(chunks) > 1:
+            logger.debug(
+                "push: %d bytes as %d notifications (MTU %d)",
+                len(data),
+                len(chunks),
+                mtu,
+            )
+        if self.pace_ms <= 0:
+            for chunk in chunks:
+                self._notify(chunk)
+            return
+        self.pending.extend(chunks)
+        if self.pace_source is None:
+            self._send_next()
+            self.pace_source = GLib.timeout_add(self.pace_ms, self._send_next)
+
+    def _send_next(self) -> bool:
+        # GLib timeout callback: return True to stay armed, False to detach.
+        # The timeout stays armed for one interval after the last send, so a
+        # push that arrives then still waits its turn.
+        if self.pending and self.notifying:
+            self._notify(self.pending.popleft())
+            return True
+        self.pending.clear()
+        self.pace_source = None
+        return False
+
+    def _notify(self, chunk: bytes) -> None:
+        value = dbus.Array(chunk, signature="y")
         self.PropertiesChanged(GATT_CHRC_IFACE, {"Value": value}, [])
 
 
@@ -427,6 +520,7 @@ class RxCharacteristic(Characteristic):
         self.tx = tx
         self.central_sockets = {}  # device path, socket
         self.central_watches = {}  # device path, GLib source id
+        self.central_mtus = {}  # device path, ATT MTU from the last write
 
     def _open_socket(self, device: str) -> Optional[socket.socket]:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -492,8 +586,13 @@ class RxCharacteristic(Characteristic):
             len(data),
             data.decode("utf-8", errors="replace"),
         )
-        self.tx.push(data)
+        self.tx.push(data, self._notify_mtu())
         return True
+
+    def _notify_mtu(self) -> int:
+        # Notifications go to every subscribed central, so they must fit the
+        # smallest MTU in use.
+        return min(self.central_mtus.values(), default=ATT_DEFAULT_MTU)
 
     def _close_socket(self, device: str) -> None:
         # Detach the GLib watch before closing the fd: otherwise GLib observes
@@ -511,6 +610,11 @@ class RxCharacteristic(Characteristic):
     def WriteValue(self, value, options):
         device = options["device"]
         logger.debug("WRITE from %s (%d bytes)", device, len(value))
+
+        # BlueZ passes the connection's exchanged ATT MTU with each write.
+        mtu = options.get("mtu")
+        if mtu:
+            self.central_mtus[device] = int(mtu)
 
         sock = self.central_sockets.get(device) or self._open_socket(device)
         if sock is None:
@@ -533,6 +637,7 @@ class RxCharacteristic(Characteristic):
             self.tx.push(b"\x18")
 
     def on_device_disconnect(self, device: str) -> None:
+        self.central_mtus.pop(device, None)
         if device in self.central_sockets:
             logger.info("Central disconnected, closing STOMP socket: %s", device)
             self._close_socket(device)
@@ -543,7 +648,9 @@ class RxCharacteristic(Characteristic):
         # session, the SolarNode STOMP server may still treat that
         # session as active and reject the next CONNECT with
         # "Already connected." Tear it down so the next WriteValue
-        # lazy-opens a fresh socket.
+        # lazy-opens a fresh socket. A new connection also starts over at the
+        # default MTU until its next write.
+        self.central_mtus.pop(device, None)
         if device in self.central_sockets:
             logger.info(
                 "Central reconnected; tearing down stale STOMP socket: %s",
@@ -564,9 +671,9 @@ class UartService(Service):
 
     uuid = "7d2fd14b-8897-48de-9719-15aa4edb5d57"
 
-    def __init__(self, bus, index):
+    def __init__(self, bus, index, pace_ms: int = 0):
         Service.__init__(self, bus, index, self.uuid, True)
-        self.tx = TxCharacteristic(bus, 0, self)
+        self.tx = TxCharacteristic(bus, 0, self, pace_ms)
         self.add_characteristic(self.tx)
         self.rx = RxCharacteristic(bus, 1, self, self.tx)
         self.add_characteristic(self.rx)
@@ -808,7 +915,18 @@ def main() -> int:
 
     agent = SmartAgent(bus, AGENT_PATH)
 
-    service = UartService(bus, 0)
+    version = bluez_version()
+    if version is None or version < BLUEZ_PACING_BEFORE:
+        pace_ms = NOTIFY_PACE_MS
+        logger.info(
+            "BlueZ %s: sending notifications %d ms apart",
+            "unknown" if version is None else "%d.%d" % version,
+            pace_ms,
+        )
+    else:
+        pace_ms = 0
+
+    service = UartService(bus, 0, pace_ms)
     app = Application(bus, [service])
 
     # Advertisement carries the service UUID so centrals can discover us.
