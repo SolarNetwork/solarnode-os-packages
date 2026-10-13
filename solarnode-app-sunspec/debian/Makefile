@@ -21,7 +21,7 @@ pkg : app table
 		-d 'solarnode-app-core (>= 4.10)' \
 		-d 'solarnode-app-io-modbus (>= 4.2)' \
 		-d 'solarnode-io-modbus' \
-		-d 'solarnode-base-sunspec' \
+		-d 'solarnode-base-nifty-sunspec' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
