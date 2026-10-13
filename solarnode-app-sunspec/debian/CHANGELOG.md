@@ -12,6 +12,16 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 3.0.0 - 2026-10-14
+
+| Name                              | ID                                  | Vers  |
+|:----------------------------------|:------------------------------------|:------|
+| SunSpec Environmental Data Source | `n.s.n.datum.sunspec.environmental` | 3.0.0 |
+| SunSpec Inverter Data Source      | `n.s.n.datum.sunspec.inverter`      | 6.0.0 |
+| SunSpec Power Meter Data Source   | `n.s.n.datum.sunspec.meter`         | 6.0.0 |
+| SunSpec Support                   | `n.s.n.hw.sunspec`                  | 6.0.0 |
+
+
 ## 2.2.0 - 2026-10-08
 
 | Name                              | ID                                  | Vers  |
