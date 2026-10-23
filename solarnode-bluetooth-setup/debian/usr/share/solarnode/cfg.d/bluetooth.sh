@@ -1,29 +1,34 @@
 #!/usr/bin/env bash
 #
-# SolarNode Bluetooth setup radio helper script for the solarnode-bluetooth-setup
-# package, which turns the BLE setup peripheral on and off.
+# SolarNode Bluetooth setup radio helper for the solarnode-bluetooth-setup
+# package. Turns the BLE setup peripheral on and off.
 #
 # Invoked by the solarcfg wrapper:
 #
 #     solarcfg bluetooth <action>
 #
-# Output contract (consumed by the plugin):
-#   status					-> "key: value" lines. "active: true|false" is whether the
-#              					peripheral service is running (and so advertising);
-#              					"enabled: true|false" is whether the service starts at boot,
-#              					which follows the last enable/disable; "discoverable: true|false" and
-#								"powered: true|false" are the Bluetooth adapter state;
-#								"adapter: hciN" is the adapter name. Always exits 0.
-#   enable/disable/restart	->	human-readable result lines on STDOUT; errors on
-#              					STDERR with a non-zero exit code. restart only
-#              					restarts a running peripheral; it never starts one.
+# Actions:
+#
+#   status   Print "key: value" lines and exit 0:
+#              active        true if the peripheral service is running
+#              enabled       true if the service starts at boot (follows the
+#                            last enable/disable)
+#              discoverable  adapter Discoverable property
+#              powered       adapter Powered property
+#              adapter       the adapter name, e.g. hci0
+#   enable   Enable and start the peripheral service.
+#   disable  Stop and disable the peripheral service and turn the adapter off.
+#   restart  Restart the peripheral service if it is running; never starts it.
+#
+# enable, disable and restart print a result line on STDOUT, or an error on
+# STDERR with a non-zero exit code.
 #
 # Exit codes: 0 success, 1 unsupported action, 3 systemctl failure.
 #
-# Adapter selection (the same rule as sn-bt-setup-peripheral.py): the
-# SN_BT_SETUP_PERIPHERAL_ADAPTER value from /etc/solarnode/bluetooth-setup.env
-# if set and valid, otherwise the first adapter that provides
-# org.bluez.GattManager1, otherwise hci0.
+# The adapter is chosen the same way as in sn-bt-setup-peripheral.py:
+# SN_BT_SETUP_PERIPHERAL_ADAPTER from /etc/solarnode/bluetooth-setup.env if set
+# and valid, otherwise the first adapter that provides org.bluez.GattManager1,
+# otherwise hci0.
 
 CONF="/usr/share/solarnode/default/solarnode-bluetooth-setup"
 VENDOR_CONF="/etc/default/solarnode-bluetooth-setup"
@@ -36,10 +41,9 @@ UNIT="solarnode-bt-setup-peripheral.service"
 ACTION="$1"
 shift 2>/dev/null
 
-# Print the value of key $1 from $ENV_FILE. The file is NOT sourced: it lives in
-# /etc/solarnode, which the unprivileged solar user can write to, while this
-# script runs as root via sudo. Only the first matching line is used, with any
-# surrounding quotes removed.
+# Print the value of key $1 from $ENV_FILE. The file is not sourced because the
+# solar user can write to /etc/solarnode and this script runs as root. Only the
+# first matching line is used, with surrounding quotes removed.
 env_value () {
 	[ -r "$ENV_FILE" ] || return 0
 	awk -F= '$1 ~ /^[ \t]*'"$1"'$/ {
@@ -71,10 +75,9 @@ if [ -z "$ADAPTER" ]; then
 	ADAPTER="$(find_adapter)"
 fi
 
-# Adapter properties are changed through bluetoothd over D-Bus, the same path
-# the peripheral script uses, so bluetoothd's view of the adapter stays
-# coherent. busctl ships with systemd and has reliable exit codes, unlike
-# non-interactive bluetoothctl.
+# Adapter properties are changed through bluetoothd over D-Bus, as the
+# peripheral script does. busctl is used instead of bluetoothctl because it has
+# reliable exit codes when run non-interactively.
 adapter_prop_get () {
 	# prints "true" or "false", or nothing if the adapter is unavailable
 	busctl get-property org.bluez "/org/bluez/$ADAPTER" org.bluez.Adapter1 "$1" 2>/dev/null \
@@ -111,9 +114,8 @@ do_status () {
 }
 
 do_enable () {
-	# Record the decision as the boot state so a radio turned on stays on across
-	# reboots, then start the unit. The peripheral script powers the adapter and
-	# sets it discoverable and pairable itself when it starts.
+	# Enable the unit so the radio stays on across reboots, then start it. The
+	# peripheral powers the adapter and makes it discoverable and pairable.
 	systemctl is-enabled --quiet "$UNIT" 2>/dev/null || systemctl enable "$UNIT" 2>/dev/null || true
 	if unit_active; then
 		echo "Bluetooth setup radio already enabled."
@@ -128,11 +130,10 @@ do_enable () {
 }
 
 do_disable () {
-	# Stop the peripheral (which unregisters the advertisement) and record the
-	# decision as the boot state so a gated-off radio does not advertise at the
-	# next boot, then make sure the adapter is not left discoverable, pairable,
-	# or powered. The adapter steps are best-effort so that disable always
-	# succeeds, even when the adapter is already off or not present.
+	# Stop the peripheral (which removes the advertisement) and disable the unit
+	# so the radio stays off at the next boot, then turn the adapter off. The
+	# adapter steps are best-effort so disable still succeeds when the adapter
+	# is already off or missing.
 	systemctl stop "$UNIT" || true
 	systemctl disable "$UNIT" 2>/dev/null || true
 	adapter_prop_set Discoverable false || true
@@ -143,8 +144,7 @@ do_disable () {
 }
 
 do_restart () {
-	# try-restart, not restart: the radio is gated by the plugin, so a restart
-	# must never start a peripheral that has intentionally been left stopped.
+	# Use try-restart so a peripheral the plugin has stopped is never started.
 	if ! unit_active; then
 		echo "Bluetooth setup radio is not enabled; nothing to restart."
 		exit 0

@@ -14,7 +14,7 @@ the plugin can instead turn it on only:
 See the [CHANGELOG](./CHANGELOG.md) for release information.
 
 This package requires `solarnode-bluetooth-setup` 4.0 or later, which provides
-the `solarcfg bluetooth` helper the plugin drives.
+the `solarcfg bluetooth` helper the plugin uses.
 
 # Build requirements
 

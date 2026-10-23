@@ -680,8 +680,8 @@ def find_adapter(bus):
     when multiple adapters are present; otherwise returns the first adapter
     that advertises org.bluez.GattManager1.
 
-    The solarcfg helper (cfg.d/bluetooth.sh) applies the same rule when it
-    reports or turns off the adapter, so keep the two in step.
+    The solarcfg helper (cfg.d/bluetooth.sh) uses the same rule, so keep the
+    two in sync.
     """
     remote_om = dbus.Interface(bus.get_object(BUS_NAME, "/"), DBUS_OM_IFACE)
     objects = remote_om.GetManagedObjects()
@@ -895,10 +895,8 @@ def main() -> int:
                 logger.info("%s unregistered", name)
             except dbus.exceptions.DBusException as e:
                 logger.warning("Failed to unregister %s: %s", name, e)
-        # The radio is only meant to be reachable while this peripheral runs,
-        # so leave the adapter off (not discoverable, not pairable, not
-        # powered) rather than lingering in the state set_state(True) put it
-        # in at startup.
+        # The radio should only be reachable while this peripheral runs, so
+        # turn the adapter off on the way out.
         try:
             set_state(False, adapter_props)
         except dbus.exceptions.DBusException as e:

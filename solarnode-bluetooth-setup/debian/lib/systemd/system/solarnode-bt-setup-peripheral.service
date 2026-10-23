@@ -1,6 +1,6 @@
-# Enabled at install (the radio is always on by default). The SolarNode plugin
-# may enable/disable it with `solarcfg bluetooth enable|disable` when gating is
-# configured; both also set the boot state.
+# Enabled at install, so the radio is on by default. When gating is configured
+# the SolarNode plugin enables and disables this unit with
+# `solarcfg bluetooth enable|disable`.
 
 [Unit]
 Description=SolarNode Bluetooth Setup peripheral

@@ -68,11 +68,10 @@ fi
 systemctl daemon-reload || true
 service_up solarnode-bt-setup-peripheral-restart.path true
 
-# The peripheral is always on by default (enabled and started). CFG_BT_SETUP_GATED=1
-# leaves it disabled and stopped so the SolarNode plugin gates it on a schedule.
-# The plugin records its last enable/disable as the unit's boot state, so on an
-# upgrade from a version that has this behaviour ($2 is the previous version)
-# that recorded state is kept rather than reset to the default.
+# The peripheral is enabled and started by default. CFG_BT_SETUP_GATED=1 leaves
+# it disabled so the SolarNode plugin controls it. The plugin's last
+# enable/disable sets the unit's boot state, so upgrades from 4.0.0 or later
+# ($2 is the previous version) keep that state.
 if [ "$CFG_BT_SETUP_GATED" = "1" ]; then
 	echo "Leaving solarnode-bt-setup-peripheral disabled (radio is gated)..."
 	systemctl disable solarnode-bt-setup-peripheral 2>/dev/null || true

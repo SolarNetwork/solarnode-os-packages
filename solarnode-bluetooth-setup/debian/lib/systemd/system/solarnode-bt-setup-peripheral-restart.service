@@ -5,8 +5,7 @@ Description=SolarNode Bluetooth Setup peripheral restart
 
 [Service]
 Type=oneshot
-# The peripheral exits cleanly when the node has no ID yet, so once the node is
-# registered an enabled (always on, or plugin-enabled) peripheral must be
-# started, not just try-restarted. A disabled peripheral has been turned off by
-# the SolarNode plugin and must not be started by an identity change.
+# The peripheral exits when the node has no ID yet, so once the node is
+# registered an enabled peripheral needs a full restart to start it. A disabled
+# peripheral was turned off by the SolarNode plugin, so only try-restart it.
 ExecStart=/bin/sh -c 'if /usr/bin/systemctl is-enabled --quiet solarnode-bt-setup-peripheral.service; then /usr/bin/systemctl restart solarnode-bt-setup-peripheral.service; else /usr/bin/systemctl try-restart solarnode-bt-setup-peripheral.service; fi'

@@ -1,7 +1,6 @@
 # Disable configuration of setup user
 # CFG_WITHOUT_SETUP_USER=1
 
-# Leave the Bluetooth setup peripheral disabled and stopped at install, so the
-# SolarNode plugin (solarnode-app-setup-bluetooth) controls it on its schedule.
-# The default is always on.
+# Leave the Bluetooth setup peripheral disabled at install, so the SolarNode
+# plugin (solarnode-app-setup-bluetooth) controls it. By default it is on.
 # CFG_BT_SETUP_GATED=1
