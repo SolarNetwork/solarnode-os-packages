@@ -12,6 +12,18 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 2.5.0 - 2026-11-08
+
+| Name                                   | ID                        | Vers  |
+|:---------------------------------------|:--------------------------|:------|
+| Control Conductor                      | `n.s.n.control.conductor` | 2.3.2 |
+| Control Datum Source                   | `n.s.n.datum.control`     | 4.1.0 |
+| Control Group                          | `n.s.n.control.group`     | 1.0.0 |
+| Network Ping Control                   | `n.s.n.control.ping`      | 4.1.0 |
+| Operational Mode Controller            | `n.s.n.control.opmode`    | 4.2.0 |
+| Operational Mode Data Source Scheduler | `n.s.n.datum.opmode`      | 4.1.1 |
+
+
 ## 2.4.0 - 2026-10-14
 
 | Name                                   | ID                        | Vers  |

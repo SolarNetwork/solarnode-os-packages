@@ -23,6 +23,7 @@
 		<exclude org="com.fasterxml.jackson.core"/>
 		<exclude org="com.fasterxml.jackson.dataformat"/>
 		<exclude org="com.fasterxml.jackson.datatype"/>
+		<exclude org="de.siegmar"/>
 		<exclude org="io.netty"/>
 		<exclude org="jakarta.activation"/>
 		<exclude org="jakarta.servlet"/>
@@ -36,6 +37,8 @@
 		<exclude org="org.apache.commons"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.eclipse.paho"/>
+		<exclude org="org.greenbytes.http"/>
+		<exclude org="org.jspecify"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.quartz-scheduler"/>
 		<exclude org="org.slf4j"/>
@@ -45,5 +48,7 @@
 		<exclude org="si.uom"/>
 		<exclude org="systems.uom"/>
 		<exclude org="tech.units"/>
+		<exclude org="tools.jackson.core"/>
+		<exclude org="tools.jackson.dataformat"/>
 	</dependencies>
 </ivy-module>
