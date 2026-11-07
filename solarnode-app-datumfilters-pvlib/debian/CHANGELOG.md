@@ -12,7 +12,7 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 2.4.0 - 2026-10-27
+## 2.2.0 - 2026-10-27
 
 | Name               | ID                         | Vers  |
 |:-------------------|:---------------------------|:------|
