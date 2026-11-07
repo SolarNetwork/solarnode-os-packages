@@ -90,6 +90,7 @@
 		<exclude org="org.eclipse.gemini.blueprint"/>
 		<exclude org="org.eclipse.paho"/>
 		<exclude org="org.glassfish.tyrus.bundles"/>
+		<exclude org="org.greenbytes.http"/>
 		<exclude org="org.javassist"/>
 		<exclude org="org.jspecify"/>
 		<exclude org="org.ognl"/>

@@ -39,6 +39,7 @@
 		<exclude org="org.apache.commons"/>
 		<exclude org="org.apache.tomcat"/>
 		<exclude org="org.eclipse.paho"/>
+		<exclude org="org.greenbytes.http"/>
 		<exclude org="org.jspecify"/>
 		<exclude org="org.osgi"/>
 		<exclude org="org.quartz-scheduler"/>
