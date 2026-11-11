@@ -9,8 +9,9 @@
 	</configurations>
 	<dependencies defaultconfmapping="runtime->default(runtime)">
 
-		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.log4j2" rev="1.0.0"/>
+		<dependency org="net.solarnetwork.common" name="net.solarnetwork.common.log4j2" rev="1.0.1"/>
 
+		<exclude org="org.apache.logging.log4j"/>
 		<exclude org="org.osgi"/>
 
 	</dependencies>
