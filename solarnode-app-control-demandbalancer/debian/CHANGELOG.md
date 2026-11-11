@@ -12,6 +12,13 @@ make them shorter, using the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
+## 1.1.0 - 2026-11-12
+
+| Name            | ID                             | Vers  |
+|:----------------|:-------------------------------|:------|
+| Demand Balancer | `n.s.n.control.demandbalancer` | 4.2.0 |
+
+
 ## 1.0.1 - 2026-11-08
 
 | Name            | ID                             | Vers  |
