@@ -18,7 +18,7 @@ pkg : app table
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-core (>= 4.17)' \
+		-d 'solarnode-app-core (>= 4.18)' \
 		-d 'solarnode-app-db-postgres (>= 2)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
