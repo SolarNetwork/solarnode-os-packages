@@ -1,0 +1,4 @@
+BUNDLE_VERSION=1.0.0
+SCHEMA_VERSION=1
+SQL_SOURCE=SolarNetwork/solarnetwork-node@b3e6b5fa83b6567be664bbda356430cfd6fad6cf
+SQL_SHA=b3e6b5fa83b6567be664bbda356430cfd6fad6cf

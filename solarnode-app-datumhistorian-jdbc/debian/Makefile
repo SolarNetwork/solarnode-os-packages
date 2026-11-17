@@ -1,12 +1,13 @@
 NAME = solarnode-app-datumhistorian-jdbc
-VERSION = 1.0.0-1
-PATHS = var
+VERSION = 1.0.0-2
+ASSEMBLE_PATHS = usr
+PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
 SN_ANT_OPTS =
 
-pkg : app table
+pkg : prep app assemble table
 	fpm -s dir \
 		-t deb \
 		-n $(NAME) \
@@ -22,6 +23,14 @@ pkg : app table
 		-d 'solarnode-app-db-postgres (>= 2)' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
+
+prep :
+	rm -rf $(DEB_BUILD_ROOT)
+	mkdir -p $(DEB_BUILD_ROOT)
+	find $(ASSEMBLE_PATHS) -type f -name .DS_Store -delete
+
+assemble :
+	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
 
 clean :
 	rm $(NAME)_$(VERSION)_all.deb

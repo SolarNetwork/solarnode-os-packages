@@ -1,8 +1,20 @@
-# SolarNode Application - Setup Bluetooth
+# SolarNode Application - Datum Historian JDBC
 
 This directory contains support for building the `solarnode-app-datumhistorian-jdbc` package, which
 provides a JDBC (database) implementation of the SolarNode `DatumHistorian` and
 `FilterableDatumHistorian` APIs.
+
+# Database SQL
+
+The package also installs the plugin's Postgres SQL scripts in
+`/usr/share/solarnode/datumhistorian-jdbc/sql`. These are:
+
+- `postgres-init.sql`
+- `postgres-init-agg.sql`
+- `postgres-init-agg-cron.sql`
+
+These scripts are used in the "Postgres setup"
+section of the [plugin README][plugin-readme].
 
 # Build requirements
 
@@ -25,3 +37,6 @@ git clone https://github.com/SolarNetwork/solarnetwork-build.git
 
 Run `make` to build the package, which will produce
 `solarnode-app-datumhistorian-jdbc_VERSION_all.deb` in this directory.
+
+[plugin-readme]: https://github.com/SolarNetwork/solarnetwork-node/blob/develop/net.solarnetwork.node.datumhistorian.jdbc/README.md#postgres-setup
+
