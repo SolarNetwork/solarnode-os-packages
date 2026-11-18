@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# On remove, take the historian off SolarNode (the DataSource binding and the
+# pg_cron jobs), keeping the history data. sn-historian-db-local does this too,
+# before this runs; then this finds nothing to do. Never fails, so a broken
+# database can't block removing the package.
+
+if [ "$1" = "remove" ] && [ -x /usr/share/solarnode/bin/sn-historian.sh ]; then
+	/usr/share/solarnode/bin/sn-historian.sh disable || true
+fi
+exit 0

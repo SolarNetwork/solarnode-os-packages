@@ -35,6 +35,12 @@ RESTART_FILE="$RUN_DIR/restart-requested"
 STATE_DIR="/var/lib/sn-historian"
 # the plugin jar(s) SolarNode last loaded, as sha256sum lines
 JAR_STATE="$STATE_DIR/jar-loaded"
+# written by sn-historian-db-local when it added pg_cron to shared_preload_libraries
+PRELOAD_MARKER="$STATE_DIR/preload-added"
+# the DataSource configurations ensure added node-datum-history to, one per line
+POOL_STATE="$STATE_DIR/pool-bound"
+# when ensure last created a schema, in epoch milliseconds (also seen by a retried run)
+SCHEMA_TIME_FILE="$RUN_DIR/schema-created"
 SERVICES_DIR="/etc/solarnode/services"
 JAR_DIR="/var/lib/solarnode/app/main"
 EXAMPLE_DIR="/usr/share/solarnode/example"
@@ -47,8 +53,14 @@ RESTART_WAIT=600
 RESTART_SETTLE=10
 EX_TEMPFAIL=75
 
-# the SolarNode DataSource sed from the plugin README
+# the SolarNode DataSource sed from the plugin README, and its inverse (round-trip tested)
 POOL_SED='/^serviceProperty\.db\s*=/{/node-datum-history/b;s/$/, node-datum-history/}'
+POOL_DEL_SED='/^serviceProperty\.db\s*=/{s/\s*,\s*node-datum-history\s*(,|$)/\1/;s/=\s*node-datum-history\s*,\s*/= /}'
+# the pg_cron jobs that ensure schedules, whatever the settings were then (an admin's
+# own cleanup job of the same name, as the plugin SQL suggests, has another schedule)
+CLEANUP_SCHEDULE='30 3 * * *'
+CLEANUP_COMMAND="DELETE FROM cron.job_run_details WHERE end_time < now() - INTERVAL 'P7D'"
+OUR_JOBS="((jobname = '$CLEANUP_JOB' AND schedule = '$CLEANUP_SCHEDULE' AND command = \$\$${CLEANUP_COMMAND}\$\$) OR (jobname LIKE 'solarnode-agg-%' AND command ~ '^CALL [a-z_][a-z0-9_]*\\.dh_process_agg_stale\\(\\)\$'))"
 # the shared_preload_libraries sed from the plugin README
 PRELOAD_SED="/^#?shared_preload_libraries\\s*=/{/pg_cron/b;s/^#?(shared_preload_libraries\\s*=\\s*')([^']*)'/\\1\\2,pg_cron'/;s/',pg_cron'/'pg_cron'/}"
 
@@ -60,18 +72,25 @@ CRON_DB=
 CHANGES=0
 FAILED=
 GOOD_SCHEMAS=
-SCHEMA_CHANGED=
+# when ensure last created a schema, in epoch milliseconds
+SCHEMA_DONE_MS=
 BIND_CHANGED=
 SUMMARY=
+# set by pool_unbind_all
+UNBOUND=
+# set by ensure_run: the database's identity when it started
+DB_ID=
+# set by ensure_lock
+SNH_LOCKED=
 
 # log MSG: print an info line
 log () {
-	echo "sn-historian: $*"
+	echo "sn-historian: $*" 2>/dev/null || true
 }
 
 # warn MSG: print a warning to stderr
 warn () {
-	echo "sn-historian: WARNING: $*" >&2
+	echo "sn-historian: WARNING: $*" >&2 2>/dev/null || true
 }
 
 # die MSG: print an error and exit 1
@@ -175,9 +194,10 @@ rename_sql () {
 	fi
 }
 
-# true if Postgres accepts connections
+# pg_ready [SECONDS]: true if Postgres accepts connections (as postgres, as a root
+# check logs 'role "root" does not exist')
 pg_ready () {
-	pg_isready -q >/dev/null 2>&1
+	runuser -u postgres -- pg_isready -q -t "${1:-3}" >/dev/null 2>&1
 }
 
 # true if the historian database and its owner role both exist
@@ -269,9 +289,55 @@ pool_bindings () {
 	done
 }
 
+# record CFG as bound by ensure, for pool_unbind_all
+pool_record () {
+	if [ -d "$STATE_DIR" ] && ! grep -qxF "$1" "$POOL_STATE" 2>/dev/null; then
+		echo "$1" >>"$POOL_STATE"
+	fi
+}
+
+# Remove node-datum-history from the DataSource configurations ensure bound, and
+# from HISTORIAN_POOL_CFG, keeping each file's owner and mode. A binding an admin
+# made on another DataSource stays. Sets UNBOUND if it removed any.
+pool_unbind_all () {
+	mkdir -p "$RUN_DIR"
+	{
+		cat "$POOL_STATE" 2>/dev/null || true
+		echo "$HISTORIAN_POOL_CFG"
+	} | sort -u >"$RUN_DIR/pool-unbind.tmp"
+	while read -r f; do
+		if [ -z "$f" ] || [ ! -f "$f" ] || ! pool_line_bound "$f"; then
+			continue
+		fi
+		own="$(stat -c '%U:%G' "$f")"
+		mode="$(stat -c '%a' "$f")"
+		sed -Ei "$POOL_DEL_SED" "$f"
+		chown "$own" "$f"
+		chmod "$mode" "$f"
+		if pool_line_bound "$f"; then
+			warn "Could not remove $POOL_KEY from $f; remove it by hand."
+		else
+			log "pool: $POOL_KEY removed from $f"
+			UNBOUND=1
+		fi
+	done <"$RUN_DIR/pool-unbind.tmp"
+	rm -f "$RUN_DIR/pool-unbind.tmp" "$POOL_STATE"
+}
+
+# print the database pg_cron keeps its jobs in (also when pg_cron is not loaded)
+cron_db () {
+	query postgres "SELECT coalesce(nullif(current_setting('cron.database_name', true), ''), 'postgres')"
+}
+
 # true if SolarNode is running
 sn_active () {
 	systemctl --quiet is-active "$SN_SERVICE" 2>/dev/null
+}
+
+# true if this process runs inside SolarNode (a UI install), where stopping
+# SolarNode would kill it
+in_sn_cgroup () {
+	grep -Eq "/${SN_SERVICE%.service}\\.service(/|\$)" /proc/self/cgroup 2>/dev/null
 }
 
 # unit_start_ms UNIT: when UNIT last became active, in epoch milliseconds (0 if unknown)
@@ -308,10 +374,10 @@ jar_loaded () {
 
 # record the installed plugin jar(s) as the ones SolarNode loaded
 jar_loaded_record () {
-	if jar_loaded; then
+	# no state dir: sn-historian was purged meanwhile, so don't create it again
+	if jar_loaded || [ ! -d "$STATE_DIR" ]; then
 		return 0
 	fi
-	mkdir -p "$STATE_DIR"
 	# write, then rename, so a reader never sees half a file
 	jar_fingerprint >"$JAR_STATE.tmp"
 	mv -f "$JAR_STATE.tmp" "$JAR_STATE"

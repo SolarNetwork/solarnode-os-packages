@@ -11,6 +11,10 @@ The node must already use Postgres (`solarnode-app-db-postgres`). For example:
 sudo apt install sn-historian-db-local
 ```
 
+> :warning: **Note** on a node that still uses the H2 database, installing this package switches
+> SolarNode to Postgres and you lose your settings. Make a **Backup** in SolarNode first, and
+> **Restore** it once SolarNode is running on Postgres. `sn-historian preflight` warns about this.
+
 # What it does
 
 When installed, the package:
@@ -30,6 +34,22 @@ Postgres starts, so the schemas come back after a SolarNode reset. To see its lo
 ```sh
 journalctl -u sn-historian-ensure
 ```
+
+A SolarNode reset deletes the `solarnode` database, so it deletes the history too. The schemas
+are then set up again, empty.
+
+# Removing
+
+Removing the package (also from the SolarNode UI) undoes the setup without restarting Postgres:
+
+1. Removes the DataSource binding and the `pg_cron` jobs (`sn-historian disable`).
+2. Takes `pg_cron` out of `shared_preload_libraries` and deletes the `pg_cron` extension, if this
+   package added them. If other `pg_cron` jobs exist, `pg_cron` stays, with a warning. If
+   Postgres isn't running, other jobs can't be checked, so `pg_cron` leaves the preload anyway.
+3. Deletes the two settings files, unless they were changed.
+4. Restarts SolarNode once `apt` is finished.
+
+The history data stays, even on purge. Installing again picks it up where it left off.
 
 # Settings
 
@@ -54,3 +74,4 @@ Then run `make`, which produces `sn-historian-db-local_VERSION_all.deb` in this 
 
 [fpm]: https://github.com/jordansissel/fpm
 [historian]: https://github.com/SolarNetwork/solarnetwork-node/tree/develop/net.solarnetwork.node.datumhistorian.jdbc
+

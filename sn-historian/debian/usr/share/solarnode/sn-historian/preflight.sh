@@ -11,7 +11,7 @@ pkg_installed () {
 # Warn about each missing prerequisite. Warnings only: always exits 0.
 preflight () {
 	n=0
-	if pkg_installed solarnode-app-db-h2; then
+	if pkg_installed solarnode-app-db-h2 || pkg_installed solarnode-app-db-h2-nonvolatile; then
 		warn "SolarNode uses the H2 database. Make a Backup in SolarNode, install solarnode-app-db-postgres, then Restore the Backup."
 		n=$((n + 1))
 	elif ! pkg_installed solarnode-app-db-postgres; then

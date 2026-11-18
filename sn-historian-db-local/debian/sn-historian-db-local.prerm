@@ -1,8 +1,129 @@
 #!/bin/sh
-set -e
 
-if [ "$1" = "remove" ]; then
-	if systemctl is-enabled sn-historian-ensure.service >/dev/null 2>&1; then
-		systemctl disable sn-historian-ensure.service || true
+# On remove (a UI remove too, which also purges), undo what this package set up,
+# keeping the history data (schemas, data, aggs_for_vecs, jit):
+#   1. stop the setup service;
+#   2. sn-historian disable: the DataSource binding and the pg_cron jobs (and the
+#      pg_cron extension if this package added it and no other jobs use it);
+#   3. take pg_cron out of shared_preload_libraries, if this package added it and no
+#      other pg_cron jobs need it (Postgres won't start with it once
+#      postgresql-17-cron is removed);
+#   4. delete the conf.d files this package created, unless they were changed.
+# No Postgres restart: the settings apply when Postgres next starts. Never fails,
+# so a broken database can't block removing the package.
+
+PG_CONF_DIR=/etc/postgresql/17/main
+STATE_DIR=/var/lib/sn-historian
+PRELOAD_MARKER="$STATE_DIR/preload-added"
+CONF_MARKER="$STATE_DIR/conf-added"
+SNH=/usr/share/solarnode/bin/sn-historian.sh
+# sn-historian disable's exit code when other pg_cron jobs still need pg_cron
+EX_CRON_KEPT=10
+
+# preload_has_pg_cron FILE: true if the shared_preload_libraries line in FILE has pg_cron
+preload_has_pg_cron () {
+	grep -Eq "^shared_preload_libraries\s*=\s*'([^']*,)?\s*pg_cron\s*(,[^']*)?'" "$1"
+}
+
+# Remove pg_cron from shared_preload_libraries (the tested inverse of the README
+# sed), and put the line back as it was if the add sed uncommented it. Keeps the
+# marker and fails if pg_cron is still there. (The same function is in the postinst.)
+remove_preload () {
+	conf_file="${PG_CONF_DIR}/postgresql.conf"
+	marker="$PRELOAD_MARKER"
+	[ -e "$conf_file" ] || return 0
+	echo "Removing pg_cron from shared_preload_libraries in $conf_file (applies when Postgres next starts)."
+	sed -Ei "/^shared_preload_libraries\s*=/{s/'pg_cron,/'/;s/,pg_cron'/'/;s/,pg_cron,/,/;s/'pg_cron'/''/}" \
+		"$conf_file"
+	line_no="$(sed -n 's/^line=//p' "$marker" 2>/dev/null)"
+	line_orig="$(sed -n 's/^orig=//p' "$marker" 2>/dev/null)"
+	case "$line_no" in
+		''|*[!0-9]*)
+			# a 1.0.0-1 marker: the add sed uncommented the Debian default line
+			sed -Ei "s/^(shared_preload_libraries\s*=\s*''(\s|\$))/#\1/" "$conf_file"
+			;;
+		*)
+			if [ "#$(sed -n "${line_no}p" "$conf_file")" = "$line_orig" ]; then
+				sed -i "${line_no}s/^/#/" "$conf_file"
+			fi
+			;;
+	esac
+	if preload_has_pg_cron "$conf_file"; then
+		echo "WARNING: pg_cron is still in shared_preload_libraries in $conf_file; remove it by hand."
+		return 1
 	fi
+	rm -f "$marker"
+}
+
+# true if postgresql-17-cron is being removed too: then pg_cron must leave the
+# preload, or Postgres won't start
+cron_pkg_leaving () {
+	case "$(dpkg-query -W -f '${db:Status-Want}' postgresql-17-cron 2>/dev/null)" in
+		deinstall|purge) return 0 ;;
+	esac
+	return 1
+}
+
+# remove_confs KEEP: delete the conf.d files in CONF_MARKER that are unchanged,
+# except a file named KEEP
+remove_confs () {
+	[ -e "$CONF_MARKER" ] || return 0
+	: >"$CONF_MARKER.tmp"
+	while read -r sum f; do
+		[ -n "$f" ] || continue
+		if [ ! -e "$f" ]; then
+			continue
+		fi
+		if [ "${f##*/}" = "$1" ]; then
+			echo "$sum  $f" >>"$CONF_MARKER.tmp"
+		elif [ "$(sha256sum "$f" | cut -d ' ' -f 1)" = "$sum" ]; then
+			echo "Removing $f."
+			rm -f "$f"
+		else
+			echo "Leaving $f, as it was changed after it was installed."
+		fi
+	done <"$CONF_MARKER"
+	if [ -s "$CONF_MARKER.tmp" ]; then
+		mv -f "$CONF_MARKER.tmp" "$CONF_MARKER"
+	else
+		rm -f "$CONF_MARKER.tmp" "$CONF_MARKER"
+	fi
+}
+
+case "$1" in
+	remove|deconfigure) ;;
+	*) exit 0 ;;
+esac
+
+# disabled first, so a Postgres start can't run it again
+if systemctl is-enabled sn-historian-ensure.service >/dev/null 2>&1; then
+	systemctl disable sn-historian-ensure.service || true
 fi
+systemctl stop sn-historian-ensure.service >/dev/null 2>&1 || true
+
+rc=1
+if [ -x "$SNH" ]; then
+	"$SNH" disable
+	rc=$?
+fi
+if [ "$rc" -ne 0 ] && [ "$rc" -ne "$EX_CRON_KEPT" ]; then
+	echo "ERROR: sn-historian disable failed (exit $rc); check that $SNH disable reports no errors after this."
+fi
+
+keep=
+if [ "$rc" -eq "$EX_CRON_KEPT" ] && cron_pkg_leaving; then
+	echo "WARNING: other pg_cron jobs exist, but postgresql-17-cron is being removed, so pg_cron leaves shared_preload_libraries and those jobs stop."
+	rc=0
+fi
+if [ "$rc" -eq "$EX_CRON_KEPT" ]; then
+	# other jobs need pg_cron, with its settings (cron.use_background_workers)
+	keep=solarnode-historian.conf
+	if [ -e "$PRELOAD_MARKER" ]; then
+		echo "WARNING: other pg_cron jobs exist, so pg_cron stays in shared_preload_libraries. Don't remove postgresql-17-cron while it is there, or Postgres won't start."
+	fi
+elif [ -e "$PRELOAD_MARKER" ]; then
+	remove_preload || true
+fi
+remove_confs "$keep"
+
+exit 0

@@ -28,29 +28,40 @@ jit_off () {
 # extensions and jit.
 ensure_db () {
 	if agg_on && ! ext_exists "$HISTORIAN_DB" aggs_for_vecs; then
-		psql_pg -d "$HISTORIAN_DB" -c 'CREATE EXTENSION IF NOT EXISTS aggs_for_vecs'
+		psql_pg -d "$HISTORIAN_DB" -c 'CREATE EXTENSION IF NOT EXISTS aggs_for_vecs' \
+			|| { check_db_still_ready "aggs_for_vecs"; die "Creating the aggs_for_vecs extension failed."; }
 		log "aggs_for_vecs extension: created"
 		CHANGES=$((CHANGES + 1))
 	fi
 	if ! jit_off; then
-		psql_pg -d postgres -c "ALTER DATABASE $HISTORIAN_DB SET jit = off"
+		psql_pg -d postgres -c "ALTER DATABASE $HISTORIAN_DB SET jit = off" \
+			|| { check_db_still_ready "jit"; die "Setting jit = off failed."; }
 		log "$HISTORIAN_DB jit: set off"
 		CHANGES=$((CHANGES + 1))
 	fi
 	if agg_on; then
-		CRON_DB="$(query postgres "SHOW cron.database_name")"
+		CRON_DB="$(query postgres "SHOW cron.database_name")" \
+			|| { check_db_still_ready "pg_cron"; die "Could not read cron.database_name."; }
 		valid_ident "$CRON_DB" || die "Unexpected cron.database_name '$CRON_DB'."
 		if ! ext_exists "$CRON_DB" pg_cron; then
-			psql_pg -d "$CRON_DB" -c 'CREATE EXTENSION IF NOT EXISTS pg_cron'
+			psql_pg -d "$CRON_DB" -c 'CREATE EXTENSION IF NOT EXISTS pg_cron' \
+				|| { check_db_still_ready "pg_cron"; die "Creating the pg_cron extension failed."; }
 			log "pg_cron extension: created in $CRON_DB"
 			CHANGES=$((CHANGES + 1))
 		fi
 	fi
 }
 
-# exit with a temporary failure if Postgres or the database went away
+# print the database's identity: its oid and the Postgres start time
+db_identity () {
+	query postgres "SELECT d.oid || '@' || pg_postmaster_start_time() FROM pg_database d WHERE d.datname = '$HISTORIAN_DB'" 2>/dev/null || true
+}
+
+# check_db_still_ready STEP: exit with a temporary failure (the unit retries) if
+# Postgres or the database went away, or was replaced (sn-reset drops and creates
+# the database again), since ensure started
 check_db_still_ready () {
-	if ! { pg_ready && db_ready; }; then
+	if ! { pg_ready && db_ready; } || [ "$(db_identity)" != "$DB_ID" ]; then
 		tempfail "Postgres or the $HISTORIAN_DB database went away while ensure was running ($1)."
 	fi
 }
@@ -101,7 +112,8 @@ ensure_schema () {
 		if create_schema "$s"; then
 			log "$s: created"
 			summary_add "$s created"
-			SCHEMA_CHANGED=1
+			SCHEMA_DONE_MS="$(now_ms)"
+			echo "$SCHEMA_DONE_MS" >"$SCHEMA_TIME_FILE"
 			CHANGES=$((CHANGES + 1))
 			GOOD_SCHEMAS="$GOOD_SCHEMAS $s"
 		else
@@ -128,10 +140,10 @@ ensure_schema () {
 		if [ "$st_comment" = "t" ]; then
 			warn "$s: replacing its comment with the sn-historian marker"
 		fi
+		# only a comment changes, so SolarNode needs no restart for it
 		adopt_schema "$s" "$a"
 		log "$s: adopted"
 		summary_add "$s adopted"
-		SCHEMA_CHANGED=1
 		CHANGES=$((CHANGES + 1))
 	elif [ "$st_comp" != "$COMPONENT" ]; then
 		schema_refuse "$s" "the schema is marked as '$st_comp', not $COMPONENT, so it was left alone."
@@ -168,7 +180,7 @@ ensure_cron () {
 	# daily, delete the cron job run details older than 7 days
 	if [ -z "$(query "$CRON_DB" "SELECT 1 FROM cron.job WHERE jobname = '$CLEANUP_JOB'")" ]; then
 		psql_pg -d "$CRON_DB" -tA >/dev/null <<EOF
-SELECT cron.schedule('$CLEANUP_JOB', '30 3 * * *', \$\$DELETE FROM cron.job_run_details WHERE end_time < now() - INTERVAL 'P7D'\$\$);
+SELECT cron.schedule('$CLEANUP_JOB', '$CLEANUP_SCHEDULE', \$\$$CLEANUP_COMMAND\$\$);
 EOF
 		log "cron $CLEANUP_JOB: scheduled"
 		CHANGES=$((CHANGES + 1))
@@ -214,6 +226,7 @@ ensure_pool () {
 		FAILED=1
 		return 0
 	fi
+	pool_record "$cfg"
 	log "pool: $POOL_KEY added to $cfg"
 	summary_add "pool bound"
 	BIND_CHANGED=1
@@ -247,44 +260,70 @@ request_restart () {
 	fi
 }
 
-# restart SolarNode, without waiting for it, if the plugin must reload.
+# Restart SolarNode, without waiting for it, if the running plugin must reload. A
+# stopped SolarNode loads everything when it starts.
 ensure_restart () {
-	sn_was_active="$1"
+	if ! sn_active; then
+		return 0
+	fi
+	started="$(unit_start_ms "$SN_SERVICE")"
+	# also a schema an earlier run created, if that run stopped before here
+	created="$(cat "$SCHEMA_TIME_FILE" 2>/dev/null || true)"
+	case "$created" in
+		''|*[!0-9]*) created="$SCHEMA_DONE_MS" ;;
+	esac
 	if [ -n "$BIND_CHANGED" ]; then
 		request_restart "DataSource binding changed"
-	elif [ -n "$SCHEMA_CHANGED" ] && [ -n "$sn_was_active" ]; then
-		request_restart "schema set up while SolarNode was running"
-	elif sn_active; then
-		# A reinstall gives the same jar a new ctime, so compare the content too.
-		started="$(unit_start_ms "$SN_SERVICE")"
-		# start time unknown: leave it
-		if [ "$started" -le 0 ]; then
-			return 0
-		fi
-		# jar older than the SolarNode start: loaded; newer and changed: reload
-		if [ "$(jar_ctime_ms)" -le "$started" ]; then
-			jar_loaded_record
-		elif ! jar_loaded; then
-			request_restart "plugin installed after SolarNode started"
-		fi
+	# a schema created after SolarNode started (in any order, e.g. during sn-reset),
+	# while a DataSource has the historian: its caches are stale
+	elif [ -n "$created" ] && [ "$started" -lt "$created" ] \
+			&& [ -n "$(pool_bindings)" ]; then
+		request_restart "schema created while SolarNode was running"
+	elif [ -n "$FAILED" ]; then
+		return 0
+	# start time unknown: leave it
+	elif [ "$started" -le 0 ]; then
+		return 0
+	# A reinstall gives the same jar a new ctime, so compare the content too.
+	# jar older than the SolarNode start: loaded; newer and changed: reload
+	elif [ "$(jar_ctime_ms)" -le "$started" ]; then
+		jar_loaded_record
+	elif ! jar_loaded; then
+		request_restart "plugin installed after SolarNode started"
 	fi
+}
+
+# ensure_lock [SECONDS]: take the ensure lock (one ensure at a time: the unit, a
+# manual run, disable and reset-history), waiting up to SECONDS (default 100).
+# Fails on a timeout. A second call in the same process does nothing, as opening
+# the lock file again would release the lock.
+ensure_lock () {
+	if [ -n "$SNH_LOCKED" ]; then
+		return 0
+	fi
+	mkdir -p "$RUN_DIR"
+	exec 9>"$RUN_DIR/ensure.lock"
+	if ! flock -w "${1:-100}" 9; then
+		return 1
+	fi
+	SNH_LOCKED=1
 }
 
 ensure () {
 	check_settings
-	mkdir -p "$RUN_DIR"
-	# one ensure at a time (the unit and a manual run)
-	exec 9>"$RUN_DIR/ensure.lock"
-	if ! flock -w 100 9; then
+	if ! ensure_lock; then
 		tempfail "Another ensure is still running."
 	fi
+	ensure_run
+}
+
+# Run the ensure steps; the caller holds the ensure lock. Exit 1 on an error or a
+# refused schema, 75 if Postgres or the database was not ready (the unit retries).
+ensure_run () {
 	load_sql
 	wait_db
+	DB_ID="$(db_identity)"
 	check_server
-	sn_was_active=
-	if sn_active; then
-		sn_was_active=1
-	fi
 
 	ensure_db
 
@@ -308,9 +347,9 @@ ensure () {
 		fi
 	fi
 
-	if [ -z "$FAILED" ]; then
-		ensure_restart "$sn_was_active"
-	fi
+	# a database replaced while ensure ran (sn-reset) may have lost what it did
+	check_db_still_ready "finishing"
+	ensure_restart
 
 	if [ -n "$FAILED" ]; then
 		echo "sn-historian: ensure FAILED: $SUMMARY" >&2

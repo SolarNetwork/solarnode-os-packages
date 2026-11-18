@@ -1,6 +1,6 @@
 NAME = sn-historian-db-local
-VERSION = 1.0.0-1
-HISTORIAN_VERSION = 1.0.0-1
+VERSION = 1.0.0-2
+HISTORIAN_VERSION = 1.0.0-2
 PATHS = lib usr
 
 deb : prep

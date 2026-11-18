@@ -48,6 +48,12 @@ restart_solarnode () {
 		log "no SolarNode restart requested"
 		return 0
 	fi
+	# the request time, in epoch milliseconds; read now, as removing sn-historian
+	# during the wait can delete the file
+	req="$(cat "$RESTART_FILE" 2>/dev/null || true)"
+	case "$req" in
+		''|*[!0-9]*) req=0 ;;
+	esac
 	# wait until apt/dpkg has been idle for RESTART_SETTLE seconds in a row, so the
 	# restart does not land between two package runs that SolarNode makes
 	deadline=$(( $(date +%s) + RESTART_WAIT ))
@@ -68,10 +74,11 @@ restart_solarnode () {
 		fi
 		sleep 1
 	done
-	# the request time, in epoch milliseconds
-	req="$(cat "$RESTART_FILE")"
-	case "$req" in
-		''|*[!0-9]*) req=0 ;;
+	# a request made during the wait joins this run: use the newest one
+	newer="$(cat "$RESTART_FILE" 2>/dev/null || true)"
+	case "$newer" in
+		''|*[!0-9]*) ;;
+		*) if [ "$newer" -gt "$req" ]; then req="$newer"; fi ;;
 	esac
 	# a stopped SolarNode loads the plugin when it starts
 	state="$(systemctl is-active "$SN_SERVICE" 2>/dev/null || true)"

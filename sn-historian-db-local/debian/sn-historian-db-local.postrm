@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+# The prerm undid the setup. Purge keeps the history data (as purging Postgres
+# keeps its data) and the admin's /etc/default/sn-historian-db-local.
+
 if [ "$1" = "remove" ]; then
 	systemctl daemon-reload >/dev/null || true
 fi
