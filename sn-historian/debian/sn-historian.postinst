@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "configure" ]; then
+	systemctl daemon-reload >/dev/null || true
+	# kept across boots: jar-loaded, and preload-added from sn-historian-db-local
+	if [ ! -d /var/lib/sn-historian ]; then
+		install -d -m 755 /var/lib/sn-historian
+	fi
+fi

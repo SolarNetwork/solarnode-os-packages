@@ -1,0 +1,24 @@
+# Settings for sn-historian. The values shown are the defaults. Override them in
+# /etc/default/sn-historian, or in the environment for a one-off run (the file
+# wins over the environment).
+
+# The database that holds the history schemas, and the role that owns them
+# HISTORIAN_DB=solarnode
+# HISTORIAN_DB_OWNER=solarnode
+
+# The history schemas (filtered, unfiltered)
+# HISTORIAN_SCHEMAS="solarhist solaruhist"
+
+# Create the aggregate tables when a schema is created, and schedule their
+# pg_cron job (on or off)
+# HISTORIAN_AGG=on
+# HISTORIAN_AGG_SCHEDULE='* * * * *'
+
+# The historian SQL, from the solarnode-app-datumhistorian-jdbc package
+# HISTORIAN_SQL_DIR=/usr/share/solarnode/datumhistorian-jdbc/sql
+
+# The SolarNode DataSource configuration to add node-datum-history to
+# HISTORIAN_POOL_CFG=/etc/solarnode/services/net.solarnetwork.jdbc.pool.hikari-solarnode-postgres.cfg
+
+# Seconds that ensure waits for Postgres and the database
+# HISTORIAN_PG_WAIT=60

@@ -1,0 +1,133 @@
+#!/bin/sh
+set -e
+
+# Set up the local Postgres for the historian: pg_cron preload and conf.d settings,
+# one Postgres restart if they changed, then sn-historian-ensure.service. Undoes its
+# own Postgres changes if Postgres fails to restart with them.
+
+CONF="/usr/share/solarnode/default/sn-historian-db-local"
+VENDOR_CONF="/etc/default/sn-historian-db-local"
+
+PG_USER=postgres
+PG_SERVICE=postgresql@17-main
+PG_CONF_DIR=/etc/postgresql/17/main
+STATE_DIR=/var/lib/sn-historian
+
+if [ -e "$CONF" ]; then
+	# shellcheck source=/dev/null
+	. "$CONF"
+fi
+if [ -e "$VENDOR_CONF" ]; then
+	# shellcheck source=/dev/null
+	. "$VENDOR_CONF"
+fi
+
+pg_changed=
+# what this run added, to undo if Postgres then fails to start
+added_preload=
+added_confs=
+
+# preload_has_pg_cron FILE: true if the shared_preload_libraries line in FILE has
+# pg_cron (the file; sn-historian checks the running server)
+preload_has_pg_cron () {
+	grep -Eq "^shared_preload_libraries\s*=\s*'([^']*,)?\s*pg_cron\s*(,[^']*)?'" "$1"
+}
+
+# Add pg_cron to shared_preload_libraries with the plugin README sed, if missing,
+# and record that we added it.
+setup_preload () {
+	conf_file="${PG_CONF_DIR}/postgresql.conf"
+	if [ ! -e "$conf_file" ]; then
+		echo "$conf_file not found; add pg_cron to shared_preload_libraries by hand."
+		return 0
+	fi
+	if preload_has_pg_cron "$conf_file"; then
+		return 0
+	fi
+	echo "Adding pg_cron to shared_preload_libraries in $conf_file."
+	sed -Ei "/^#?shared_preload_libraries\s*=/{/pg_cron/b;s/^#?(shared_preload_libraries\s*=\s*')([^']*)'/\1\2,pg_cron'/;s/',pg_cron'/'pg_cron'/}" \
+		"$conf_file"
+	if preload_has_pg_cron "$conf_file"; then
+		mkdir -p "$STATE_DIR"
+		date -u '+%Y-%m-%dT%H:%M:%SZ' >"${STATE_DIR}/preload-added"
+		added_preload=1
+		pg_changed=1
+	else
+		echo "Could not add pg_cron to shared_preload_libraries in $conf_file; add it by hand."
+	fi
+}
+
+# setup_conf EXAMPLE NAME: install a conf.d file if missing
+setup_conf () {
+	conf_file="${PG_CONF_DIR}/conf.d/$2"
+	conf_file_example="/usr/share/solarnode/example/$1"
+	if [ -d "${PG_CONF_DIR}/conf.d" ] && [ ! -e "$conf_file" ] && [ -e "$conf_file_example" ]; then
+		echo "Creating Postgres configuration $conf_file."
+		install -o $PG_USER -g $PG_USER -m 644 "$conf_file_example" "$conf_file"
+		added_confs="$added_confs $conf_file"
+		pg_changed=1
+	fi
+}
+
+# Undo what this run added (the tested inverse of the README sed), after Postgres
+# failed to restart with it, and start Postgres again.
+undo_pg_changes () {
+	for f in $added_confs; do
+		echo "Removing $f."
+		rm -f "$f"
+	done
+	if [ -n "$added_preload" ]; then
+		conf_file="${PG_CONF_DIR}/postgresql.conf"
+		echo "Removing pg_cron from shared_preload_libraries in $conf_file."
+		sed -Ei "/^shared_preload_libraries\s*=/{s/'pg_cron,/'/;s/,pg_cron'/'/;s/,pg_cron,/,/;s/'pg_cron'/''/}" \
+			"$conf_file"
+		# the add sed uncomments the Debian default line; comment it again if empty
+		sed -Ei "s/^(shared_preload_libraries\s*=\s*''(\s|\$))/#\1/" "$conf_file"
+		rm -f "${STATE_DIR}/preload-added"
+	fi
+	if systemctl restart $PG_SERVICE; then
+		echo "Postgres is running again, without the historian settings."
+	else
+		echo "ERROR: $PG_SERVICE still fails to start; see: journalctl -u $PG_SERVICE"
+	fi
+}
+
+if [ "$1" = "configure" ]; then
+	setup_preload
+	setup_conf postgres-historian.conf solarnode-historian.conf
+	if [ -z "$CFG_WITHOUT_POSTGRES_SIZING" ]; then
+		setup_conf postgres-historian-sizing.conf zz-solarnode-historian-sizing.conf
+	fi
+
+	# restart Postgres only if something changed and it is running
+	pg_failed=
+	if [ -n "$pg_changed" ] && systemctl --quiet is-active $PG_SERVICE; then
+		echo "Restarting Postgres to load the historian settings."
+		if ! systemctl restart $PG_SERVICE; then
+			pg_failed=1
+			echo "ERROR: $PG_SERVICE failed to restart with the historian settings; see: journalctl -u $PG_SERVICE"
+			undo_pg_changes
+		fi
+	fi
+
+	systemctl daemon-reload >/dev/null || true
+	# after a rollback, enable it only on the next (re)install
+	if [ -z "$pg_failed" ] && ! systemctl --quiet is-enabled sn-historian-ensure.service >/dev/null 2>&1; then
+		echo 'Enabling sn-historian-ensure.service.'
+		systemctl enable sn-historian-ensure.service || true
+	fi
+
+	# no failing exit: a half-configured package would block later apt runs on the node
+	if [ -n "$pg_failed" ]; then
+		echo 'ERROR: the historian database was not set up. Fix the Postgres error, then reinstall this package.'
+	elif systemctl --quiet is-active $PG_SERVICE; then
+		echo 'Setting up the historian database.'
+		# a fresh start, even if many recent starts tripped the unit's start limit
+		systemctl reset-failed sn-historian-ensure.service >/dev/null 2>&1 || true
+		if ! systemctl start sn-historian-ensure.service; then
+			echo 'The historian database setup failed; see: journalctl -u sn-historian-ensure'
+		fi
+	else
+		echo "Postgres is not running; the historian database is set up when $PG_SERVICE starts."
+	fi
+fi

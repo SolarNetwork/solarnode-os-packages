@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "remove" ]; then
+	if systemctl is-enabled sn-historian-ensure.service >/dev/null 2>&1; then
+		systemctl disable sn-historian-ensure.service || true
+	fi
+fi

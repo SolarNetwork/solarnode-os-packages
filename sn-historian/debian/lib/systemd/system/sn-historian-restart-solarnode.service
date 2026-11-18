@@ -1,0 +1,12 @@
+# SolarNode historian: restart SolarNode once apt/dpkg is idle
+
+[Unit]
+Description=SolarNode restart for the historian
+
+[Service]
+Type=oneshot
+# Started with --no-block by "sn-historian ensure", so it runs in its own cgroup
+# and is not killed by the SolarNode restart. It waits for apt/dpkg to finish,
+# and skips the restart if SolarNode already restarted after the request.
+ExecStart=/bin/sh /usr/share/solarnode/bin/sn-historian.sh restart-solarnode
+TimeoutStartSec=700

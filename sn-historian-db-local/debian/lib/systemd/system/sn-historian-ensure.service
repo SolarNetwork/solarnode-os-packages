@@ -1,0 +1,21 @@
+# SolarNode historian database setup
+
+[Unit]
+Description=SolarNode historian database setup
+After=postgresql@17-main.service solarnode-app-db-postgres.service
+Before=solarnode.service
+StartLimitIntervalSec=600
+StartLimitBurst=10
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /usr/share/solarnode/bin/sn-historian.sh ensure
+TimeoutStartSec=120
+# Try again when Postgres or the solarnode database was not ready (exit 75), but
+# not after a real error (exit 1).
+Restart=on-failure
+RestartPreventExitStatus=1
+RestartSec=15
+
+[Install]
+WantedBy=postgresql@17-main.service
