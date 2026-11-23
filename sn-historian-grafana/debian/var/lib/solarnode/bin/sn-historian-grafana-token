@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+CMD=/usr/share/sn-historian-grafana/bin/grafana-token.sh
+if [ "$(id -u)" -eq 0 ]; then
+	exec "$CMD" "$@"
+fi
+exec sudo "$CMD" "$@"

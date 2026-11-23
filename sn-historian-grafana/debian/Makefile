@@ -1,6 +1,6 @@
 NAME = sn-historian-grafana
-VERSION = 1.0.0-1
-PATHS = etc lib usr
+VERSION = 1.0.0-2
+PATHS = etc lib usr var
 
 deb : prep
 	fpm -s dir -t deb \
@@ -13,6 +13,7 @@ deb : prep
 	--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 	-a all \
 	--force \
+	-d 'curl' \
 	-d 'grafana (>= 12.1)' \
 	-d 'solarnetwork-grafana-datasource (>= 4.0.0-2)' \
 	-d 'solarnode-app-datumhistorian-jdbc (>= 1.0.0-2)' \

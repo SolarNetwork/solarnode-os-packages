@@ -41,17 +41,43 @@ sudo cat /etc/sn-historian-grafana/admin-password \
 # Security token
 
 The data sources need a SolarNode security token. Create one in SolarNode (**Settings > Security
-Tokens**), then save its ID and secret and restart Grafana:
+Tokens**), then give it to Grafana, entering the token's secret when asked:
 
 ```sh
-echo -n 'TOKEN_ID' | sudo tee /etc/sn-historian-grafana/token >/dev/null
-echo -n 'TOKEN_SECRET' | sudo tee /etc/sn-historian-grafana/secret >/dev/null
-sudo systemctl restart grafana-server
+sn-historian-grafana-token set TOKEN_ID
 ```
+
+That saves the token, restarts Grafana and checks the token works: Grafana reads the node's ID
+through the data source, so a wrong token or secret shows up straight away. To give the secret
+without a prompt, for example in a script, pipe it in:
+
+```sh
+printf %s "$SECRET" | sn-historian-grafana-token set TOKEN_ID
+```
+
+The other actions are:
+
+| Action   | Description                                                                         |
+|:---------|:------------------------------------------------------------------------------------|
+| `check`  | Check that Grafana can read the SolarNode history with the token.                   |
+| `status` | Show the token ID (never the secret) and whether Grafana is running, then `check`.  |
+| `clear`  | Remove the token from Grafana, for example after deleting it in SolarNode.          |
+
+The command runs `sudo /usr/share/sn-historian-grafana/bin/grafana-token.sh`, which keeps the
+token in `/etc/sn-historian-grafana/token` and `/etc/sn-historian-grafana/secret`.
 
 > :warning: **Note** a SolarNode security token has full access to the node API, including sending
 > instructions, so anyone who can edit Grafana data sources or queries could use it. The data
 > sources can't be edited in Grafana.
+
+## Backup and reset
+
+A SolarNode **Backup** includes the token, as SolarNode already backs up its security tokens.
+After a **Restore**, restart Grafana (`sudo systemctl restart grafana-server`, or reboot) and run
+`sn-historian-grafana-token check`.
+
+A SolarNode **reset** deletes its security tokens, so it also removes the token from Grafana. Set
+a new one afterwards. Grafana's own data and admin password are kept.
 
 # Using Grafana
 

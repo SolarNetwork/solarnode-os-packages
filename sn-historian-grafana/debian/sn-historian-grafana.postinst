@@ -35,9 +35,7 @@ fi
 if [ ! -s "$DIR/token" ]; then
 	cat <<EOT
 To give Grafana access to the SolarNode history, create a security token in SolarNode
-(Settings > Security Tokens), then:
-  echo -n 'TOKEN_ID' | sudo tee $DIR/token >/dev/null
-  echo -n 'TOKEN_SECRET' | sudo tee $DIR/secret >/dev/null
-  sudo systemctl restart grafana-server
+(Settings > Security Tokens), then run this and enter the token's secret:
+  sn-historian-grafana-token set TOKEN_ID
 EOT
 fi
