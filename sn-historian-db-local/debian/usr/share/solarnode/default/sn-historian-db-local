@@ -1,2 +1,0 @@
-# Disable installing the small-device Postgres sizing file
-# CFG_WITHOUT_POSTGRES_SIZING=1

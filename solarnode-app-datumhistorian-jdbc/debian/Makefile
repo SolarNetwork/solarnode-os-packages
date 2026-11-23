@@ -5,6 +5,7 @@ PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build
 SN_IVY_FILE = ${CURDIR}/../ivy.xml
 DEB_BUILD_ROOT = $(SN_BUILD_ROOT)/solarnode-deploy/generic/build/deb
+SQL_DIR = usr/share/solarnode/datumhistorian-jdbc/sql
 SN_ANT_OPTS =
 
 pkg : prep app assemble table
@@ -20,7 +21,7 @@ pkg : prep app assemble table
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
 		-d 'solarnode-app-core (>= 4.19)' \
-		-d 'solarnode-app-db-postgres (>= 2)' \
+		-d 'solarnode-base-postgres' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
 
@@ -31,6 +32,11 @@ prep :
 
 assemble :
 	cp -r $(ASSEMBLE_PATHS) $(DEB_BUILD_ROOT)/
+	# the solaruhist schema scripts, made from the solarhist ones as the plugin README does
+	sed 's/\bsolarhist/solaruhist/g' $(SQL_DIR)/postgres-init.sql \
+		>$(DEB_BUILD_ROOT)/$(SQL_DIR)/postgres-init-solaruhist.sql
+	sed 's/\bsolarhist/solaruhist/g' $(SQL_DIR)/postgres-init-agg.sql \
+		>$(DEB_BUILD_ROOT)/$(SQL_DIR)/postgres-init-agg-solaruhist.sql
 
 clean :
 	rm $(NAME)_$(VERSION)_all.deb

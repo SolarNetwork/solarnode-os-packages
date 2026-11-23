@@ -1,7 +1,6 @@
 NAME = sn-historian-db-local
-VERSION = 1.0.0-2
-HISTORIAN_VERSION = 1.0.0-2
-PATHS = lib usr
+VERSION = 1.0.0-1
+PATHS = lib
 
 deb : prep
 	fpm -s dir -t deb \
@@ -14,7 +13,7 @@ deb : prep
 	--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 	-a all \
 	--force \
-	-d 'sn-historian (= $(HISTORIAN_VERSION))' \
+	-d 'postgresql-17' \
 	-d 'solarnode-app-db-postgres (>= 2.0.2)' \
 	-d 'solarnode-app-datumhistorian-jdbc (>= 1.0.0-2)' \
 	-d 'postgresql-17-cron (>= 1.6)' \

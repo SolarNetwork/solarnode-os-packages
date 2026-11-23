@@ -1,9 +1,8 @@
 #!/bin/sh
-set -e
 
-# The prerm undid the setup. Purge keeps the history data (as purging Postgres
-# keeps its data) and the admin's /etc/default/sn-historian-db-local.
+# The prerm disabled sn-historian-db-local.service; nothing else is undone.
 
-if [ "$1" = "remove" ]; then
-	systemctl daemon-reload >/dev/null || true
+if [ "$1" = remove ]; then
+	systemctl daemon-reload >/dev/null 2>&1 || true
 fi
+exit 0
