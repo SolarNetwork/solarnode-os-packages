@@ -1,5 +1,5 @@
 NAME = sn-historian-grafana
-VERSION = 1.0.0-2
+VERSION = 1.0.0-3
 PATHS = etc lib usr var
 
 deb : prep

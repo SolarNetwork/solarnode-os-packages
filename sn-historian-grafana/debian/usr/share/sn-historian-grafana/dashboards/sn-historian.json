@@ -1,5 +1,5 @@
 {
-  "uid": "sn-historian",
+  "uid": "solarnode-history",
   "title": "SolarNode history",
   "description": "Starter dashboard for the SolarNode datum history: one property of the chosen sources, raw and aggregated.",
   "tags": [
