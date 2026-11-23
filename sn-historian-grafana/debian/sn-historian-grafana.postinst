@@ -1,0 +1,43 @@
+#!/bin/sh -e
+
+# Enable and start grafana-server. Its 50-sn-historian.conf drop-in creates the token files and
+# generates the admin password when it starts. Never fails the install.
+
+[ "$1" = configure ] || exit 0
+
+DIR=/etc/sn-historian-grafana
+DB=/var/lib/grafana/grafana.db
+
+# a new admin password only applies to a new Grafana database
+old_db=
+if [ -e "$DB" ] && [ ! -e "$DIR/admin-password" ]; then
+	old_db=1
+fi
+
+systemctl daemon-reload >/dev/null 2>&1 || true
+if ! systemctl --quiet is-enabled grafana-server.service >/dev/null 2>&1; then
+	systemctl enable grafana-server.service || true
+fi
+if [ ! -d /run/systemd/system ]; then
+	echo 'Grafana starts when the node boots.'
+	exit 0
+fi
+if ! systemctl restart grafana-server.service; then
+	echo 'ERROR: grafana-server failed to start; see: journalctl -u grafana-server'
+	exit 0
+fi
+
+echo "Grafana listens on 127.0.0.1:3000. The admin password is in $DIR/admin-password."
+if [ -n "$old_db" ]; then
+	echo "Grafana was already set up, so that password was not applied. To set it:"
+	echo "  sudo cat $DIR/admin-password | sudo runuser -u grafana -- env -C / grafana cli admin reset-admin-password --password-from-stdin"
+fi
+if [ ! -s "$DIR/token" ]; then
+	cat <<EOT
+To give Grafana access to the SolarNode history, create a security token in SolarNode
+(Settings > Security Tokens), then:
+  echo -n 'TOKEN_ID' | sudo tee $DIR/token >/dev/null
+  echo -n 'TOKEN_SECRET' | sudo tee $DIR/secret >/dev/null
+  sudo systemctl restart grafana-server
+EOT
+fi

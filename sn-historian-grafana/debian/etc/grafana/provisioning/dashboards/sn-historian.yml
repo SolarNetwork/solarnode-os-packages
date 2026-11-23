@@ -1,0 +1,13 @@
+# The SolarNode history starter dashboard. It can't be changed in Grafana: use "Save as" to
+# make a copy to change.
+apiVersion: 1
+providers:
+  - name: sn-historian
+    orgId: 1
+    folder: SolarNode history
+    folderUid: sn-historian
+    type: file
+    disableDeletion: true
+    allowUiUpdates: false
+    options:
+      path: /usr/share/sn-historian-grafana/dashboards

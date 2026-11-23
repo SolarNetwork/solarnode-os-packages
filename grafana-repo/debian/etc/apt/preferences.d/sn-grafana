@@ -1,0 +1,9 @@
+# Keep Grafana on 12.x (the SolarNetwork data source needs >= 12.1; Grafana 13 is
+# about twice the size installed), and take nothing else from apt.grafana.com.
+Package: grafana
+Pin: version 12.*
+Pin-Priority: 990
+
+Package: *
+Pin: origin apt.grafana.com
+Pin-Priority: -1
