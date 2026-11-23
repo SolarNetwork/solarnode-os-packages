@@ -81,3 +81,4 @@ Run `make` to build the package, which will produce
 `solarnode-app-datumhistorian-jdbc_VERSION_all.deb` in this directory.
 
 [plugin-readme]: https://github.com/SolarNetwork/solarnetwork-node/blob/develop/net.solarnetwork.node.datumhistorian.jdbc/README.md#postgres-setup
+

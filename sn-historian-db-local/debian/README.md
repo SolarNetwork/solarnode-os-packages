@@ -50,6 +50,7 @@ To keep the history on another drive, create a tablespace for it before installi
    ```
 
    Don't use `RequiresMountsFor` for this.
+
 2. Create the tablespace in a directory on the drive:
 
    ```sh
@@ -82,3 +83,4 @@ Then run `make`, which produces `sn-historian-db-local_VERSION_all.deb` in this 
 [fpm]: https://github.com/jordansissel/fpm
 [historian]: https://github.com/SolarNetwork/solarnetwork-node/tree/develop/net.solarnetwork.node.datumhistorian.jdbc
 [plugin-readme]: https://github.com/SolarNetwork/solarnetwork-node/blob/develop/net.solarnetwork.node.datumhistorian.jdbc/README.md#postgres-setup
+

@@ -57,11 +57,11 @@ printf %s "$SECRET" | sn-historian-grafana-token set TOKEN_ID
 
 The other actions are:
 
-| Action   | Description                                                                         |
-|:---------|:------------------------------------------------------------------------------------|
-| `check`  | Check that Grafana can read the SolarNode history with the token.                   |
-| `status` | Show the token ID (never the secret) and whether Grafana is running, then `check`.  |
-| `clear`  | Remove the token from Grafana, for example after deleting it in SolarNode.          |
+| Action   | Description                                                                        |
+|:---------|:-----------------------------------------------------------------------------------|
+| `check`  | Check that Grafana can read the SolarNode history with the token.                  |
+| `status` | Show the token ID (never the secret) and whether Grafana is running, then `check`. |
+| `clear`  | Remove the token from Grafana, for example after deleting it in SolarNode.         |
 
 The command runs `sudo /usr/share/sn-historian-grafana/bin/grafana-token.sh`, which keeps the
 token in `/etc/sn-historian-grafana/token` and `/etc/sn-historian-grafana/secret`.
@@ -98,6 +98,7 @@ To let other devices reach Grafana directly:
 
 1. Set `GF_SERVER_HTTP_ADDR=0.0.0.0` in `/etc/default/sn-historian-grafana`, then
    `sudo systemctl restart grafana-server`. Any other Grafana setting can be changed there too.
+
 2. Open TCP port 3000 in the firewall, for example by adding this line to the end of
    `/etc/nftables.conf` and running `sudo systemctl restart nftables`:
 
@@ -128,3 +129,4 @@ Then run `make`, which produces `sn-historian-grafana_VERSION_all.deb` in this d
 [datasource]: https://github.com/SolarNetwork/solarnetwork-grafana-datasource
 [fpm]: https://github.com/jordansissel/fpm
 [grafana]: https://grafana.com/oss/grafana/
+
