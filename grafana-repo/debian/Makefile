@@ -8,7 +8,7 @@ deb : prep
 	fpm -s dir -t deb \
 	-n $(NAME) \
 	-v $(VERSION) \
-	--description 'Grafana apt repository support, with Grafana pinned to 12.x.' \
+	--description 'Grafana apt repository support, with Grafana pinned to 12.x, and the SolarNetwork solarnet component.' \
 	--license 'Apache License 2.0' \
 	-m 'packaging@solarnetwork.org.nz' \
 	--vendor 'SolarNetwork Foundation' \
@@ -16,6 +16,7 @@ deb : prep
 	-a all \
 	--force \
 	--deb-no-default-config-files \
+	--after-install $(NAME).postinst \
 	$(PATHS)
 
 prep :

@@ -2,7 +2,8 @@
 
 This package sets up [Grafana][grafana] on the node to chart the SolarNode datum history, using the
 [SolarNetwork data source][datasource]. It adds SolarNode data sources and a starter dashboard.
-Grafana comes from the repository that [sn-grafana-repo](../../grafana-repo/debian/) adds:
+Grafana and the data source come from the repositories that
+[sn-grafana-repo](../../grafana-repo/debian/) adds:
 
 ```sh
 sudo apt install sn-grafana-repo
