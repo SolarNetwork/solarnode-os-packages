@@ -15,7 +15,7 @@ deb : prep
 	--force \
 	-d 'postgresql-17' \
 	-d 'solarnode-app-db-postgres (>= 2.0.2)' \
-	-d 'solarnode-app-datumhistorian-jdbc (>= 1.0.0-2)' \
+	-d 'solarnode-app-datumhistorian-jdbc (>= 1.0.0-1)' \
 	-d 'postgresql-17-cron (>= 1.6)' \
 	-d 'sn-postgresql-17-aggs-for-vecs (>= 1.4.1)' \
 	--after-install $(NAME).postinst \

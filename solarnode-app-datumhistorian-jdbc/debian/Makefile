@@ -1,5 +1,5 @@
 NAME = solarnode-app-datumhistorian-jdbc
-VERSION = 1.0.0-2
+VERSION = 1.0.0-1
 ASSEMBLE_PATHS = usr
 PATHS = $(ASSEMBLE_PATHS) var
 SN_BUILD_ROOT = ${CURDIR}/solarnetwork-build

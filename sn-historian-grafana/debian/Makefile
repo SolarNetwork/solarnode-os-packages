@@ -1,5 +1,5 @@
 NAME = sn-historian-grafana
-VERSION = 1.0.0-3
+VERSION = 1.0.0-1
 PATHS = etc lib usr var
 
 deb : prep
@@ -16,7 +16,7 @@ deb : prep
 	-d 'curl' \
 	-d 'grafana (>= 12.1)' \
 	-d 'solarnetwork-grafana-datasource (>= 4.0.0-2)' \
-	-d 'solarnode-app-datumhistorian-jdbc (>= 1.0.0-2)' \
+	-d 'solarnode-app-datumhistorian-jdbc (>= 1.0.0-1)' \
 	--after-install $(NAME).postinst \
 	--before-remove $(NAME).prerm \
 	--after-remove $(NAME).postrm \
