@@ -10,8 +10,16 @@ sudo apt update
 sudo apt install grafana solarnetwork-grafana-datasource
 ```
 
-Grafana is pinned to version 12.x. To change that, edit the `Pin` line in
-`/etc/apt/preferences.d/sn-grafana`.
+This installs the latest Grafana. To install an older version, such as 12.x, first create
+`/etc/apt/preferences.d/grafana` with:
+
+```
+Package: grafana
+Pin: version 12.*
+Pin-Priority: 990
+```
+
+The file name must sort before `sn-grafana`, as apt uses the first matching pin.
 
 > :warning: **Note** that the repository's signing key expires on 2027-08-22. When Grafana renews
 > it, update `etc/apt/keyrings/grafana.asc` and `KEY_FPR` in the `Makefile`.
