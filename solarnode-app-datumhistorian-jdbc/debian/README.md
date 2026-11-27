@@ -5,7 +5,7 @@ provides a JDBC (database) implementation of the SolarNode `DatumHistorian` and
 `FilterableDatumHistorian` APIs.
 
 To keep the history in the node's own Postgres database, install
-[sn-historian-db-local](../../sn-historian-db-local/debian/) as well.
+[sn-historian-db-local](../../historian-db-local/debian/) as well.
 
 # Database SQL
 
