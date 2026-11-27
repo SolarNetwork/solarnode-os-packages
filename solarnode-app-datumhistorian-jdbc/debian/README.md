@@ -17,9 +17,6 @@ The package installs the plugin's Postgres SQL scripts in
 sudo -u postgres psql -X -f /usr/share/solarnode/datumhistorian-jdbc/sql/historian-setup.sql
 ```
 
-> :warning: **Note** that the scripts include a change not yet in the plugin repository: new
-> partitions are created in the tablespace of their table.
-
 # External database
 
 To keep the history in a Postgres database on another server, run `historian-setup.sql` against it
