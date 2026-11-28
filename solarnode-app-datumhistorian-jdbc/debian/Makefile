@@ -20,7 +20,7 @@ pkg : prep app assemble table
 		--license 'GPL 2.0' \
 		--url "https://github.com/SolarNetwork/solarnode-os-packages/tree/develop/$(NAME)/debian" \
 		-f \
-		-d 'solarnode-app-core (>= 4.19)' \
+		-d 'solarnode-app-core (>= 4.20)' \
 		-d 'solarnode-base-postgres' \
 		--chdir $(DEB_BUILD_ROOT) \
 		$(PATHS)
