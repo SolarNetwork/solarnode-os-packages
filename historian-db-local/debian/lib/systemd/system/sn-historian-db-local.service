@@ -1,0 +1,18 @@
+# Set up the historian schemas and pg_cron jobs whenever Postgres starts, after
+# solarnode-app-db-postgres.service has created the solarnode database. Does
+# nothing once they exist.
+
+[Unit]
+Description=SolarNode historian database setup
+PartOf=postgresql@17-main.service
+After=postgresql@17-main.service solarnode-app-db-postgres.service
+
+[Service]
+Type=oneshot
+User=postgres
+# TABLESPACE=NAME to create the schemas in that tablespace
+EnvironmentFile=-/etc/default/sn-historian-db-local
+ExecStart=/bin/sh -c 'exec psql -X -q -f /usr/share/solarnode/datumhistorian-jdbc/sql/historian-setup.sql $${TABLESPACE:+-v tablespace=$$TABLESPACE}'
+
+[Install]
+WantedBy=postgresql@17-main.service

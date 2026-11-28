@@ -1,0 +1,310 @@
+{
+  "uid": "solarnode-history",
+  "title": "SolarNode history",
+  "description": "Starter dashboard for the SolarNode datum history: one property of the chosen sources, raw and aggregated.",
+  "tags": [
+    "sn-historian"
+  ],
+  "editable": true,
+  "graphTooltip": 1,
+  "schemaVersion": 41,
+  "version": 1,
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "refresh": "",
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "$metric, raw (filtered)",
+      "description": "Filtered historian (solarhist), raw datum. Raw rows have no row limit: keep the time range short (hours, not days).",
+      "datasource": {
+        "type": "solarnetwork-solarnetwork-datasource",
+        "uid": "solarnode-filtered"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "solarnetwork-solarnetwork-datasource",
+            "uid": "solarnode-filtered"
+          },
+          "queryType": "listDatum",
+          "useStreaming": false,
+          "nodeIds": [
+            "$node"
+          ],
+          "sourceIds": [
+            "$source"
+          ],
+          "metrics": [
+            "$metric"
+          ],
+          "aggregation": "None",
+          "combiningType": "none",
+          "datumReadingType": "Difference"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "$metric, Hour (filtered)",
+      "description": "Filtered historian, Hour aggregates. Rows appear after the pg_cron stale job runs (every minute). Without the agg schema the node returns raw rows instead.",
+      "datasource": {
+        "type": "solarnetwork-solarnetwork-datasource",
+        "uid": "solarnode-filtered"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "solarnetwork-solarnetwork-datasource",
+            "uid": "solarnode-filtered"
+          },
+          "queryType": "listDatum",
+          "useStreaming": false,
+          "nodeIds": [
+            "$node"
+          ],
+          "sourceIds": [
+            "$source"
+          ],
+          "metrics": [
+            "$metric"
+          ],
+          "aggregation": "Hour",
+          "combiningType": "none",
+          "datumReadingType": "Difference"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "$metric, raw (unfiltered)",
+      "description": "Unfiltered historian (solaruhist, before datum filters), raw datum. Raw rows have no row limit: keep the time range short (hours, not days).",
+      "datasource": {
+        "type": "solarnetwork-solarnetwork-datasource",
+        "uid": "solarnode-unfiltered"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "solarnetwork-solarnetwork-datasource",
+            "uid": "solarnode-unfiltered"
+          },
+          "queryType": "listDatum",
+          "useStreaming": false,
+          "nodeIds": [
+            "$node"
+          ],
+          "sourceIds": [
+            "$source"
+          ],
+          "metrics": [
+            "$metric"
+          ],
+          "aggregation": "None",
+          "combiningType": "none",
+          "datumReadingType": "Difference"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "$metric, Day (filtered), last 7 days",
+      "description": "Filtered historian, Day aggregates over the last 7 days, whatever the dashboard range.",
+      "datasource": {
+        "type": "solarnetwork-solarnetwork-datasource",
+        "uid": "solarnode-filtered"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 9,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "solarnetwork-solarnetwork-datasource",
+            "uid": "solarnode-filtered"
+          },
+          "queryType": "listDatum",
+          "useStreaming": false,
+          "nodeIds": [
+            "$node"
+          ],
+          "sourceIds": [
+            "$source"
+          ],
+          "metrics": [
+            "$metric"
+          ],
+          "aggregation": "Day",
+          "combiningType": "none",
+          "datumReadingType": "Difference"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "timeFrom": "7d"
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "node",
+        "label": "Node",
+        "type": "query",
+        "hide": 2,
+        "datasource": {
+          "type": "solarnetwork-solarnetwork-datasource",
+          "uid": "solarnode-filtered"
+        },
+        "query": {
+          "refId": "node",
+          "kind": "nodes"
+        },
+        "definition": "nodes",
+        "refresh": 1,
+        "multi": false,
+        "includeAll": false,
+        "current": {},
+        "options": []
+      },
+      {
+        "name": "source",
+        "label": "Source",
+        "type": "query",
+        "datasource": {
+          "type": "solarnetwork-solarnetwork-datasource",
+          "uid": "solarnode-filtered"
+        },
+        "query": {
+          "refId": "source",
+          "kind": "sources",
+          "nodeIds": [
+            "$node"
+          ]
+        },
+        "definition": "sources",
+        "refresh": 1,
+        "multi": true,
+        "includeAll": false,
+        "sort": 1,
+        "current": {},
+        "options": []
+      },
+      {
+        "name": "metric",
+        "label": "Property",
+        "type": "query",
+        "datasource": {
+          "type": "solarnetwork-solarnetwork-datasource",
+          "uid": "solarnode-filtered"
+        },
+        "query": {
+          "refId": "metric",
+          "kind": "metrics",
+          "nodeIds": [
+            "$node"
+          ],
+          "sourceIds": [
+            "$source"
+          ]
+        },
+        "definition": "metrics",
+        "refresh": 1,
+        "multi": false,
+        "includeAll": false,
+        "sort": 1,
+        "current": {},
+        "options": []
+      }
+    ]
+  }
+}

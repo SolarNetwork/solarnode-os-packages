@@ -1,0 +1,54 @@
+#!/bin/sh -e
+
+# Set up the JDBC DatumHistorian in the local Postgres, as in the plugin README
+# "Postgres setup". sn-historian-db-local.service creates the schemas and jobs when
+# Postgres starts, so on an image without a running Postgres it happens on first boot.
+
+[ "$1" = configure ] || exit 0
+
+PG_SERVICE=postgresql@17-main
+PG_CONF_DIR=/etc/postgresql/17/main
+POOL_CFG=/etc/solarnode/services/net.solarnetwork.jdbc.pool.hikari-solarnode-postgres.cfg
+
+# load pg_cron, and its settings (both left in place on remove)
+if [ -e "$PG_CONF_DIR/postgresql.conf" ]; then
+	sed -Ei "/^#?shared_preload_libraries\s*=/{/pg_cron/b;s/^#?(shared_preload_libraries\s*=\s*')([^']*)'/\1\2,pg_cron'/;s/',pg_cron'/'pg_cron'/}" \
+		"$PG_CONF_DIR/postgresql.conf"
+	if [ -d "$PG_CONF_DIR/conf.d" ] && [ ! -e "$PG_CONF_DIR/conf.d/solarnode-historian.conf" ]; then
+		printf 'max_worker_processes = 16\ncron.use_background_workers = on\n' \
+			>"$PG_CONF_DIR/conf.d/solarnode-historian.conf"
+		chown postgres:postgres "$PG_CONF_DIR/conf.d/solarnode-historian.conf"
+	fi
+else
+	echo "$PG_CONF_DIR/postgresql.conf not found: add pg_cron to shared_preload_libraries by hand."
+fi
+
+# let the historian use the SolarNode Postgres connection pool
+if [ -e "$POOL_CFG" ]; then
+	sed -Ei '/^serviceProperty\.db\s*=/{/node-datum-history/b;s/$/, node-datum-history/}' "$POOL_CFG"
+else
+	echo "$POOL_CFG not found: add node-datum-history to its serviceProperty.db by hand."
+fi
+
+systemctl daemon-reload >/dev/null 2>&1 || true
+if ! systemctl --quiet is-enabled sn-historian-db-local.service >/dev/null 2>&1; then
+	systemctl enable sn-historian-db-local.service || true
+fi
+
+# no failing exit: a half-configured package would block every later apt run, and
+# sn-historian-db-local.service runs again when Postgres starts
+if systemctl --quiet is-active $PG_SERVICE 2>/dev/null; then
+	if [ "$(runuser -u postgres -- psql -XAtc "SELECT current_setting('shared_preload_libraries') ~ '\\mpg_cron\\M'
+			AND current_setting('cron.use_background_workers', TRUE) = 'on'" 2>/dev/null)" != t ]; then
+		echo 'Restarting Postgres to load pg_cron.'
+		systemctl restart $PG_SERVICE || echo "ERROR: $PG_SERVICE failed to restart; see: journalctl -u $PG_SERVICE"
+	fi
+	# in order, so the solarnode database exists first
+	if systemctl start solarnode-app-db-postgres.service sn-historian-db-local.service; then
+		echo 'The historian database is set up. Restart SolarNode to start using it.'
+	else
+		echo 'ERROR: the historian database setup failed; see: journalctl -u sn-historian-db-local'
+	fi
+else
+	echo "Postgres is not running: the historian database is set up when $PG_SERVICE starts."
+fi

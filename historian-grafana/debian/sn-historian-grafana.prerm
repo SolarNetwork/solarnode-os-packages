@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Stop Grafana, as without this package's settings it would listen on every address. Nothing
+# else is removed.
+
+[ "$1" = remove ] || exit 0
+
+systemctl disable --now grafana-server.service >/dev/null 2>&1 || true
+
+cat <<'EOT'
+grafana-server was stopped and disabled. Grafana, its data and the token files were left in
+place. To clean up more:
+
+  # remove Grafana and its data (dashboards, users)
+  sudo apt purge grafana solarnetwork-grafana-datasource
+  sudo rm -rf /var/lib/grafana /etc/sn-historian-grafana /etc/default/sn-historian-grafana
+
+  # then delete the Grafana security token in SolarNode (Settings > Security Tokens)
+EOT
+exit 0
