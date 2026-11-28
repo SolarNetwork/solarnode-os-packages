@@ -13,6 +13,8 @@ the following conventions:
 | `n.s.common`    | `net.solarnetwork.common` |
 | `n.s.n`         | `net.solarnetwork.node`   |
 
-## 1.0.0 - 2026-11-14
+## 1.0.0 - 2026-11-28
 
-TODO
+| Name                | ID                          | Vers  |
+|:--------------------|:----------------------------|:------|
+| JDBC DatumHistorian | `n.s.n.datumhistorian.jdbc` | 1.0.0 |
