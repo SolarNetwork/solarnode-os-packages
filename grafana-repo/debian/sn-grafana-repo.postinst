@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+APT_CONF="/etc/apt/sources.list.d/solarnetwork.list"
+
+# deb lines of the SolarNetwork package repository (production or staging)
+REPO='^deb .*debian\.repo\.\(stage\.\)\{0,1\}solarnetwork\.org\.nz'
+SOLARNET=' solarnet\( \|$\)'
+
+if [ "$1" = "configure" ] && [ -e "$APT_CONF" ] \
+		&& grep "$REPO" "$APT_CONF" | grep -qv "$SOLARNET"; then
+	echo "Adding solarnet component to SolarNetwork apt package repository."
+	sed -i "/${REPO}/ { /${SOLARNET}/! s/[[:space:]]*\$/ solarnet/; }" "$APT_CONF"
+fi

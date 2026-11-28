@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# The prerm stopped grafana-server; nothing else is undone.
+
+if [ "$1" = remove ]; then
+	systemctl daemon-reload >/dev/null 2>&1 || true
+fi
+exit 0

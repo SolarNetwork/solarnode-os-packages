@@ -1,0 +1,8 @@
+# Take only Grafana from apt.grafana.com.
+Package: grafana
+Pin: origin apt.grafana.com
+Pin-Priority: 500
+
+Package: *
+Pin: origin apt.grafana.com
+Pin-Priority: -1

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Removing the package changes nothing in Postgres or the SolarNode settings: it only
+# disables sn-historian-db-local.service and says what else could be cleaned up.
+
+[ "$1" = remove ] || exit 0
+
+systemctl disable sn-historian-db-local.service >/dev/null 2>&1 || true
+
+cat <<'EOF'
+The historian data, pg_cron jobs, extensions and Postgres settings were left in place.
+To clean up more, if nothing else uses them:
+
+  # stop the historian's pg_cron jobs
+  sudo -u postgres psql -c "SELECT cron.unschedule(jobname) FROM cron.job WHERE jobname IN
+    ('solarnode-agg-solarhist', 'solarnode-agg-solaruhist', 'cron-job-run-details-cleanup')"
+
+  # take the historian off the SolarNode Postgres connection pool, then restart SolarNode
+  sudo sed -Ei '/^serviceProperty\.db\s*=/s/,\s*node-datum-history//' \
+    /etc/solarnode/services/net.solarnetwork.jdbc.pool.hikari-solarnode-postgres.cfg
+
+  # delete all history (cannot be undone)
+  sudo -u postgres psql -d solarnode -c 'DROP SCHEMA solarhist CASCADE' -c 'DROP SCHEMA solaruhist CASCADE'
+
+pg_cron is still in shared_preload_libraries in /etc/postgresql/17/main/postgresql.conf,
+with /etc/postgresql/17/main/conf.d/solarnode-historian.conf. Take pg_cron out of
+shared_preload_libraries before removing the postgresql-17-cron package, or Postgres
+will not start.
+EOF
+exit 0
